@@ -12,12 +12,12 @@ void takeIO(){
 
 int main(){
 	takeIO();
-	long long a,b,c,d;
-	cin>>a>>b>>c>>d;
-	if(b*log(a)>d*log(c)){
-		cout<<"YES";
+	long double n;
+	cin>>n;
+	if(floor(n)==ceil(n)){
+		cout<<"int"<<" "<<n;
 	}else{
-		cout<<"NO";
+		cout<<"float "<<floor(n)<<" "<<n-floor(n);
 	}
 	return 0;
 }
