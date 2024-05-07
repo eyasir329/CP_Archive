@@ -19,9 +19,9 @@ void solve() {
     int hm,dm; cin>>hm>>dm;
     int k,w,a; cin>>k>>w>>a;
     for(int i=0;i<=k;i++){
-        hc+=1LL*i*a; 
-        dc+=1LL*(k-i)*w;
-        if((hc+dm-1)/dm>=(hm+dc-1)/dc){
+        int newhc=hc+1LL*i*a; 
+        int newdc=dc+1LL*(k-i)*w;
+        if((newhc+dm-1)/dm>=(hm+newdc-1)/newdc){
             yes;
             return;
         }
