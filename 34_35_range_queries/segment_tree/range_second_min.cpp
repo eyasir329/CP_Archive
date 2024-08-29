@@ -109,6 +109,30 @@ struct Node1
     val1 = vals[0];
     val2 = vals[1];
   }
+
+  // void merge(Node1 &l, Node1 &r)
+  // {
+  //   // Set the smallest value to val1
+  //   if (l.val1 < r.val1)
+  //   {
+  //     val1 = l.val1;
+  //     val2 = min(l.val2, r.val1); // second smallest
+  //   }
+  //   else
+  //   {
+  //     val1 = r.val1;
+  //     val2 = min(r.val2, l.val1); // second smallest
+  //   }
+
+  // Ensure val2 is not equal to val1
+  // if (val1 == val2)
+  // {
+  //   if (l.val2 != val1 && l.val2 != INT_MAX)
+  //     val2 = l.val2;
+  //   else if (r.val2 != val1 && r.val2 != INT_MAX)
+  //     val2 = r.val2;
+  // }
+  // }
 };
 
 struct Update1
