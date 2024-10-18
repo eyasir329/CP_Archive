@@ -1,5 +1,20 @@
 ## Competitive Programming
 
+#
+
+Useful for those, whose rating < 1400
+
+- https://youkn0wwho.academy/topic-list
+
+Group For solving problem...
+
+- https://codeforces.com/group/yg7WhsFsAp/contests \*\*\*
+- https://codeforces.com/group/MWSDmqGsZm/contests
+- https://codeforces.com/group/5pUldkahAU/contests
+- https://vjudge.net/group/level1sheetonly
+
+#
+
 https://codeforces.com/blog/entry/111099
 
 #to be good at competitive programming, you have to know "what to think" and "how to think" when you try a problem.
@@ -158,7 +173,7 @@ Note that you can change the shortcuts in sublime text by going to `Preferences 
 
 #
 
-### Data Types
+### Data Types, Conditions
 
 https://usaco.guide/general/data-types?lang=cpp
 ![data_type](https://i.ibb.co.com/mCSZKPF/Screenshot-from-2024-10-02-23-41-19.png)
@@ -205,11 +220,7 @@ is not available in all contest systems
 
 #
 
-### Array
-
-#
-
-### String
+### Array, String
 
 #### Input with spaces
 
@@ -244,6 +255,25 @@ https://www.geeksforgeeks.org/cpp-string-functions/
 | 20  | 10<sup>6</sup>  |                      19.9                       |
 | 30  | 10<sup>9</sup>  |                      29.9                       |
 | 60  | 10<sup>18</sup> |                      59.8                       |
+
+- some number, everytime divide it by 2(k) until became 1, how much operation need? (floor(log<sub>k</sub>N))
+
+[2020A_Find Minimum Operations](./5_basic_maths/divisors_modulo/2020A_Find%20Minimum%20Operations.cpp)
+
+https://www.cuemath.com/log-formulas/
+
+![log properties](https://mathgotserved.com/x/cdn/?https://storage.googleapis.com/wzukusers/user-19977666/images/5866e108c1fb01HOWam7/Logarithm-properties-ultimate-cheat-sheet-formula-product-quotient-power-root-inverse-identity-zero-change-equality-reciprocal_d600.PNG)
+
+- log<sub>3</sub>100 = log2(100)/log2(3)
+- number of digit in other number system :- floor(log<sub>k</sub>N))+1 (k base)
+- how much digit in n! (n<=1e5)
+
+      //using log product property
+      double sum = 0;
+      for(int i=1;i<=n;i++>{
+        sum+=log10(i);
+      })
+      cout<<floor(sum)+1<<endl;
 
 #
 
@@ -320,6 +350,111 @@ By default cin is tied to cout to ensure a sensible user interaction.
 
 #
 
+### Loops, Sorting
+
 ### Basic Maths
 
+- (num>0) positive number
+- (num>=0) non-negative number
+
+#### floor, ceil and round
+
+    floor-> floor((double)a/b) ~ a/b... ex. floor(7.3)=7
+    ceil-> ceil((double)a/b) ~ (a+b-1)/b... ex. ceil(7.3)=8 [(a-1)/b +1]
+    round-> round(double(a)/b)... ex. round(7.3)=7, round(7.5)=8
+
+- if num is divisible by 2, then ceil(num)==floor(num), because it has not any fraction.
+
+[Cautions for use inbuild functions](https://codeforces.com/blog/entry/107717)
+
+#### Series
+
+https://www.cuemath.com/summation-formulas/
+![formula](https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/correction-1718966351.jpg)
+
+- arithmetic progression - difference beteen adjacent two numbers are same.
+
+formula can generate by: n\*(first+last)/2;
+
+- geometric progression - ratio between two consecutive numbers is constant.
+
+r > 1 => s = a*(r<sup>n</sup>-1)/(r-1) <br>
+r = 1 => s = na #ar<sup>n-1</sup> formula <br>
+0 < r < 1 => s = a*(1-r<sup>n</sup>)/(1-r) <br>
+
+<code>Notes : check overflow(if then apply as long long(1LL)), oterwise give wrong answer.
+</code>
+
+![useful math functions](https://miro.medium.com/v2/resize:fit:1023/1*gQ6RMxhKkPauq92rqFv9-Q.jpeg)
+
+#### Harmonic Series
+
+https://scipp.ucsc.edu/~haber/archives/physics116A10/harmapa.pdf
+https://www.math.drexel.edu/~tolya/123_harmonic.pdf
+
+<img src="https://steemitimages.com/640x0/http://i.imgur.com/vifeHmZ.png" alt="harmonic series" style="height: 60px;">
+
+sum <= floor(log2(n)) + 1
+
+    int n = 1e6;
+    ll sum = 0; //O(N*N) not //O(NlogN) //because of j+=i
+    for(int i=1;i<=n;i++){
+      for(int j=i;j<=n;j+=i){//look like -> n*harmonic
+        sum+=j;
+      }
+    }
+    //also same for this
+    for(int i=1;i<=n;i++){
+      for(int j=1;i*j<=n;j++){ // j = n/i
+        sum+=j;
+      }
+    }
+
+https://codeforces.com/blog/entry/118001
+
+#### Divisors, Multiple, Modulo
+
+##### modulo
+
+- make sure after each operation, the result is between 0 and m-1
+- keep eyes in overflow.
+- do not work in division in general ways.
+- bitwise operation do not work with modular arithmetic.
+
+      (x+ y) mod m = (x mod m+ y mod m) mod m
+      (a-b) mod m = (a mod m - b mod m + m) mod m
+      (x · y) mod m = (x mod m· y mod m) mod m
+      x^n mod m = (x mod m)^n mod m
+
+##### divisors
+
+      for(int i=1;i<=n;i++){
+        if(n%i==0){
+          cout<<i<<" ";
+        }
+      }
+
+- (b | a) -> b divide a
+
+#### Primes
+
+#### GCD, LCM
+
+[Properties of GCD function](https://codeforces.com/blog/entry/95694)
+
+      lcm(a*b) = (a*b)/gcd(a*b)
+
+#### Basic Geometry
+
 #
+
+#### Some builtin function
+
+- round, llround
+- log -> natural log, log2, log10
+- sqrt, cbrt -> cube root
+- stoi, stoll, to_string
+- is_sorted, rand -> random number (srand(time(0)) seed the random number generator-change everytime)
+- isalpa, isdigit, islower, isupper, tolower, toupper
+
+##

@@ -42,6 +42,9 @@ Space complexity = (maximum dept \* each node )
 
 - a stack overflow occurs when the call stack exceeds it's maximum capacity. -Runtime Error/Segmentation Fault
 
+- if it make cycle, then recursion will never end.<br>
+  ex. f(n) = f(n-1)+f(n+1)
+
 #
 
 ### Memoization / DP

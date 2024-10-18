@@ -90,6 +90,15 @@ but a/b + gcd(a%b,b) = 1+gcd(a-b,b) => produce same result
 
 ## Modular Arithmetic
 
+https://libraryguides.centennialcollege.ca/c.php?g=717548&p=5121821
+https://codeforces.com/blog/entry/72527
+
+### Properties
+
+- a mod m = b mod m => (a-b) mod m = 0
+
+![](https://prod-qna-question-images.s3.amazonaws.com/qna-images/answer/6195f099-697f-489e-94ae-c77f1a063c08/8512de78-d4fd-43ef-9f61-33fcd14fa8c9/2dm5l1.jpg)
+
 - [495_Modular Equations](./5.modular_arithmetic/modular_arithmetic/495B_Modular%20Equations.cpp)
 
 <pre>
