@@ -1,5 +1,21 @@
 ## Competitive Programming
 
+https://codeforces.com/blog/entry/111099
+
+#to be good at competitive programming, you have to know "what to think" and "how to think" when you try a problem.
+
+"What to think":
+
+<pre>
+you have to know a decent amount of standard problems / techniques. Sometimes, a problem requires steps / observations that seem obvious if you've already seen them. Other times, you may solve a problem by reducing it to a well-known sub-problem. On the other hand, you may realize you've done something wrong if you "reduce" the problem to something that you know it's unsolvable under the given constraints. All this isn't possible if you don't know those standard problems.
+</pre>
+
+"How to think":
+
+<pre>
+it comes down to "building" a path to the solution. Sometimes, you need to find new insights / observations by analyzing the process in the statement, manipulating math equations, etc. Other times, you need to find a twist to a well-known technique. You can practice "how to think" by solving ad-hoc / non-standard problems.
+</pre>
+
 https://github.com/ShahjalalShohag/Competitive-Programming-A-Complete-Guideline?tab=readme-ov-file#problems-and-algorithms
 
 ### How to Read Problem Statements?
@@ -295,5 +311,15 @@ This disables the synchronization between the C and C++ standard streams. By def
 This unties cin from cout. Tied streams ensure that one stream is flushed automatically before each I/O operation on the other stream.
 
 By default cin is tied to cout to ensure a sensible user interaction.
+
+#
+
+- [Operator Precedence](https://en.cppreference.com/w/cpp/language/operator_precedence)
+
+  ![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDm_FtxeGKfyUhd-byPJ8Y34EKecgA7GwKXuF_IxJPrE4TKqzOsdZKybAkHC42NM7rs74hUzIklDTlhFCzq1RdLJm4sonfEEuA6fFSbP9SDXUfCicb2HO2kFimKV58CGr9Rx3RYsXR04Ie/s1600/untitled_thumb.png)
+
+#
+
+### Basic Maths
 
 #

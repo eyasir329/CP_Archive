@@ -16,6 +16,7 @@ int main()
     return 0;
   }
   int target_sum = total_sum / 2;
+  //...not finished
 
   return 0;
 }
