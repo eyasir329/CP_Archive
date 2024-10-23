@@ -1,5 +1,7 @@
 ## Bit Manipulation And Bitmasking
 
+### Bit Manipulation and Bitmasks
+
 https://codeforces.com/blog/entry/73490
 
 - In bitwise operation, we have to think it **_bit by bit_**. It's nothing means in decimal number systems.
@@ -20,6 +22,22 @@ https://codeforces.com/blog/entry/73490
 - xor -> (a^b) -> single 1 then 1 otherwise 0.
 - **ODD** number check (x&1)==1 // last bit is 1 in all odd number//0 for even
 - something&1 = something /// something&0=0
+
+<pre>
+NOTE: 
+- for any int n, (bitwise and) always give a num(x&n)<=n
+      - subarray have min and value - whole array
+      - subarray have max and value - in length 1
+
+- for any int n, (bitwise or) always give a num(x|n)>=n
+      - subarray have max or value - whole array
+      - subarray have min and value - in length 1
+
+- xor gives same number of digits(both have).
+      - can't say anything 
+</pre>
+
+https://codeforces.com/blog/entry/123404 (max xor subarray)
 
 #### Check a Bit ON or OFF
 
@@ -124,3 +142,55 @@ https://codeforces.com/contest/2020/problem/C
               a += canBe * (1LL << i);//answer calculation
             }
         }
+
+#
+
+### XOR Tricks
+
+https://florian.github.io//xor-trick/
+
+- a^a = 0
+
+(xor of even number of same type = 0, otherwise(odd) only one have that type)
+
+- a^0 = a
+- a^b = 0 (a==b)
+
+Don't matter order of operations.
+
+- a^b^a = 0^b = b
+- a^b = c => a = b^c (vise-versa)
+
+<pre>
+if we have a sequence of xor operations... we can remove pair of douplicate value.
+</pre>
+
+#### Duplicate number finding
+
+<pre>
+we have 1 to n all numbers and a extra one number<=n, we have to find that extra number.
+</pre>
+
+```
+(1^2^3^....^n)^(xor of given all numbers) = extra one
+```
+
+#### Missing number finding
+
+<pre>
+we have 1 to n-1, we have to find missing number.
+</pre>
+
+```
+(1^2^3^....^n)^(xor of given all numbers) = missing one
+```
+
+#### Prefix XOR (Subarray XOR)
+
+[cses1650_Range Xor Queries](./3_xor_tricks/cses1650_Range%20Xor%20Queries.cpp)
+
+<pre>
+Given an array of n integers, your task is to process q queries of the form: what is the xor sum of values in range [a,b]?
+
+hint: same as prefix sum
+</pre>

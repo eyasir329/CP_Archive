@@ -2,9 +2,10 @@
 
 #
 
-Useful for those, whose rating < 1400
+Useful link
 
 - https://youkn0wwho.academy/topic-list
+- https://codeforces.com/blog/entry/111099
 
 Group For solving problem...
 
@@ -218,9 +219,62 @@ it is good to know that the g++ compiler also provides a 128-bit type \_\_int128
 with a value range of −2<sup>127</sup> . . . 2<sup>127</sup> − 1 or about −10<sup>38</sup> . . . 10<sup>38</sup>. However, this type
 is not available in all contest systems
 
-#
+---
 
-### Array, String
+### Array
+
+#### Something on Pair-Wise
+
+- we can fixed i or j(one), then calculate -> in pair/triple type of problems
+
+_example:_
+
+- find the total sum of a<sub>i</sub>\*a<sub>j</sub>, where 1<=i, j<=n, n=1e5
+
+  <pre>
+  # we have to do it in one loop (fixing i)
+  
+  for 1 to n: sum += ai * total_sum
+  </pre>
+
+- find the total sum of a<sub>i</sub>\*a<sub>j</sub>, where 1<=i<j<=n, n=1e5
+
+  <pre>
+  # we have to do it in one loop (fixing j)
+  
+  for 1 to n: sum += aj * preSum[j-1]
+  </pre>
+
+#### Subarray
+
+- total number of subarray -> n\*(n+1)/2
+
+_example:_
+
+- num of subarray whose sum is divisible by k
+
+  <pre>
+  in [l,r] subarray : (p[r]-p[l-1])%k=0
+                     => p[r]%k-p[l-1]%k=0
+                     => p[r]%k=p[l-1]%k
+  </pre>
+
+- num of subarray whose xor = 0
+
+  <pre>
+  in [l,r] subarray : (p[r]^p[l-1]) = 0
+                  => p[r] = p[l-1] (using xor property)                  
+  </pre>
+
+#### Subsequence
+
+#### Subset
+
+- total number of subset -> 2<sup>n</sup>-1
+
+---
+
+### String
 
 #### Input with spaces
 
@@ -244,7 +298,7 @@ is not available in all contest systems
 
 https://www.geeksforgeeks.org/cpp-string-functions/
 
-#
+---
 
 ### Exponential and Logarithmic Functions
 
@@ -332,6 +386,8 @@ Input untill end of file
 
 https://usaco.guide/general/fast-io?lang=cpp
 
+- input/output is slow operation
+
 <code>ios::sync_with_stdio(false)</code>
 
 This disables the synchronization between the C and C++ standard streams. By default, all standard streams are synchronized, which in practice allows you to mix C- and C++-style I/O and get sensible and expected results. If you disable the synchronization, then C++ streams are allowed to have their own independent buffers, which makes mixing C- and C++-style I/O an adventure.
@@ -341,6 +397,10 @@ This disables the synchronization between the C and C++ standard streams. By def
 This unties cin from cout. Tied streams ensure that one stream is flushed automatically before each I/O operation on the other stream.
 
 By default cin is tied to cout to ensure a sensible user interaction.
+
+- we have to use '\n' instead of endl;
+
+      endl -> '\n'+flush(buffer clear)
 
 #
 
@@ -458,3 +518,76 @@ https://codeforces.com/blog/entry/118001
 - isalpa, isdigit, islower, isupper, tolower, toupper
 
 ##
+
+#### Memory Initialization
+
+<code>memset</code>
+
+      //work byte by byte
+
+      char s[10];
+      memset(s,'a',5);//first five replace by 'a'//char need 1 byte
+      s[5]='\0';
+      cout<<s<<endl;
+
+      //int 4 byte, ll 8 byte
+      //initialize by (0/-1) in (int/long long) //accidentaly currect
+      int a[10];
+      memset(a,0,10*4);//a[0]=4byte
+      ->in long long memset(a,0,10*8);//a[0]=8byte
+      memset(a,0,a.sizeof(a));//also work in multi-dimension
+
+<code>fill</code>
+
+      //work for every number
+      fill(a,a+n,x)
+
+- memset is faster than fill, but both O(n)
+- by default global variables is initialize by zero but local variables not
+- declare large array globally//because it store in data segment, that are bigger in stack memory segment
+
+#### Other's Things
+
+- better to use double instead of float to have more accuracy (not precious 100%)
+- it's always better to use integer data type, use same type everywhere.
+- we have to be careful to use
+
+      log2()->__lg()->give us floor,
+            int ans = 0;
+            while(n>1){//0(logn) but accurate
+              ans++;
+              n/=2;
+            }
+      pow()->round(pow()),
+            int ans = 1;
+            for(int i=0;i<b;i++){//log(b) but accurate
+              ans*=a;
+            }
+      sqrt()->//similar to cubic root
+            long long ans = sqrt(n);//sqrtl()
+            while(ans*ans<=n)++ans;
+            while(ans*ans>n)--ans;
+            cout<<ans<<endl;
+
+because that are return double values.
+
+- long double is more precise that double//but not use float
+
+- compare two double
+
+        if(a-b<1e-9){
+        //they are equal
+        }
+
+- cout<<setprecision(10)<<num; //from starting//rounding last digit
+- cout<<fixed<<setprecision(10)<<num; //from after dot
+
+- program duration
+
+        clock_t start,end;
+        start = clock();//store clock tick (between 1e6)
+        ....
+        end = clock();
+        cerr<<1.0*(end-start)/CLOCKS_PER_SEC<<" sec"<<endl;
+
+- assert(condition) -> if true noting happened otherwise give runtime error. -- using for debugging purpose.
