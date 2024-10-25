@@ -125,7 +125,7 @@ Both of them perform similarly
   };
   ```
 
-- Kruskal's Algorithm (application of DSU)
+#### Kruskal's Algorithm (application of DSU)
 
       - used to find minimum spanning tree (MST)
       - graph is weighted
@@ -133,33 +133,33 @@ Both of them perform similarly
       - begin with least weighted edges
       - if already connected, then not construct anything (remove edge)
 
-  ```cpp
-  //dsu code first then other
-  void krushkalAlgo() {
-      int n, m; //n = size of dsu, m = node
-      cin >> n >> m;
-      vector<pair<int, pair<int, int>>>edges;
-      for (int i = 0; i < m; i++) {
-          int u, v, w; //connected node and their weight
-          cin >> u >> v >> w;
-          edges.push_back({w, {u, v}});
-      }
-      sort(edges.begin(), edges.end());//sort by weight
-      dsu d(n);
-      int sum = 0;
-      for (auto it : edges) {
-          int w = it.first;
-          int u = it.second.first;
-          int v = it.second.second;
-          if (d.findPar(u) != d.findPar(v)) {
-              sum += w;
-              d.unionRank(u, v);
-              cout << u << " " << v << " " << w << endl;
-          }
-      }
-      cout << sum << endl;
-  }
-  ```
+```cpp
+//dsu code first then other
+void krushkalAlgo() {
+    int n, m; //n = size of dsu, m = node
+    cin >> n >> m;
+    vector<pair<int, pair<int, int>>>edges;
+    for (int i = 0; i < m; i++) {
+        int u, v, w; //connected node and their weight
+        cin >> u >> v >> w;
+        edges.push_back({w, {u, v}});
+    }
+    sort(edges.begin(), edges.end());//sort by weight
+    dsu d(n);
+    int sum = 0;
+    for (auto it : edges) {
+        int w = it.first;
+        int u = it.second.first;
+        int v = it.second.second;
+        if (d.findPar(u) != d.findPar(v)) {
+            sum += w;
+            d.unionRank(u, v);
+            cout << u << " " << v << " " << w << endl;
+        }
+    }
+    cout << sum << endl;
+}
+```
 
 #### Practice questions
 
@@ -185,11 +185,137 @@ Both of them perform similarly
   output the color of all elements after all query processed.
   </pre>
 
-#
+---
 
 ### MST
 
+    - mostly use krushkal's algorithms
+
+#### Prim's Algorithm
+
+    - get the sum of edges of mst
+    - get the edges as well
+
+Theory:
+
+    - weighted undirected graph
+    - we can go each node to all other nodes
+    - maintain two things
+            - visited array(initialy all 0)
+            - priority queue (min at top)(each - weight,node,parent)
+    - in p_queue min is out first
+    - initial first pq have wt-0, node-x, parent-0
+
+![prims](https://cp-algorithms.com/graph/MST_before.png)
+to
+![prims_mst](https://cp-algorithms.com/graph/MST_after.png)
+
+```cpp
+//code for prim's algorithm
+int n, m; cin >> n >> m; //num of nodes and edges
+vector<pair<int, int>> adj[n + 1];// adjacent list -> vector of pair
+for (int i = 0; i < m; i++) {
+    int u, v, w; cin >> u >> v >> w;
+    adj[u].push_back({v, w});
+    adj[v].push_back({u, w});
+}
+priority_queue<vector<int>>pq;
+vector<int>vis(n + 1, 0);
+pq.push({0, 1, 0}); //wt, node, par
+int sum = 0;
+vector<pair<int, int>>edges;
+while (pq.empty() == false) {
+    int wt = -pq.top()[0];
+    int node = pq.top()[1];
+    int par = pq.top()[2];
+    pq.pop();//pop first
+    if (vis[node] == 1) continue;//if already visited
+    vis[node] = 1;
+    sum += wt;
+    if (par != 0) {
+        edges.push_back({node, par});
+    }
+    for (auto it : adj[node]) {
+        if (vis[it.first] == 0) {
+            pq.push({ -it.second, it.first, node});// neg because of min heap
+        }
+    }
+}
+cout << sum << endl;
+for (auto it : edges) {
+    cout << it.first << " " << it.second << endl;
+}
+
+```
+
+example:
+
+[1624G_MinOr Tree](./6_mst/2_prims/1624G_MinOr%20Tree.cpp)
+
+---
+
 ### Shortest Paths
+
+#### Floyd Warshall Algorithm **_(all pair shortest path)_**
+
+O(N<sup>3</sup>)
+
+    - use to find all pair shortest path
+    - brute force dp algorithm in graph
+    - directed or undirected weighted graph
+    - cost[i][j] = min cost to travel from i to j
+    - use adjacency matrix (cost matrix)
+    - if no direct path i to j, then cost is infinity
+    - i==j -> 0
+    - negative cycle can be checked
+
+- two types of adjacency relation
+  - adjacency list
+  - adjacency matrix
+
+![floyd_warshall](https://figures.semanticscholar.org/9cb9e82f482d434cf73ec2dd747662e0dc741caf/4-Figure2-1.png)
+
+Theory:
+
+    - first construct direct path
+    - then construct via path
+    - because of via (i,j and j,i) are same
+    - if column and row are intersect, then those produce same result (column == row)
+    - if better result than previous then update those path
+
+```cpp
+//code for floyd warshall
+int n, m; cin >> n >> m; //num of nodes and edges
+int cost[n + 1][n + 1];
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= n; j++) {
+        if (i == j) cost[i][j] = 0;
+        else {
+            cost[i][j] = INT_MAX;
+        }
+    }
+}
+for (int i = 0; i < m; i++) {
+    int u, v, w; cin >> u >> v >> w;
+    cost[u][v] = min(cost[u][v], w);
+}
+for (int k = 1; k <= n; k++) { //O(n*n*n)
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            if (cost[i][k] == INT_MAX || cost[k][j] == INT_MAX) continue;
+            cost[i][j] = min(cost[i][j], cost[i][k] + cost[k][j]);
+        }
+    }
+}
+for (int i = 1; i < n; i++) {
+    for (int j = 1; j < n; j++) {
+        cout << cost[i][j] << " ";
+    }
+    cout << endl;
+}
+```
+
+---
 
 ### Cycles
 

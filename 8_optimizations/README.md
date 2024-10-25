@@ -14,6 +14,8 @@ Note : 0 Based Indexing
 
 ### Two Pointer
 
+2033D D. Kousuke's Assignment
+
 #
 
 ### Sliding Window
