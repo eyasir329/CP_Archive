@@ -76,11 +76,11 @@ https://codeforces.com/blog/entry/123404 (max xor subarray)
 
 https://www.programiz.com/cpp-programming/bitwise-operators
 
-<hr>
+---
 
-## Example Code
+### BitMasks
 
-### Total Combination + Total Subset
+#### Total Combination + Total Subset
 
 <pre>
   vector<int> arr = {1, 6, 8, 9};
@@ -143,7 +143,15 @@ https://codeforces.com/contest/2020/problem/C
             }
         }
 
-#
+---
+
+### Bitwise OR
+
+---
+
+### Bitwise AND
+
+---
 
 ### XOR Tricks
 
@@ -194,3 +202,5 @@ Given an array of n integers, your task is to process q queries of the form: wha
 
 hint: same as prefix sum
 </pre>
+
+---

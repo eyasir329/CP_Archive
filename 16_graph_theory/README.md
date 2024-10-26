@@ -2,13 +2,23 @@
 
 ### Basic Graphs
 
+---
+
 ### Graph Traversals
+
+#### Topological Sorting
+
+---
 
 ### LCA
 
+---
+
 ### Graph Connectivity
 
-#
+#### Strongly Connected Components(Kosaraju's Algorithm)
+
+---
 
 ### DSU - Disjoint Set Union
 
@@ -60,15 +70,15 @@ Both of them perform similarly
 
 - Union by size (always increasing, so we have to maintain size array)
 
-        This is as same as the Union by rank method except this method uses the size to
-        compare the components while connecting. That is why we need a ‘size’ array of
-        size N(no. of nodes) instead of a rank array. The size array will be storing
-        the size for each particular node i.e. size[i] will be the size of the
-        component starting from node i.
+          This is as same as the Union by rank method except this method uses the size to
+          compare the components while connecting. That is why we need a ‘size’ array of
+          size N(no. of nodes) instead of a rank array. The size array will be storing
+          the size for each particular node i.e. size[i] will be the size of the
+          component starting from node i.
 
-        Typically, the size of a node refers to the number of nodes that are connected to it.
+          Typically, the size of a node refers to the number of nodes that are connected to it.
 
-- Code Template of DSU
+- DSU code
 
   ```cpp
   // code for DSU
@@ -125,6 +135,28 @@ Both of them perform similarly
   };
   ```
 
+example:
+
+-[codechef_ABROADS_Ancient Berland Roads](./5_dsu/codechef_ABROADS_Ancient%20Berland%20Roads.cpp)
+
+<pre>
+
+</pre>
+
+- [spoj_CLFLARR - COLORFUL ARRAY](./5_dsu/spoj_CLFLARR%20-%20COLORFUL%20ARRAY.cpp)
+
+  <pre>
+  given n unpainted elements(initialy have 0). 
+  q query, each (l r c) index l to r color it with c (each new color overrides it's previous color)
+  output the color of all elements after all query processed.
+  </pre>
+
+---
+
+### MST
+
+    - mostly use krushkal's algorithms
+
 #### Kruskal's Algorithm (application of DSU)
 
       - used to find minimum spanning tree (MST)
@@ -161,9 +193,9 @@ void krushkalAlgo() {
 }
 ```
 
-#### Practice questions
+example:
 
-- [25D_Roads not only in Berland](./5_dsu/25D_Roads%20not%20only%20in%20Berland.cpp)
+- [25D_Roads not only in Berland](./6_mst/1_krushkals/25D_Roads%20not%20only%20in%20Berland.cpp)
 
   <pre>
   First of all, it was decided to build new roads so that from each city of Berland and neighboring countries it became possible to reach all the others. 
@@ -176,20 +208,6 @@ void krushkalAlgo() {
   
   **determine how many days would be needed to rebuild roads so that from each city it became possible to reach all the others.
   </pre>
-
-- [spoj_CLFLARR - COLORFUL ARRAY](./5_dsu/spoj_CLFLARR%20-%20COLORFUL%20ARRAY.cpp)
-
-  <pre>
-  given n unpainted elements(initialy have 0). 
-  q query, each (l r c) index l to r color it with c (each new color overrides it's previous color)
-  output the color of all elements after all query processed.
-  </pre>
-
----
-
-### MST
-
-    - mostly use krushkal's algorithms
 
 #### Prim's Algorithm
 
@@ -214,6 +232,7 @@ to
 //code for prim's algorithm
 int n, m; cin >> n >> m; //num of nodes and edges
 vector<pair<int, int>> adj[n + 1];// adjacent list -> vector of pair
+//vector<vector<pair<int, int>>> adj(n + 1);
 for (int i = 0; i < m; i++) {
     int u, v, w; cin >> u >> v >> w;
     adj[u].push_back({v, w});
@@ -251,6 +270,12 @@ for (auto it : edges) {
 example:
 
 [1624G_MinOr Tree](./6_mst/2_prims/1624G_MinOr%20Tree.cpp)
+
+<pre>
+# find mst such that their bitwise or as minimum as possible
+
+we have to iterate (msb to lsb) bit and check that if this bit can be unset in the answer (try to remove all edges with this bit set) and check the no. of components -> 1 can be done (more than one can't be done)
+</pre>
 
 ---
 
