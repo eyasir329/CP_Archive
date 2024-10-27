@@ -6,17 +6,121 @@
 
 ### Graph Traversals
 
-#### Topological Sorting
+#### Topological Sorting (for only DAG)
 
----
+<pre>
+- it is a linear ordering of vertices such that if there is an edge between u to v, then u should come before v.
+- there can be multiple topological sort in graph.
+- topological sort is valid only directed ***asylic*** graph(DAG).
+</pre>
 
-### LCA
+![topological_sort](https://miro.medium.com/v2/resize:fit:720/format:webp/1*0jRSNI2zo30sENk2qlqEvw.png)
+
+https://yuminlee2.medium.com/topological-sort-cf9f8e43af6a
+
+- DFS Method
+<pre>
+- if we see the last element of the topo. sort, then it must have some edges coming towards it.
+- deepest node possible in the DFS.
+</pre>
+
+```cpp
+//code for topological sort using DFS
+void dfs(int node, vector<int>&vis, stack<int>&st, vector<int>adj[]) {
+    vis[node] = 1;
+    for (auto it : adj[node]) {
+        if (vis[it] == 0) {
+            dfs(it, vis, st, adj);
+        }
+    }
+    st.push(node);
+}
+
+void topologicalSort() {
+    int n, m; //no. of vertices, edges
+    cin >> n >> m;
+    vector<int> adj[n + 1]; //adjacency list
+    for (int i = 0; i < m; i++) {
+        int u, v; cin >> u >> v;
+        adj[u].push_back(v);
+    }
+    vector<int>vis(n + 1, 0);
+    stack<int>st;
+    for (int i = 1; i <= n; i++) {
+        if (vis[i] == 0) {
+            dfs(i, vis, st, adj);
+        }
+    }
+    while (st.empty() == false) {
+        cout << st.top() << " ";
+        st.pop();
+    }
+    cout << endl;
+}
+```
+
+- BFS Method (**_Kahn's Algorithm_**)
+<pre>
+- if node has indegree zero(not coming any edges), then it has complete changes to be at the first position at topo. sort.
+- calculate indegree of each nodes.
+- every time go to that node that has indegree zero, and then reduced by one every connected node for that parent node.
+</pre>
+
+```cpp
+//code for kahn's algorithm
+void topoSort(int node, vector<int>&indeg, vector<int>&topo, vector<int>adj[], vector<int>&vis) {
+    vis[node] = 1;
+    queue<int>q;
+    q.push(node);
+    while (q.empty() == false) {
+        int x = q.front();
+        q.pop();
+        topo.push_back(x);
+        for (auto it : adj[x]) {
+            indeg[it]--;
+            if (indeg[it] == 0) {
+                q.push(it);
+                vis[it] = 1;
+            }
+        }
+    }
+}
+
+void solve() {
+    int n, m; //no. of vertices, edges
+    cin >> n >> m;
+    vector<int> adj[n + 1]; //adjacency list
+    vector<int> indeg(n + 1, 0); //adjacency list
+    for (int i = 0; i < m; i++) {
+        int u, v; cin >> u >> v;
+        adj[u].push_back(v);
+        indeg[v]++;
+    }
+    vector<int>vis(n + 1, 0);
+    vector<int>topo;
+    for (int i = 1; i <= n; i++) {
+        if (indeg[i] == 0 and vis[i] == 0) {
+            topoSort(i, indeg, topo, adj, vis);
+        }
+    }
+    for (auto x : topo) {
+        cout << x << " ";
+    }
+    cout << endl;
+}
+```
 
 ---
 
 ### Graph Connectivity
 
-#### Strongly Connected Components(Kosaraju's Algorithm)
+#### Strongly Connected Components(Kosaraju's Algorithm)- SCC
+
+- **_Kosaraju's Algorithm_**
+
+---
+
+### LCA
 
 ---
 

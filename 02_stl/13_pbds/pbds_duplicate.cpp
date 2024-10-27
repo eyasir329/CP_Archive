@@ -8,6 +8,13 @@ using namespace __gnu_pbds;
 
 typedef tree<pair<int, int>, null_type, less<pair<int, int>>, rb_tree_tag, tree_order_statistics_node_update> PBDS;
 
+/*
+template <class T>
+using ordered_multiset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+ ordered_multiset<ll>s;
+*/
+
 int main()
 {
   PBDS st;

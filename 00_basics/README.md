@@ -472,6 +472,10 @@ sum <= floor(log2(n)) + 1
 
 https://codeforces.com/blog/entry/118001
 
+#### Some formulas
+
+<img src="https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/perimeter-formulas-1622782913.png" alt="Perimeter Formulas" height="839">
+
 #### Divisors, Multiple, Modulo
 
 ##### modulo
