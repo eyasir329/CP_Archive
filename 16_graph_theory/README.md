@@ -90,7 +90,7 @@ void solve() {
     int n, m; //no. of vertices, edges
     cin >> n >> m;
     vector<int> adj[n + 1]; //adjacency list
-    vector<int> indeg(n + 1, 0); //adjacency list
+    vector<int> indeg(n + 1, 0); //indegree
     for (int i = 0; i < m; i++) {
         int u, v; cin >> u >> v;
         adj[u].push_back(v);
@@ -110,15 +110,118 @@ void solve() {
 }
 ```
 
+example:
+
+- [510C Fox And Names](./2_graph_traversals/3_topological_sorting/510C_Fox%20And%20Names.cpp)
+
+<pre>
+Lexicographical order is defined in following way. When we compare s and t, first we find the leftmost position with differing characters: si ≠ ti. If there is no such position (i. e. s is a prefix of t or vice versa) the shortest string is less. Otherwise, we compare characters si and ti according to their order in alphabet.
+
+if there exists an order of letters in Latin alphabet such that the names on the paper she is submitting are following in the lexicographical order. If so, you should find out any such order as a permutation of characters 'a'-'z'
+
+n number of name given, we have find a dictionary order according to the number given. if we not find any such then print impossible.
+
+ex. - (r, ra , raj) no order required then ans -> a - z
+    - (raj, ra ,r)  above should be smaller than lower but not in here -> impossible(-1)
+
+- first should be lower length
+- compare two same length string, above should be come first than next in dictionary order.
+
+- (two string at a time) if same then go to next char, if not then, if we make edges between upper char to below char it must be follow topological_sort, if one is end before done, still it's bigger than other -> -1
+- also we have a cycle in this graph -> -1 
+</pre>
+
 ---
 
 ### Graph Connectivity
 
-#### Strongly Connected Components(Kosaraju's Algorithm)- SCC
+#### Strongly Connected Components (Kosaraju's Algorithm) - SCC
 
 - **_Kosaraju's Algorithm_**
+<pre>
+- divide graph into some components
+- each components, we can visit every node in a component from any node of the component. -> is called SCC
 
----
+quetions like in SCC :
+-> how many components are there?
+-> what are the nodes in there in the same componet.
+
+</pre>
+
+![kosarajus_algorithm]()
+
+Theory:
+
+<pre>
+- SCC1 -> SCC2 -> SCC3 ...
+- using dfs in scc1, we can visit every nodes from that components. than scc2,scc3...
+- using dfs bottom most elements are the deepest node 
+- if we reverse all edges, then SCC3 -> SCC@ -> SCC1
+- then if we start dfs using the top element (swallowest node) in that previous stack, we found each components separately. (each dfs traversal elements, if already visited encounter)
+- looks like topo. sort, but it actually not.
+</pre>
+
+```cpp
+//code for scc_kosaraju's algorithm
+stack<int>st;
+vector<int>temp;
+vector<vector<int>>scc;
+
+void dfs1(int node, vector<int>adj[], vector<int>&vis) {//pre dfs
+    vis[node] = 1;
+    for (auto it : adj[node]) {
+        if (vis[it] == 0) {
+            dfs1(it, adj, vis);
+        }
+    }
+    st.push(node);
+}
+
+void dfs2(int node, vector<int>tadj[], vector<int>&vis) {//post dfs
+    vis[node] = 1;
+    temp.push_back(node);
+    for (auto it : tadj[node]) {
+        if (vis[it] == 0) {
+            dfs2(it, tadj, vis);
+        }
+    }
+}
+
+void kosarajus_algo() {
+    int n, m; //no. of vertices, edges
+    cin >> n >> m;
+    vector<int> adj[n + 1], tadj[n + 1]; //adjacency list, transfer adjacency list
+    for (int i = 0; i < m; i++) {
+        int u, v; cin >> u >> v;
+        adj[u].push_back(v);
+        tadj[v].push_back(u);
+    }
+    vector<int>vis(n + 1, 0);
+    for (int i = 1; i <= n; i++) {
+        if (vis[i] == 0) {
+            dfs1(i, adj, vis);
+        }
+    }
+    fill(vis.begin(), vis.end(), 0);
+    while (st.empty() == false) {
+        int node = st.top();
+        st.pop();
+        if (vis[node] == 0) {
+            dfs2(node, tadj, vis);
+            scc.push_back(temp);
+            temp.clear();
+        }
+    }
+    cout << scc.size() << endl;//total components
+    for (auto it : scc) {
+        for (auto x : it) {//each component has
+            cout << x << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+```
 
 ### LCA
 
@@ -149,7 +252,7 @@ void solve() {
 
         every time connect node to the ultimate parrent (not in immidiate parent) - is called path compression.
 
-  - find parent (DP kind of approach O(4x)->O(1))
+- find parent (DP kind of approach O(4x)->O(1))
 
             int find_parent(int node) {
               if (node == parent[node])
@@ -164,7 +267,7 @@ To optimize(<O(N)) union set(that will store each parrent) operation, we have tw
 
 https://takeuforward.org/data-structure/disjoint-set-union-by-rank-union-by-size-path-compression-g-46/
 
-Both of them perform similarly
+_Both of them perform similarly_
 
 - Union by rank (not always increase)
 
@@ -182,66 +285,66 @@ Both of them perform similarly
 
           Typically, the size of a node refers to the number of nodes that are connected to it.
 
-- DSU code
+<br>
 
-  ```cpp
-  // code for DSU
-  class dsu {
-    vector<int> parent, size, rank;
-  public:
-    dsu(int n) {
-        for (int i = 0; i <= n; i++) {
-            parent.push_back(i);
-            size.push_back(1);
-            rank.push_back(0);
-        }
-    }
+```cpp
+// code for DSU
+class dsu {
+  vector<int> parent, size, rank;
+public:
+  dsu(int n) {
+      for (int i = 0; i <= n; i++) {
+          parent.push_back(i);
+          size.push_back(1);
+          rank.push_back(0);
+      }
+  }
 
-    int findPar(int node) {
-        if (parent[node] == node) {
-            return node;
-        }
-        //path compression
-        return parent[node] = findPar(parent[node]);
-    }
+  int findPar(int node) {
+      if (parent[node] == node) {
+          return node;
+      }
+      //path compression
+      return parent[node] = findPar(parent[node]);
+  }
 
-    void unionSize(int u, int v) {
-        int pu = findPar(u);
-        int pv = findPar(v);
-        if (pu == pv) {
-            return;
-        }
-        //attach smaller to bigger
-        if (size[pu] < size[pv]) {
-            parent[pu] = pv;
-            size[pv] += size[pu];
-        } else {
-            parent[pv] = pu;
-            size[pu] += size[pv];
-        }
-    }
+  void unionSize(int u, int v) {
+      int pu = findPar(u);
+      int pv = findPar(v);
+      if (pu == pv) {
+          return;
+      }
+      //attach smaller to bigger
+      if (size[pu] < size[pv]) {
+          parent[pu] = pv;
+          size[pv] += size[pu];
+      } else {
+          parent[pv] = pu;
+          size[pu] += size[pv];
+      }
+  }
 
-    void unionRank(int u, int v) {
-        int pu = findPar(u);
-        int pv = findPar(v);
-        if (pu == pv) {
-            return;
-        }
-        if (rank[pu] == rank[pv]) {
-            parent[pu] = pv;
-            rank[pu]++;
-        } else if (rank[pu] < rank[pv]) {
-            parent[pu] = pv;
-        } else {
-            parent[pv] = pu;
-        }
-    }
-  };
-  ```
+  void unionRank(int u, int v) {
+      int pu = findPar(u);
+      int pv = findPar(v);
+      if (pu == pv) {
+          return;
+      }
+      if (rank[pu] == rank[pv]) {
+          parent[pu] = pv;
+          rank[pu]++;
+      } else if (rank[pu] < rank[pv]) {
+          parent[pu] = pv;
+      } else {
+          parent[pv] = pu;
+      }
+  }
+};
+```
 
 example:
 
--[codechef_ABROADS_Ancient Berland Roads](./5_dsu/codechef_ABROADS_Ancient%20Berland%20Roads.cpp)
+- [codechef_ABROADS_Ancient Berland Roads](./5_dsu/codechef_ABROADS_Ancient%20Berland%20Roads.cpp)
 
 <pre>
 
