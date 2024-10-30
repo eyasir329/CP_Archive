@@ -2,19 +2,21 @@
 
 #
 
-Useful link
+Useful link (cf rating<1300)
 
-- https://youkn0wwho.academy/topic-list
-- https://codeforces.com/blog/entry/111099
+- [The Ultimate Topic List Module_1 by youkn0wwho](https://youkn0wwho.academy/topic-list)
+- [Competitive Programming Roadmap (target: [gray, blue]) by TheScrasse](https://codeforces.com/blog/entry/111099)
 
 Group For solving problem...
 
-- https://codeforces.com/group/yg7WhsFsAp/contests \*\*\*
-- https://codeforces.com/group/MWSDmqGsZm/contests
-- https://codeforces.com/group/5pUldkahAU/contests
-- https://vjudge.net/group/level1sheetonly
+- [100 Easy Problems (Bootcamp) by Errichto](https://codeforces.com/group/yg7WhsFsAp/contests)
+- [Assiut University Training - Newcomers](https://codeforces.com/group/MWSDmqGsZm/contests)
+- [ICPC Mansoura | Level 0 training | Public](https://codeforces.com/group/5pUldkahAU/contests)
+- [ICPC_Mansoura Level 1 training](https://vjudge.net/group/level1sheetonly)
 
 #
+
+## Some Basics
 
 https://codeforces.com/blog/entry/111099
 
@@ -98,14 +100,8 @@ https://github.com/ShahjalalShohag/Competitive-Programming-A-Complete-Guideline?
 
 ### Verdicts
 
-Once you submit your code, you will get a verdict based on multiple criteria. The most common verdicts are:
+Once you submit your code, you will get a verdict based on multiple criteria. The most common verdicts are:#### Basic Geometry
 
-<details>
-  <summary><strong>Accepted (AC)</strong></summary>
-  <p>Your solution passed all test cases! Good job!</p>
-</details>
-
-<details>
   <summary><strong>Wrong Answer (WA)</strong></summary>
   <p>Your program gave an incorrect output for a specific test case. As a result, it wasn't executed on the remaining test set. Note that the test cases are hidden, so you won't be able to see the test case on which your program failed.</p>
 </details>
@@ -507,8 +503,6 @@ https://codeforces.com/blog/entry/118001
 [Properties of GCD function](https://codeforces.com/blog/entry/95694)
 
       lcm(a*b) = (a*b)/gcd(a*b)
-
-#### Basic Geometry
 
 #
 

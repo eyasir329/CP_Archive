@@ -6,6 +6,8 @@
 
 ### Graph Traversals
 
+<code>Topological Sort and Strongly Connected Components are only for Directed Graph</code>
+
 #### Topological Sorting (for only DAG)
 
 <pre>
@@ -86,7 +88,7 @@ void topoSort(int node, vector<int>&indeg, vector<int>&topo, vector<int>adj[], v
     }
 }
 
-void solve() {
+void kahns_algo() {
     int n, m; //no. of vertices, edges
     cin >> n >> m;
     vector<int> adj[n + 1]; //adjacency list
@@ -148,7 +150,7 @@ quetions like in SCC :
 
 </pre>
 
-![kosarajus_algorithm]()
+![kosarajus_algorithm](https://media.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fw11phar5lma9ck0e5i3k.png)
 
 Theory:
 
@@ -223,7 +225,29 @@ void kosarajus_algo() {
 }
 ```
 
-### LCA
+example:
+
+- [cses1682_Flight Routes Check](./4_graph_connectivity/1_strongly_connected_components/cses1682_Flight%20Routes%20Check.cpp)
+<pre>
+There are n cities and m flight connections, your task is to check if you can travel from any city to any other city using the available flights.
+
+if possible -> YES, if not -> NO and two cities that can't be travelled.
+
+- possible if no. of scc == 1
+- if no then print two different scc members
+</pre>
+- [cses1683_Planets and Kingdoms](./4_graph_connectivity/1_strongly_connected_components/cses1683_Planets%20and%20Kingdoms.cpp)
+<pre>
+A game has n planets, connected by m teleporters, two planets a and b belong to the same kingdom if there is a route both from (a->b and b->a)
+
+print number of kingdoms and (each planet a kingdom)
+
+</pre>
+- [cses1686_Coin Collector.cpp](./4_graph_connectivity/1_strongly_connected_components/cses1686_Coin%20Collector.cpp)
+<pre>
+</pre>
+
+### Undirected Graph
 
 ---
 
@@ -488,7 +512,155 @@ we have to iterate (msb to lsb) bit and check that if this bit can be unset in t
 
 ### Shortest Paths
 
-#### Floyd Warshall Algorithm **_(all pair shortest path)_**
+- **_Dijkstra_**'s is more common than bellman ford or floyd warshall
+
+**_single source shortest path_**
+
+- #### Dijkstra's Algorithm _(non-negative weight edges)_
+<pre>
+- it's a single source shortest path algorithm
+- non-negative edge weights
+- works both directed and undirected graph
+- find shortest path from given node to every other nodes
+
+</pre>
+![dijkstra](https://i.ytimg.com/vi/Lfb8qkXzHY0/maxresdefault.jpg)
+Steps:
+
+<pre>
+- mark distance of given node = 0, all other node distance = infinity
+- push node into priority queue (small value at top)
+- pop small then visit it's neighbour node and update there distance
+- then update next node (using small distance)
+- on every iteration the marked vertex is the one that can never have a better distance later on.
+</pre>
+
+```cpp
+//code for dijkstra's algorithm
+//using set
+void dijkstras_algo_using_set(int src, int n, vector<vector<pair<int, ll>>> &edges, vector<ll>&dist) {
+  fill(dist.begin(), dist.end(), LLONG_MAX);
+  vector<bool>marked(n, false);
+  dist[src] = 0;
+  set<pair<ll, int>>toExplore; //weight,node
+  toExplore.insert({0LL, src});
+  while (toExplore.size() > 0) {
+    pair<ll, int>top = *toExplore.begin();
+    toExplore.erase(top);
+    int poppedNode = top.second;
+    ll distSoFar = top.first;
+    marked[poppedNode] = true;
+    for (auto i : edges[poppedNode]) {
+      int node = i.first;
+      ll addedDist = i.second;
+      if (marked[node]) {
+        continue;
+      }
+      if (dist[node] > distSoFar + addedDist) {
+        toExplore.erase({dist[node], node});
+        dist[node] = distSoFar + addedDist;
+        toExplore.insert({dist[node], node});
+      }
+    }
+  }
+}
+```
+
+```cpp
+//using priority queue
+//recomanded O((n+m)logn)
+void dijkstras_algo_using_priority_queue(int src, int n, vector<vector<pair<int, ll>>> &edges, vector<ll>&dist, vector<int>&parent) {
+  dist.assign(n, LLONG_MAX);
+  // parent.assign(n,-1); //Retrieving the shortest path
+  dist[src] = 0;
+  priority_queue<pair<ll, int>, vector<pair<int, ll>>, greater<pair<ll, int>>>q;
+  q.push({0LL, src});
+  while (!q.empty()) {// O(N)
+    pair<ll, int>top = q.top();
+    q.pop();//O(logN)
+    int poppedNode = top.second;
+    ll distSoFar = top.first;
+    if (distSoFar != dist[poppedNode]) {
+      continue;
+    }
+    for (auto i : edges[poppedNode]) {//O(M)
+      int node = i.first;
+      ll addedDist = i.second;
+      if (dist[node] > distSoFar + addedDist) {
+        dist[node] = distSoFar + addedDist;
+        //parent[node]=poppedNode;
+        q.push({dist[node], node});//O(logN)
+      }
+    }
+  }
+}
+// get shortest path
+void getPath(int node, vecctor<int>&parent) {
+  while (node != -1) {
+    cout << node << " ";
+    node = parent[node];
+  }
+}
+```
+
+- Dijkstra's Tree
+
+![tree](https://www.gatevidyalay.com/wp-content/uploads/2018/03/Dijkstra-Algorithm-Shortest-Path-Tree.png)
+
+- **Number of shortest paths to every node**
+
+##
+
+- #### Bellman Fort Algorithm _(work with negative weight edges)_
+<pre>
+- single source shortest path algorithm
+- works in negative edge weight(directed) but **not in negative cycles**
+- using to find negative cycles
+- using the principal of mathematical induction
+- algorithm goes upto n-1
+</pre>
+
+![bellmanford](https://i.sstatic.net/mMC7j.png)
+
+Theory:
+
+<pre>
+- after k iterations, all node which require <=k edges in the minimum path would have their final answeer.
+- each iteration go each node and relaxed it
+
+</pre>
+
+```cpp
+//code for bellman-ford
+void BellmanFord(int n, int src, vector<pair<int, ll>> *edges, vector<ll>& dist, set<int>& negCycle) {
+	fill(all(dist), INF);
+	dist[src] = 0;
+	vector<pair<ll, pair<int, int>>> e;
+	for (int i = 0; i < n; i++) {
+		for (auto j : edges[i]) {
+			e.pb({j.ss, {i, j.ff}});
+		}
+	}
+	for (int i = 0; i < n - 1; i++) {
+		for (auto j : e) {
+			dist[j.ss.ss] = min(dist[j.ss.ss], dist[j.ss.ff] + j.ff);
+		}
+	}
+	//checking negative cycle
+	for (int i = 0; i < n; i++) {
+		for (auto j : e) {
+			if (dist[j.ss.ss] > dist[j.ss.ff] + j.ff) {
+				dist[j.ss.ss] = dist[j.ss.ff] + j.ff;
+				negCycle.insert(j.ss.ss);
+			}
+		}
+	}
+}
+```
+
+**_all pair shortest path_**
+
+#### Floyd Warshall Algorithm
 
 O(N<sup>3</sup>)
 
@@ -550,6 +722,8 @@ for (int i = 1; i < n; i++) {
 ---
 
 ### Cycles
+
+### LCA (Lowest Common Ancestors)
 
 ### Eulerian Path
 
