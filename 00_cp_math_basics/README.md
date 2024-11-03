@@ -342,6 +342,13 @@ https://usaco.guide/bronze/time-comp?lang=cpp
 
 - 1s <--> 10<sup>8</sup> Operations
 
+        - bool of array -> n*1byte (1MB -> byte/1e6)(8 time slower than bool of vector)
+        - bool of vector/bitset -> n*1bit
+        - int of vector -> n*4byte (1byte->8bit)
+        - 256MB memory limit, maxsize of my array?
+                4x/1e6 = 256
+                -> x = 6.4e7// bitset can be 1e9+
+
 ### Algorithm Complexity Table
 
 https://usaco.guide/PAPS.pdf#page=99
@@ -375,6 +382,27 @@ Input untill end of file
     while(cin>>x){
       ans+=x;
     }
+
+#
+
+### stringstream
+
+    - input from string
+
+        string s = "12  13    24";
+        stringstream ss(s);
+        cout << ss.str << endl;
+        int a, b, c; ss >> a >> b >> c;
+        //alternate
+        while (ss >> n) {
+                cout << n << endl;
+        }
+        //separate words from string
+        getline(cin, s);
+        stringstream ss(s);
+        while (ss >> n) {
+                cout << n << endl;
+        }
 
 #
 

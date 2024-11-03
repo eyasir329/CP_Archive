@@ -1,3 +1,7 @@
+## Sorting
+
+2027_B. Stalin Sort
+
 ## Binary Search
 
 https://codeforces.com/contest/2020/problem/B
