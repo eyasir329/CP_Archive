@@ -26,6 +26,10 @@ otherwise true;
 
 ## Divisors
 
+<pre>
+- odd number of divisors are perfect square
+</pre>
+
 - [375A_Divisible By Seven](./2.divisors/375A_Divisible%20by%20Seven.cpp)
 <pre>
 

@@ -453,5 +453,33 @@ binary operation on bitset
 ![algo](https://hackingcpp.com/cpp/std/algorithms_crop.png)
 
 - Lambda Expressions
+<pre>
+- [&] capture all variable by refference
+- [=] capture all variable by value
+- [a,&b] capture a by value, b byb refference
+</pre>
 
 ![Lambda Expressions](https://hackingcpp.com/cpp/lang/lambdas_crop.png)
+
+- Custom Comparator
+<pre>
+- weak ordering (a>=b) (in C++ '=' always return false)
+- so don't use it('=') in comparator function
+</pre>
+
+```cpp
+sort(v.begin(),v.end(),[](pair<int,int>a,pair<int,int>b){
+    if(a.first!=b.first){
+        return a.first>b.first;
+    }
+    return a.second>b.second;
+});
+```
+
+example:
+
+- [632C_The Smallest String Concatenation](./2_string/632C_The%20Smallest%20String%20Concatenation.cpp)
+
+    <pre>We have to sort all string by lexicographical order.
+  
+    (a < b), (b < c) -> (a < c)</pre>

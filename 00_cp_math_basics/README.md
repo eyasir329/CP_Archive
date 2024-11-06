@@ -215,6 +215,10 @@ it is good to know that the g++ compiler also provides a 128-bit type \_\_int128
 with a value range of −2<sup>127</sup> . . . 2<sup>127</sup> − 1 or about −10<sup>38</sup> . . . 10<sup>38</sup>. However, this type
 is not available in all contest systems
 
+- [lightoj_equal ju ncpc 23](./1_datatype_conditions/lightoj_equal.cpp)
+
+- unsigned long long (range 0 -> 2^64-1 (1.8\*10<sup><b>19</b></sup>)), occupies 8 bytes of memory.
+
 ---
 
 ### Array
