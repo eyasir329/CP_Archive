@@ -1,3 +1,10 @@
+// number of pair whose sum %n ==0
+
+/*
+a[i]+b[j] %n = 0
+b[j] = - a[i]%n
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -17,16 +24,15 @@ int32_t main()
     cin >> arr[i];
   }
   map<int, int> mp;
+  ll ans = 0;
   for (int i = 1; i <= n; i++)
   {
-    int need = x - arr[i];
-    if (mp.find(need) != mp.end())
-    {
-      cout << mp[need] << " " << i << endl;
-      return 0;
-    }
-    mp[arr[i]] = i;
+    int need = ((arr[i] % n) + n) % n;
+    ans += mp[need];
+
+    int cur = ((-arr[i] % n) + n) % n;
+    mp[cur]++;
   }
-  cout << "IMPOSSIBLE" << endl;
+  cout << ans << endl;
   return 0;
 }
