@@ -1,8 +1,87 @@
 # Number Theory
 
+## Divisors
+
+<pre>
+- odd number of divisors are perfect square (i==n/i we eliminate one divisors because of unique divisors.) (ex. cf2020B)
+- otherwise all other number has even number of divisors
+</pre>
+
+```cpp
+//finding divisors using sqrt method O(sqrt(n))
+int n = 100;
+vector<int>divisors;
+//we have to maintain (i*i) not go to overflow
+//if(overflow) then it go to infinite loop
+for (int i = 1; i * i <= n; i++) {//because of sqrt()-> may cause precision error
+  if (n % i == 0) {
+    divisors.push_back(i);
+    if (i != n / i) {//because of unique divisors
+      divisors.push_back(n / i);
+    }
+  }
+}
+sort(divisors.begin(), divisors.end());
+for (auto x : divisors) {
+  cout << x << " ";
+}
+```
+
+- Number of Divisors from 1 to N
+
+normal way O(nsqrt(n)) (n upto 1e5)-> O(nlogn)
+
+```cpp
+//complexity O(nlogn)
+const int N = 1e7+9;
+int d[N];
+for(int i=1;i<N;i++){
+  for(int j=i;j<N;j+=i){//harmonic series
+    d[j]++;
+  }
+}
+// if(d[i]==2) -> they are prime
+```
+
+example:
+
+- [375A_Divisible By Seven](./2.divisors/375A_Divisible%20by%20Seven.cpp)
+
+  <pre>
+  # we need (num % 7 == 0)
+  
+  Rearrange the digits in its decimal representation so that the resulting number will be divisible by 7.
+  It doesn't contain any leading zeroes and always contains digits 1, 6, 8, 9
+  {"1869", "1968", "1689", "6198", "1698", "1986", "1896"}%7={0,1,2,3,4,5,6}, find it using next_permutation.
+  
+  #({... Other num mod + (7-other num mod) mod from list }%7=0 + zero at last)%7=0
+  
+  ex. (5+2+0)%7=0, (4+3+0)%7=0
+  </pre>
+
 ## Primes
 
-- [spoj_VECTAR8 - Primal Fear](./1.primes/spoj_VECTAR8_Primal%20Fear.cpp)
+<pre>
+- prime has exactly two divisors (1 & that number)
+- other number can be represented by multiple of different prime numbers
+</pre>
+
+```cpp
+//check n is prime or not
+bool is_prime(long long n){
+  if(n==1) return false;
+  for(int i=2;1LL*i*i<=n;i++){
+    if(n%i==0){
+      return false;
+    }
+  }
+  return true;
+}
+```
+
+example:
+
+- [spoj_VECTAR8 - Primal Fear](./1_primes_and_divisors/1_primes/spoj_VECTAR8_Primal%20Fear.cpp)
 
 <pre>
 They are afraid of the prime numbers (without the digit zero), that remain prime no matter how many of the leading digits are omitted.
@@ -24,26 +103,7 @@ otherwise true;
 #find the number of (positive) primes not larger than n which are of the form x2+y4 (where x and y are integers).
 </pre>
 
-## Divisors
-
-<pre>
-- odd number of divisors are perfect square
-</pre>
-
-- [375A_Divisible By Seven](./2.divisors/375A_Divisible%20by%20Seven.cpp)
-<pre>
-
-# we need (num % 7 == 0)
-
-Rearrange the digits in its decimal representation so that the resulting number will be divisible by 7.
-It doesn't contain any leading zeroes and always contains digits 1, 6, 8, 9
-{"1869", "1968", "1689", "6198", "1698", "1986", "1896"}%7={0,1,2,3,4,5,6}, find it using next_permutation.
-
-#({... Other num mod + (7-other num mod) mod from list }%7=0 + zero at last)%7=0
-
-ex. (5+2+0)%7=0, (4+3+0)%7=0
-
-</pre>
+---
 
 ## Factorization
 
@@ -58,6 +118,8 @@ n factorize = (2,2,2,3,5...y)
 if(n is divisible y) y*y until find n.. then next y
 
 </pre>
+
+---
 
 ## Euclidean Algorithms
 
@@ -90,7 +152,7 @@ TLE-if use gcd(a,b-a)//O(N)~1e18
 ex. 1+gcd(100%1,1)=2 , 1+gcd(100-1,1)=100 ~because we need num of resister(total num of time it called)
 but a/b + gcd(a%b,b) = 1+gcd(a-b,b) => produce same result
 
-</pre>
+## </pre>
 
 ## Modular Arithmetic
 
@@ -118,6 +180,12 @@ https://codeforces.com/blog/entry/72527
   num of divisors of a-b(16) that are more than b
 </pre>
 
+---
+
 ## Binary Exponentiation
 
+---
+
 ## Modular Inverse
+
+---
