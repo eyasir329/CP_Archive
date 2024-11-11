@@ -147,6 +147,10 @@ https://codeforces.com/contest/2020/problem/C
 
 ### Bitwise OR
 
+example:
+
+- []()
+
 ---
 
 ### Bitwise AND

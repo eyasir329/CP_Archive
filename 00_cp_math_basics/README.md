@@ -1,20 +1,4 @@
-## Competitive Programming
-
-#
-
-Useful link (cf rating<1300)
-
-- [The Ultimate Topic List Module_1 by youkn0wwho](https://youkn0wwho.academy/topic-list)
-- [Competitive Programming Roadmap (target: [gray, blue]) by TheScrasse](https://codeforces.com/blog/entry/111099)
-
-Group For solving problem...
-
-- [100 Easy Problems (Bootcamp) by Errichto](https://codeforces.com/group/yg7WhsFsAp/contests)
-- [Assiut University Training - Newcomers](https://codeforces.com/group/MWSDmqGsZm/contests)
-- [ICPC Mansoura | Level 0 training | Public](https://codeforces.com/group/5pUldkahAU/contests)
-- [ICPC_Mansoura Level 1 training](https://vjudge.net/group/level1sheetonly)
-
-#
+#### Basic Staff Until cf rating<=1000
 
 ## Some Basics
 
@@ -215,9 +199,11 @@ it is good to know that the g++ compiler also provides a 128-bit type \_\_int128
 with a value range of −2<sup>127</sup> . . . 2<sup>127</sup> − 1 or about −10<sup>38</sup> . . . 10<sup>38</sup>. However, this type
 is not available in all contest systems
 
-- [lightoj_equal ju ncpc 23](./1_datatype_conditions/lightoj_equal.cpp)
-
 - unsigned long long (range 0 -> 2^64-1 (1.8\*10<sup><b>19</b></sup>)), occupies 8 bytes of memory.
+
+example:
+
+- [lightoj_equal ju ncpc 23](./1_datatype_conditions/lightoj_equal.cpp)
 
 ---
 
@@ -297,6 +283,14 @@ _example:_
 <code>int num = 'c' - '0'</code>
 
 https://www.geeksforgeeks.org/cpp-string-functions/
+
+#### Binary String
+
+- [2029B_Replacement]()
+- [1971D_Binary Cut]()
+- [1913B_Swap and Delete]()
+- [1837C_Best Binary String]()
+- [2030C_A TRUE Battle]()
 
 ---
 
@@ -453,8 +447,6 @@ By default cin is tied to cout to ensure a sensible user interaction.
 
 - if num is divisible by 2, then ceil(num)==floor(num), because it has not any fraction.
 
-[Cautions for use inbuild functions](https://codeforces.com/blog/entry/107717)
-
 #### Series
 
 https://www.cuemath.com/summation-formulas/
@@ -504,6 +496,9 @@ https://codeforces.com/blog/entry/118001
 
 <img src="https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/perimeter-formulas-1622782913.png" alt="Perimeter Formulas" height="839">
 
+- [Triangles](https://www.cuemath.com/geometry/triangles/)
+- [Median & Centroid](https://www.khanacademy.org/math/geometry-home/triangle-properties/medians-centroids/v/triangle-medians-and-centroids)
+
 #### Divisors, Multiple, Modulo
 
 ##### modulo
@@ -527,6 +522,10 @@ https://codeforces.com/blog/entry/118001
       }
 
 - (b | a) -> b divide a
+
+example:
+
+- [2029A_Set]()
 
 #### Primes
 
@@ -580,7 +579,8 @@ https://codeforces.com/blog/entry/118001
 
 - better to use double instead of float to have more accuracy (not precious 100%)
 - it's always better to use integer data type, use same type everywhere.
-- we have to be careful to use
+- we have to be careful to use (NEVER EVER DO, UNTILL HAVE TO DO)
+- [Cautions for use inbuild functions](https://codeforces.com/blog/entry/107717)
 
       log2()->__lg()->give us floor,
             int ans = 0;
@@ -621,3 +621,15 @@ because that are return double values.
         cerr<<1.0*(end-start)/CLOCKS_PER_SEC<<" sec"<<endl;
 
 - assert(condition) -> if true noting happened otherwise give runtime error. -- using for debugging purpose.
+
+example:
+
+- [Dhaka ICPC 24 Preli Three Quick Brown Foxes Jump Over a Lazy Chicken]()
+
+---
+
+### Balanced Bracket
+
+example:
+
+- [1860A_Not a Substring]()

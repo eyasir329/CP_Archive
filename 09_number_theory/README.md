@@ -9,39 +9,43 @@
 
 ```cpp
 //finding divisors using sqrt method O(sqrt(n))
-int n = 100;
-vector<int>divisors;
-//we have to maintain (i*i) not go to overflow
-//if(overflow) then it go to infinite loop
-for (int i = 1; i * i <= n; i++) {//because of sqrt()-> may cause precision error
-  if (n % i == 0) {
-    divisors.push_back(i);
-    if (i != n / i) {//because of unique divisors
-      divisors.push_back(n / i);
+//used to find single number
+vector<int>divisors_of_n(int n) {
+    vector<int>divisors;
+    //we have to maintain (i*i) not go to overflow
+    //if(overflow) then it go to infinite loop
+    for (int i = 1; i * i <= n; i++) {//because of sqrt()-> may cause precision error
+        if (n % i == 0) {
+            divisors.push_back(i);
+            if (i != n / i) {//because of unique divisors
+                divisors.push_back(n / i);
+            }
+        }
+    }
+    sort(divisors.begin(), divisors.end());
+    for (auto x : divisors) {
+        cout << x << " ";
+    }
+    return divisors;
+}
+```
+
+- Number of Divisors from 1 to N (Each Number)
+
+      normal way O(nsqrt(n) causes TLE) (n upto 1e5)-> O(nlogn)
+
+  ```cpp
+  //complexity O(nlogn)
+  //used to find multiple number
+  const int N = 1e7+9;
+  int d[N];
+  for(int i=1;i<N;i++){
+    for(int j=i;j<N;j+=i){//harmonic series
+      d[j]++;
     }
   }
-}
-sort(divisors.begin(), divisors.end());
-for (auto x : divisors) {
-  cout << x << " ";
-}
-```
-
-- Number of Divisors from 1 to N
-
-normal way O(nsqrt(n)) (n upto 1e5)-> O(nlogn)
-
-```cpp
-//complexity O(nlogn)
-const int N = 1e7+9;
-int d[N];
-for(int i=1;i<N;i++){
-  for(int j=i;j<N;j+=i){//harmonic series
-    d[j]++;
-  }
-}
-// if(d[i]==2) -> they are prime
-```
+  // if(d[i]==2) -> they are prime
+  ```
 
 example:
 
