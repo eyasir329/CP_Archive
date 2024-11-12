@@ -86,6 +86,7 @@ https://github.com/ShahjalalShohag/Competitive-Programming-A-Complete-Guideline?
 
 Once you submit your code, you will get a verdict based on multiple criteria. The most common verdicts are:#### Basic Geometry
 
+<details>
   <summary><strong>Wrong Answer (WA)</strong></summary>
   <p>Your program gave an incorrect output for a specific test case. As a result, it wasn't executed on the remaining test set. Note that the test cases are hidden, so you won't be able to see the test case on which your program failed.</p>
 </details>
@@ -152,7 +153,10 @@ Shortcuts for Windows / Mac are given side by side.
 
 Note that you can change the shortcuts in sublime text by going to `Preferences > Key Bindings`.
 
-#
+- [Self-deception: maybe why you're still grey after practicing every day](https://codeforces.com/blog/entry/98621)
+- [The Forcing Fallacy](https://codeforces.com/blog/entry/106346)
+
+---
 
 ### Data Types, Conditions
 
@@ -207,90 +211,163 @@ example:
 
 ---
 
-### Array
+#### Some builtin function
 
-#### Something on Pair-Wise
-
-- we can fixed i or j(one), then calculate -> in pair/triple type of problems
-
-_example:_
-
-- find the total sum of a<sub>i</sub>\*a<sub>j</sub>, where 1<=i, j<=n, n=1e5
-
-  <pre>
-  # we have to do it in one loop (fixing i)
-  
-  for 1 to n: sum += ai * total_sum
-  </pre>
-
-- find the total sum of a<sub>i</sub>\*a<sub>j</sub>, where 1<=i<j<=n, n=1e5
-
-  <pre>
-  # we have to do it in one loop (fixing j)
-  
-  for 1 to n: sum += aj * preSum[j-1]
-  </pre>
-
-#### Subarray
-
-- total number of subarray -> n\*(n+1)/2
-
-_example:_
-
-- num of subarray whose sum is divisible by k
-
-  <pre>
-  in [l,r] subarray : (p[r]-p[l-1])%k=0
-                     => p[r]%k-p[l-1]%k=0
-                     => p[r]%k=p[l-1]%k
-  </pre>
-
-- num of subarray whose xor = 0
-
-  <pre>
-  in [l,r] subarray : (p[r]^p[l-1]) = 0
-                  => p[r] = p[l-1] (using xor property)                  
-  </pre>
-
-#### Subsequence
-
-#### Subset
-
-- total number of subset -> 2<sup>n</sup>-1
+- round, llround
+- log -> natural log, log2, log10
+- sqrt, cbrt -> cube root
+- stoi, stoll, to_string
+- is_sorted, rand -> random number (srand(time(0)) seed the random number generator-change everytime)
+- isalpa, isdigit, islower, isupper, tolower, toupper
 
 ---
 
-### String
+#### Other's Things\*
 
-#### Input with spaces
+- better to use double instead of float to have more accuracy (not precious 100%)
+- it's always better to use integer data type, use same type everywhere.
+- we have to be careful to use (NEVER EVER DO, UNTILL HAVE TO DO)
+- [Cautions for use inbuild functions](https://codeforces.com/blog/entry/107717)
 
-- cin.getline(s,n);
-- using getline() instead of get()
+      log2()->__lg()->give us floor (max set number),
+            int ans = 0;
+            while(n>1){//0(logn) but accurate
+              ans++;
+              n/=2;
+            }
+      pow()->round(pow()),
+            int ans = 1;
+            for(int i=0;i<b;i++){//log(b) but accurate
+              ans*=a;
+            }
+      sqrt()->//similar to cubic root
+            long long ans = sqrt(n);//sqrtl()
+            while(ans*ans<=n)++ans;
+            while(ans*ans>n)--ans;
+            cout<<ans<<endl;
 
-      char c[100];
-      int n; cin>>n;
-      //cin.get(); //without these we find n-1 getline()..
-      //because n '\n'..counted as first line. upto '\n' it count a line
-      //char ch = getchar();//alternative
-      cin.ignore();
-      while(n--){
-        cin.getline(c,100);
-      }
+because that are return double values.
 
-<code>string(int, char)</code> n=3, c='a' => "aaa"
+[Dhaka ICPC 24 Preli Three Quick Brown Foxes Jump Over a Lazy Chicken]()
 
-<code>char c = num + '0'</code>
-<code>int num = 'c' - '0'</code>
+- long double is more precise that double//but not use float
 
-https://www.geeksforgeeks.org/cpp-string-functions/
+- compare two double
 
-#### Binary String
+        if(a-b<1e-9){
+        //they are equal
+        }
 
-- [2029B_Replacement]()
-- [1971D_Binary Cut]()
-- [1913B_Swap and Delete]()
-- [1837C_Best Binary String]()
-- [2030C_A TRUE Battle]()
+- cout<<setprecision(10)<<num; //from starting//rounding last digit
+- cout<<fixed<<setprecision(10)<<num; //from after dot
+
+- program duration
+
+        clock_t start,end;
+        start = clock();//store clock tick (between 1e6)
+        ....
+        end = clock();
+        cerr<<1.0*(end-start)/CLOCKS_PER_SEC<<" sec"<<endl;
+
+- assert(condition) -> if true noting happened otherwise give runtime error. -- using for debugging purpose.
+
+- Multiplying two different Data Types
+
+      -> smaller type gets promoted to the larger type
+
+- common mistakes
+
+  https://codeforces.com/blog/entry/111217
+
+- be careful in v.size()-1 -> because of unsigned int doesn't have negative number
+
+- be careful in multiple test case (all variable need to be reinitialization)
+
+- Constant Optimization
+
+  <pre>
+  - constant factors are the hidden constants in the time or space complexity of an algorithm.
+  
+  some tricks to reduce the hidden constants
+  - use '\n' instead of endl
+  - efficient i/o -> fastio
+  - efficient data structures -> use arrays/vectors instead of deque -> use something that has lower constant factors
+  - bit manipulation is faster than arithmetic operations
+  - modulo is slower than other arithmetic operations
+  - recursion is slower than iteration
+  - float/double are slower than integer
+  - const is faster than normal variable
+  - big data type is slower than small data type
+  - accessing big array is slower than small array
+  </pre>
+
+- Necessity and Sufficiency
+
+  <pre>
+  - a necessary condition is a condition that must be present for a event to occur (ex. prime number always odd)
+  - a sufficient condition is a condition that, if present, guarantees that the event will occur (ex. all odd number can't be prime, it mustn't divide any number except(1,same number))
+  </pre>
+
+  https://codeforces.com/problemset/problem/1750/A
+
+---
+
+### End Of File (EOF)
+
+Input untill end of file
+
+    while(cin>>x){
+      ans+=x;
+    }
+
+#
+
+### stringstream
+
+    - input from string
+
+        string s = "12  13    24";
+        stringstream ss(s);
+        cout << ss.str << endl;
+        int a, b, c; ss >> a >> b >> c;
+        //alternate
+        while (ss >> n) {
+                cout << n << endl;
+        }
+        //separate words from string
+        getline(cin, s);
+        stringstream ss(s);
+        while (ss >> n) {
+                cout << n << endl;
+        }
+
+---
+
+### Fast Input & Output
+
+https://usaco.guide/general/fast-io?lang=cpp
+
+- input/output is slow operation
+
+<code>ios::sync_with_stdio(false)</code>
+
+This disables the synchronization between the C and C++ standard streams. By default, all standard streams are synchronized, which in practice allows you to mix C- and C++-style I/O and get sensible and expected results. If you disable the synchronization, then C++ streams are allowed to have their own independent buffers, which makes mixing C- and C++-style I/O an adventure.
+
+<code>cin.tie(nullptr)</code>
+
+This unties cin from cout. Tied streams ensure that one stream is flushed automatically before each I/O operation on the other stream.
+
+By default cin is tied to cout to ensure a sensible user interaction.
+
+- we have to use '\n' instead of endl;
+
+      endl -> '\n'+flush(buffer clear)
+
+---
+
+- [Operator Precedence](https://en.cppreference.com/w/cpp/language/operator_precedence)
+
+  ![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDm_FtxeGKfyUhd-byPJ8Y34EKecgA7GwKXuF_IxJPrE4TKqzOsdZKybAkHC42NM7rs74hUzIklDTlhFCzq1RdLJm4sonfEEuA6fFSbP9SDXUfCicb2HO2kFimKV58CGr9Rx3RYsXR04Ie/s1600/untitled_thumb.png)
 
 ---
 
@@ -371,68 +448,36 @@ https://usaco.guide/bronze/time-comp?lang=cpp
 - Iterating through all subsets: **O(2<sup>n</sup>)**~(1<<n)
 - Iterating through all permutations: **O(n!)**
 
-#
+---
 
-### End Of File (EOF)
+#### Memory Initialization
 
-Input untill end of file
+<code>memset</code>
 
-    while(cin>>x){
-      ans+=x;
-    }
+      //work byte by byte
 
-#
+      char s[10];
+      memset(s,'a',5);//first five replace by 'a'//char need 1 byte
+      s[5]='\0';
+      cout<<s<<endl;
 
-### stringstream
+      //int 4 byte, ll 8 byte
+      //initialize by (0/-1) in (int/long long) //accidentaly currect
+      int a[10];
+      memset(a,0,10*4);//a[0]=4byte
+      ->in long long memset(a,0,10*8);//a[0]=8byte
+      memset(a,0,a.sizeof(a));//also work in multi-dimension
 
-    - input from string
+<code>fill</code>
 
-        string s = "12  13    24";
-        stringstream ss(s);
-        cout << ss.str << endl;
-        int a, b, c; ss >> a >> b >> c;
-        //alternate
-        while (ss >> n) {
-                cout << n << endl;
-        }
-        //separate words from string
-        getline(cin, s);
-        stringstream ss(s);
-        while (ss >> n) {
-                cout << n << endl;
-        }
+      //work for every number
+      fill(a,a+n,x)
 
-#
+- memset is faster than fill, but both O(n)
+- by default global variables is initialize by zero but local variables not
+- declare large array globally//because it store in data segment, that are bigger in stack memory segment
 
-### Fast Input & Output
-
-https://usaco.guide/general/fast-io?lang=cpp
-
-- input/output is slow operation
-
-<code>ios::sync_with_stdio(false)</code>
-
-This disables the synchronization between the C and C++ standard streams. By default, all standard streams are synchronized, which in practice allows you to mix C- and C++-style I/O and get sensible and expected results. If you disable the synchronization, then C++ streams are allowed to have their own independent buffers, which makes mixing C- and C++-style I/O an adventure.
-
-<code>cin.tie(nullptr)</code>
-
-This unties cin from cout. Tied streams ensure that one stream is flushed automatically before each I/O operation on the other stream.
-
-By default cin is tied to cout to ensure a sensible user interaction.
-
-- we have to use '\n' instead of endl;
-
-      endl -> '\n'+flush(buffer clear)
-
-#
-
-- [Operator Precedence](https://en.cppreference.com/w/cpp/language/operator_precedence)
-
-  ![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDm_FtxeGKfyUhd-byPJ8Y34EKecgA7GwKXuF_IxJPrE4TKqzOsdZKybAkHC42NM7rs74hUzIklDTlhFCzq1RdLJm4sonfEEuA6fFSbP9SDXUfCicb2HO2kFimKV58CGr9Rx3RYsXR04Ie/s1600/untitled_thumb.png)
-
-#
-
-### Loops, Sorting
+---
 
 ### Basic Maths
 
@@ -535,96 +580,101 @@ example:
 
       lcm(a*b) = (a*b)/gcd(a*b)
 
-#
+---
 
-#### Some builtin function
+### Array
 
-- round, llround
-- log -> natural log, log2, log10
-- sqrt, cbrt -> cube root
-- stoi, stoll, to_string
-- is_sorted, rand -> random number (srand(time(0)) seed the random number generator-change everytime)
-- isalpa, isdigit, islower, isupper, tolower, toupper
+#### Something on Pair-Wise
 
-##
+- we can fixed i or j(one), then calculate -> in pair/triple type of problems
 
-#### Memory Initialization
+_example:_
 
-<code>memset</code>
+- find the total sum of a<sub>i</sub>\*a<sub>j</sub>, where 1<=i, j<=n, n=1e5
 
-      //work byte by byte
+  <pre>
+  # we have to do it in one loop (fixing i)
+  
+  for 1 to n: sum += ai * total_sum
+  </pre>
 
-      char s[10];
-      memset(s,'a',5);//first five replace by 'a'//char need 1 byte
-      s[5]='\0';
-      cout<<s<<endl;
+- find the total sum of a<sub>i</sub>\*a<sub>j</sub>, where 1<=i<j<=n, n=1e5
 
-      //int 4 byte, ll 8 byte
-      //initialize by (0/-1) in (int/long long) //accidentaly currect
-      int a[10];
-      memset(a,0,10*4);//a[0]=4byte
-      ->in long long memset(a,0,10*8);//a[0]=8byte
-      memset(a,0,a.sizeof(a));//also work in multi-dimension
+  <pre>
+  # we have to do it in one loop (fixing j)
+  
+  for 1 to n: sum += aj * preSum[j-1]
+  </pre>
 
-<code>fill</code>
+#### Subarray
 
-      //work for every number
-      fill(a,a+n,x)
+- total number of subarray -> n\*(n+1)/2
 
-- memset is faster than fill, but both O(n)
-- by default global variables is initialize by zero but local variables not
-- declare large array globally//because it store in data segment, that are bigger in stack memory segment
+_example:_
 
-#### Other's Things
+- num of subarray whose sum is divisible by k
 
-- better to use double instead of float to have more accuracy (not precious 100%)
-- it's always better to use integer data type, use same type everywhere.
-- we have to be careful to use (NEVER EVER DO, UNTILL HAVE TO DO)
-- [Cautions for use inbuild functions](https://codeforces.com/blog/entry/107717)
+  <pre>
+  in [l,r] subarray : (p[r]-p[l-1])%k=0
+                     => p[r]%k-p[l-1]%k=0
+                     => p[r]%k=p[l-1]%k
+  </pre>
 
-      log2()->__lg()->give us floor,
-            int ans = 0;
-            while(n>1){//0(logn) but accurate
-              ans++;
-              n/=2;
-            }
-      pow()->round(pow()),
-            int ans = 1;
-            for(int i=0;i<b;i++){//log(b) but accurate
-              ans*=a;
-            }
-      sqrt()->//similar to cubic root
-            long long ans = sqrt(n);//sqrtl()
-            while(ans*ans<=n)++ans;
-            while(ans*ans>n)--ans;
-            cout<<ans<<endl;
+- num of subarray whose xor = 0
 
-because that are return double values.
+  <pre>
+  in [l,r] subarray : (p[r]^p[l-1]) = 0
+                  => p[r] = p[l-1] (using xor property)                  
+  </pre>
 
-- long double is more precise that double//but not use float
+#### Subsequence
 
-- compare two double
+#### Subset
 
-        if(a-b<1e-9){
-        //they are equal
-        }
+- total number of subset -> 2<sup>n</sup>-1
 
-- cout<<setprecision(10)<<num; //from starting//rounding last digit
-- cout<<fixed<<setprecision(10)<<num; //from after dot
+---
 
-- program duration
+### String
 
-        clock_t start,end;
-        start = clock();//store clock tick (between 1e6)
-        ....
-        end = clock();
-        cerr<<1.0*(end-start)/CLOCKS_PER_SEC<<" sec"<<endl;
+<pre>
+s = s + 'a' -> O(N) -> access whole string
+s += 'a' -> O(1) -> not accesssing whole string
+</pre>
 
-- assert(condition) -> if true noting happened otherwise give runtime error. -- using for debugging purpose.
+#### Input with spaces
 
-example:
+- cin.getline(s,n);
+- using getline() instead of get()
 
-- [Dhaka ICPC 24 Preli Three Quick Brown Foxes Jump Over a Lazy Chicken]()
+      char c[100];
+      int n; cin>>n;
+      //cin.get(); //without these we find n-1 getline()..
+      //because n '\n'..counted as first line. upto '\n' it count a line
+      //char ch = getchar();//alternative
+      cin.ignore();
+      while(n--){
+        cin.getline(c,100);
+      }
+
+<code>string(int, char)</code> n=3, c='a' => "aaa"
+
+<code>char c = num + '0'</code>
+<code>int num = 'c' - '0'</code>
+
+https://www.geeksforgeeks.org/cpp-string-functions/
+
+#### Binary String
+
+- [2029B_Replacement]()
+- [1971D_Binary Cut]()
+- [1913B_Swap and Delete]()
+- [1837C_Best Binary String]()
+- [2030C_A TRUE Battle]()
+
+---
+
+### Loops, Sorting
 
 ---
 
@@ -633,3 +683,5 @@ example:
 example:
 
 - [1860A_Not a Substring]()
+
+---

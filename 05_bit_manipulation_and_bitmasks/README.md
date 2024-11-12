@@ -1,7 +1,5 @@
 ## Bit Manipulation And Bitmasking
 
-### Bit Manipulation and Bitmasks
-
 https://codeforces.com/blog/entry/73490
 
 - In bitwise operation, we have to think it **_bit by bit_**. It's nothing means in decimal number systems.
@@ -75,6 +73,46 @@ https://codeforces.com/blog/entry/123404 (max xor subarray)
 #
 
 https://www.programiz.com/cpp-programming/bitwise-operators
+
+#
+
+#### Builtin Functions
+
+```cpp
+int x = 20;               // x in binary: 00000000 00000000 00000000 00010100
+long long y = 30;  // y = 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00011110
+
+// 1. Counting Set Bits
+cout<<__builtin_popcount(x);//2
+cout<<__builtin_popcountll(y);//4
+
+// 2. Counting Leading Zeros
+cout<<__builtin_clz(x);//27
+cout<<__builtin_clzll(y);//59
+
+// 3. Counting Trailing Zeros
+cout<<__builtin_ctz(x);//2
+cout<<__builtin_ctzll(y);//1
+
+// 4. Finding the Position of the First Set Bit
+cout<<__builtin_ffs(x);
+cout<<__builtin_ffsll(x);
+
+// 5. Parity of the Number of Set Bits
+int parity = __builtin_parity(x);
+int parity_ll = __builtin_parityll(y);
+
+//6. Index of the highest set bit (MSB)
+cout<<31 - __builtin_clz(x)<<endl;//4
+cout<<63 - __builtin_clzll(y)<<endl;//4
+cout<<__lg(x)<<endl;//4
+cout<<__lg(y)<<endl;//4
+
+//7. Index of the lowest set bit (LSB)
+cout<__builtin_ffs(x) - 1<<endl;//2
+cout<__builtin_ffsll(y) - 1<<endl;//1
+cout<<__builtin_ctz(x)<<endl;//2
+```
 
 ---
 

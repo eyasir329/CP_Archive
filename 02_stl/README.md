@@ -191,7 +191,9 @@ partial_sum(v.begin(),v.end(),pre.begin());
 ### String
 
 ```cpp
+ // index 2 to upto 2 char
  string sub = s.substr(2,2);//char of index 2-3 [cautions its not range like]
+
  int pos = s.find("kk");//first occurance -> O(N*N)
  int pos = s.rfind('1');//last occurance -> O(N)
  if(pos==string::npos)//not found (-1)
@@ -320,6 +322,9 @@ all operation in logn
 - if not exist then (lower_bound==upper_bound)
 - only increase or decrease by one (except next(),prev()) 
 
+- lower_bound(s.begin(),s.end()) -> work but O(N), s.lower_bound(x) -> O(logN), same as upper_bound 
+
+- set < int>se(v.begin(),v.end())//vector input in set
 </pre>
 
 - std::set<KeyType,Compare>

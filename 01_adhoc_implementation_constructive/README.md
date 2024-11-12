@@ -14,6 +14,33 @@ These problems focus on **correctly implementing a sequence of steps or rules**,
 
 **Example**: Simulating a traffic light system based on a set of predefined rules.
 
+#### Implementation Tricks / Suggestion
+
+```cpp
+- use #define, auto  //to make code shorter and easier to read
+- (long long) a*b <-> 1LL*a*b;
+- use of function, to modularize code
+
+- array<type,size> can be useful stl array
+  vector<tuple<int,int,int,int,int>> <-> vector<array<int,5>>v;
+
+- use lamda function//helpful in comparator and predicate function
+- memset(), fill() <-> to initialize array
+
+- unique element in vector
+  sort(v.begin(),v.end());
+  v.erase(unique(v.begin(),v.end())/*first iterator that is not unique*/,v.end());
+
+- sort in decending order
+  sort(v.begin(),v.end(),greater<int>)//easier
+  sort(v.rbegin(),v.rend());//easiest
+
+- max/min of multiple value
+  max({a,b,c,d,e});
+- max/min in vector
+  *max_element(), *min_element()
+```
+
 ---
 
 ### Constructive Problems
@@ -26,13 +53,5 @@ Constructive problems require building a solution that satisfies a set of constr
 - check careful about the constraints.
 - mostly constructive problems have multiple solutions.
 </pre>
-
----
-
-### Greedy Problems
-
-Greedy problems involve making the best local choice at each step in the hope of achieving a globally optimal solution. These problems require the greedy-choice property to ensure the local optimum leads to the global optimum.
-
-**Example**: The Activity Selection Problem or Huffman Coding.
 
 ---
