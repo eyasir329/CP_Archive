@@ -1,5 +1,7 @@
 ## Bit Manipulation And Bitmasking
 
+### Basic Technique
+
 https://codeforces.com/blog/entry/73490
 
 - In bitwise operation, we have to think it **_bit by bit_**. It's nothing means in decimal number systems.
@@ -116,6 +118,66 @@ cout<<__builtin_ctz(x)<<endl;//2
 
 ---
 
+### Bitwise OR
+
+---
+
+### Bitwise AND
+
+---
+
+### XOR Tricks
+
+https://florian.github.io//xor-trick/
+
+- a^a = 0
+
+(xor of even number of same type = 0, otherwise(odd) only one have that type)
+
+- a^0 = a
+- a^b = 0 (a==b)
+
+Don't matter order of operations.
+
+- a^b^a = 0^b = b
+- a^b = c => a = b^c (vise-versa)
+
+<pre>
+if we have a sequence of xor operations... we can remove pair of douplicate value.
+</pre>
+
+#### Duplicate number finding
+
+<pre>
+we have 1 to n all numbers and a extra one number<=n, we have to find that extra number.
+</pre>
+
+```
+(1^2^3^....^n)^(xor of given all numbers) = extra one
+```
+
+#### Missing number finding
+
+<pre>
+we have 1 to n-1, we have to find missing number.
+</pre>
+
+```
+(1^2^3^....^n)^(xor of given all numbers) = missing one
+```
+
+#### Prefix XOR (Subarray XOR)
+
+[cses1650_Range Xor Queries](./3_xor_tricks/cses1650_Range%20Xor%20Queries.cpp)
+
+<pre>
+Given an array of n integers, your task is to process q queries of the form: what is the xor sum of values in range [a,b]?
+
+hint: same as prefix sum
+</pre>
+
+---
+
 ### BitMasks
 
 #### Total Combination + Total Subset
@@ -183,66 +245,135 @@ https://codeforces.com/contest/2020/problem/C
 
 ---
 
-### Bitwise OR
+### Bit Manipulation
 
-example:
-
-- []()
-
----
-
-### Bitwise AND
-
----
-
-### XOR Tricks
-
-https://florian.github.io//xor-trick/
-
-- a^a = 0
-
-(xor of even number of same type = 0, otherwise(odd) only one have that type)
-
-- a^0 = a
-- a^b = 0 (a==b)
-
-Don't matter order of operations.
-
-- a^b^a = 0^b = b
-- a^b = c => a = b^c (vise-versa)
-
+- The Bit Law
 <pre>
-if we have a sequence of xor operations... we can remove pair of douplicate value.
+Always think bit by bit. If the solution is independent of the other bits, then we can solve the problem for each bit separately. 
 </pre>
 
-#### Duplicate number finding
+[1601A_Array Elimination](./1_bit_manipulation/1601A_Array%20Elimination.cpp)
 
 <pre>
-we have 1 to n all numbers and a extra one number<=n, we have to find that extra number.
+Everytime select k element, do "bitwise and" for all of that element, 
+Calculate x=ai1 & ai2 & … & aik,
+Subtract x from each of ai1,ai2,…,aik; all other elements remain untouched.
+
+print all values k, such that it's possible to make all elements of a equal to 0 in a finite number of elimination operations with the given parameter k
+
+- firstly think to solve of zero/one array
+- then solve independent bit (if possible) 
+- if all a[i] = 1, then select k such that our "and" outcome would be 1, then 1-1 = 0
+- count of 1 is a multiple of k
+
+- every bit is independent 
 </pre>
 
-```
-(1^2^3^....^n)^(xor of given all numbers) = extra one
-```
+#### Some Technique
 
-#### Missing number finding
+- [Sum of all Numbers in an array using the Bit Law](./1_bit_manipulation/sum_of_all_bitlaw.cpp)
 
 <pre>
-we have 1 to n-1, we have to find missing number.
+- any number <=1e9 can be represented as sum of(i=0->30) 2<sup>i</sup>*b<sub>i</sub>
+- For each bit k, we can calculate the number of numbers that have 1 in the k-th bit. if there are cnt<sub>k</sub>[1] numbers with 1. then the sum of all numbers with 1 in the k-th bit is cnt<sub>k</sub>[1]*2<sup>i</sup>*b<sub>i</sub>
 </pre>
 
-```
-(1^2^3^....^n)^(xor of given all numbers) = missing one
+```cpp
+int n; cin >> n;
+vector<int> cnt(30, 0);
+for (int i = 1; i <= n; i++) {
+    int x; cin >> x;
+    for (int k = 0; k < 30; k++) {
+        if (x >> k & 1) {
+            cnt[k]++;
+        }
+    }
+}
+int ans = 0;
+for (int k = 0; k < 30; k++) {
+    ans += cnt[k] * (1 << k);
+}
+cout << ans << endl;
 ```
 
-#### Prefix XOR (Subarray XOR)
-
-[cses1650_Range Xor Queries](./3_xor_tricks/cses1650_Range%20Xor%20Queries.cpp)
+- [Sum of Pair XORs](./1_bit_manipulation/sum_of_pair_xor.cpp)
 
 <pre>
-Given an array of n integers, your task is to process q queries of the form: what is the xor sum of values in range [a,b]?
+- find how much pair possible where first 0 and second 1 ->cnt[0]*cnt[1]*2 (01/10)
+</pre>
 
-hint: same as prefix sum
+```cpp
+//bruteforce
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= n; j++) {
+        ans += a[i] ^ a[j];
+    }
+}
+//optimise solution
+int cnt[30][2];
+memset(cnt, 0, sizeof(cnt));
+for (int i = 1; i <= n; i++) {
+    for (int k = 0; k < 30; k++) {
+        if (a[i] >> k & 1) {
+            cnt[k][1]++;
+        } else {
+            cnt[k][0]++;
+        }
+    }
+}
+ll ans = 0;
+for (int k = 0; k < 30; k++) {
+    ll contrib = 1LL * cnt[k][0] * cnt[k][1] * 2;
+    ans += contrib * (1 << k);
+}
+```
+
+- [Sum of Pair ANDs](./1_bit_manipulation/sum_of_pair_ands.cpp)
+<pre>
+- cnt[1]\*cnt[1]
+</pre>
+
+```cpp
+//bruteforce
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= n; j++) {
+        ans += a[i] & a[j];
+    }
+}
+//optimise
+ll ans = 0;
+for (int k = 0; k < 30; k++) {
+    ll contrib = 1LL * cnt[k][1] * cnt[k][1];
+    ans += contrib * (1 << k);
+}
+```
+
+- Sum of Pair ORs
+
+- Sum of Subset XORs
+<pre>
+- half of subset has odd number of count
+- 2<sup>cnt[1]-1</sup>
+</pre>
+
+```cpp
+ll ans = 0;
+for (int k = 0; k < 30; k++) {
+    if(!cnt[k][1])continue;  //edge case
+    ll contrib = (1<<(cnt[k][0]+cnt[k][1]-1));//2^n-1
+    ans += contrib * (1 << k);
+}
+```
+
+- Sum of Subset ANDs
+
+- Sum of Subset ORs
+
+- Number of Subarrays with XOR 0
+
+<pre>
+- convert to prefix xor
+- p(l,r)-> p[r]^p[l-1]
 </pre>
 
 ---

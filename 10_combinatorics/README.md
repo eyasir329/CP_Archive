@@ -2,6 +2,13 @@
 
 ### Counting
 
+Two Rule of Basic Counting
+
+      - Rule of Sum
+
+      - Rule of Product
+      (Total Way = prev way * next way, ex. contribution technique)
+
 #### factorial
 
       n! is te number of ways to arrange n distinct objects in a line.

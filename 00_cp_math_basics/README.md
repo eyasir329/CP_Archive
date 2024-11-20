@@ -586,7 +586,11 @@ example:
 
 #### Something on Pair-Wise
 
+<pre>
+- total number of pair (n*(n-1))/2
+
 - we can fixed i or j(one), then calculate -> in pair/triple type of problems
+</pre>
 
 _example:_
 
@@ -608,7 +612,37 @@ _example:_
 
 #### Subarray
 
-- total number of subarray -> n\*(n+1)/2
+<pre>
+- total number of subarray -> n*(n+1)/2
+</pre>
+
+```cpp
+const int N = 1e6 + 9;
+int a[N];
+
+void print(vector<int>&v) {
+  for (int i = 0; i < v.size(); i++) {
+    cout << v[i] << " ";
+  }
+  cout << endl;
+}
+
+int32_t main() {
+  int n; cin >> n;
+  for (int i = 1; i <= n; i++) {
+    cin >> a[i];
+  }
+  for (int i = 1; i <= n; i++) {
+    vector<int>v;
+    for (int j = i; j <= n; j++) {
+      v.push_back(a[j]);
+      print(v);
+    }
+    cout << endl;
+  }
+  return 0;
+}
+```
 
 _example:_
 
@@ -685,3 +719,23 @@ example:
 - [1860A_Not a Substring]()
 
 ---
+
+### Some Technique
+
+#
+
+- Sort the Distance from Origin
+
+- Sort 5D Points
+- String Sort
+- Balanced Bracket
+- Sliding Window Technique
+- Kth Smallest in Each Prefix
+- Unique Elements
+- Remove B from A
+- Word Frequency
+- Occurrences
+- Update and Remove Query
+- Number of Pair of Strings such that d(a,b)<=k in Binary String
+
+#

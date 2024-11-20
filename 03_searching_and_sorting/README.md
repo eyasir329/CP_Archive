@@ -395,6 +395,7 @@ Binary search on **_monotonic function_** (value is becoming greater or lesser b
 example:
 
 https://codeforces.com/contest/2020/problem/B
+https://codeforces.com/contest/2031/problem/C
 
 - Odd number of divisors are perfect square
 
