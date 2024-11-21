@@ -231,8 +231,6 @@ example:
 
 - [ces1095_Exponentiation](./4_modular_arithmetic/1_binary_exponentiation/ces1095_Exponentiation.cpp)
 
-- [abc293e_Geometric Progression]()
-
 ---
 
 ## Divisors
