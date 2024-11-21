@@ -205,6 +205,41 @@ is not available in all contest systems
 
 - unsigned long long (range 0 -> 2^64-1 (1.8\*10<sup><b>19</b></sup>)), occupies 8 bytes of memory.
 
+```cpp
+//read, write function of 128 bit integer
+#include <bits/stdc++.h>
+using namespace std;
+
+__int128 read() {
+    string s; cin >> s;
+    __int128 ans = 0;
+    for (int i = 0; i < s.size(); i++) {
+        ans = ans * 10 + (s[i] - '0');
+    }
+    return ans;
+}
+
+string to_string(__int128 x) {
+    string s;
+    while (x > 0) {
+        s += (char)(x % 10 + '0');
+        x /= 10;
+    }
+    reverse(s.begin(), s.end());
+    return s;
+}
+
+void write(__int128 x) {
+    cout << to_string(x) << endl;
+}
+
+int32_t main() {
+    __int128 x = read();
+    write(x);
+    return 0;
+}
+```
+
 example:
 
 - [lightoj_equal ju ncpc 23](./1_datatype_conditions/lightoj_equal.cpp)

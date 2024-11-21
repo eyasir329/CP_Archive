@@ -405,4 +405,30 @@ https://codeforces.com/contest/2031/problem/C
 
 ## Interactive
 
+<pre>
+- Interactive problems are problems where you have to interact with the judge to get the answer.
+- don't use fastio and '\n'
+- if use '\n' then cout.flush()
+- endl = '\n' + flush()
+- main goal -> we have to minimize the query number 
+</pre>
+
+example:
+
+- [cfgym101021_Guess the Number](./4_interactive/cfgym_101021_Guess%20the%20Number.cpp)
+<pre>
+- Your program is allowed to make no more than 25 queries
+- so we have use BS (1 to 1 000 000 within 25 query)
+</pre>
+
+- [679A_Bear and Prime 100](./4_interactive/679A_Bear%20and%20Prime%20100.cpp)
+<pre>
+- query to all prime number upto 50,... 51\*2 >100 (so our number don't have bigger prime number than 50)
+- composite number always have move than one prime numbers
+</pre>
+
+---
+
 ## Ternary Search
+
+---
