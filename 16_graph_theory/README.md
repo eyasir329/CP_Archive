@@ -2,11 +2,468 @@
 
 ### Basic Graphs
 
----
+https://study.com/academy/lesson/graph-theory-concepts-and-terminology.html
+
+###### Common Terms
+
+<pre>
+- Vertices + Edges
+- Neighbours (Adjacent Vertices -> N[x]) + Degree (Number of Neighbours)
+- Self Loop (edges come and goes to the same vertices)
+
+- <b>Path</b> (everynode encounted one, not revisit any node) + <b>Walk</b> (revisit some node) + <b>Cycle</b> (going from one node and coming back to samenode (don't revisit any node except from the starting node)) 
+-> every cycle or path is a walk, walk can contains cycles
+
+- Simple Graph (doesn't contain self loop and multiple edges)
+- Bridge + Articulation Point
+</pre>
+
+![selfloop_muledge](https://notes.eddyerburgh.me/assets/img/data-structures-and-algorithms/data-structures/graphs/non-simple-graph.svg)
+
+###### Types of Graph
+
+<pre>
+- Directed graph -> Edges have a direction, meaning that edges with arrows connect one vertex to another.
+- Undirected graph -> Edges do not have a direction, meaning that each edge can be traversed in both directions.
+</pre>
+
+![directed_undirected](https://study.com/cimages/multimages/16/3161f86d-d02f-4bc4-ab9d-9e654800ad60_graphs.png)
+
+<pre>
+- Unweighted vs Weighted
+- Cyclic + Acyclic
+- Connected + Disconnected
+- Complete Graph -> (N[x] = G - x node visit from every node) (every pair of distinct vertices is connected by a unique edge)
+</pre>
+
+<img src="https://www.codingeek.com/wp-content/uploads/2016/11/cyclic.png" alt="cyclic_asyclic" width="480">
+
+![connected_dis](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaSbdo-VmfmU1ceqh_vtH7gQW1LMTXAA3x3w&s)
+
+###### Properties of Graph
+
+<pre>
+Longest Path Tricks
+
+- An undirected graph where <b>each node</b> has at degree at least 2 will contain a cycle
+- A directed graph where each node has at least 1 in-degree and at least 1 out-degree will contain a cycle
+
+- The sum of all degree is even. The number of vertices with odd degree is even
+</pre>
+
+#
+
+###### Representation of Graph
+
+https://www.geeksforgeeks.org/graph-and-its-representations/
+
+#
+
+- Adjacency Matrix
+
+        -> Adding O(1), Checking O(1), Listing all edges O(N\*N)
+        -> Memory using O(N*N) (maybe encounted memory limit exceded)
+
+  https://www.geeksforgeeks.org/adjacency-matrix/
+
+![adjacency_matrix](https://www.cs.mtsu.edu/~xyang/3080/images/adjMatrixWeightedGraph.jpeg)
+
+for unwighted graph instead of weight write 1 and 0 (also it's a symetric matrix)
+
+#
+
+- Adjacency List with Vector
+
+        -> Adding O(1), Checking O(N), Listing O(M) ...M = no. of edges
+        -> Memory using O(M)
+
+![adjacency list](https://www.tutorialride.com/images/data-structures/adjacency-list.jpeg)
+
+#
+
+- Adjacency List with Set
+
+```cpp
+vector<set<int>> or set<int>adj[N]
+```
+
+<pre>
+- Adding O(logN), Checking O(logN), Listing O(N)
+-> Memory using O(M)
+</pre>
+
+https://www.hello-algo.com/en/chapter_graph/graph_operations/#922-implementation-based-on-adjacency-list
+
+(n = no. of vertices/nodes, m = no. of edges)
+![comparison](https://i.ibb.co.com/cgG3s7s/Screenshot-from-2024-11-28-03-58-13.png)
+
+#
+
+### Application of Graph
 
 ### Graph Traversals
 
-<code>Topological Sort and Strongly Connected Components are only for Directed Graph</code>
+- DFS
+<pre>
+- graph can have cycle (unlike tree), so we need a visited[] array
+</pre>
+
+```cpp
+void dfs(int cur, vector<vector<int>>&edges, vector<bool>&vis) {
+    vis[cur] = true;
+    cout << cur << " ";
+    for (auto e : edges[cur]) {
+        if (!vis[e]) {
+            dfs(e, edges, vis);
+        }
+    }
+}
+
+void solve() {
+    int n, m; cin >> n >> m; // no. of nodes, edges
+    vector<vector<int>>edges(n, vector<int>());
+    for (int i = 0; i < m; i++) {
+        int u, v; cin >> u >> v; //0 based indexing
+        edges[u].push_back(v);
+        edges[v].push_back(u);
+    }
+    vector<bool>visited(n, false);
+    dfs(0, edges, visited);
+}
+```
+
+![dfs_traversal](https://miro.medium.com/v2/resize:fit:502/1*eyqACQAziXkSuMNmMeTa6A.png)
+
+- BFS (Single source and Multi source)
+<pre>
+- Uses a queue to explore nodes level by level.
+</pre>
+
+```cpp
+void bfs(int start, vector<vector<int>>& edges, vector<bool>& vis) {
+    queue<int> q;
+    q.push(start);
+    vis[start] = true;
+
+    while (!q.empty()) {
+        int cur = q.front();
+        q.pop();
+        cout << cur << " ";
+
+        for (auto e : edges[cur]) {
+            if (!vis[e]) {
+                vis[e] = true;
+                q.push(e);
+            }
+        }
+    }
+}
+
+void solve() {
+    int n, m;
+    cin >> n >> m; // number of nodes and edges
+    vector<vector<int>> edges(n);
+
+    for (int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u >> v; // 0-based indexing
+        edges[u].push_back(v);
+        edges[v].push_back(u);
+    }
+
+    vector<bool> visited(n, false);
+    for (int i = 0; i < n; i++) {
+        if (!visited[i]) {
+            bfs(i, edges, visited);
+        }
+    }
+}
+```
+
+###### Application of Traversals
+
+<pre>
+- Connected Components
+- Path Construction
+- Cycle Detection
+- Shortest Path (unweighted graph, ex. cses1193)
+</pre>
+<pre>Topological Sort and Strongly Connected Components are only for Directed Graph</pre>
+
+#### Connected Components
+
+```cpp
+//connected components
+void bfs(int start, vector<vector<int>>& edges, vector<bool>& vis, vector<int>& component) {
+    queue<int> q;
+    q.push(start);
+    vis[start] = true;
+
+    while (!q.empty()) {
+        int cur = q.front();
+        q.pop();
+        component.push_back(cur);
+
+        for (auto e : edges[cur]) {
+            if (!vis[e]) {
+                vis[e] = true;
+                q.push(e);
+            }
+        }
+    }
+}
+
+void solve() {
+    int n, m;
+    cin >> n >> m; // number of nodes and edges
+    vector<vector<int>> edges(n);
+
+    for (int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u >> v; // 0-based indexing
+        edges[u].push_back(v);
+        edges[v].push_back(u);
+    }
+
+    vector<bool> visited(n, false);
+    vector<vector<int>> connectedComponents;
+
+    for (int i = 0; i < n; i++) {
+        if (!visited[i]) {
+            vector<int> component;
+            bfs(i, edges, visited, component);
+            connectedComponents.push_back(component);
+        }
+    }
+
+    // Output the connected components
+    cout << "Connected Components:\n";
+    for (auto& component : connectedComponents) {
+        for (int node : component) {
+            cout << node << " ";
+        }
+        cout << "\n";
+    }
+}
+/*
+1 2 3 4
+5 6 7
+8 9
+10
+*/
+```
+
+![connected_components](https://lh6.googleusercontent.com/AvJI6MEwrQF3eXS0OtWYgNtXG4H-2oMq5Fhz3Yy7VU1xAuC3uPPzGRUaKkYOKUHpRkUxDU-f5aXpehu3-K6uoGT2uHaJ4PXXh8E3BM8WkSeXpFS_zGEYrtI7ZoX7NOCThx-R4ZNl_uLKiMPCdwZ2KoE)
+
+example:
+
+- [cses1666_Building Roads](./2_graph_traversals/2_dfs/cses1666_Building%20Roads.cpp)
+
+    <pre>Byteland has n cities, and m roads between them. The goal is to construct new roads so that there is a route between any two cities.
+  
+    Your task is to find out the minimum number of roads required, and also determine which roads should be built.
+  
+    no. of connected component - 1</pre>
+
+#### Cycles Detecting
+
+```cpp
+//if graph is disconnected then run dfs for every node
+int n;
+vector<vector<int>> adj;
+vector<int> color, parent;
+int cycle_start, cycle_end;
+
+bool dfs(int v) {
+    color[v] = 1;
+    for (int u : adj[v]) {
+        if (color[u] == 0) {
+            parent[u] = v;
+            if (dfs(u))
+                return true;
+        } else if (color[u] == 1) {
+            cycle_end = v;
+            cycle_start = u;
+            return true;
+        }
+    }
+    color[v] = 2;
+    return false;
+}
+
+void find_cycle() {
+    color.assign(n, 0);
+    parent.assign(n, -1);
+    cycle_start = -1;
+
+    for (int v = 0; v < n; v++) {
+        if (color[v] == 0 && dfs(v))
+            break;
+    }
+
+    if (cycle_start == -1) {
+        cout << "Acyclic\n";
+    } else {
+        vector<int> cycle;
+        for (int v = cycle_end; v != cycle_start; v = parent[v])
+            cycle.push_back(v);
+        cycle.push_back(cycle_start);
+        cycle.push_back(cycle_end); // Add cycle end for clarity
+
+        reverse(cycle.begin(), cycle.end());
+        cout << "Cycle found: ";
+        for (int v : cycle)
+            cout << v << " ";
+        cout << "\n";
+    }
+}
+
+int main() {
+    cin >> n;
+    adj.resize(n);
+    int m;
+    cin >> m; // number of edges
+    for (int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+    }
+
+    find_cycle();
+}
+//using bfs
+```
+
+#### Path Construction
+
+```cpp
+vector<int> find_path(int start, int end, vector<vector<int>>& adj, int n) {
+    vector<int> parent(n, -1);
+    queue<int> q;
+    vector<bool> visited(n, false);
+
+    q.push(start);
+    visited[start] = true;
+
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+
+        if (u == end) break;
+
+        for (int v : adj[u]) {
+            if (!visited[v]) {
+                visited[v] = true;
+                parent[v] = u;
+                q.push(v);
+            }
+        }
+    }
+
+    // Reconstruct the path
+    vector<int> path;
+    if (!visited[end]) {
+        cout << "No path found\n";
+        return path;
+    }
+
+    for (int v = end; v != -1; v = parent[v]) {
+        path.push_back(v);
+    }
+    reverse(path.begin(), path.end());
+    return path;
+}
+
+int main() {
+    int n, m;
+    cin >> n >> m; // number of nodes and edges
+    vector<vector<int>> adj(n);
+
+    for (int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+    }
+
+    int start, end;
+    cin >> start >> end;
+
+    vector<int> path = find_path(start, end, adj, n);
+
+    if (!path.empty()) {
+        cout << "Path found: ";
+        for (int node : path) {
+            cout << node << " ";
+        }
+        cout << "\n";
+    }
+}
+```
+
+#### Shortest Path for Unweighted Graph
+
+example:
+
+- [cses1193_Labyrinth](./2_graph_traversals/1_bfs/cses1193_Labyrinth.cpp)
+
+    <pre>You are given a map of a labyrinth, and your task is to find a path from start to end. You can walk left, right, up and down.
+    
+    - dfs works for the path construction (doesn't give shortest path)
+    - bfs for shortest path (because it goes to level-wise)
+  
+    unweighted graph shortest path
+    </pre>
+
+#### Bipartite Graphs
+
+https://cp-algorithms.com/graph/bipartite-check.html
+
+<code>A bipartite graph is a graph whose vertices can be divided into two disjoint sets so that every edge connects two vertices from different sets (i.e. there are no edges which connect vertices from the same set).
+</code>
+
+###### Properties
+
+<pre>You are given an undirected graph. Check whether it is bipartite, and if it is, output its sides.</pre>
+<pre>
+- Odd Length Cycles (can't be)
+- A Tree is always bipartile
+</pre>
+
+```cpp
+//bipartile check
+int n;
+vector<vector<int>> adj;
+
+vector<int> side(n, -1);
+bool is_bipartite = true;
+queue<int> q;
+for (int st = 0; st < n; ++st) {
+    if (side[st] == -1) {
+        q.push(st);
+        side[st] = 0;
+        while (!q.empty()) {
+            int v = q.front();
+            q.pop();
+            for (int u : adj[v]) {
+                if (side[u] == -1) {
+                    side[u] = side[v] ^ 1;
+                    q.push(u);
+                } else {
+                    is_bipartite &= side[u] != side[v];
+                }
+            }
+        }
+    }
+}
+
+cout << (is_bipartite ? "YES" : "NO") << endl;
+```
+
+![bipoartile_graph](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToD16ZGa1318i444cgJQDU3J-nkmeF_rIXQw&s)
+
+example:
+
+#
 
 #### Topological Sorting (for only DAG)
 
@@ -720,8 +1177,6 @@ for (int i = 1; i < n; i++) {
 ```
 
 ---
-
-### Cycles
 
 ### LCA (Lowest Common Ancestors)
 
