@@ -298,6 +298,13 @@ example:
   ex. (5+2+0)%7=0, (4+3+0)%7=0
   </pre>
 
+- [2050C_Uninteresting Number](./1_primes_and_divisors/2_divisors/2050C_Uninteresting%20Number.cpp)
+  <pre>
+  Given a number n with length(1e5), perform operation any number of times (choose one of its digits, square it, and replace the original digit with the result)
+  
+  Is it possible to obtain a number that is divisible by 9 through these operations?
+  </pre>
+
 ## Primes
 
 <pre>

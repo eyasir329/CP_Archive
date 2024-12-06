@@ -176,6 +176,8 @@ Given an array of n integers, your task is to process q queries of the form: wha
 hint: same as prefix sum
 </pre>
 
+- https://codeforces.com/problemset/problem/2039/C1
+
 ---
 
 ### BitMasks

@@ -1,101 +1,14 @@
 ## Graph Theory
 
+https://medium.com/basecs/a-gentle-introduction-to-graph-theory-77969829ead8
+Non-Linear Data Structures (Trees, Graphs)
+
+<pre>
+Fundamental Characteristics:
+    - their data doesn’t follow an order — at least, not an obvious numerical one, like we see in arrays or linked lists.
+</pre>
+
 ### Basic Graphs
-
-https://study.com/academy/lesson/graph-theory-concepts-and-terminology.html
-
-###### Common Terms
-
-<pre>
-- Vertices + Edges
-- Neighbours (Adjacent Vertices -> N[x]) + Degree (Number of Neighbours)
-- Self Loop (edges come and goes to the same vertices)
-
-- <b>Path</b> (everynode encounted one, not revisit any node) + <b>Walk</b> (revisit some node) + <b>Cycle</b> (going from one node and coming back to samenode (don't revisit any node except from the starting node)) 
--> every cycle or path is a walk, walk can contains cycles
-
-- Simple Graph (doesn't contain self loop and multiple edges)
-- Bridge + Articulation Point
-</pre>
-
-![selfloop_muledge](https://notes.eddyerburgh.me/assets/img/data-structures-and-algorithms/data-structures/graphs/non-simple-graph.svg)
-
-###### Types of Graph
-
-<pre>
-- Directed graph -> Edges have a direction, meaning that edges with arrows connect one vertex to another.
-- Undirected graph -> Edges do not have a direction, meaning that each edge can be traversed in both directions.
-</pre>
-
-![directed_undirected](https://study.com/cimages/multimages/16/3161f86d-d02f-4bc4-ab9d-9e654800ad60_graphs.png)
-
-<pre>
-- Unweighted vs Weighted
-- Cyclic + Acyclic
-- Connected + Disconnected
-- Complete Graph -> (N[x] = G - x node visit from every node) (every pair of distinct vertices is connected by a unique edge)
-</pre>
-
-<img src="https://www.codingeek.com/wp-content/uploads/2016/11/cyclic.png" alt="cyclic_asyclic" width="480">
-
-![connected_dis](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaSbdo-VmfmU1ceqh_vtH7gQW1LMTXAA3x3w&s)
-
-###### Properties of Graph
-
-<pre>
-Longest Path Tricks
-
-- An undirected graph where <b>each node</b> has at degree at least 2 will contain a cycle
-- A directed graph where each node has at least 1 in-degree and at least 1 out-degree will contain a cycle
-
-- The sum of all degree is even. The number of vertices with odd degree is even
-</pre>
-
-#
-
-###### Representation of Graph
-
-https://www.geeksforgeeks.org/graph-and-its-representations/
-
-#
-
-- Adjacency Matrix
-
-        -> Adding O(1), Checking O(1), Listing all edges O(N\*N)
-        -> Memory using O(N*N) (maybe encounted memory limit exceded)
-
-  https://www.geeksforgeeks.org/adjacency-matrix/
-
-![adjacency_matrix](https://www.cs.mtsu.edu/~xyang/3080/images/adjMatrixWeightedGraph.jpeg)
-
-for unwighted graph instead of weight write 1 and 0 (also it's a symetric matrix)
-
-#
-
-- Adjacency List with Vector
-
-        -> Adding O(1), Checking O(N), Listing O(M) ...M = no. of edges
-        -> Memory using O(M)
-
-![adjacency list](https://www.tutorialride.com/images/data-structures/adjacency-list.jpeg)
-
-#
-
-- Adjacency List with Set
-
-```cpp
-vector<set<int>> or set<int>adj[N]
-```
-
-<pre>
-- Adding O(logN), Checking O(logN), Listing O(N)
--> Memory using O(M)
-</pre>
-
-https://www.hello-algo.com/en/chapter_graph/graph_operations/#922-implementation-based-on-adjacency-list
-
-(n = no. of vertices/nodes, m = no. of edges)
-![comparison](https://i.ibb.co.com/cgG3s7s/Screenshot-from-2024-11-28-03-58-13.png)
 
 #
 

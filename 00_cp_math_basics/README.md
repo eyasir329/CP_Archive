@@ -619,6 +619,68 @@ example:
 
 ### Array
 
+<pre>
+- each element takes 4 bytes (on most systems).
+
+- int a[n][n], memory required -> Memory required (bytes) = n<sup>2</sup>×4
+  n = 512 (since 512<sup>2</sup>×4=1MB), n = 1000 (4MB), n = 10000 (400MB)
+
+General Guidelines
+  - Use dynamic allocation for large arrays to avoid stack overflow.
+  - Ensure you have enough physical memory (RAM) to support the desired size.
+  - Avoid unnecessarily large arrays; consider using sparse matrix representations if the array contains many zeros.
+</pre>
+
+```cpp
+// stack allocation
+int n = 500; // Works fine on most systems
+int a[500][500]; // Requires 1 MB memory (approx.)
+
+int m = 1000; // May cause stack overflow
+int b[1000][1000]; // Requires 4 MB memory (approx.)
+```
+
+```cpp
+//heap allocation (dynamic memory)
+int main() {
+    int n = 10000; // Larger sizes possible with heap
+    int** a = new int*[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = new int[n];
+    }
+
+    // Use the array (example: initialize with 0)
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            a[i][j] = 0;
+        }
+    }
+
+    // Free memory
+    for (int i = 0; i < n; i++) {
+        delete[] a[i];
+    }
+    delete[] a;
+
+    return 0;
+}
+```
+
+```cpp
+//std::vector
+int main() {
+    int n = 10000; // Works for large n if enough memory is available
+    vector<vector<int>> a(n, vector<int>(n, 0)); // Initialize with 0
+
+    // Access elements
+    a[0][0] = 1;
+    a[n-1][n-1] = 2;
+
+    cout << a[0][0] << " " << a[n-1][n-1] << endl;
+    return 0;
+}
+```
+
 #### Something on Pair-Wise
 
 <pre>
