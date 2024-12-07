@@ -486,3 +486,49 @@ https://www.hello-algo.com/en/chapter_graph/graph_operations/#922-implementation
 ![comparison](https://i.ibb.co.com/cgG3s7s/Screenshot-from-2024-11-28-03-58-13.png)
 
 #
+
+example:
+
+- [Aizu-ALDS1_11_A_Graph](./Aizu_ALDS1_11_A_Graph.cpp)
+
+    <pre>
+  There are two standard ways to represent a graph G=(V,E), where V is a set of vertices and E is a set of edges; Adjacency list representation and Adjacency matrix representation. 
+  
+  Write a program which reads a directed graph G represented by the adjacency list, and prints its adjacency-matrix representation.
+  
+  (Convert Adjacency List to Adjacency Matrix)
+    </pre>
+
+- [292B_Network Topology](./292B_Network%20Topology.cpp)
+
+    <pre>
+  A bus is a connected graph that is the only path, that is, the graph where all nodes are connected with two other ones except for some two nodes that are the beginning and the end of the path. A ring is a connected graph, where all nodes are connected with two other ones. A star is a connected graph, where a single central node is singled out and connected with all other nodes.
+    </pre>
+
+- [leetcode_1791. Find Center of Star Graph](./leetcode1791_Find%20Center%20of%20Star%20Graph.cpp)
+
+    <pre>
+  There is an undirected star graph consisting of n nodes labeled from 1 to n. A star graph is a graph where there is one center node and exactly n - 1 edges that connect the center node with every other node.
+  
+  You are given a 2D integer array edges where each edges[i] = [ui, vi] indicates that there is an edge between the nodes ui and vi. Return the center of the given star graph.
+    </pre>
+
+- [leetcode1557_Minimum Number of Vertices to Reach All Nodes.cpp](./leetcode1791_Find%20Center%20of%20Star%20Graph.cpp)
+
+    <pre>
+  Given a directed acyclic graph, with n vertices numbered from 0 to n-1, and an array edges where edges[i] = [fromi, toi] represents a directed edge from node fromi to node toi.
+  
+  Find the smallest set of vertices from which all nodes in the graph are reachable. It's guaranteed that a unique solution exists.
+  
+  Notice that you can return the vertices in any order.
+    </pre>
+
+- [330B_Road Construction](./330B_Road%20Construction.cpp)
+
+    <pre>
+  A country has n cities. Initially, there is no road in the country. One day, the king decides to construct some roads connecting pairs of cities. Roads can be traversed either way. He wants those roads to be constructed in such a way that it is possible to go from each city to any other city by traversing at most two roads. You are also given m pairs of cities — roads cannot be constructed between these pairs of cities.
+  
+  Your task is to construct the minimum number of roads that still satisfy the above conditions. The constraints will guarantee that this is always possible.
+  
+  -> like star topology
+    </pre>
