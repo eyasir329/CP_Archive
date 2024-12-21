@@ -519,6 +519,9 @@ https://usaco.guide/bronze/time-comp?lang=cpp
 - (num>0) positive number
 - (num>=0) non-negative number
 
+https://aryansh-s.github.io/assets/pdf/The_Art_of_Modular_Arithmetic.pdf
+![notation](https://i.ibb.co.com/3ND4tTj/IMG-0043.jpg)
+
 #### floor, ceil and round
 
     floor-> floor((double)a/b) ~ a/b... ex. floor(7.3)=7
@@ -579,41 +582,131 @@ https://codeforces.com/blog/entry/118001
 - [Triangles](https://www.cuemath.com/geometry/triangles/)
 - [Median & Centroid](https://www.khanacademy.org/math/geometry-home/triangle-properties/medians-centroids/v/triangle-medians-and-centroids)
 
+---
+
 #### Divisors, Multiple, Modulo
 
-##### modulo
+##### Modulo
 
+<pre>
 - make sure after each operation, the result is between 0 and m-1
 - keep eyes in overflow.
 - do not work in division in general ways.
 - bitwise operation do not work with modular arithmetic.
+</pre>
 
-      (x+ y) mod m = (x mod m+ y mod m) mod m
-      (a-b) mod m = (a mod m - b mod m + m) mod m
-      (x · y) mod m = (x mod m· y mod m) mod m
-      x^n mod m = (x mod m)^n mod m
+<pre>
+    (x + y) mod m = (x mod m+ y mod m) mod m
+    (a - b) mod m = (a mod m - b mod m + m) mod m
+    (x · y) mod m = (x mod m· y mod m) mod m
+    x^n mod m = (x mod m)^(n mod m-1)
+</pre>
 
-##### divisors
+example:
 
-      for(int i=1;i<=n;i++){
-        if(n%i==0){
-          cout<<i<<" ";
-        }
-      }
+- Find a closed form for the remainder of a ÷ m, where a, m ∈ Z+
+
+  <pre>
+  Because finding the remainder directly does not seem like an easy task, we first look for the quotient q. Because the quotient is the greatest number of times m goes into a, it is the integer part of a/m . But how do we truncate the fractional part? Apply the floor function! 
+  
+  q =⌊a/m⌋
+  Our remainder becomes a − mq = <b>a − m⌊a/m⌋</b> <-- a % m
+  </pre>
+
+##### Divisors
+
+```cpp
+for(int i=1;i<=n;i++){
+  if(n%i==0){
+    cout<<i<<" ";
+  }
+}
+```
 
 - (b | a) -> b divide a
 
 example:
 
 - [2029A_Set]()
+- One of the first 1234567 positive integers is chosen at random. Compute the
+  probability that it is divisible by 3?
+
+  <pre>
+  -> Pattern Identification:
+    Every third number in the sequence of positive integers is divisible by 3:
+    - Example: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ...
+    - From this pattern, it's clear that every package of three numbers contains exactly **one** divisible by 3.
+  
+  -> Count Numbers Divisible by 3:
+      To find how many numbers in the first 1234567 are divisible by 3: floor(1234567/3)
+  
+  -> Calculate Probability:
+      The probability of selecting a number divisible by 3 is:
+      P = Numbers Divisible by 3 / Total Numbers = 411522 / 1234567 ≈ 0.33333306
+  
+  -> Result:
+      This matches the expected approximation of 1/3, derived from the pattern of divisibility.
+  
+  - The probability `P ≈ 1/3` arises naturally from the definition of divisibility.
+  - The slight deviation from `1/3` comes from the truncation during integer division.
+  
+  This method demonstrates how understanding divisibility patterns simplifies complex calculations.
+  </pre>
+
+- Find all integers x for which it can be said that the positive integer 2x + 9 divides the positive integer 3x + 4?
+
+  <pre>
+  From the problem statement, we can extract the following requirements:
+  x ∈ Z
+  2x + 9 ∈ Z+ =⇒ x ∈ Z≥−4
+  3x + 4 ∈ Z+ =⇒ x ∈ Z≥−1
+  3x + 4 ≥ 2x + 9 =⇒ x ∈ Z≥5
+  Additionally, we require
+  (3x + 4)/(2x + 9) = 1 + (x − 5)/(2x + 9) =⇒ (x − 5)/(2x + 9) ∈ Z≥0.
+  This secondary requirement means that either x = 5 or
+  x − 5 ≥ 2x + 9 =⇒ x ∈ Z≤−14.
+  The second case is clearly impossible due to the strict x ∈ Z≥5 requirement from earlier, so the only valid integer x is 5 .
+  </pre>
+
+---
 
 #### Primes
+
+example:
+
+- Prove that, for all primes p, the smallest positive integer whose factorial is divisible by p is p itself.
+
+  <pre>
+  It is trivial by inspection that p satisfies this condition. Let the smallest positive such
+  integer be k. For the sake of contradiction, assume that k < p and p|k!. Then, k! is the product of all positive integers less than p and p is present in the prime factorization of k!. Some of the positive integers in this product are themselves primes less than p, while others are less than p and have unique prime factorizations involving only primes less than p by the fundamental theorem of arithmetic. Thus, p cannot be present in prime factorization of k!, establishing contradiction. This means that k = p. 
+  </pre>
 
 #### GCD, LCM
 
 [Properties of GCD function](https://codeforces.com/blog/entry/95694)
 
-      lcm(a*b) = (a*b)/gcd(a*b)
+<pre>
+lcm(a,b) = (a*b)/gcd(a,b)
+</pre>
+
+example:
+
+https://aryansh-s.github.io/assets/pdf/The_Art_of_Modular_Arithmetic.pdf p29_sol
+
+- What is the largest positive integer that divides 40 and 78(gcd(a,b))? What about the smallest positive integer divisible by 40 and 78(lcm(a,b))?
+
+  <pre>
+  - Greedily, if we want to find the largest positive integer that divides 40 an 78, we need to selectively multiply together the largest power of each prime divisor common to both.
+  - To find the smallest positive integer divisible by both 40 and 78, we again take a greedy approach: selectively multiply together the smallest power of each prime divisor that satisfies the divisibility requirement. 
+  </pre>
+
+- [AOPS_1951 AHSME Problems/Problem 19](https://artofproblemsolving.com/wiki/index.php/1951_AHSME_Problems/Problem_19)
+
+  <pre>
+  A six place number is formed by repeating a three place number; for example, 256256 or 678678, etc. Any number of this form is always exactly divisible by(gcd of all numbers of this forms)?
+  
+  -> The number abcabc can be rewritten as 1000abc + abc (constructively, think of shifting the second abc three places to the right to make room for the first abc). Therefore, it is just 1001abc, and since nothing more can be said about abc, the answer is 1001 .
+  </pre>
 
 ---
 

@@ -128,6 +128,8 @@ cout<<__builtin_ctz(x)<<endl;//2
 
 ### XOR Tricks
 
+https://codeforces.com/contest/2048/problem/C
+
 https://florian.github.io//xor-trick/
 
 - a^a = 0

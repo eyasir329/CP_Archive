@@ -1,6 +1,6 @@
 ### Basic Graphs
 
-[Graph_Basics - The Ultimate Topic List](https://youkn0wwho.academy/topic-list/graph_representations)
+https://youkn0wwho.academy/topic-list/?category=basics&subCategory=very_basic_graphs
 
 #
 
@@ -532,3 +532,5 @@ example:
   
   -> like star topology
     </pre>
+
+#
