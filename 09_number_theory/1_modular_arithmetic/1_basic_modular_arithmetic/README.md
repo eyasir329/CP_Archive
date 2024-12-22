@@ -155,10 +155,13 @@ example:
   a + b + c ≡ 3, 8 (mod 10).
   Therefore, our answer is 3 + 8 = 11
   
-  -> The modulo 5 solution a+b+c ≡ 3 (mod 5) lifts to modulo 10 because:
-    10 is a multiple of 5, and Adding 5 repeatedly cycles through two equivalence classes in modulo 10: 3(mod10) and 8(mod10). This is a fundamental property of modular arithmetic.
+  -> The modulo 5 solution a+b+c ≡ 3 (mod 5) lifts to modulo 10 because: 10 is a multiple of 5, and Adding 5 repeatedly cycles through two equivalence classes in modulo 10: 3(mod10) and 8(mod10). This is a fundamental property of modular arithmetic.
   </pre>
 
+- [SPOJ_LASTDIG - The last digit]()
+  <pre>
+  You are given two integer numbers: the base a (0 <= a <= 20) and the index b (0 <= b <= 2,147,483,000), a and b both are not 0. You have to find the last digit of a^b. (without doing any mod)
+  </pre>
 - [gfg_Find the maximum possible value of a[i] % a[j] over all pairs of i and j]()
   <pre>
   - 2nd maximum is the answer (other is always smaller than 2nd_mx%1st_max)
@@ -258,6 +261,34 @@ example:
   Thus:
       n+1 ≡ S(n+1) ≡ 6 (mod 9).
   The only answer choice satisfying n+1 ≡ 6 (mod 9) is: (D) 1239.
+  </pre>
+
+- [375A_Divisible By Seven](./2.divisors/375A_Divisible%20by%20Seven.cpp)
+
+  <pre>
+  # we need (num % 7 == 0)
+  
+  Rearrange the digits in its decimal representation so that the resulting number will be divisible by 7.
+  It doesn't contain any leading zeroes and always contains digits 1, 6, 8, 9
+  {"1869", "1968", "1689", "6198", "1698", "1986", "1896"}%7={0,1,2,3,4,5,6}, find it using next_permutation.
+  
+  #({... Other num mod + (7-other num mod) mod from list }%7=0 + zero at last)%7=0
+  
+  ex. (5+2+0)%7=0, (4+3+0)%7=0
+  </pre>
+
+- [2050C_Uninteresting Number](./1_primes_and_divisors/2_divisors/2050C_Uninteresting%20Number.cpp)
+  <pre>
+  Given a number n with length(1e5), perform operation any number of times (choose one of its digits, square it, and replace the original digit with the result)
+  Is it possible to obtain a number that is (divisible by 9) through these operations?
+  -> divisibility test of 9 -> sum of it's digit is divisible by 9
+  
+  It states that a number is divisible by 9 if and only if the sum of its digits is divisible by 9. Let's see how the sum of the digits will change with the possible transformations. If we square 2, the sum of the digits increases by 2^2−2=2, and if we square 3, the sum of the digits increases by 3^2−3=6
+  
+  We will count the number of digits 2 in the number and the number of digits 3 in the number. We can choose how many of the available digits 2 and 3 we will transform. Transforming more than 8 twos and more than 8 threes is pointless because remainders modulo 9 their transformation adds to the sum will repeat.
+  
+  Thus, the final solution looks like this: we calculate the sum of the digits in the number, count the number of digits 2
+  and 3. We will iterate over how many digits 2 we change (possibly 0, but no more than 8), and how many digits 3 we change (possibly 0, but also no more than 8). Let's say we changed x digits 2 and y digits 3, then the sum of the digits in the number increased by x∗2+y∗6. If new sum is divisible by 9, the answer is "YES". If such a situation was never reached during the iteration, then the answer is "NO".
   </pre>
 
 ---
@@ -506,9 +537,26 @@ int power(int x, long long n, int mod) {
 
 example:
 
-- [ces1095_Exponentiation](./4_modular_arithmetic/1_binary_exponentiation/ces1095_Exponentiation.cpp)
+- [CSES-1095_Exponentiation](./4_binary_exponentiation/cses1095_Exponentiation.cpp)
 
----
+  <pre>
+  Your task is to efficiently calculate values a^b modulo 10^9+7.
+  Note that in this task we assume that 0^0=1.
+  </pre>
+
+- [UVA-1230_MODEX](./4_binary_exponentiation/UVA1230_MODEX.cpp)
+
+  <pre>
+  Given integers x, y and n, compute x^y mod n. In this question, you are tasked to program an efficient way to execute this calculation.
+  </pre>
+
+- [UVA-374_Big Mod](./4_binary_exponentiation/UVA374_Big%20Mod.cpp)
+  <pre>
+  Calculate R := B^P mod M
+  for large values of B, P , and M using an efficient algorithm.
+  
+  The input will contain several test cases, but not given the value of t, M is an integer in the range 1 to 46340 inclusive (so it also support circular way to finding exponentiation O(mod+period length), but not support naive method O(n) because P-> 0 to 2147483647 inclusive)
+  </pre>
 
 ###### Fermat's Little Theorem and Modular Inverse
 
@@ -661,7 +709,7 @@ More generally, Euler’s theorem states that, x<sup>ϕ(m)</sup> mod m = 1, when
 
 example:
 
-- [cses1712_Exponentiation II](./4_modular_arithmetic/3_fermats_little_theorem_and_modular_inverse/cses1712_Exponentiation2.cpp)
+- [CSES-1712_Exponentiation II](./4_modular_arithmetic/3_fermats_little_theorem_and_modular_inverse/cses1712_Exponentiation2.cpp)
 
   <pre>
   we have to find a<sup>b<sup>c</sup></sup> modulo 1e9+7
