@@ -215,6 +215,23 @@ example:
   -> n!/(a!b!c!...)
   </pre>
 
----
+- [LeetCode1922. Count Good Numbers](./1_permutations_combinations_and_basic_counting/LeetCode1922_Count%20Good%20Numbers.cpp)
+
+    <pre>
+    A digit string is good if the digits (0-indexed) at even indices are even and the digits at odd indices are prime (2, 3, 5, or 7).
+  
+    Given an integer n(1<=n<=1e15), return the total number of good digit strings of length n. Since the answer may be large, return it modulo 10^9 + 7.
+  
+    A digit string is a string consisting of digits 0 through 9 that may contain leading zeros.
+    </pre>
+
+- [1178C_Tiles](./1_permutations_combinations_and_basic_counting/1178C_Tiles.cpp)
+    <pre>
+    The dimension of this tile is perfect for this kitchen, as he will need exactly w×h tiles without any scraps. That is, the width of the kitchen is w tiles, and the height is h tiles. he still needs to decide on how exactly he will tile the floor. 
+  
+    There is a single aesthetic criterion that he wants to fulfil: two adjacent tiles must not share a colour on the edge — i.e. one of the tiles must have a white colour on the shared border, and the second one must be black.
+  
+    Find the number of possible tilings. As this number may be large, output its remainder when divided by 998244353 (a prime number).
+    </pre>
 
 ## Stars and Bars
