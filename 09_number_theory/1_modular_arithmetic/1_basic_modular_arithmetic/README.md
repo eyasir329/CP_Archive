@@ -558,11 +558,138 @@ example:
   The input will contain several test cases, but not given the value of t, M is an integer in the range 1 to 46340 inclusive (so it also support circular way to finding exponentiation O(mod+period length), but not support naive method O(n) because P-> 0 to 2147483647 inclusive)
   </pre>
 
+- [913A_Modular Exponentiation](https://vjudge.net/problem/CodeForces-913A)
+
+    <pre>
+    The following problem is well-known: given integers n and m, calculate 2^n mod m
+    
+    You are asked to solve the "reverse" problem. Given integers n and m, calculate m mod 2^n (1<=n,m<=1e8)
+    
+    -> python can support large nunber, or java BigInteger
+    -> n >= 31 ? m : m % (1 << n))
+    </pre>
+
+- [UVA_11029 Leading and Trailing](./4_binary_exponentiation/UVA11029_Leading%20and%20Trailing.cpp)
+
+  <pre>
+  C function pow(125456, 455) can be represented in double data
+  type format, but you won’t get all the digits of the result. However we can get at least some satisfaction, if we could know few of the leading and trailing digits. This is the requirement of this problem.
+  
+  For each line of input there will be one line of output. It will be of the format LLL . . . T T T , where LLL represents the first three digits of nk and T T T represents the last three digits of nk. You are assured that nk will contain at least 6 digits.
+  
+  n and k. n will fit in 32 bit integer and k will be less than 10000001
+  </pre>
+
+  <pre>
+  # for finding first three digit
+  Logarithmic Identity:
+  
+  Formula Used: 
+  log10(n^k) = k × log10(n)
+  
+  The idea here is to use the logarithmic identity to transform the problem of finding the first few digits of n^k into a problem of dealing with logarithms.
+  In this case:
+  - log10(base) computes the logarithm of base (which is n in the function).
+  - Multiplying this by exp (which is k in the function) gives the logarithm of n^k, i.e., logValue = exp * log10(base).
+  
+  Extracting the Fractional Part:
+  
+  fractionalPart = logValue - floor(logValue);
+  
+  Logarithms produce a number in the form of an integer part and a fractional part. For example, if log10(1000) = 3.0, the integer part is 3 and the fractional part is 0.
+  To get the fractional part (the part after the decimal point), the floor(logValue) function is used, which removes the integer portion.
+  For instance, if logValue = 5.2356, then fractionalPart = 0.2356.
+  
+  Calculating the First Three Digits:
+  
+  pow(10, fractionalPart) gives us the number 10^fractionalPart, which is a number between 1 and 10. This is a key step for extracting the significant digits.
+  For example, if fractionalPart = 0.2356, then pow(10, fractionalPart) will give something like 1.78 (the first part of the number, representing the significant digits).
+  Multiplying this result by 100 scales it up to get the first three digits. For example, if pow(10, fractionalPart) = 1.78, then 1.78 * 100 = 178.
+  The result is then cast to long long to obtain the integer value of the first three digits.
+  
+  Returning the Result:
+  
+  The function returns the first three digits as a long long integer.
+  </pre>
+
+  <b>Precision Handling</b> (more precision)
+
+  <b>Logarithmic Method (calculateFirstThreeDigits):</b>
+
+  - Relies heavily on <i>double</i> precision to handle the fractional part and <i>pow</i> function.
+  - Floating-point operations, especially with large numbers, can lead to small inaccuracies due to precision limits.
+  - Example issue:
+    If log<sub>10</sub>(n<sup>k</sup>) = 12.999999, <i>floor(logValue)</i> might misinterpret the result, leading to incorrect digits.
+
+  <b>Combined Logarithmic with Modular Arithmetic:</b>
+
+  - Adjusts fractional part alignment more explicitly:
+    <code>
+    lg -= floor(lg) - 2;
+    </code>
+    This ensures a more stable computation for the leading digits by shifting the fractional part to focus on significant digits.
+  - Adds a small epsilon (<i>1e-9</i>) during extraction to stabilize floating-point operations.
+
+#
+
 ###### Fermat's Little Theorem and Modular Inverse
+
+### Fermat's Little Theorem
+
+https://en.wikipedia.org/wiki/Fermat's_little_theorem
+
+<pre>
+In number theory, Fermat's little theorem states that if p is a prime number, then <b>for any integer a, the number a<sup>p</sup> − a is an integer multiple of p</b>. In the notation of modular arithmetic, this is expressed as a^p ≡ a (mod p)
+For example, if a = 2 and p = 7, then 2^7 = 128, and 128 − 2 = 126 = 7 × 18 is an integer multiple of 7. 
+
+- Let p be a prime which does not divide the integer a(a is coprime to p), then <b>a<sup>p-1</sup> ≡ 1 (mod p)</b>.
+For example, if a = 2 and p = 7, then 2^6 = 64, and 64 − 1 = 63 = 7 × 9 is a multiple of 7. 
+
+Fermat's(Pierre de Fermat) little theorem says that as long as the modulus m is a prime number (1e9+7 is prime, and so is 998 244 353, then a<sup>m</sup> mod m = a mod m. Working backwards, a<sup>m−1</sup> mod m = 1 = a⋅a<sup>m−2</sup>  mod m
+
+Note that this only works for a mod m≠0, because there is no number x such that 0⋅x  mod m=1. In other words, you still can't divide by 0.
+
+Fermat’s theorem states that, x<sup>m−1</sup> mod m = 1, when m is prime and x and m are coprime. This also yields x<sup>k</sup> mod m = x<sup>k mod (m−1)</sup> mod m.
+</pre>
+
+- [<u>Proof of Fermat's Little Theorem</u>](https://t5k.org/notes/proofs/FermatsLittleTheorem.html)
+
+<pre>
+x<sup>n</sup> ≡ x<sup>n mod (p-1)</sup> (mod p), if p is prime 
+- because x^0, x^1, x^2 ... cycles after p-1 terms
+
+More generally, Euler’s theorem states that, x<sup>ϕ(m)</sup> mod m = 1, when x and m are coprime. Fermat’s theorem follows from Euler’s theorem, because if m is a prime, then ϕ(m) = m − 1.
+</pre>
+
+- [<u>Fermat's theorem (more)</u>](https://en.wikipedia.org/wiki/Fermat%27s_theorem)
+<pre>
+- Fermat's Last Theorem, about integer solutions to a^n + b^n = c^n
+- <b>Fermat's little theorem, a property of prime numbers</b>
+- Fermat's theorem on sums of two squares, about <b>primes expressible</b> as a sum of squares
+- Fermat's theorem (stationary points), about local maxima and minima of differentiable functions
+- Fermat's principle, about the path taken by a ray of light
+- Fermat polygonal number theorem, about <b>expressing integers as a sum of polygonal numbers</b>
+- Fermat's right triangle theorem, about squares not being expressible as the difference of two fourth powers
+</pre>
+
+example:
+
+- [CSES-1712_Exponentiation II](./4_modular_arithmetic/3_fermats_little_theorem_and_modular_inverse/cses1712_Exponentiation2.cpp)
+
+  <pre>
+  we have to find a<sup>b<sup>c</sup></sup> modulo 1e9+7
+  - not working in normal way, we have to use euler's totient theorem
+  
+  - To find the multiplicative order of a modulo m, first find φ(m), i.e. Euler's totient of m. Then brute force over the divisors of the totient; the multiplicative order must be one of the divisors.
+  </pre>
+
+#
 
 ### Euler's Totient Theorem
 
 <pre>
+- Euler's theorem is a generalization of Fermat's little theorem
+
 For m ∈ Z>1, Euler’s totient function φ(m) counts the number of positive integers not exceeding m relatively prime to m. It turns out this is a very useful function for us in modular arithmetic.
 
 <b>Euler’s totient function ϕ(n) gives the number of coprime numbers to n between 1 and n.</b>
@@ -575,6 +702,24 @@ For m ∈ Z>1, Euler’s totient function φ(m) counts the number of positive in
 
 - For m, b ∈ Z>1, show that a<sup>b</sup> ≡ a<sup>b mod φ(m)</sup> (mod m) for all integers a such that (a, m) = 1.
 </pre>
+
+```cpp
+int eulerTotient(int m) {
+    int ans = m;
+    for (int p = 2; p * p <= m; ++p) {
+        if (m % p == 0) {
+            while (m % p == 0) {
+                m /= p;
+            }
+            ans -= ans / p;
+        }
+    }
+    if (m > 1) {
+        ans -= ans / m;
+    }
+    return ans;
+}
+```
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240424121512/Euler's-Product-Formula.webp" alt="Euler's Product Formula" width="400">
 
@@ -684,47 +829,17 @@ example:
   Final Answer: 21.
   </pre>
 
-#
-
-### Fermat's Little Theorem
-
-<pre>
-Fermat's little theorem says that as long as the modulus m is a prime number (1e9+7 is prime, and so is 998 244 353, then a<sup>m</sup> mod m = a mod m. Working backwards, a<sup>m−1</sup> mod m = 1 = a⋅a<sup>m−2</sup>  mod m
-
-Note that this only works for a mod m≠0, because there is no number x such that 0⋅x  mod m=1. In other words, you still can't divide by 0.
-
-Let p be a prime which does not divide the integer a, then a<sup>p-1</sup> ≡ 1 (mod p).
-
-Fermat’s theorem states that, x<sup>m−1</sup> mod m = 1, when m is prime and x and m are coprime. This also yields x<sup>k</sup> mod m = x<sup>k mod (m−1)</sup> mod m.
-</pre>
-
-https://t5k.org/notes/proofs/FermatsLittleTheorem.html
-
-<pre>
-x<sup>n</sup> ≡ x<sup>n mod (p-1)</sup> (mod p), if p is prime 
-- because x^0, x^1, x^2 ... cycles after p-1 terms
-
-More generally, Euler’s theorem states that, x<sup>ϕ(m)</sup> mod m = 1, when x and m are coprime. Fermat’s theorem follows from Euler’s theorem, because if m is a prime, then ϕ(m) = m − 1.
-</pre>
-
-example:
-
-- [CSES-1712_Exponentiation II](./4_modular_arithmetic/3_fermats_little_theorem_and_modular_inverse/cses1712_Exponentiation2.cpp)
-
-  <pre>
-  we have to find a<sup>b<sup>c</sup></sup> modulo 1e9+7
-  - not working in normal way, we have to use euler's totient theorem
-  
-  - To find the multiplicative order of a modulo m, first find φ(m), i.e. Euler's totient of m. Then brute force over the divisors of the totient; the multiplicative order must be one of the divisors.
-  </pre>
-
 ---
 
 ### Modular Multiplicative Inverse
 
-https://cp-algorithms.com/algebra/module-inverse.html
+https://cp-algorithms.com/algebra/module-inverse.html<br>
+https://forthright48.com/modular-multiplicative-inverse/
 
 <pre>
+First we have to determine whether Modular Inverse even exists for given A and M before we jump to finding the solution.
+- <b>Modular Inverse of A with respect to M, that is, X=A<sup>−1</sup>(mod M) exists, if and only if A and M are coprime.</b>
+
 - Division and fractions(more complicated) are different in modular arithmetic than other operator. It's requires a concept called "modular multiplicative inverse". 
 - The modular multiplicative inverse of a number a is the number a<sup>−1</sup> such that a⋅a<sup>−1</sup> mod m = 1.
 

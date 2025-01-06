@@ -246,6 +246,47 @@ example:
 
 ---
 
+### Large Numbers
+
+<pre>
+In Python:
+- Arbitrary-Precision: int type can grow as large as memory allows.
+- Memory constraints: Size is limited by available system memory.
+
+In Java:
+- Arbitrary Precision: BigInteger handles integers limited by available memory.
+- Memory Limitation: Size is constrained by system memory, more memory needed for larger numbers.
+- Efficiency: Operations on large BigIntegers take more time and memory.
+- Practical Example: BigInteger with 100,000 digits works if system memory allows.
+</pre>
+
+- https://vjudge.net/problem/CodeForces-913A
+
+```py
+#using python
+n = int(input())
+m = int(input())
+twon = 1 << n
+print(m % twon)`
+```
+
+```java
+//using java
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class ModuloPower {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        long n = scanner.nextLong();
+        BigInteger m = scanner.nextBigInteger();
+        BigInteger twon = BigInteger.valueOf(2).pow((int) n);
+        System.out.println(m.mod(twon));
+        scanner.close();
+    }
+}
+```
+
 #### Some builtin function
 
 - round, llround
@@ -361,20 +402,22 @@ Input untill end of file
 
     - input from string
 
-        string s = "12  13    24";
-        stringstream ss(s);
-        cout << ss.str << endl;
-        int a, b, c; ss >> a >> b >> c;
-        //alternate
-        while (ss >> n) {
-                cout << n << endl;
-        }
-        //separate words from string
-        getline(cin, s);
-        stringstream ss(s);
-        while (ss >> n) {
-                cout << n << endl;
-        }
+```cpp
+string s = "12  13    24";
+stringstream ss(s);
+cout << ss.str << endl;
+int a, b, c; ss >> a >> b >> c;
+//alternate
+while (ss >> n) {
+        cout << n << endl;
+}
+//separate words from string
+getline(cin, s);
+stringstream ss(s);
+while (ss >> n) {
+        cout << n << endl;
+}
+```
 
 ---
 
@@ -512,7 +555,7 @@ https://usaco.guide/bronze/time-comp?lang=cpp
 - by default global variables is initialize by zero but local variables not
 - declare large array globally//because it store in data segment, that are bigger in stack memory segment
 
----
+#
 
 ### Basic Maths
 
@@ -581,6 +624,35 @@ https://codeforces.com/blog/entry/118001
 
 - [Triangles](https://www.cuemath.com/geometry/triangles/)
 - [Median & Centroid](https://www.khanacademy.org/math/geometry-home/triangle-properties/medians-centroids/v/triangle-medians-and-centroids)
+
+      sum of natural numbers = (n * (n + 1)) / 2;
+      sum of square of natural numbers = (n * (n + 1) * ((2 * n) + 1)) / 6;
+      sum of cubes of natural numbers = ((n * n) * (n + 1) * (n + 1)) / 4;
+      nth term of an arithmetic sequence = a + ((n - 1) * d);
+      sum of arithmetic series (number of terms * average of first and last item) = (n * ((2 * a) + ((n - 1) * d))) / 2;
+      nth term of geometric sequence = a * pow(r, n - 1);[a = first_term, r = common ration];
+      sum of geometric sequence = (a * (pow(r, n) - 1)) / (r - 1);[r != 1];
+      sum of an infinite geometric sequence = a / (1 - r);[r < 1];
+
+      area:
+
+      semi perimeter (triangle)s = 1/2 * (a + b + c);
+      area(triangle) = (1/2 * base * height) = (1/2*a*b*sin(C)) = sqrt(s * (s - a) * (s - b) * (s - c));
+      area(right triangle) = (1/2 * a * b);
+      area(equilateral triangle) = (a^2 * sqrt(3)) / 4; [a = side_length]
+      area(equilateral triangle) = (h^2 * sqrt(3)) / 3; [h = altitude, height]
+      area(rectangle) = base  * height;
+      area(square) = base^2 = (1/2 * diagonal^2);
+      area(parallelogram) = (base * height) = a*b*sin(C);
+      area(rhombus) = (1/2 * d1 * d2); [d1 = diagonal1, d2 = diagonal2]
+      area(trapezoid) = (1/2 * h * (b1 + b2)); [b1 and b2 are two parallel side, h = distance between d1 and d2]
+      area(regular polygon) = (1/2 * a * p) [a (apothem)= the distance from the center to the midpoint of one of its side, p = perimeter]
+      area(circle) = (pi * r^2) = (pi * d^2) / 4; [d = diameter = 2 * r];
+      area(sector of circle) = ((n/360) * pi * r^2);[n = measure of the central angle]
+
+      circumference / perimeter
+      circumference(circle) = (2 * pi * r);
+      length of an arc of a circle = ((n/360) * 2 * pi * r);
 
 ---
 

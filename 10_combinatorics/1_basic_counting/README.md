@@ -200,6 +200,11 @@ int nPr(int n, int r) { //O(1)
 
 example:
 
+- [Factorial Under Modulo](https://vjudge.net/problem/Gym-248968S)
+
+    <pre>
+    Given a large number nn, determine efficiently the factorial of n. Since the answer might be very large, you should output the answer modulo 998,244,353998,244,353.</pre>
+
 - [loghtoj1067_Combinations](./1_basic_counting/2_combination/loghtoj1067_Combinations.cpp)
 
   <pre>
@@ -232,6 +237,10 @@ example:
     There is a single aesthetic criterion that he wants to fulfil: two adjacent tiles must not share a colour on the edge — i.e. one of the tiles must have a white colour on the shared border, and the second one must be black.
   
     Find the number of possible tilings. As this number may be large, output its remainder when divided by 998244353 (a prime number).
+  
+    -> when all tiles (1,i) and (j,1) are placed, the rest is determined uniquely. We only need to count the number of ways to tile the first row and first column
+  
+    -> 1 box can be 4 way to order
     </pre>
 
 ## Stars and Bars
