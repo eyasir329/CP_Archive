@@ -191,13 +191,11 @@ example:
     num of divisors of a-b(16) that are more than b
   </pre>
 
----
-
 ### Divisibility Rules
 
 <pre>
 - The divisibility rule for 3 is based on the <b>canonical sum of the digits</b>
-  -> <i>A number is divisible by 3 if and only if the sum of its digits is divisible by 3</i>
+-> <i>A number is divisible by 3 if and only if the sum of its digits is divisible by 3</i>
 
 <b>N = a<sup>k</sup>⋅10<sup>k</sup> + a<sup>k−1</sup>⋅10<sup>k−1</sup> + ⋯ + a<sup>1</sup>⋅10<sup>1</sup> + a<sup>0</sup>.10<sup>0</sup></b> - decimal representation of a number
 
@@ -290,76 +288,6 @@ example:
   Thus, the final solution looks like this: we calculate the sum of the digits in the number, count the number of digits 2
   and 3. We will iterate over how many digits 2 we change (possibly 0, but no more than 8), and how many digits 3 we change (possibly 0, but also no more than 8). Let's say we changed x digits 2 and y digits 3, then the sum of the digits in the number increased by x∗2+y∗6. If new sum is divisible by 9, the answer is "YES". If such a situation was never reached during the iteration, then the answer is "NO".
   </pre>
-
----
-
-### Mulmod
-
-https://cs.stackexchange.com/questions/77016/modular-multiplication
-
-- Why use mulmod ?
-<pre>
-- When multiplying two large numbers where (𝑎⋅𝑏) exceeds the range of long long.
-- To ensure correctness in modular arithmetic computations in languages or systems with limited integer sizes.
-</pre>
-
-- <u>Given three integers x,y and m, find x\*y modulo m. (1<=x,y<=1e18, mod<=1e18+7)</u>
-<pre>
-a * b % mod is overflowing because of a,b,mod are very large.
-x * y = x+x+...x (upto y times)
-</pre>
-
-```cpp
-long long mulmod(long long x, long long y, long long mod) {//O(logy)
-    long long ans = 0;
-    while (y > 0) {
-        if (y & 1) {
-            ans = (ans + x) % mod;//do addition, instead of multiplication
-        }
-        x = (x + x) % mod;
-        y >>= 1;
-    }
-    return ans;
-}
-```
-
-<pre>
-- we can also use 128 bit integer for this purpose
-</pre>
-
-```cpp
-long long mulmod(long long x, long long y, long long mod) {
-    return (long long)((__int128)x * y % mod);
-}
-```
-
-<pre>
-x mod 2<sup>k</sup> = x&(2<sup>k</sup>-1) -> equal to the last k bits of x 
-</pre>
-
-- <u>Given two integers x,n, find x<sup>n</sup> modulo 2<sup>64</sup></u>
-<pre>
-unsigned integers are represented modulo 2^k, where k is the number of bits of the data type. unsigned int are represented modulo 2^32
-</pre>
-
-```cpp
-//benefit of data type ranges
-#define ull unsigned long long
-
-ull power(ull x, ull n) {
-    ull ans = 1;
-    while (n > 0) {
-        if (n & 1) {
-            ans *= x;//ull always do mod by 2^64
-        }
-        x *= x;
-        n >>= 1;
-    }
-    return ans;
-}
-```
-
-example:
 
 ---
 
@@ -630,7 +558,99 @@ example:
     This ensures a more stable computation for the leading digits by shifting the fractional part to focus on significant digits.
   - Adds a small epsilon (<i>1e-9</i>) during extraction to stabilize floating-point operations.
 
-#
+---
+
+### Mulmod and Binary Exponentiation like Problems
+
+https://cs.stackexchange.com/questions/77016/modular-multiplication
+
+- Why use mulmod ?
+<pre>
+- When multiplying two large numbers where (𝑎⋅𝑏) exceeds the range of long long.
+- To ensure correctness in modular arithmetic computations in languages or systems with limited integer sizes.
+</pre>
+
+- <u>Given three integers x,y and m, find x\*y modulo m. (1<=x,y<=1e18, mod<=1e18+7)</u>
+<pre>
+a * b % mod is overflowing because of a,b,mod are very large.
+x * y = x+x+...x (upto y times)
+</pre>
+
+```cpp
+long long mulmod(long long x, long long y, long long mod) {//O(logy)
+    long long ans = 0;
+    while (y > 0) {
+        if (y & 1) {
+            ans = (ans + x) % mod;//do addition, instead of multiplication
+        }
+        x = (x + x) % mod;
+        y >>= 1;
+    }
+    return ans;
+}
+```
+
+<pre>
+- we can also use 128 bit integer for this purpose
+</pre>
+
+```cpp
+long long mulmod(long long x, long long y, long long mod) {
+    return (long long)((__int128)x * y % mod);
+}
+```
+
+<pre>
+x mod 2<sup>k</sup> = x&(2<sup>k</sup>-1) -> equal to the last k bits of x 
+</pre>
+
+- <u>Given two integers x,n, find x<sup>n</sup> modulo 2<sup>64</sup></u>
+<pre>
+unsigned integers are represented modulo 2^k, where k is the number of bits of the data type. unsigned int are represented modulo 2^32
+</pre>
+
+```cpp
+//benefit of data type ranges
+#define ull unsigned long long
+
+ull power(ull x, ull n) {
+    ull ans = 1;
+    while (n > 0) {
+        if (n & 1) {
+            ans *= x;//ull always do mod by 2^64
+        }
+        x *= x;
+        n >>= 1;
+    }
+    return ans;
+}
+```
+
+example:
+
+- [codechef_Chef and Riffles](./1_basic_modular_operation/codechef_JAN221B_RIFFLES_Chef%20and%20Riffles.cpp)
+
+  <pre>
+  Let f be a permutation of length N, where N is even. The riffle of f is defined to be the permutation g=(f(1),f(3),…,f(N−1),f(2),f(4),…,f(N))
+  
+  You are given two integers N and K. Output the resultant permutation when you riffle the identity permutation of length N, K times.
+  1≤T≤100, 1≤N≤3⋅1e5, 1≤K≤1e9, N is even
+  The sum of N across test cases does not exceed 3⋅1e5
+  </pre>
+
+- [spoj_ZSUM - Just Add It](./4_mulmod_and_binExpLike/spoj_ZSUM_Just%20Add%20It.cpp)
+
+  <pre>
+  For two given integers n and k find (Zn + Z(n-1) - 2Z(n-2)) mod 10000007, where Zn = Sn + Pn and Sn = 1^k + 2^k + 3^k + … + n^k and Pn = 1^1 + 2^2 + 3^3 + … + n^n. (1 < n < 200000000, 0 < k < 1000000 )
+  </pre>
+
+- [spoj_LOCKER - Magic of the locker](./4_mulmod_and_binExpLike/spoj_LOCKER_Magic%20of%20the%20locker.cpp)
+
+  <pre>
+  you are given a number n , and break it into parts such that product of all parts is maximum.
+  </pre>
+
+---
 
 ###### Fermat's Little Theorem and Modular Inverse
 
@@ -951,16 +971,65 @@ int inverse(int a, int mod) {
 }
 ```
 
+- <u>Using Euler’s Theorem</u>
+
+<pre>
+It is possible to use Euler’s Theorem to find the modular inverse. We know that:
+
+      A<sup>ϕ(M)</sup> ≡ 1(mod M)
+      A<sup>ϕ(M)−1</sup> ≡ A<sup>−1</sup>(mod M)
+
+This process works for any M as long as it’s coprime to A, but it is rarely used since we have to calculate Euler Phi value of M which requires more processing.
+</pre>
+
+- <u>Using Extended Euclidean Algorithm</u>
+<pre>
+We are trying to solve the congruence, AX ≡ 1(mod M). We can convert this to an equation.
+      AX ≡ 1(mod M)
+      AX + MY = 1
+Here, both X and Y are unknown. This is a linear equation and we want to find integer solution for it. Which means, this is a Linear Diophantine Equation.
+</pre>
+
+```cpp
+int ext_gcd(int A, int B, int *X, int *Y) {
+    int x2, y2, x1, y1, x, y, r2, r1, q, r;
+    x2 = 1; y2 = 0;
+    x1 = 0; y1 = 1;
+    for (r2 = A, r1 = B; r1 != 0; r2 = r1, r1 = r, x2 = x1, y2 = y1, x1 = x, y1 = y) {
+        q = r2 / r1;
+        r = r2 % r1;
+        x = x2 - (q * x1);
+        y = y2 - (q * y1);
+    }
+    *X = x2;
+    *Y = y2;
+    return r2;
+}
+
+int modInv(int a, int m) {
+    int x, y;
+    ext_gcd(a, m, &x, &y);
+
+    // Process x so that it is between 0 and m-1
+    x %= m;
+    if (x < 0) x += m;
+    return x;
+}
+```
+
 example:
 
 - [hackerearth_modular inverse](https://www.hackerearth.com/problem/algorithm/modulo-inverse-problem/)
+  <pre>
+  You have been a number A. You need to output the inverse of number A modulo 1e9+7
+  </pre>
 
 - [eolymp9606_modular division](./4_modular_arithmetic/3_fermats_little_theorem_and_modular_inverse/eolymp9606_modular_division.cpp)
   <pre>
-  Three positive integers a,b, and n are given. Compute the value of a / b mod n. In other words, find a value x such that b⋅x = a mod n. 
+  Three positive integers a,b, and n are given. Compute the value of a / b mod n. In other words, find a value x such that b⋅x = a mod n.
   
   n<=2e9, 1 < a,b < n
-  -> a*inverse(b)%n
+  -> (a*inverse(b))%n
   </pre>
 
 #

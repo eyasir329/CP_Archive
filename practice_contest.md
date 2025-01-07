@@ -12,9 +12,18 @@
 
 - Basic Combinatorics Part 1 -> https://vjudge.net/contest/604907
 - Basic Combinatorics Part 2 -> https://vjudge.net/contest/604908
+- Basic Combinatorics Practice Contest -> https://vjudge.net/contest/624133
 
 ### pending
 
+Arithmetic and Geometric Progressions (Prerequired Math) - https://vjudge.net/contest/585055
+Number Theory: GCD && LCM && Divisibility - https://vjudge.net/contest/587682
+https://vjudge.net/group/junuiorsphase2_22
+https://codeforces.com/group/u3Ii79X3NY/contests
+Sheet ( Graph Representation ) [2022] - https://vjudge.net/contest/463557
+Day02 Implementation of STL functions (CSE CLUB,PSTU) - https://vjudge.net/contest/511397
+Day01 Implementation Problems (CSE CLUB,PSTU) - https://vjudge.net/contest/510195
+Binary Search Practice - Vivasoft Programming Bootcamp by CSE CLUB, PSTU - https://vjudge.net/contest/559068
 CSEDU 1211 Loop - https://vjudge.net/contest/313011
 CSEDU 1201 Arrays Basic - https://vjudge.net/contest/320955
 CSEDU 1211 String & Charater Array - https://vjudge.net/contest/323638
