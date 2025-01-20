@@ -222,6 +222,7 @@ partial_sum(v.begin(),v.end(),pre.begin());
 example:
 
 - 2033B_Sakurako and Water
+  https://www.spoj.com/problems/MAX_NUM/en/
 
 ---
 
@@ -300,6 +301,19 @@ empty(): Checks if the priority queue is empty.
 swap()
 </pre>
 
+```cpp
+class Compare {
+public:
+    bool operator()(pair<int, int> below, pair<int, int> above)
+    {
+        auto [l1, r1] = below;
+        auto [l2, r2] = above;
+        return abs(l1 - r1) < abs(l2 - r2);
+    }
+};
+priority_queue<pair<int, int>, vector<pair<int, int>>, Compare> pq;
+```
+
 ---
 
 ### Set
@@ -330,6 +344,7 @@ all operation in logn
 - std::set<KeyType,Compare>
 
 ![set cheatmap](https://hackingcpp.com/cpp/std/set_crop.png)
+https://www.spoj.com/problems/ADAFIELD/en/
 
 ---
 
@@ -371,6 +386,8 @@ all operation in logn
 - std::map<KeyType,MappedType,KeyCompare>
 
 ## ![map](https://hackingcpp.com/cpp/std/map_crop.png)
+
+https://codeforces.com/problemset/problem/920/B
 
 ### Unordered Map/HashTable/HashMap
 

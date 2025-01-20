@@ -16,6 +16,29 @@
 
 ### pending
 
+https://vjudge.net/contest#category=all&running=0&title=&owner=csedu_lab
+
+CSE2212 - Flow - https://vjudge.net/contest/268378
+CSE2202, 2020 - Graph (BFS, Dijkstra) - https://vjudge.net/contest/412012
+CSE2202, 2020 - (Dijkstra, Bellman Ford, MST, Floyd Warshal) - https://vjudge.net/contest/421889
+CSE2212 - DP (MCM, TSP, Digit DP) - https://vjudge.net/contest/260117
+CSE2212 - Bellman Ford, Floyd-Warshall, EP - https://vjudge.net/contest/251276
+CSE2202, 2020 - (DP) - https://vjudge.net/contest/426002
+CSE2212 - DP - https://vjudge.net/contest/256634
+CSE2212 - DP (Practice) - https://vjudge.net/contest/258063
+CSE2212 - MST, Dijkstra - https://vjudge.net/contest/246153
+CSE2101, 2020 - Binary Search, Ternary Search, Divide & Conquer. - https://vjudge.net/contest/357691
+CSE2212 - Articulation Point, Bridge, BCC, Euler Tour - https://vjudge.net/contest/242405
+CSE2212 - Topological Sort, SCC - https://vjudge.net/contest/240287
+CSE2212 - Divide & Conquer, Binary Search, Greedy - https://vjudge.net/contest/255268
+CSE2111, 2018 - Sorting - https://vjudge.net/contest/207159
+CSE2111, 2018 - set, map, priority_queue - https://vjudge.net/contest/217781
+CSE2101, 2020 - Stack, Queue - https://vjudge.net/contest/355565
+CSE2111, 2018 - Searching - https://vjudge.net/contest/212115
+CSE2111, 2018 - Union-Find - https://vjudge.net/contest/218935
+CSE2212 - BFS, DFS - II - https://vjudge.net/contest/237503
+CSE2101, 2020 - Recursion + Sorting + Counting Inversion - https://vjudge.net/contest/353534
+Sieve, Bitwise Sieve, Linear Sieve, Segmented Sieve, Counting Divisors - https://vjudge.net/contest/580524
 Arithmetic and Geometric Progressions (Prerequired Math) - https://vjudge.net/contest/585055
 Number Theory: GCD && LCM && Divisibility - https://vjudge.net/contest/587682
 https://vjudge.net/group/junuiorsphase2_22
@@ -27,6 +50,7 @@ Binary Search Practice - Vivasoft Programming Bootcamp by CSE CLUB, PSTU - https
 CSEDU 1211 Loop - https://vjudge.net/contest/313011
 CSEDU 1201 Arrays Basic - https://vjudge.net/contest/320955
 CSEDU 1211 String & Charater Array - https://vjudge.net/contest/323638
+CSE1211 - BigInteger - https://vjudge.net/contest/431830
 Math Contest for CSEDU 21 - https://vjudge.net/contest/110342
 CSEDU 20 BFS Contest - https://vjudge.net/contest/59702
 CSEDU DP Practice Contest - https://vjudge.net/contest/79797

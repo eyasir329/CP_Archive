@@ -29,7 +29,7 @@ pronounced “a is congruent to b modulo m,“ where the (mod m) modular suffix 
 Lastly, the hour an integer a corresponds to on a modulus m clock, equivalently the remainder of the division a ÷ m, can be written in <b>modular remainder form</b> as -> a mod m
 (notice the omission of parentheses around the modular suffix) and is sometimes referred to as the <b>modular residue</b> of a (mod m).
 
--> when dividing a number a with a number n, you would get a quotient q and a remainder r. These numbers would satisfy the identity a = nq + r, with 0 ≤ r < b.
+-> when dividing a number a with a number n, you would get a quotient q and a remainder r. These numbers would satisfy the identity a = nq + r, with 0 ≤ r < b. then, gcd(a,n) = gcd(q,r)
 </pre>
 
 <pre>

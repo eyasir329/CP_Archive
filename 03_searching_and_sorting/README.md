@@ -139,6 +139,8 @@ example:
   Therefore, we just need to find the longest subsequence in which the first element is the largest. This can be done easily in O(n2) — consider each index being the first item in the subsequence, and count all items to the right of it which are smaller or equal to it. Find the maximum over all of these, then subtract this from n.
   </pre>
 
+- https://codeforces.com/contest/1741/problem/D
+
 #### Greedy With Sorting
 
 - [cses1629_Movie Festival](./1_sorting/cses1629_Movie%20Festival.cpp)
