@@ -241,6 +241,8 @@ nCr = n!/(r!(n-r)!)
 
 ![p1](https://i.ibb.co.com/zb2Z1gT/IMG-0244.jpg)
 ![p3](https://i.ibb.co.com/860gfhc/IMG-0245.jpg)
+(n,k) = (n,n-k)
+
 ![p2](https://i.ibb.co.com/n7Jy3Jh/IMG-0246.jpg)
 ![p4](https://i.ibb.co.com/WzGpWP1/IMG-0247.jpg)
 
@@ -248,11 +250,16 @@ nCr = n!/(r!(n-r)!)
 
 - <u>The Binamial Theorem</u>
 
+The binomial coefficient (n,k) equals the number of ways we can choose a subset
+of k elements from a set of n elements.
+![p](https://i.ibb.co.com/S4mvfRZN/Screenshot-from-2025-03-06-15-34-47.png)
+
 ![bt0](https://i.ibb.co.com/5FHstYR/IMG-0248.jpg)
 ![bt1](https://i.ibb.co.com/XsgKGQX/IMG-0249.jpg)
 ![bt2](https://i.ibb.co.com/mFz9FDm/IMG-0250.jpg)
 ![bt3](https://i.ibb.co.com/XzwQJ2H/IMG-0251.jpg)
 ![bt4](https://i.ibb.co.com/y8LyC9y/IMG-0252.jpg)
+nC0 + nC1 + nC2 ... + nCn = 2^n
 ![bt5](https://i.ibb.co.com/bvGXNBn/IMG-0253.jpg)
 ![bt6](https://i.ibb.co.com/4KnVPZJ/IMG-0254.jpg)
 
@@ -282,8 +289,25 @@ nCr = n!/(r!(n-r)!)
 
 - <u>Distributing Objects into Boxes</u>
 
+https://usaco.guide/CPH.pdf#page=219
+
+<pre>
+- Scenario 1: Each box can contain at most one ball. For example, when n = 5 and k = 2, there are 10 solutions-> the answer is directly the binomial coefficient C(n,k).
+
+- Scenario 2: A box can contain multiple balls. For example, when n = 5 and k = 2, there are 15 solutions -> the number of solutions is C(n+k−1,k)
+
+- Scenario 3: Each box may contain at most one ball, and in addition, no two
+adjacent boxes may both contain a ball. For example, when n = 5 and k = 2, there
+are 6 solutions -> There are n − 2k + 1 such boxes and k + 1 positions for them. Thus, using the formula of scenario 2, the number of solutions is C(n−k+1,n−2k+1).
+</pre>
+
 ![db1](https://i.ibb.co.com/9b1Kwd8/IMG-0276.jpg)
 ![db2](https://i.ibb.co.com/nD3m73n/IMG-0277.jpg)
+
+The multinomial coefficient => C(n,(k1, k2, . . . , km))= n!/(k1!k2! · · · km!) ,
+equals the number of ways we can divide n elements into subsets of sizes k1, k2, . . . , km, where k1 + k2 + · · · + km = n. Multinomial coefficients can be seen as a generalization of binomial cofficients; if m = 2, the above formula corresponds
+to the binomial coefficient formula
+
 ![db3](https://i.ibb.co.com/k6xYjkQ/IMG-0278.jpg)
 ![db4](https://i.ibb.co.com/BBrPcLN/IMG-0279.jpg)
 ![db5](https://i.ibb.co.com/M14Zp0t/IMG-0280.jpg)
@@ -527,12 +551,12 @@ B. How many students in a class must there be to ensure that 3 students get the 
 - <u>Pascal's Identity and Triangle</u>
 
 ![pt1](https://i.ibb.co.com/C5bvpnS/IMG-0257.jpg)
+Binomial coefficients also appear in Pascal’s triangle where each value
+equals the sum of two above values
 ![pt2](https://i.ibb.co.com/NL4d0Mq/IMG-0258.jpg)
 ![pt3](https://i.ibb.co.com/fkdMPn0/IMG-0259.jpg)
 ![pt4](https://i.ibb.co.com/Qd0XZPN/IMG-0260.jpg)
 ![pt5](https://i.ibb.co.com/FnPRKtT/IMG-0261.jpg)
-
-#
 
 - <u>Other Identities Involving Binomial Coefficients</u>
 
