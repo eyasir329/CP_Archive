@@ -92,9 +92,32 @@ Example:
     x ≡ 2 (mod 3)  
 </pre>
 
+<pre>
+- make sure after each operation, the result is between 0 and m-1
+- keep eyes in overflow.
+- do not work in division in general ways.
+- bitwise operation do not work with modular arithmetic.
+</pre>
+
+<pre>
+  (x + y) mod m = (x mod m+ y mod m) mod m
+  (a - b) mod m = (a mod m - b mod m + m) mod m
+  (x · y) mod m = (x mod m· y mod m) mod m
+  x^n mod m = (x mod m)^(n mod m-1)
+</pre>
+
 [Math Competitions Exercise](https://davidaltizio.web.illinois.edu/ModularArithmetic.pdf)
 
 example:
+
+- Find a closed form for the remainder of a ÷ m, where a, m ∈ Z+
+
+  <pre>
+  Because finding the remainder directly does not seem like an easy task, we first look for the quotient q. Because the quotient is the greatest number of times m goes into a, it is the integer part of a/m . But how do we truncate the fractional part? Apply the floor function! 
+  
+  q =⌊a/m⌋
+  Our remainder becomes a − mq = <b>a − m⌊a/m⌋</b> <-- a % m
+  </pre>
 
 - [2017 AMC 12A Problems/Problem 11](https://artofproblemsolving.com/wiki/index.php/2017_AMC_12A_Problems/Problem_11)
 

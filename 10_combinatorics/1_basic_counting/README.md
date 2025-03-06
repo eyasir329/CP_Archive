@@ -71,6 +71,8 @@ D. How many student IDs are possible with an even number of "A"s?
      3 * (25 * 25 * 10 * 10) = 1,562,500 + 3 * 2,500 = 1,570,000
 </pre>
 
+- https://cses.fi/problemset/task/1617
+
 #
 
 - <u>The Complement Rule and Complex Counting Problems</u> <br>
@@ -174,7 +176,7 @@ Consider choice A with 3 options (A1,A2,A3), and choice B with 2 options (B1,B2)
 
 ### Permutations and Combinations
 
-- <u>Factorial</u>
+### <u>Factorial</u>
 
 <pre>
 n! is te number of ways to arrange n distinct objects in a line.
@@ -187,7 +189,37 @@ n! is te number of ways to arrange n distinct objects in a line.
 - The difference between combinations and permutations is whether or not the order you are choosing the objects matters.
 </pre>
 
-- <u> Permutations</u>
+- Finding Power of Factorial Divisor
+
+  You are given two numbers n  and  k . Find the largest power of k x such that n! is divisible by  k^x .
+
+  https://cp-algorithms.com/algebra/factorial-divisors.html<br>
+  https://artofproblemsolving.com/wiki/index.php/Factorial
+
+  ```cpp
+  //prime k
+  //come from Legendre’s formula
+  int fact_pow (int n, int k) {
+      int res = 0;
+      while (n) {
+          n /= k;
+          res += n;
+      }
+      return res;
+  }
+  ```
+
+example:
+
+- https://artofproblemsolving.com/wiki/index.php/2007_iTest_Problems/Problem_6
+- https://artofproblemsolving.com/wiki/index.php/2003_AIME_I_Problems/Problem_1
+- https://artofproblemsolving.com/wiki/index.php/2006_AIME_II_Problems/Problem_3
+
+    <pre>Let P be the product of the first 100 positive odd integers. Find the largest integer k such that P is divisible by 3^k</pre>
+
+- https://artofproblemsolving.com/wiki/index.php/1987_IMO_Problems/Problem_1
+
+### <u> Permutations</u>
 
 <pre>
 - <b>order matter</b>
@@ -204,12 +236,18 @@ n! is te number of ways to arrange n distinct objects in a line.
 ![perm4](https://i.ibb.co.com/kcMdRjn/IMG-0236.jpg)
 ![perm5](https://i.ibb.co.com/ggwvmYV/IMG-0238.jpg)
 
-- <u> Combinations</u>
+### <u> Combinations</u>
 
 <pre>
 - <b>order don't matter</b>
 nCr is the number of ways to choose r objects from n distinct objects.
 nCr = n!/(r!(n-r)!)
+</pre>
+
+- Given and find out how many different ways are there to represent N as sum of K non-zero integers.
+
+<pre>
+In general, for N there will be N-1 dashes, and out of those we want to choose K-1 and place comma in place of those and in place of rest of the dashes place plus sign. So ways of choosing K-1 objects out of N-1 is C(N-1,K-1)
 </pre>
 
 ![comp1](https://i.ibb.co.com/LQt1X96/IMG-0239.jpg)
@@ -230,7 +268,7 @@ nCr = n!/(r!(n-r)!)
 
 - A combination is the number of ways of choosing k objects from a total of n objects (order does not matter).
 
-- A permutation is the number of ways of choosing and arranging k objects from a total of n objects (order does matter). 
+- A permutation is the number of ways of choosing and arranging k objects from a total of n objects (order does matter).
 </pre>
 
 [Some Problems (Basic)](https://flexbooks.ck12.org/cbook/ck-12-college-precalculus/section/14.2/primary/lesson/counting-with-permutations-and-combinations-c-precalc/)
@@ -315,10 +353,19 @@ to the binomial coefficient formula
 
 ---
 
+```cpp
+//O(2^n)
+/** @return nCk mod p using naive recursion */
+int binomial(int n, int k, int p) {
+	if (k == 0 || k == n) { return 1; }
+	return (binomial(n - 1, k - 1, p) + binomial(n - 1, k, p)) % p;
+}
+```
+
 - <u>Given q queries. In each query, you are given two integers n and r, you will have to find nPr and nCr modulo 1e9+7 (1<=n,q<=1e6, 0<=r<=n)</u>
 
 ```cpp
-// mod must be prime number
+// mod must be prime number -> O(n + log MOD)
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -375,6 +422,11 @@ int32_t main() {//O(N + q)
     return 0;
 }
 ```
+
+example:
+
+- https://cses.fi/problemset/task/1079
+- https://cses.fi/problemset/task/1715
 
 ---
 

@@ -43,19 +43,21 @@ https://www.math.drexel.edu/~tolya/123_harmonic.pdf
 
 sum <= floor(log2(n)) + 1
 
-    int n = 1e6;
-    ll sum = 0; //O(N*N) not //O(NlogN) //because of j+=i
-    for(int i=1;i<=n;i++){
-      for(int j=i;j<=n;j+=i){//look like -> n*harmonic
-        sum+=j;
-      }
-    }
-    //also same for this
-    for(int i=1;i<=n;i++){
-      for(int j=1;i*j<=n;j++){ // j = n/i
-        sum+=j;
-      }
-    }
+```cpp
+int n = 1e6;
+ll sum = 0; //O(N*N) not //O(NlogN) //because of j+=i
+for (int i = 1; i <= n; i++) {
+  for (int j = i; j <= n; j += i) { //look like -> n*harmonic
+    sum += j;
+  }
+}
+//also same for this
+for (int i = 1; i <= n; i++) {
+  for (int j = 1; i * j <= n; j++) { // j = n/i
+    sum += j;
+  }
+}
+```
 
 https://codeforces.com/blog/entry/118001
 
@@ -97,7 +99,7 @@ https://codeforces.com/blog/entry/118001
 
 ---
 
-#### Permutation
+### Permutation
 
 ```
 A permutation of length n is an array consisting of n distinct integers from 1 to n in arbitrary order. For example, [2,3,1,5,4] is a permutation, but [1,2,2] is not a permutation (2 appears twice in the array), and [1,3,4] is also not a permutation (n=3 but there is 4 in the array).
@@ -109,36 +111,7 @@ example:
 
 ---
 
-##### Modulo
-
-<pre>
-- make sure after each operation, the result is between 0 and m-1
-- keep eyes in overflow.
-- do not work in division in general ways.
-- bitwise operation do not work with modular arithmetic.
-</pre>
-
-<pre>
-    (x + y) mod m = (x mod m+ y mod m) mod m
-    (a - b) mod m = (a mod m - b mod m + m) mod m
-    (x · y) mod m = (x mod m· y mod m) mod m
-    x^n mod m = (x mod m)^(n mod m-1)
-</pre>
-
-example:
-
-- Find a closed form for the remainder of a ÷ m, where a, m ∈ Z+
-
-  <pre>
-  Because finding the remainder directly does not seem like an easy task, we first look for the quotient q. Because the quotient is the greatest number of times m goes into a, it is the integer part of a/m . But how do we truncate the fractional part? Apply the floor function! 
-  
-  q =⌊a/m⌋
-  Our remainder becomes a − mq = <b>a − m⌊a/m⌋</b> <-- a % m
-  </pre>
-
----
-
-#### Primes
+### Primes
 
 <pre>
 - prime has exactly two divisors (1 & that number)
@@ -167,7 +140,7 @@ example:
   integer be k. For the sake of contradiction, assume that k < p and p|k!. Then, k! is the product of all positive integers less than p and p is present in the prime factorization of k!. Some of the positive integers in this product are themselves primes less than p, while others are less than p and have unique prime factorizations involving only primes less than p by the fundamental theorem of arithmetic. Thus, p cannot be present in prime factorization of k!, establishing contradiction. This means that k = p. 
   </pre>
 
-###### Co-Prime Numbers
+### Co-Prime Numbers
 
 <pre>
 - no common factors other than one
@@ -201,7 +174,7 @@ otherwise true;
 
 ---
 
-##### Divisors
+### Divisors
 
 <pre>
 - odd number of divisors are perfect square (i==n/i we eliminate one divisors because of unique divisors.) (ex. cf2020B)
@@ -341,7 +314,7 @@ example:
 - https://codeforces.com/contest/2020/problem/B
 - https://codeforces.com/contest/2031/problem/C
 
-## Factorization
+### Factorization
 
 - [576A_Vasya and Petya's Game](./2.divisors/576A_Vasya%20and%20Petya's%20Game.cpp)
 
@@ -357,40 +330,7 @@ if(n is divisible y) y*y until find n.. then next y
 
 ---
 
-## Euclidean Algorithms
-
-- [343A_Rational Resistance](./4.euclidean_algorithms/343A_Rational%20Resistance.cpp)
-
-<pre>
-# needs to assemble an element with a resistance(1 ohm) equal to the fraction of a/b.
-
-# determine the smallest possible number of resistors needs to make such an element.
-
-has lots of identical resistors with unit (1 ohm) resistance. our need resistance value can be constructed with these.
-
-e = x/y (resistance of a element, can be fraction because of parallelism)
-series: (x/y)+1 => (x+y)/y >1; (1<=a,b<=1e18)
-parallel: 1/((1/(x/y))+1/1) => x/(x+y) <1; (1<=a,b<=1e18)
-
-# If a fraction a/b can be obtained with k resistors, then it is simple to calculate that we can obtain fractions (a+b)/b and a/(a+b) with k + 1 resistors.
-
-So adding one resistor means performing one operation backwards in Euclidean algorithm. That means that the answer is equal to the number of steps in standard Euclidean algorithm.
-
-a/b = 1 + f(x/y)
-a > b => ((x+y)/y ~ a/b) =>x/y = a-b/a
----a/b = 1 + f(b,a-b)
-a < b => (x/(x+y) ~ a/b) =>x/y = a/b-a
----a/b = 1 + f(a,b-a)
-
-TLE-if use gcd(a,b-a)//O(N)~1e18
-
-1+gcd(a%b,b) return lower value, we need upper value like 1+gcd(a-b,b)
-ex. 1+gcd(100%1,1)=2 , 1+gcd(100-1,1)=100 ~because we need num of resister(total num of time it called)
-but a/b + gcd(a%b,b) = 1+gcd(a-b,b) => produce same result
-
-</pre>
-
-#### GCD, LCM
+### GCD, LCM
 
 [Properties of GCD function](https://codeforces.com/blog/entry/95694)
 
