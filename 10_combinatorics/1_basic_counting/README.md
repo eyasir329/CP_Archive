@@ -2,9 +2,7 @@
 
 https://youkn0wwho.academy/topic-list/?category=basics&subCategory=basic_counting
 
-#
-
-- <u>Expected Value</u>
+#### <u>Expected Value</u>
 
 <pre>
 - Expected value = (total sum of all possible outcomes)/(number of all possible outcome)
@@ -14,7 +12,7 @@ https://youkn0wwho.academy/topic-list/?category=basics&subCategory=basic_countin
 
 https://www.youtube.com/playlist?list=PLl-gb0E4MII0sGLCJeqDB3y63HZ6lM5LJ
 
-Two Rule of Basic Counting
+### Two Rule of Basic Counting
 
 <pre>
 - Rule of Sum
@@ -22,7 +20,8 @@ Two Rule of Basic Counting
 (Total Way = prev way * next way, ex. contribution technique)
 </pre>
 
-- <u>Rule of Sum</u> (one event, multiple ways)
+#### <u>Rule of Sum</u> (one event, multiple ways)
+
 <pre>
 - If a task can be done in either one of n1 ways <b>or</b> in one of n2 ways, where the two sets of ways are disjoint, then there are n1+n2 ways to complete the task.
 
@@ -43,7 +42,8 @@ example:
 
 #
 
-- <u>Rule of Product</u> (2 events (or more))
+#### <u>Rule of Product</u> (2 events (or more))
+
 <pre>
 - If there are m ways that one event can occur and n ways that another event can occur, then there are m x n ways that both events can occur.
 
@@ -73,7 +73,7 @@ D. How many student IDs are possible with an even number of "A"s?
 
 - https://cses.fi/problemset/task/1617
 
-#
+---
 
 - <u>The Complement Rule and Complex Counting Problems</u> <br>
 (at least -> Complement of none)
@@ -109,9 +109,9 @@ F. No digit may be repeated, divisible by 4
 
 #
 
-###### The Subtraction and Division Rules
+### The Subtraction and Division Rules
 
-- <u>The Subtraction Rule - a.k.a. Principle of Inclusion-Exclusion</u>
+#### <u>The Subtraction Rule - a.k.a. Principle of Inclusion-Exclusion</u>
 
 <pre>
 - If a task can be done in either n1 ways or n2 ways, then the total number of ways to do the task is n1+n2 minus the number of ways to do the task that were counted in both n1 and n2. 
@@ -129,9 +129,8 @@ B. A software company receives 200 applications from collage graduations for a j
 -> 200 - 23 = 107 + 116 - A ∩ B
 </pre>
 
-#
+#### <u>The Division Rule</u>
 
-- <u>The Division Rule</u>
 <pre>
 - There are n/d ways to do a task if it can be done using a procedure that can be carried out in n ways, where there are d corresponding outcomes per group.
 
@@ -150,7 +149,7 @@ The arrangement (ABCD) is same as (BCDA,CDAB,DABC) because each person has the s
 
 ---
 
-## Permutations, Combinations and Basic Counting Problems
+## Basic Counting Problems
 
 https://flexbooks.ck12.org/cbook/ck-12-college-precalculus/section/14.2/primary/lesson/counting-with-permutations-and-combinations-c-precalc/
 
@@ -174,7 +173,9 @@ Consider choice A with 3 options (A1,A2,A3), and choice B with 2 options (B1,B2)
 </pre>
 ![cp](https://i.ibb.co.com/hf4GG3w/Screenshot-from-2025-01-08-19-08-27.png)
 
-### Permutations and Combinations
+---
+
+## Permutations and Combinations
 
 ### <u>Factorial</u>
 
@@ -219,6 +220,8 @@ example:
 
 - https://artofproblemsolving.com/wiki/index.php/1987_IMO_Problems/Problem_1
 
+---
+
 ### <u> Permutations</u>
 
 <pre>
@@ -235,6 +238,8 @@ example:
 ![perm3](https://i.ibb.co.com/njVNnGK/IMG-0237.jpg)
 ![perm4](https://i.ibb.co.com/kcMdRjn/IMG-0236.jpg)
 ![perm5](https://i.ibb.co.com/ggwvmYV/IMG-0238.jpg)
+
+---
 
 ### <u> Combinations</u>
 
@@ -256,12 +261,12 @@ In general, for N there will be N-1 dashes, and out of those we want to choose K
 ![comp4](https://i.ibb.co.com/3Tgc1ZS/IMG-0242.jpg)
 ![comp5](https://i.ibb.co.com/yNfDYRL/IMG-0243.jpg)
 
+## Summary
+
 ![key_dif](https://gre.myprepclub.com/forum/download/file.php?mode=view&id=14915&sid=8edb21de77d3cc7076c632167e1125f1)
 <img src="https://gre.myprepclub.com/forum/download/file.php?mode=view&id=15320&sid=12a76328403e68df68076d41c5bf8c9d" alt="pc" width="650">
 
 <code> Whenever you do a counting problem, the 1st thing you should decide is whether the problem is a Fundamental Counting Principle problem, a permutation problem, or a combination problem.</code>
-
-###### Summary
 
 <pre>
 - The Fundamental Counting Principle states that if one event has m possible outcomes and a 2nd event has n possible outcomes, then there are m⋅n total possible outcomes for the two events together.
@@ -275,7 +280,7 @@ In general, for N there will be N-1 dashes, and out of those we want to choose K
 
 #
 
-- <u>More Combinations and Combinatorial Proof</u>
+### <u>More Combinations and Combinatorial Proof</u>
 
 ![p1](https://i.ibb.co.com/zb2Z1gT/IMG-0244.jpg)
 ![p3](https://i.ibb.co.com/860gfhc/IMG-0245.jpg)
@@ -284,9 +289,9 @@ In general, for N there will be N-1 dashes, and out of those we want to choose K
 ![p2](https://i.ibb.co.com/n7Jy3Jh/IMG-0246.jpg)
 ![p4](https://i.ibb.co.com/WzGpWP1/IMG-0247.jpg)
 
-#
+---
 
-- <u>The Binamial Theorem</u>
+### <u>The Binamial Theorem</u>
 
 The binomial coefficient (n,k) equals the number of ways we can choose a subset
 of k elements from a set of n elements.
@@ -297,13 +302,15 @@ of k elements from a set of n elements.
 ![bt2](https://i.ibb.co.com/mFz9FDm/IMG-0250.jpg)
 ![bt3](https://i.ibb.co.com/XzwQJ2H/IMG-0251.jpg)
 ![bt4](https://i.ibb.co.com/y8LyC9y/IMG-0252.jpg)
+
 nC0 + nC1 + nC2 ... + nCn = 2^n
+
 ![bt5](https://i.ibb.co.com/bvGXNBn/IMG-0253.jpg)
 ![bt6](https://i.ibb.co.com/4KnVPZJ/IMG-0254.jpg)
 
-#
+---
 
-- <u>Combinations with Repetition</u>
+### <u>Combinations with Repetition</u>
 
 ![cr1](https://i.ibb.co.com/8zP86Tk/IMG-0264.jpg)
 ![cr2](https://i.ibb.co.com/9ZWL600/IMG-0265.jpg)
@@ -313,9 +320,25 @@ nC0 + nC1 + nC2 ... + nCn = 2^n
 ![cr6](https://i.ibb.co.com/SJY2cgJ/IMG-0269.jpg)
 ![cr7](https://i.ibb.co.com/b6gtzJg/IMG-0270.jpg)
 
-#
+example:
 
-- <u>Permutations with Indistinguishable Objects</u>
+- [cses1716_Distributing Apples](./cses1716_Distributing%20Apples.cpp)
+
+    <pre>There are n children and m apples that will be distributed to them. Your task is to count the number of ways this can be done.</pre>
+
+- [spoj_ADATEAMS](./spoj_ADATEAMS%20_Ada_and_Teams.cpp)
+
+    <pre>There are N schools from which exactly A will participate. Moreover there are B students in each school and exactly D of them will participate in the Olympiad.
+  
+    Step 1: Choose A schools from N.
+        Number of ways = C(N, A)
+    Step 2: For each of those A schools, choose D students from B.
+        Number of ways per school = C(B, D)
+    For A schools, it becomes (C(B, D))^A</pre>
+
+---
+
+### <u>Permutations with Indistinguishable Objects</u>
 
 ![pr1](https://i.ibb.co.com/QJ8rJWj/IMG-0271.jpg)
 ![pr2](https://i.ibb.co.com/NY61W8R/IMG-0272.jpg)
@@ -323,9 +346,21 @@ nC0 + nC1 + nC2 ... + nCn = 2^n
 ![pr4](https://i.ibb.co.com/vDW25vF/IMG-0274.jpg)
 ![pr5](https://i.ibb.co.com/6YVbC4r/IMG-0275.jpg)
 
-#
+example:
 
-- <u>Distributing Objects into Boxes</u>
+- [300C_Beautiful_Numbers](./300C_Beautiful_Numbers.cpp)
+
+    <pre>Vitaly is a very weird man. He's got two favorite digits a and b. Vitaly calls a positive integer good, if the decimal representation of this integer only contains digits a and b. Vitaly calls a good number excellent, if the sum of its digits is a good number.
+  
+    Now Vitaly is wondering, how many excellent numbers of length exactly n are there. As this number can be rather large, he asks you to count the remainder after dividing it by 1000000007 (1^9 + 7).
+  
+    sum_of_digits = i * a + (n - i) * b;</pre>
+
+- https://www.codechef.com/problems/NWAYS
+
+---
+
+### <u>Distributing Objects into Boxes</u>
 
 https://usaco.guide/CPH.pdf#page=219
 
@@ -427,98 +462,10 @@ example:
 
 - https://cses.fi/problemset/task/1079
 - https://cses.fi/problemset/task/1715
+- [cses1715_Creating Strings II](./cses1715_Creating%20Strings2.cpp)
 
----
-
-<pre>
-- next_permutation -> gives immediate next permutation(lexicographical order)
-- prev_permutation -> gives immediate previous permutation(lexicographical order)
-
-# also return boolean(have or not)
-</pre>
-
-- <u>Generate all possible permutations</u>
-
-```cpp
-int main() {
-    int a[] = {1, 2, 3};
-    // if we need all permutation, then we have to sort it
-    sort(a, a + n);
-    do {
-        for (int i = 0; i < a.size(); i++) {
-            cout << a[i] << " ";
-        }
-        cout << endl;
-    } while (next_permutation(a, a + n));
-    return 0;
-}
-```
-
-#
-
-- <u>Computing using a Recurrence</u>
-<pre>
-- if modulo isn't prime then it will help us.
-
-<sup>n</sup>C<sub>r</sub> = <sup>n-1</sup>C<sub>r-1</sub> + <sup>n-1</sup>C<sub>r</sub>
-
-- base case C(n,0) = C(n,n) = 1
-</pre>
-
-###### **Explanation**
-
-1. **Definition**:  
-   nCr represents the number of ways to choose \(r\) items from \(n\) items without considering the order of selection.
-
-2. **Breakdown Using Pascal's Identity**:  
-   Consider whether the first item is included in the combination:
-
-   - If the first item is included, then we must select \(r-1\) items from the remaining \(n-1\) items: \(n-1)C(r-1).
-   - If the first item is excluded, then we must select all \(r\) items from the remaining \(n-1\) items: \(n-1)Cr.
-
-   Adding these two cases gives:
-   \[
-   nCr = (n-1)C(r-1) + (n-1)Cr.
-   \]
-
-###### **Base Cases**
-
-1. C(n,0) = 1\: There is exactly one way to choose \(0\) items (choose none).
-2. C(n,n) = 1\: There is exactly one way to choose all \(n\) items.
-
-```cpp
-//O(N^2)
-// mod can be any number
-const int N = 2005, mod = 1e9 + 7;
-int C[N][N], fact[N];
-
-void prec() { //O(n*n)
-    for (int i = 0; i < N; i++) {
-        C[i][0] = C[i][i] = 1;
-        for (int j = 1; j < i; j++) {
-            C[i][j] = (C[i - 1][j - 1] + C[i - 1][j]) % mod;
-        }
-    }
-    fact[0] = 1;
-    for (int i = 1; i < N; i++) {
-        fact[i] = 1LL * fact[i - 1] * i % mod;
-    }
-}
-
-int nCr(int n, int r) { //O(1)
-    if (n < r) return 0;
-    return C[n][r];
-}
-
-int nPr(int n, int r) { //O(1)
-    if (n < r) return 0;
-    return 1LL * nCr(n, r) * fact[r] % mod;
-}
-```
-
-#
-
-example:
+    <pre>Given a string, your task is to calculate the number of different strings that can be created using its characters.
+  The only input line has a string of length n. Each character is between a–z.</pre>
 
 - [Factorial Under Modulo](https://vjudge.net/problem/Gym-248968S)
 
@@ -566,7 +513,98 @@ example:
 
 ---
 
-## Pigeonhole Principle
+<pre>
+- next_permutation -> gives immediate next permutation(lexicographical order)
+- prev_permutation -> gives immediate previous permutation(lexicographical order)
+
+# also return boolean(have or not)
+</pre>
+
+- <u>Generate all possible permutations</u>
+
+```cpp
+int main() {
+    int a[] = {1, 2, 3};
+    // if we need all permutation, then we have to sort it
+    sort(a, a + n);
+    do {
+        for (int i = 0; i < a.size(); i++) {
+            cout << a[i] << " ";
+        }
+        cout << endl;
+    } while (next_permutation(a, a + n));
+    return 0;
+}
+```
+
+### <u>Computing using a Recurrence</u>
+
+<pre>
+- if modulo isn't prime then it will help us.
+
+<sup>n</sup>C<sub>r</sub> = <sup>n-1</sup>C<sub>r-1</sub> + <sup>n-1</sup>C<sub>r</sub>
+
+- base case C(n,0) = C(n,n) = 1
+</pre>
+
+**Explanation**
+
+1. **Definition**:  
+   nCr represents the number of ways to choose \(r\) items from \(n\) items without considering the order of selection.
+
+2. **Breakdown Using Pascal's Identity**:  
+   Consider whether the first item is included in the combination:
+
+   - If the first item is included, then we must select \(r-1\) items from the remaining \(n-1\) items: \(n-1)C(r-1).
+   - If the first item is excluded, then we must select all \(r\) items from the remaining \(n-1\) items: \(n-1)Cr.
+
+   Adding these two cases gives:
+   \[
+   nCr = (n-1)C(r-1) + (n-1)Cr.
+   \]
+
+**Base Cases**
+
+1. C(n,0) = 1\: There is exactly one way to choose \(0\) items (choose none).
+2. C(n,n) = 1\: There is exactly one way to choose all \(n\) items.
+
+```cpp
+//O(N^2)
+// mod can be any number
+const int N = 2005, mod = 1e9 + 7;
+int C[N][N], fact[N];
+
+void prec() { //O(n*n)
+    for (int i = 0; i < N; i++) {
+        C[i][0] = C[i][i] = 1;
+        for (int j = 1; j < i; j++) {
+            C[i][j] = (C[i - 1][j - 1] + C[i - 1][j]) % mod;
+        }
+    }
+    fact[0] = 1;
+    for (int i = 1; i < N; i++) {
+        fact[i] = 1LL * fact[i - 1] * i % mod;
+    }
+}
+
+int nCr(int n, int r) { //O(1)
+    if (n < r) return 0;
+    return C[n][r];
+}
+
+int nPr(int n, int r) { //O(1)
+    if (n < r) return 0;
+    return 1LL * nCr(n, r) * fact[r] % mod;
+}
+```
+
+#
+
+example:
+
+---
+
+### Pigeonhole Principle
 
 <pre>
 - Suppose a flock of pigeons fly into a set of pigeonholes to roost. If there are more pigeons than pigeonholes, then there must be at least 1 pigeonhole that has more than one pigeon in it.
@@ -598,6 +636,8 @@ B. How many students in a class must there be to ensure that 3 students get the 
 ![pgh2](https://i.ibb.co.com/93nkw0t/IMG-0227.jpg)
 ![pgh3](https://i.ibb.co.com/ChcdKNj/IMG-0228.jpg)
 
+---
+
 ## Pascal's Identity
 
 - <u>Pascal's Identity and Triangle</u>
@@ -610,7 +650,7 @@ equals the sum of two above values
 ![pt4](https://i.ibb.co.com/Qd0XZPN/IMG-0260.jpg)
 ![pt5](https://i.ibb.co.com/FnPRKtT/IMG-0261.jpg)
 
-- <u>Other Identities Involving Binomial Coefficients</u>
+### <u>Other Identities Involving Binomial Coefficients</u>
 
 ![oi1](https://i.ibb.co.com/6wMtDKz/IMG-0262.jpg)
 ![oi2](https://i.ibb.co.com/bWSgrzX/IMG-0263.jpg)
@@ -618,3 +658,5 @@ equals the sum of two above values
 ---
 
 ## Stars and Bars
+
+---

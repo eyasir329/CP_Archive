@@ -62,6 +62,8 @@ int main() {
 }
 ```
 
+---
+
 #### Something on Pair-Wise
 
 <pre>
@@ -70,7 +72,7 @@ int main() {
 - we can fixed i or j(one), then calculate -> in pair/triple type of problems
 </pre>
 
-_example:_
+example:
 
 - find the total sum of a<sub>i</sub>\*a<sub>j</sub>, where 1<=i, j<=n, n=1e5
 
@@ -87,6 +89,18 @@ _example:_
   
   for 1 to n: sum += aj * preSum[j-1]
   </pre>
+
+- https://codeforces.com/problemset/problem/1771/A
+
+  <pre>
+  If max(a) == min(a) (all numbers are the same), the difference is 0
+  → Every pair satisfies |ai - aj| = 0
+  → There are n * (n - 1) pairs (i ≠ j).
+  </pre>
+
+- https://codeforces.com/contest/2078/problem/C
+
+---
 
 #### Subarray
 
@@ -139,8 +153,14 @@ _example:_
                   => p[r] = p[l-1] (using xor property)                  
   </pre>
 
+---
+
 #### Subsequence
+
+---
 
 #### Subset
 
 - total number of subset -> 2<sup>n</sup>-1
+
+---
