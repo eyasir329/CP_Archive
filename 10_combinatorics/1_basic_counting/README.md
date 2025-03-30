@@ -458,6 +458,19 @@ int32_t main() {//O(N + q)
 }
 ```
 
+```cpp
+void prec() {
+    // Factorials and inverses
+    f[0] = 1;
+    for (int i = 1; i < N; i++) f[i] = 1LL * i * f[i - 1] % mod;
+    //The code computes inverses for all numbers from 1 to N-1 using this recursive formula:
+    inv[1] = 1;
+    for (int i = 2; i < N; i++) inv[i] = 1LL * (mod - mod / i) * inv[mod % i] % mod;
+    finv[0] = 1;
+    for (int i = 1; i < N; i++) finv[i] = 1LL * inv[i] * finv[i - 1] % mod;
+}
+```
+
 example:
 
 - https://cses.fi/problemset/task/1079

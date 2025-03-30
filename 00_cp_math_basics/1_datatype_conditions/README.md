@@ -196,6 +196,10 @@ because that are return double values.
     cerr<<1.0*(end-start)/CLOCKS_PER_SEC<<" sec"<<endl;
 ```
 
+```cpp
+std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
+```
+
 - assert(condition) -> if true noting happened otherwise give runtime error. -- using for debugging purpose.
 
 - Multiplying two different Data Types

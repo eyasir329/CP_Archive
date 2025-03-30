@@ -4,13 +4,15 @@
 
 example:
 
-[CSUMQ - Cumulative Sum Query](./1.prefix_sum/spoj_CSUMQ%20-%20Cumulative%20Sum%20Query.cpp)
+- [CSUMQ - Cumulative Sum Query](./1.prefix_sum/spoj_CSUMQ%20-%20Cumulative%20Sum%20Query.cpp)
 
 <pre>
 You are given a list of N numbers and Q queries. Each query is specified by two numbers i and j; the answer to each query is the sum of every number between the range [i, j] (inclusive).
 
 Note : 0 Based Indexing
 </pre>
+
+- https://codeforces.com/contest/2075/problem/C
 
 ### 2D Prefix Sum / Prefix Sum of Matrix
 

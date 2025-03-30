@@ -12,6 +12,10 @@ https://libraryguides.centennialcollege.ca/c.php?g=717548&p=5121821<br>
 https://codeforces.com/blog/entry/72527<br>
 https://aryansh-s.github.io/assets/pdf/The_Art_of_Modular_Arithmetic.pdf (upto Linear Congruences)
 
+<strong>
+- 
+</strong>
+
 <pre>
 you may have noticed that some tasks, typically combinatorial and probability tasks, have this funny habit of asking you to calculate a huge number, then tell you that "because this number can be huge, please output it modulo <b>1e9+7 or 998244353</b>".
 

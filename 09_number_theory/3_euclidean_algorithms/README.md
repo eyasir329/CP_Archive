@@ -1,5 +1,27 @@
 ## Euclidean Algorithms
 
+- https://codeforces.com/problemset/problem/1866/B
+
+<pre>
+LCM and GCD Relationships:
+For any prime k, the exponent in LCM(p, q) is the maximum of the exponents of k in p and q.
+For any prime k, the exponent in GCD(p, q) is the minimum of the exponents of k in p and q.
+
+Exponent Conditions:
+For each prime k in X and Y, we must have:
+max(fk(p), fk(q)) = fk(X)
+min(fk(p), fk(q)) = fk(Y)
+Here, fk(p) denotes the exponent of prime k in p.
+
+Feasibility Check:
+If for any prime k, fk(Y) > fk(X), it's impossible to satisfy both conditions, so the answer is 0.
+If fk(Y) = fk(X), then fk(p) = fk(q) = fk(X).
+If fk(Y) < fk(X), there are two choices:
+fk(p) = fk(X) and fk(q) = fk(Y).
+fk(p) = fk(Y) and fk(q) = fk(X).
+The final result is 2 raised to the power of the number of primes where the exponent in X is greater than in Y,
+</pre>
+
 - [343A_Rational Resistance](./4.euclidean_algorithms/343A_Rational%20Resistance.cpp)
 
 <pre>

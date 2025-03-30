@@ -11,7 +11,12 @@ example:
   C(n*n, 2) - (how much 2x3 or 3x2 exist)*2
   </pre>
 
-- https://codeforces.com/problemset/problem/1957/C
+- [1957C. How Does the Rook Move?](1957C_How_Does_the_Rook_Move.cpp)
+  <pre>
+  We are given an n x n chessboard where a player and a computer alternately place rooks (white and black respectively) under the constraint that no two rooks attack each other (i.e., no two rooks share the same row or column). The player starts first, and each move by the player at (r, c) is mirrored by the computer at (c, r), unless r == c, in which case the computer skips its turn.
+  
+  After k initial moves (which are valid and already processed), we need to determine the number of possible final configurations of the board when the game is played to completion (i.e., no more valid moves are left). The answer should be computed modulo 1e9+7
+  </pre>
 
 ---
 

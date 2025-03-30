@@ -64,12 +64,14 @@ int main() {
 
 ---
 
-#### Something on Pair-Wise
+### Something on Pair-Wise
 
 <pre>
 - total number of pair (n*(n-1))/2
 
 - we can fixed i or j(one), then calculate -> in pair/triple type of problems
+
+- if all elements are distinct(pair-wise) -> they do not have common subarray whose xor are same.  
 </pre>
 
 example:
@@ -102,7 +104,7 @@ example:
 
 ---
 
-#### Subarray
+### Subarray
 
 <pre>
 - total number of subarray -> n*(n+1)/2
@@ -153,13 +155,15 @@ _example:_
                   => p[r] = p[l-1] (using xor property)                  
   </pre>
 
----
-
-#### Subsequence
+- https://codeforces.com/problemset/problem/1438/B
 
 ---
 
-#### Subset
+### Subsequence
+
+---
+
+### Subset
 
 - total number of subset -> 2<sup>n</sup>-1
 

@@ -134,3 +134,12 @@ Important Terminology
 - State: A subproblem defined by parameters (e.g., dp[i][j]).
 - Transition: A rule that connects states (e.g., dp[i][j] = ...).
 - Core Principle: States and transitions work together to solve complex problems efficiently by breaking them into overlapping subproblems and reusing solutions.
+
+---
+
+![pic](https://i.ibb.co.com/9kVgjd4p/Screenshot-from-2025-03-23-16-16-13.png)
+
+#### Two types of DP
+
+- Buttom Up
+- Top Down
