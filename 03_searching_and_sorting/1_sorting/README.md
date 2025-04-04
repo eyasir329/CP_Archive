@@ -32,12 +32,10 @@ for(int i=1;i<n;i++){
 }
 ```
 
+![selection sort](https://runestone.academy/ns/books/published/pythonds/_images/selectionsortnew.png)
 example:
 
-- https://vjudge.net/problem/Gym-103860C
-<pre>
-
-</pre>
+- [https://vjudge.net/problem/Gym-103860C](SelectionSortCount.cpp)
 
 ### Insertion Sort -> 0(n\*n)
 

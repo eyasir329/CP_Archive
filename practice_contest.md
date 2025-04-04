@@ -105,8 +105,11 @@
 
 ### **9. Graph Theory**
 
+- [Sheet (Graph Representation)](https://vjudge.net/contest/463557)
+
 #### **BFS/DFS**
 
+- [DS Practice - 01 (DFS, BFS)](https://vjudge.net/contest/535336)
 - [CSE2202, 2020 - Graph (BFS, Dijkstra)](https://vjudge.net/contest/412012)
 - [Evaluation Contest - 05 (BFS + DFS)](https://vjudge.net/contest/582113)
 - [CSE2111, 2018 - Graph (BFS, DFS)](https://vjudge.net/contest/222878)
@@ -193,8 +196,7 @@
 - [CSEDU 1211 Loop](https://vjudge.net/contest/313011)
 - [CSEDU 1201 Arrays Basic](https://vjudge.net/contest/320955)
 - [CSE1211 - BigInteger](https://vjudge.net/contest/431830)
-- [Sheet (Graph Representation)](https://vjudge.net/contest/463557)
-- [DS Practice - 01 (DFS, BFS)](https://vjudge.net/contest/535336)
+
 - [DS Practice-2](https://vjudge.net/contest/535305)
 - [SUSTCSE CSEDU Long Contest-1 (NT Implementation)](https://vjudge.net/contest/193855)
 - [Math Contest for CSEDU 21](https://vjudge.net/contest/110342)
