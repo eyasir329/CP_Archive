@@ -202,6 +202,7 @@ example:
     -> n >= 31 ? m : m % (1 << n))
     </pre>
 
+- https://www.spoj.com/problems/LASTDIG/
 - [UVA_11029 Leading and Trailing](./4_binary_exponentiation/UVA11029_Leading%20and%20Trailing.cpp)
 
   <pre>

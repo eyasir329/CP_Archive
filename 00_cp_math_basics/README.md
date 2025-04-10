@@ -215,15 +215,15 @@ By default cin is tied to cout to ensure a sensible user interaction.
 - using getline() instead of get()
 
 ```cpp
-      char c[100];
-      int n; cin>>n;
-      //cin.get(); //without these we find n-1 getline()..
-      //because n '\n'..counted as first line. upto '\n' it count a line
-      //char ch = getchar();//alternative
-      cin.ignore();
-      while(n--){
-        cin.getline(c,100);
-      }
+char c[100];
+int n; cin >> n;
+//cin.get(); //without these we find n-1 getline()..
+//because n '\n'..counted as first line. upto '\n' it count a line
+//char ch = getchar();//alternative
+cin.ignore();
+while (n--) {
+    cin.getline(c, 100);
+}
 ```
 
 ### End Of File (EOF)
@@ -231,7 +231,7 @@ By default cin is tied to cout to ensure a sensible user interaction.
 Input untill end of file
 
 ```cpp
-  while(cin>>x){
+while(cin>>x){
     ans+=x;
-  }
+}
 ```

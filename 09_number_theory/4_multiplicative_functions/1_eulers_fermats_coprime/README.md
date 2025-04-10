@@ -1,3 +1,39 @@
+### Co-Prime Numbers
+
+<pre>
+- no common factors other than one
+</pre>
+
+<img src="https://st.adda247.com/https://www.adda247.com/jobs/wp-content/uploads/sites/2/2022/11/15181619/Co-prime-numbers.png" alt="coprime" style="height:230px;">
+
+- [ How Many Primes are There? ](https://t5k.org/howmany.html)
+
+example:
+
+- [spoj_VECTAR8 - Primal Fear](./spoj_VECTAR8_Primal%20Fear.cpp)
+
+<pre>
+They are afraid of the prime numbers (without the digit zero), that remain prime no matter how many of the leading digits are omitted.
+
+For example, they are afraid of 4632647 because it doesn't have the digit 0 and each of its truncations (632647, 32647, 2647, 647, 47, and 7) are primes. 
+
+#given a number of N, find out the number of primes not greater that N, that changu and mangu are afraid of.
+
+T ≤ 10^5, 1 ≤ N < 10^6
+
+if(num has digit 0)return false;
+if(it's truncations not prime)return false;
+otherwise true;
+</pre>
+
+- [spoj_HS08PAUL_A conjecture of Paul Erdős](./spoj_HS08PAUL_A%20conjecture%20of%20Paul%20Erdős.cpp)
+
+<pre>
+#find the number of (positive) primes not larger than n which are of the form x2+y4 (where x and y are integers).
+</pre>
+
+---
+
 ### Fermat's Little Theorem
 
 https://en.wikipedia.org/wiki/Fermat's_little_theorem
@@ -36,17 +72,6 @@ More generally, Euler’s theorem states that, x<sup>ϕ(m)</sup> mod m = 1, when
 - Fermat's right triangle theorem, about squares not being expressible as the difference of two fourth powers
 </pre>
 
-example:
-
-- [CSES-1712_Exponentiation II](./4_modular_arithmetic/3_fermats_little_theorem_and_modular_inverse/cses1712_Exponentiation2.cpp)
-
-  <pre>
-  we have to find a<sup>b<sup>c</sup></sup> modulo 1e9+7
-  - not working in normal way, we have to use euler's totient theorem
-  
-  - To find the multiplicative order of a modulo m, first find φ(m), i.e. Euler's totient of m. Then brute force over the divisors of the totient; the multiplicative order must be one of the divisors.
-  </pre>
-
 ---
 
 ### Euler's Totient Theorem
@@ -67,6 +92,30 @@ For m ∈ Z>1, Euler’s totient function φ(m) counts the number of positive in
 - For m, b ∈ Z>1, show that a<sup>b</sup> ≡ a<sup>b mod φ(m)</sup> (mod m) for all integers a such that (a, m) = 1.
 </pre>
 
+<pre>
+- φ(n) => how much (1 <= x <= n) such that x and n are coprime
+- φ(p) = p − 1, where p is prime
+
+- φ(8) = 8 - (2, 4, 6, 8) <- 2<sup>3</sup> => 8 - no. of multiple of 2
+- φ(27~3^3) = 27 - no. of multiple of 3 = 18 <- (27 - 27/3)
+
+- φ(10) = φ(2).φ(5) = (2-1).(5-1) = 4 (because 2, 5 are prime)
+- φ(100) = φ(2^2).φ(5^2) = (2^2-2^1).(5^2-5^1) = 40
+</pre>
+
+- Formula1:
+
+```math
+\phi(n) = (p_1^{a_1} - p_1^{a_1 - 1}) \cdot (p_2^{a_2} - p_2^{a_2 - 1}) \cdot \dots \cdot (p_k^{a_k} - p_k^{a_k - 1})
+```
+
+- Formula2:
+  (only weekness have to divide - it has difficult when mod is apply - but very easy to use)
+
+```math
+\phi(n) = n \cdot \left(1 - \frac{1}{p_1} \right) \cdot \left(1 - \frac{1}{p_2} \right) \cdots \left(1 - \frac{1}{p_k} \right)
+```
+
 ```cpp
 int eulerTotient(int m) {
     int ans = m;
@@ -75,7 +124,7 @@ int eulerTotient(int m) {
             while (m % p == 0) {
                 m /= p;
             }
-            ans -= ans / p;
+            ans -= ans / p;//actual part
         }
     }
     if (m > 1) {
@@ -85,7 +134,76 @@ int eulerTotient(int m) {
 }
 ```
 
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240424121512/Euler's-Product-Formula.webp" alt="Euler's Product Formula" width="400">
+- <u>Phi from Factorization</u>
+
+```cpp
+int phi(int n) {
+    vector<int> primes = factorize(n);//unique primes
+    for (int p : primes) {
+        n = n - n / p;
+    }
+    return n;
+}
+```
+
+- <u>Seive Based Implementation of Phi</u>
+
+```cpp
+//no optimization allow
+const int maxn = 1000000;
+int phi[maxn + 5];
+bool mark[maxn + 5];
+
+void seive() {
+    for (int i = 1; i <= maxn; i++) {
+        phi[i] = i;
+    }
+    for (int i = 2; i <= maxn; i++) {
+        if (mark[i]) continue;
+        phi[i] = i - 1; //for i which is prime
+        for (int j = i + i; j <= maxn; j += i) {
+            mark[j] = true;
+            phi[j] = phi[j] - phi[j] / i;
+        }
+    }
+}
+```
+
+```math
+\begin{array}{|c|c|}
+\hline
+\textbf{Fermat's Little Theorem} & \textbf{Euler's Theorem} \\
+\hline
+\text{If } p \text{ is prime, and } a \not\equiv 0 \pmod{p} & \text{If } \gcd(a, m) = 1 \\
+a^{p-1} \equiv 1 \pmod{p} & a^{\phi(m)} \equiv 1 \pmod{m} \\
+\hline
+\end{array}
+```
+
+<pre>
+Application:
+
+# 0 < a/b <= 1, b <= 10, a/b has no common factor(completly reduced form means a,b are coprime)
+how much fraction has possible?
+=> b = 1 2 3 4 5 6 7 8 9 10
+   φ(1) + φ(2) + φ(3) + ... + φ(10)
+
+-> <b>reduced fraction</b> -> changes are use of phi
+
+# n = 100, x<=100; how much x such that gcd(100,x) = 1 -> φ(100)
+                   how much x such that gcd(100,x) = 5
+        => x/5 <= 20, ... gcd(100/5,x/5) = 1 -> φ(20) (two are equivalent)
+
+# 5<sup>100<sup>200</sup></sup> (mod 13) => 5<sup>100<sup>200</sup>(mod φ(13))</sup> (mod 13)  
+-> if upper is too large (doesn't fit into any ds) than chage like that 
+-> make to manageable form.
+
+=> 5<sup>10</sup> = 5<sup>22</sup> (mod 13) ... same as 5<sup>34</sup> = 5<sup>46</sup> = ...
+      = 5<sup>10</sup> . 5<sup>12</sup> (mod 13) ... = 5<sup>10</sup> . 5<sup>12 mod φ(13)</sup> (mod 13)
+      = 5<sup>10</sup> . 1 (mod 13)
+
+# a<sup>b<sup>c<sup>d</sup></sup></sup> (mod m)
+</pre>
 
 example:
 
@@ -192,5 +310,89 @@ example:
   
   Final Answer: 21.
   </pre>
+
+- [CSES-1712_Exponentiation II](./4_modular_arithmetic/3_fermats_little_theorem_and_modular_inverse/cses1712_Exponentiation2.cpp)
+
+<pre>
+we have to find a<sup>b<sup>c</sup></sup> modulo 1e9+7
+- not working in normal way, we have to use euler's totient theorem
+  
+- To find the multiplicative order of a modulo m, first find φ(m), i.e. Euler's totient of m. Then brute force over the divisors of the totient; the multiplicative order must be one of the divisors.
+</pre>
+
+- [spojPOWERUP - Power the Power Up](https://www.spoj.com/problems/POWERUP/)
+
+<pre>
+(a^b)^c mod 1e9+7 where a, b and c (0 <= a, b, c <= 2^31 - 1). 
+</pre>
+
+- [uva10990 Another New Function](uva10990_Another_New_Function.cpp)
+
+<pre>
+The depth of phi value of a number is denoted by the number of steps required before it reaches 1(repeateadly apply)
+
+Given the value of m and n your job is to find the value of SODF(m; n).
+
+Sum of depthphi function
+</pre>
+
+- [uva10179 Irreducible Basic Fractions](uva10179_Irreducible_Basic_Fractions.cpp)
+
+<pre>
+A fraction m/n is basic if 0 ≤ m < n and it is irreducible if gcd(m, n) = 1. Given a positive integer n, in this problem you are required to find out the number of irreducible basic fractions with denominator n(< 1000000000) 
+
+4 irreducible basic fractions with denominator 12
+0/12 , 5/12 , 7/12 , 11/12
+</pre>
+
+- [spoj_GCDEX - GCD Extreme](./spoj_GCDEX_GCD_Extreme.cpp)
+
+<pre>
+G = 0;
+for (i = 1; i < N; i++)
+  for (j = i+1; j <= N; j++) 
+    G += gcd(i, j);
+
+The input file contains at most 20000 lines of inputs. Each line contains an integer N (1 < N < 1000001).
+</pre>
+
+#### 🔢 Definitions of \( G(N) \)
+
+##### 1. **Double Summation Form**:
+
+```math
+G(N) = \sum_{i=1}^{N} \sum_{j=i}^{N} \gcd(i, j)
+```
+
+This is the basic definition of GCD Extreme — sum of GCDs for all pairs \( (i, j) \) where \( i \leq j \).
+
+##### 2. **Ellipsis Notation**:
+
+```math
+G(N) = \gcd(1, 1 \ldots N) + \gcd(2, 2 \ldots N) + \cdots + \gcd(N, N)
+```
+
+This informal form emphasizes the "extreme" pairwise GCDs — each number with all larger or equal numbers.
+
+##### 3. **Optimized Formula (with Totient Function)**:
+
+```math
+G(N) = \sum_{d=1}^{N} d \cdot \varphi\left( \left\lfloor \frac{N}{d} \right\rfloor \right)
+```
+
+This is the high-performance version used to efficiently compute \( G(N) \) for large \( N \), using number theory and Euler's totient function.
+
+above solution would be like,
+
+```math
+\begin{aligned}
+F(1) &= 1 \cdot \varphi(1) \\
+F(2) &= 1 \cdot \varphi(2) + 2 \cdot \varphi(1) \\
+F(3) &= 1 \cdot \varphi(3) + 3 \cdot \varphi(1) \\
+F(4) &= 1 \cdot \varphi(4) + 2 \cdot \varphi(2) + 4 \cdot \varphi(1) \\
+F(5) &= 1 \cdot \varphi(5) + 5 \cdot \varphi(1) \\
+F(6) &= 1 \cdot \varphi(6) + 2 \cdot \varphi(3) + 3 \cdot \varphi(2) + 6 \cdot \varphi(1) \\
+\end{aligned}
+```
 
 ---

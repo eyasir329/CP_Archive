@@ -16,31 +16,93 @@ lcm(a,b) = (a*b)/gcd(a,b)
 <pre>
 LCM and GCD Relationships:
 
-For any prime k, the exponent in LCM(p, q) is the maximum of the exponents of k in p and q.
+- For any prime k, the exponent in LCM(p, q) is the maximum of the exponents of k in p and q.
 
-For any prime k, the exponent in GCD(p, q) is the minimum of the exponents of k in p and q.
+- For any prime k, the exponent in GCD(p, q) is the minimum of the exponents of k in p and q.
 </pre>
 
-- [Properties of GCD function](https://codeforces.com/blog/entry/95694)
+- https://codeforces.com/blog/entry/95694
+
+$$
+  \begin{array}{|c|l|}
+  \hline
+  \textbf{Property} & \textbf{Description} \\
+  \hline
+  \text{Linear Combination} & \gcd(a, b) = d = ap + bq \\
+  \hline
+  \text{Divisor of GCD} & \text{Every common divisor of } a \text{ and } b \text{ divides } \gcd(a, b) \\
+  \hline
+  \text{GCD of Zero} & \gcd(a, 0) = |a| \text{ for } a \ne 0 \\
+  \hline
+  \text{Division Lemma} & a \mid bc \text{ and } \gcd(a, b) = d \Rightarrow \frac{a}{d} \mid c \\
+  \hline
+  \text{Scaling Rule} & \gcd(ma, mb) = m \cdot \gcd(a, b) \\
+  \hline
+  \text{Coprime Reduction} & \text{If } \gcd(a, b) = g, \text{ then } \frac{a}{g} \perp \frac{b}{g} \\
+  \hline
+  \text{Additive Property} & \gcd(a, b) = \gcd(a + mb, b) \\
+  \hline
+  \text{Euclidean Algorithm} & \gcd(a, b) = \gcd(b, a \bmod b) \\
+  \hline
+  \text{Factor Reduction} & \gcd\left(\frac{a}{m}, \frac{b}{m}\right) = \frac{\gcd(a, b)}{m} \text{ if } m \mid a, m \mid b \\
+  \hline
+  \text{Multiplicative GCD} & a_1 \perp a_2 \Rightarrow \gcd(a_1 a_2, b) = \gcd(a_1, b)\gcd(a_2, b) \\
+  \hline
+  \text{GCD 1 Case} & \gcd(a, bc) = 1 \Leftrightarrow \gcd(a, b) = \gcd(a, c) = 1 \\
+  \hline
+  \text{Commutativity} & \gcd(a, b) = \gcd(b, a) \\
+  \hline
+  \text{Associativity} & \gcd(a, \gcd(b, c)) = \gcd(\gcd(a, b), c) \\
+  \hline
+  \text{GCD \& LCM} & \gcd(a, b) \cdot \text{lcm}(a, b) = |ab| \\
+  \hline
+  \text{Distributive 1} & \gcd(a, \text{lcm}(b, c)) = \text{lcm}(\gcd(a, b), \gcd(a, c)) \\
+  \hline
+  \text{Distributive 2} & \text{lcm}(a, \gcd(b, c)) = \gcd(\text{lcm}(a, b), \text{lcm}(a, c)) \\
+  \hline
+  \text{Prime Factor Form} & \gcd(a, b) = \prod p_i^{\min(e_i, f_i)} \text{ for } a = \prod p_i^{e_i}, b = \prod p_i^{f_i} \\
+  \hline
+  \text{Lattice Points} & \gcd(a, b) = \text{number of lattice points on the segment from } (0,0) \text{ to } (a,b) \\
+  \hline
+  \text{Power Mod Formula} & \gcd(n^a - 1, n^b - 1) = n^{\gcd(a, b)} - 1 \\
+  \hline
+  \text{Totient Identity} & \gcd(a, b) = \sum_{k \mid a,\,k \mid b} \varphi(k) \\
+  \hline
+  \end{array}
+$$
 
 - https://aryansh-s.github.io/assets/pdf/The_Art_of_Modular_Arithmetic.pdf p29_sol
 
-example:
+---
 
-- What is the largest positive integer that divides 40 and 78(gcd(a,b))? What about the smallest positive integer divisible by 40 and 78(lcm(a,b))?
+#### Basic Examples:
+
+- What is the largest positive integer that divides 40 and 78(gcd(a,b))?
+- What about the smallest positive integer divisible by 40 and 78(lcm(a,b))?
 
 <pre>
-  - Greedily, if we want to find the largest positive integer that divides 40 an 78, we need to selectively multiply together the largest power of each prime divisor common to both.
-  - To find the smallest positive integer divisible by both 40 and 78, we again take a greedy approach: selectively multiply together the smallest power of each prime divisor that satisfies the divisibility requirement. 
-  </pre>
+- Greedily, if we want to find the largest positive integer that divides 40 an 78, we need to selectively multiply together the largest power of each prime divisor common to both.
+- To find the smallest positive integer divisible by both 40 and 78, we again take a greedy approach: selectively multiply together the smallest power of each prime divisor that satisfies the divisibility requirement. 
+</pre>
 
 - [AOPS_1951 AHSME Problems/Problem 19](https://artofproblemsolving.com/wiki/index.php/1951_AHSME_Problems/Problem_19)
 
 <pre>
-  A six place number is formed by repeating a three place number; for example, 256256 or 678678, etc. Any number of this form is always exactly divisible by(gcd of all numbers of this forms)?
+A six place number is formed by repeating a three place number; for example, 256256 or 678678, etc. Any number of this form is always exactly divisible by(gcd of all numbers of this forms)?
   
-  -> The number abcabc can be rewritten as 1000abc + abc (constructively, think of shifting the second abc three places to the right to make room for the first abc). Therefore, it is just 1001abc, and since nothing more can be said about abc, the answer is 1001 .
-  </pre>
+-> The number abcabc can be rewritten as 1000abc + abc (constructively, think of shifting the second abc three places to the right to make room for the first abc). Therefore, it is just 1001abc, and since nothing more can be said about abc, the answer is 1001 .
+</pre>
+
+- [1325A EhAb AnD gCd](1325A_EhAb_AnD_gCd.cpp)
+
+<pre>
+Find any such 2 positive integers a and b such that 
+gcd(a,b) + lcm(a,b) = x, 2 <= x <= 1e9 (1,x-1)
+</pre>
+
+---
+
+#### Advanced Examples
 
 - https://codeforces.com/problemset/problem/1866/B
 
@@ -169,9 +231,21 @@ Verification
 Thus, the Bézout identity holds: 8×2 + 5×(−3) = 1
 </pre>
 
-<pre>
-Returns gcd(a, b) and sets x and y such that a*x + b*y = gcd(a, b)
-</pre>
+#### General Solution Structure
+
+If `(x₀, y₀)` is one solution, then all solutions are given by:
+
+```
+x = x₀ + k ⋅ (b / d)
+y = y₀ - k ⋅ (a / d)
+```
+
+where:
+
+- `d = gcd(a, b)`
+- `k` is any integer.
+
+This means there are infinitely many integer solutions to the equation `ax + by = gcd(a, b)` if at least one solution exists.
 
 ```cpp
 //using recursion
@@ -206,3 +280,17 @@ int ext_gcd(int A, int B, int *X, int *Y) {
     return r2;
 }
 ```
+
+example:
+
+- [uva10104 - Euclid Problem](uva10104_Euclid%20Problem.cpp)
+<pre>
+From Euclid it is known that for any positive integers A and B there exist such integers X and Y that AX + BY = D, where D is the greatest common divisor of A and B. The problem is to find for given A and B corresponding X, Y and D.
+
+For each input line the output line should consist of three integers X, Y and D, separated with space.
+If there are several such X and Y , you should output that pair for which |X| + |Y | is the minimal. If
+there are several X and Y satisfying the minimal criteria, output the pair for which X ≤ Y .
+
+</pre>
+
+---
