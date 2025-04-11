@@ -1,5 +1,7 @@
 ### <u> Permutations</u>
 
+(arrange)
+
 <pre>
 - <b>order matter</b>
 - nPr is the number of ways to choose r objects from n distinct objects and arrange them in line.
@@ -7,12 +9,18 @@
 - nPr = n!/(n-r)!
 - It's a arrangement of elements in specific order
 - Total number of permutation of sequence with distinct elements of lengths n is n!
+
+- all combinatorics problem -> combinatorial explosion (easily grow)
 </pre>
 
 ![perm1](https://i.ibb.co.com/MsQSS3f/IMG-0234.jpg)
+
 ![perm2](https://i.ibb.co.com/d20XP5f/IMG-0235.jpg)
+
 ![perm3](https://i.ibb.co.com/njVNnGK/IMG-0237.jpg)
+
 ![perm4](https://i.ibb.co.com/kcMdRjn/IMG-0236.jpg)
+
 ![perm5](https://i.ibb.co.com/ggwvmYV/IMG-0238.jpg)
 
 ---
@@ -20,9 +28,13 @@
 ### <u>Permutations with Indistinguishable Objects</u>
 
 ![pr1](https://i.ibb.co.com/QJ8rJWj/IMG-0271.jpg)
+
 ![pr2](https://i.ibb.co.com/NY61W8R/IMG-0272.jpg)
+
 ![pr3](https://i.ibb.co.com/KNHMm4w/IMG-0273.jpg)
+
 ![pr4](https://i.ibb.co.com/vDW25vF/IMG-0274.jpg)
+
 ![pr5](https://i.ibb.co.com/6YVbC4r/IMG-0275.jpg)
 
 example:

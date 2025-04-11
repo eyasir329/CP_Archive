@@ -1,10 +1,18 @@
 - https://www.youtube.com/playlist?list=PLl-gb0E4MII0sGLCJeqDB3y63HZ6lM5LJ
 
+<pre>
+- How to solve Counting problem?
+
+  firstly - breakdown the problem
+  then - how much (choice/option/select) for each part
+</pre>
+
 ### Two Rule of Basic Counting
 
 <pre>
-- Rule of Sum
-- Rule of Product
+- Rule of Sum (either/or)
+- Rule of Product (and)
+
 (Total Way = prev way * next way, ex. contribution technique)
 </pre>
 
@@ -28,7 +36,11 @@ example:
 -> min: 5, max: 8
 </pre>
 
-#
+<pre>
+- how many number with at most 4 digit? -> (9*10*10*10)+(9*10*10)+(9*10)+9
+</pre>
+
+---
 
 #### <u>Rule of Product</u> (2 events (or more))
 
@@ -57,6 +69,14 @@ D. How many student IDs are possible with an even number of "A"s?
      25 * 25 * 25 * 10 * 10 = 1,562,500
    - For 2 "A"s:
      3 * (25 * 25 * 10 * 10) = 1,562,500 + 3 * 2,500 = 1,570,000
+</pre>
+
+<pre>
+- 4 digit number how many? -> 9 * 10 * 10 * 10
+- 4 digit even number? -> 9 * 10 * 10 * 5 
+- 4 digit even palindrome number? -> 4 * 10 * 1 * 1
+- 5 digit palindrome number? -> 9 * 10 * 10 * 1 * 1
+- how many 4 digit number with unique digit? -> 9 * 9 * 8 * 7
 </pre>
 
 - https://cses.fi/problemset/task/1617
@@ -95,7 +115,12 @@ F. No digit may be repeated, divisible by 4
 -> last m=2(2^m) digit is divisible by 4 => (last two digit -> have one 0 or not zero) => (8*7*6*5*6(0X|X0)) + (7*7*6*5*16(24-6-2(44,88))) = 33,600
 </pre>
 
-#
+<pre>
+- 4 digit number which have at least one 0? (total - no zero) -> 9*10*10*10 - 9*9*9*9 
+- 4 digit number which have at least two consecutive digits are same? -> 9*10*10*10 - 9*9*9*9
+</pre>
+
+---
 
 ### The Subtraction and Division Rules
 
@@ -116,6 +141,8 @@ A. How many bit strings of length 7 either start with "1" bit or end with the 3 
 B. A software company receives 200 applications from collage graduations for a job planning a new ed.tech application. If 107 of the applicants majored in web development, 116 majored in computer science, and 23 majored in something else, how many applicants majored in both web development and computer science?
 -> 200 - 23 = 107 + 116 - A ∩ B
 </pre>
+
+---
 
 #### <u>The Division Rule</u>
 

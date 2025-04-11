@@ -1,0 +1,4 @@
+title: "CP Archive"
+theme: jekyll-theme-minimal
+include: [".cpp"] # Allow C++ files
+exclude: ["src/", "convert.sh"]

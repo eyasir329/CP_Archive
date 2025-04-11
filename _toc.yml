@@ -1,0 +1,6 @@
+- name: "Home"
+  url: /index
+- name: "Math Basics"
+  url: /00_cp_math_basics/
+- name: "Data Structures"
+  url: /14_ds_tree_range_que/
