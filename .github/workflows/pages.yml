@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: Deploy Jekyll site
 
 on:
@@ -31,3 +32,38 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
+=======
+name: Deploy Jekyll site
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+
+      - name: Install dependencies
+        run: |
+          gem install bundler jekyll
+          bundle install
+
+      - name: Convert README.md to index.md
+        run: ./convert.sh
+
+      - name: Build site
+        run: bundle exec jekyll build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+>>>>>>> 68329fe996c298ab49ab32fff84b2ceb65173208
