@@ -280,7 +280,7 @@ pre.highlight {
  */
 html {
   line-height: 1.15; /* 1 */
-  text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
 }
 
 /* Sections
@@ -325,7 +325,7 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 pre {
-  font-family: monospace; /* 1 */
+  font-family: monospace, monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -363,7 +363,7 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace; /* 1 */
+  font-family: monospace, monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -447,7 +447,7 @@ button,
 [type=button],
 [type=reset],
 [type=submit] {
-  appearance: button;
+  -webkit-appearance: button;
 }
 
 /**
@@ -530,7 +530,7 @@ textarea {
  * 2. Correct the outline style in Safari.
  */
 [type=search] {
-  appearance: textfield; /* 1 */
+  -webkit-appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
 
@@ -538,7 +538,7 @@ textarea {
  * Remove the inner padding in Chrome and Safari on macOS.
  */
 [type=search]::-webkit-search-decoration {
-  appearance: none;
+  -webkit-appearance: none;
 }
 
 /**
@@ -546,7 +546,7 @@ textarea {
  * 2. Change font properties to `inherit` in Safari.
  */
 ::-webkit-file-upload-button {
-  appearance: button; /* 1 */
+  -webkit-appearance: button; /* 1 */
   font: inherit; /* 2 */
 }
 
@@ -582,19 +582,13 @@ template {
   display: none;
 }
 
-:root {
-  color-scheme: light;
-}
-
 * {
   box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
-}
-html {
   font-size: 0.875rem !important;
+  scroll-behavior: smooth;
 }
 @media (min-width: 31.25rem) {
   html {
@@ -603,7 +597,7 @@ html {
 }
 
 body {
-  font-family: system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif, "Segoe UI Emoji";
+  font-family: system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
   font-size: inherit;
   line-height: 1.4;
   color: #5c5962;
@@ -717,50 +711,25 @@ blockquote {
     min-width: 16.5rem;
   }
 }
-@media (min-width: 50rem) {
-  .side-bar + .main {
-    margin-left: 15.5rem;
-  }
-}
-@media (min-width: 66.5rem) {
-  .side-bar + .main {
-    margin-left: max(16.5rem, (100% - 66.5rem) / 2 + 16.5rem);
-  }
-}
-.side-bar + .main .main-header {
-  display: none;
-  background-color: #f5f6fa;
-}
-@media (min-width: 50rem) {
-  .side-bar + .main .main-header {
-    display: flex;
-    background-color: #fff;
-  }
-}
-.side-bar + .main .main-header.nav-open {
-  display: block;
-}
-@media (min-width: 50rem) {
-  .side-bar + .main .main-header.nav-open {
-    display: flex;
-  }
-}
 
-.main {
-  margin: auto;
-}
 @media (min-width: 50rem) {
   .main {
     position: relative;
     max-width: 50rem;
+    margin-left: 15.5rem;
+  }
+}
+@media (min-width: 66.5rem) {
+  .main {
+    margin-left: max(16.5rem, (100% - 66.5rem) / 2 + 16.5rem);
   }
 }
 
 .main-content-wrap {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   padding-right: 1rem;
   padding-left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 @media (min-width: 50rem) {
   .main-content-wrap {
@@ -777,13 +746,24 @@ blockquote {
 
 .main-header {
   z-index: 0;
-  border-bottom: 1px solid #eeebee;
+  display: none;
+  background-color: #f5f6fa;
 }
 @media (min-width: 50rem) {
   .main-header {
     display: flex;
     justify-content: space-between;
     height: 3.75rem;
+    background-color: #fff;
+    border-bottom: 1px solid #eeebee;
+  }
+}
+.main-header.nav-open {
+  display: block;
+}
+@media (min-width: 50rem) {
+  .main-header.nav-open {
+    display: flex;
   }
 }
 
@@ -830,6 +810,8 @@ blockquote {
 }
 
 .site-title {
+  padding-right: 1rem;
+  padding-left: 1rem;
   flex-grow: 1;
   display: flex;
   height: 100%;
@@ -837,17 +819,13 @@ blockquote {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   color: #27262b;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  font-size: 1.125rem !important;
 }
 @media (min-width: 50rem) {
   .site-title {
     padding-right: 2rem;
     padding-left: 2rem;
   }
-}
-.site-title {
-  font-size: 1.125rem !important;
 }
 @media (min-width: 31.25rem) {
   .site-title {
@@ -895,23 +873,21 @@ body {
 }
 
 .site-footer {
+  padding-right: 1rem;
+  padding-left: 1rem;
   position: absolute;
   bottom: 0;
   left: 0;
   padding-top: 1rem;
   padding-bottom: 1rem;
   color: #959396;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  font-size: 0.6875rem !important;
 }
 @media (min-width: 50rem) {
   .site-footer {
     padding-right: 2rem;
     padding-left: 2rem;
   }
-}
-.site-footer {
-  font-size: 0.6875rem !important;
 }
 @media (min-width: 31.25rem) {
   .site-footer {
@@ -968,8 +944,6 @@ body {
   color: #959396;
   content: counter(step-counter);
   counter-increment: step-counter;
-}
-.main-content ol > li::before {
   font-size: 0.75rem !important;
 }
 @media (min-width: 31.25rem) {
@@ -1172,11 +1146,9 @@ body {
   list-style: none;
 }
 .nav-list .nav-list-item {
+  font-size: 0.875rem !important;
   position: relative;
   margin: 0;
-}
-.nav-list .nav-list-item {
-  font-size: 0.875rem !important;
 }
 @media (min-width: 31.25rem) {
   .nav-list .nav-list-item {
@@ -1270,8 +1242,6 @@ body {
   text-align: start;
   text-transform: uppercase;
   border-bottom: 1px solid #eeebee;
-}
-.nav-category {
   font-size: 0.6875rem !important;
 }
 @media (min-width: 31.25rem) {
@@ -1306,8 +1276,6 @@ body {
 .aux-nav {
   height: 100%;
   overflow-x: auto;
-}
-.aux-nav {
   font-size: 0.6875rem !important;
 }
 @media (min-width: 31.25rem) {
@@ -1348,8 +1316,6 @@ body {
 
 .breadcrumb-nav-list-item {
   display: table-cell;
-}
-.breadcrumb-nav-list-item {
   font-size: 0.6875rem !important;
 }
 @media (min-width: 31.25rem) {
@@ -1373,12 +1339,9 @@ body {
 
 h1,
 .text-alpha {
-  font-weight: 300;
-}
-h1,
-.text-alpha {
   font-size: 2rem !important;
   line-height: 1.25;
+  font-weight: 300;
 }
 @media (min-width: 31.25rem) {
   h1,
@@ -1414,13 +1377,10 @@ h3,
 
 h4,
 .text-delta {
+  font-size: 0.6875rem !important;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-}
-h4,
-.text-delta {
-  font-size: 0.6875rem !important;
 }
 @media (min-width: 31.25rem) {
   h4,
@@ -1490,11 +1450,8 @@ h6,
   text-transform: uppercase;
   vertical-align: middle;
   background-color: #2869e6;
-  border-radius: 12px;
-}
-.label:not(g),
-.label-blue:not(g) {
   font-size: 0.6875rem !important;
+  border-radius: 12px;
 }
 @media (min-width: 31.25rem) {
   .label:not(g),
@@ -1791,8 +1748,6 @@ h6,
   padding-left: 0;
   margin-bottom: 0.25rem;
   list-style: none;
-}
-.search-results-list {
   font-size: 0.875rem !important;
 }
 @media (min-width: 31.25rem) {
@@ -1845,8 +1800,6 @@ h6,
 }
 .search-result-doc.search-result-doc-parent {
   opacity: 0.5;
-}
-.search-result-doc.search-result-doc-parent {
   font-size: 0.75rem !important;
 }
 @media (min-width: 31.25rem) {
@@ -1887,8 +1840,6 @@ h6,
   color: #959396;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.search-result-rel-url {
   font-size: 0.5625rem !important;
 }
 @media (min-width: 31.25rem) {
@@ -1907,8 +1858,6 @@ h6,
   word-wrap: break-word;
   border-left: 1px solid;
   border-left-color: #eeebee;
-}
-.search-result-previews {
   font-size: 0.6875rem !important;
 }
 @media (min-width: 31.25rem) {
@@ -1936,8 +1885,6 @@ h6,
 
 .search-no-result {
   padding: 0.5rem 0.75rem;
-}
-.search-no-result {
   font-size: 0.75rem !important;
 }
 @media (min-width: 31.25rem) {
@@ -2047,15 +1994,12 @@ table {
 
 th,
 td {
+  font-size: 0.75rem !important;
   min-width: 7.5rem;
   padding: 0.5rem 0.75rem;
   background-color: #fff;
   border-bottom: 1px solid rgba(238, 235, 238, 0.5);
   border-left: 1px solid #eeebee;
-}
-th,
-td {
-  font-size: 0.75rem !important;
 }
 @media (min-width: 31.25rem) {
   th,
@@ -2187,14 +2131,11 @@ figure.highlight :not(pre) > code {
 }
 .highlight .table-wrapper td,
 .highlight .table-wrapper pre {
+  font-size: 0.6875rem !important;
   min-width: 0;
   padding: 0;
   background-color: #f5f6fa;
   border: 0;
-}
-.highlight .table-wrapper td,
-.highlight .table-wrapper pre {
-  font-size: 0.6875rem !important;
 }
 @media (min-width: 31.25rem) {
   .highlight .table-wrapper td,
