@@ -1,0 +1,243 @@
+<h3 id="introduction">Introduction</h3>
+
+<p><img src="https://gre.myprepclub.com/forum/download/file.php?mode=view&amp;id=15320&amp;sid=12a76328403e68df68076d41c5bf8c9d" alt="pc" width="650" /></p>
+
+<pre>
+When elements may be used repeatedly (e.g., repeated digits on license plates) or when dealing with indistinguishable elements (e.g., identical letters in a word), standard permutation/combination formulas don't apply. This section covers four key scenarios:
+
+1. Permutations with repetition
+2. Combinations with repetition
+3. Permutations with indistinguishable objects
+4. Distributing objects into boxes
+</pre>
+
+<p><img src="https://i.ibb.co.com/9b1Kwd8/IMG-0276.jpg" alt="db1" /></p>
+
+<hr />
+
+<h3 id="permutations-with-repetition"><u>Permutations with Repetition</u></h3>
+
+<p><strong>Scenario</strong>: Ordered arrangements where elements can repeat.</p>
+
+<p><strong>Formula</strong>:</p>
+
+<pre><code class="language-math">P(n, r) = n^r
+</code></pre>
+
+<p><strong>Example</strong>:<br />
+Number of 4-digit PINs with digits 0-9:</p>
+
+<pre><code class="language-math">10^4 = 10,000
+</code></pre>
+
+<p><strong>Theorem 1</strong>:<br />
+The number of r-permutations of a set with n objects with repetition allowed is:</p>
+
+<pre><code class="language-math">n^r
+</code></pre>
+
+<p><img src="https://i.ibb.co.com/QJ8rJWj/IMG-0271.jpg" alt="pr1" /></p>
+
+<p><img src="https://i.ibb.co.com/8zP86Tk/IMG-0264.jpg" alt="pr2" /></p>
+
+<hr />
+
+<h3 id="combinations-with-repetition"><u>Combinations with Repetition</u></h3>
+
+<p><strong>Scenario</strong>: Unordered selections where elements can repeat.</p>
+
+<p><strong>Formula</strong> (Stars and Bars):</p>
+
+<pre><code class="language-math">\binom{n + r - 1}{r} = \frac{(n + r - 1)!}{r!(n - 1)!}
+</code></pre>
+
+<p><strong>Example</strong>:<br />
+Select 5 fruits from apples, oranges, pears:</p>
+
+<pre><code class="language-math">\binom{3 + 5 - 1}{5} = 21 \text{ ways}
+</code></pre>
+
+<p><strong>Applications</strong>:</p>
+
+<ul>
+  <li>Counting solutions to</li>
+</ul>
+
+<pre><code class="language-math">(x_1 + x_2 + ... + x_k = r)
+</code></pre>
+
+<ul>
+  <li>Counting nested loop iterations</li>
+</ul>
+
+<p><strong>Detailed Example from Rosen 6.5</strong>:<br />
+A cookie shop sells 4 types of cookies. How many ways can you buy 10 cookies?</p>
+
+<pre><code class="language-math">\binom{4 + 10 - 1}{10} = \binom{13}{10} = 286
+</code></pre>
+
+<p>Now suppose you want to buy at least 2 chocolate and 1 peanut butter cookie:<br />
+Assign minimums: 2 chocolate, 1 peanut butter → 7 left to distribute</p>
+
+<pre><code class="language-math">\binom{4 + 7 - 1}{7} = \binom{10}{7} = 120
+</code></pre>
+
+<p><img src="https://i.ibb.co.com/9ZWL600/IMG-0265.jpg" alt="cr2" />
+<img src="https://i.ibb.co.com/TTBszc5/IMG-0266.jpg" alt="cr3" />
+<img src="https://i.ibb.co.com/KbFhDsL/IMG-0267.jpg" alt="cr4" />
+<img src="https://i.ibb.co.com/2F0dvWT/IMG-0268.jpg" alt="cr5" />
+<img src="https://i.ibb.co.com/SJY2cgJ/IMG-0269.jpg" alt="cr6" />
+<img src="https://i.ibb.co.com/b6gtzJg/IMG-0270.jpg" alt="cr7" /></p>
+
+<hr />
+
+<h3 id="permutations-with-indistinguishable-objects"><u>Permutations with Indistinguishable Objects</u></h3>
+
+<p><strong>Scenario</strong>: Arrangements with duplicate items.</p>
+
+<p><strong>Formula</strong>:</p>
+
+<pre><code class="language-math">\frac{n!}{n_1!n_2!...n_k!}
+</code></pre>
+
+<p><strong>Example</strong>:<br />
+Arrangements of “SUCCESS”:</p>
+
+<pre><code class="language-math">\frac{7!}{3!2!1!1!} = 420
+</code></pre>
+
+<p><strong>Theorem 3</strong>:<br />
+For (n) objects with (k) types of duplicates, the number of distinct permutations is:</p>
+
+<pre><code class="language-math">\frac{n!}{n_1!n_2!...n_k!}
+</code></pre>
+
+<p><img src="https://i.ibb.co.com/NY61W8R/IMG-0272.jpg" alt="pr2" /></p>
+
+<hr />
+
+<h3 id="multinomial-coefficients"><u>Multinomial Coefficients</u></h3>
+
+<p>Generalization of binomial coefficients:</p>
+
+<pre><code class="language-math">\binom{n}{k_1,k_2,...,k_m} = \frac{n!}{k_1!k_2!...k_m!}
+</code></pre>
+
+<p><strong>Applications</strong>:</p>
+
+<ul>
+  <li>Polynomial expansions</li>
+  <li>Counting anagrams</li>
+</ul>
+
+<p><img src="https://i.ibb.co.com/KNHMm4w/IMG-0273.jpg" alt="pr3" /></p>
+
+<p><img src="https://i.ibb.co.com/vDW25vF/IMG-0274.jpg" alt="pr4" /></p>
+
+<p><img src="https://i.ibb.co.com/6YVbC4r/IMG-0275.jpg" alt="pr5" /></p>
+
+<pre>
+# How much way to shuffle? 
+- MISSISSIPPI -&gt; (11!)/(4!4!2!)
+- RRUURRUU -&gt; (8!)/(4!4!)
+
+</pre>
+
+<p>examples:</p>
+
+<ul>
+  <li><a href="./1_basic_counting/2_combination/cses1715_Creating%20Strings2.cpp">cese1715_Creating Strings II</a></li>
+</ul>
+
+<blockquote>
+  <p>Given a string, your task is to calculate the number of different strings that can be created using its characters. 
+Print the <b>number of different strings</b> modulo 1e9+7 
+-&gt; n!/(a!b!c!…)</p>
+</blockquote>
+
+<hr />
+
+<h3 id="distributing-objects-into-boxes"><u>Distributing Objects into Boxes</u></h3>
+
+<p>https://usaco.guide/CPH.pdf#page=219</p>
+
+<p>Four main cases exist based on object/box distinguishability:</p>
+
+<h4 id="case-1-distinguishable-objects--distinguishable-boxes">Case 1: Distinguishable Objects → Distinguishable Boxes</h4>
+
+<p><strong>Formula</strong>:</p>
+
+<pre><code class="language-math">\frac{n!}{n_1!n_2!...n_k!}
+</code></pre>
+
+<p><strong>Example</strong>:<br />
+Deal 5 cards each to 4 players from 52-card deck:</p>
+
+<pre><code class="language-math">\frac{52!}{5!5!5!5!32!}
+</code></pre>
+
+<p><img src="https://i.ibb.co.com/nD3m73n/IMG-0277.jpg" alt="db2" /></p>
+
+<h4 id="case-2-indistinguishable-objects--distinguishable-boxes">Case 2: Indistinguishable Objects → Distinguishable Boxes</h4>
+
+<p><strong>Formula</strong>: Same as combinations with repetition</p>
+
+<pre><code class="language-math">\binom{n + k - 1}{n}
+</code></pre>
+
+<p><img src="https://i.ibb.co.com/k6xYjkQ/IMG-0278.jpg" alt="db3" /></p>
+
+<h4 id="case-3-distinguishable-objects--indistinguishable-boxes">Case 3: Distinguishable Objects → Indistinguishable Boxes</h4>
+
+<p>Uses <strong>Stirling numbers of the second kind</strong>:</p>
+
+<pre><code class="language-math">S(n,k) = \frac{1}{k!} \sum_{i=0}^{k} (-1)^i \binom{k}{i}(k-i)^n
+</code></pre>
+
+<p><img src="https://i.ibb.co.com/BBrPcLN/IMG-0279.jpg" alt="db4" /></p>
+
+<h4 id="case-4-indistinguishable-objects--indistinguishable-boxes">Case 4: Indistinguishable Objects → Indistinguishable Boxes</h4>
+
+<p>Counts <strong>integer partitions</strong> of (n) into (\leq k) parts. No closed formula.</p>
+
+<p><img src="https://i.ibb.co.com/M14Zp0t/IMG-0280.jpg" alt="db5" />
+<img src="https://i.ibb.co.com/BNBd8Mm/IMG-0282.jpg" alt="db6" /></p>
+
+<pre>
+- Scenario 1: Each box can contain at most one ball. For example, when n = 5 and k = 2, there are 10 solutions-&gt; the answer is directly the binomial coefficient C(n,k).
+
+- Scenario 2: A box can contain multiple balls. For example, when n = 5 and k = 2, there are 15 solutions -&gt; the number of solutions is C(n+k−1,k)
+
+- Scenario 3: Each box may contain at most one ball, and in addition, no two
+adjacent boxes may both contain a ball. For example, when n = 5 and k = 2, there
+are 6 solutions -&gt; There are n − 2k + 1 such boxes and k + 1 positions for them. Thus, using the formula of scenario 2, the number of solutions is C(n−k+1,n−2k+1).
+</pre>
+
+<hr />
+
+<h4 id="summary">Summary</h4>
+
+\[\begin{array}{|c|c|c|}
+\hline
+\textbf{Scenario} &amp; \textbf{Formula} &amp; \textbf{Example} \\
+\hline\\
+\text{Permutations with repetition} &amp; n^r &amp; \text{License plates} \\\\
+\hline\\
+\text{Combinations with repetition} &amp; \binom{n+r-1}{r} &amp; \text{Fruit selection} \\\\
+\hline\\
+\text{Indistinguishable permutations} &amp; \frac{n!}{\Pi \text{duplicates}!} &amp; \text{Anagram counting} \\\\
+\hline\\
+\text{Dist. objects → dist. boxes} &amp; \frac{n!}{\Pi \text{box sizes}!} &amp; \text{Card dealing} \\\\
+\hline\\
+\text{Indist. objects → dist. boxes} &amp; \binom{n+k-1}{n} &amp; \text{Ball-bin problems} \\\\
+\hline
+\end{array}\]
+
+<h5 id="references">References</h5>
+
+<ol>
+  <li>Rosen, K. H. <em>Discrete Mathematics and Its Applications</em></li>
+  <li><a href="https://usaco.guide/CPH.pdf#page=219">USACO Guide</a></li>
+  <li>Bóna, M. <em>A Walk Through Combinatorics</em></li>
+</ol>
+

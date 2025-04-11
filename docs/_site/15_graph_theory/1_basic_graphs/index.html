@@ -1,0 +1,546 @@
+<p>https://youkn0wwho.academy/topic-list/?category=basics&amp;subCategory=very_basic_graphs</p>
+
+<p>#</p>
+
+<p>https://medium.com/basecs/a-gentle-introduction-to-graph-theory-77969829ead8</p>
+
+<pre>
+- Graphs are mathematical structures that represent pairwise relationships between objects. 
+- A graph is a flow structure that represents the relationship between various objects. It can be visualized by using nodes and edges.
+
+- Graphs don’t have any concept of a “root” node. And why would they? Nodes can be connected in any way possible, really. One node might be connected to five others! Graphs also don’t have any notion of “one-directional” flow — instead, they might have direction, or they might have no direction whatsoever. Or, to complicate matters further, they could have some links that have direction and others that don’t!
+
+- Graph needs at least a single node in order to be considered a “graph”, referred to as a singleton graph
+- Edges (sometimes referred to as links) can connect nodes in any way possible. (no real rules)
+graphs can have two types of edges: a edge that has a direction or flow, and an edge that has no direction or flow.
+</pre>
+
+<p>https://www.hackerearth.com/practice/algorithms/graphs/graph-representation/tutorial/</p>
+
+<pre>
+Types of nodes
+
+    - Root node: The root node is the ancestor of all other nodes in a graph. It does not have any ancestor. Each graph consists of exactly one root node. Generally, you must start traversing a graph from the root node.
+
+    - Leaf nodes: In a graph, leaf nodes represent the nodes that do not have any successors. These nodes only have ancestor nodes. They can have any number of incoming edges but they will not have any outgoing edges.
+</pre>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*sdUlnmnwMcPQljH52HiYBQ.jpeg" alt="Graph1" height="300" /></p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*zAmHaDww1A31Esup-Rmr-w.jpeg" alt="Graph2" height="450" />
+<img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*goT8sipQbDIoogV6Kc_3KA.jpeg" alt="Graph3" height="450" /></p>
+
+<pre>
+- unlike trees, there is no hierarchy of nodes! Which means that we don’t need to order them, since order doesn’t matter here.
+- the origin node and destination node are not fixed.
+</pre>
+
+<p>#</p>
+
+<p>https://study.com/academy/lesson/graph-theory-concepts-and-terminology.html<br /></p>
+
+<h6 id="common-terms">Common Terms</h6>
+
+<pre>
+- Vertices(n) + Edges(m) 
+        - Nodes are entities whose relationships are expressed using edges
+        - Edges are the components that are used to represent the relationships between various nodes in a graph. An edge between two nodes expresses a one-way or two-way relationship between the nodes.
+
+- Neighbours (Adjacent Vertices -&gt; N[x]) + Degree (Number of Neighbours)
+- Self Loop (edges come and goes to the same vertices)
+
+- <b>Path</b> (everynode encounted one, not revisit any node) + <b>Walk</b> (revisit some node) + <b>Cycle</b> (going from one node and coming back to samenode (don't revisit any node except from the starting node)) 
+-&gt; every cycle or path is a walk, walk can contains cycles
+
+- Simple Graph (doesn't contain self loop and multiple edges)
+        - A graph is simple if no edge starts and ends at the same node, and there are no multiple edges between two nodes
+- Bridge + Articulation Point
+        - A bridge is an edge in a graph whose removal increases the number of connected components.
+        - An articulation point (or cut vertex) is a vertex whose removal increases the number of connected components.
+
+- Hamiltonian path (is a path in a graph that visits each vertex exactly once.)
+- Hamiltonian cycle (if a hamiltonian path forms a closed loop)
+
+</pre>
+
+<p><img src="https://images.javatpoint.com/tutorial/graph-theory/images/types-of-graphs3.png" alt="simple" />
+<img src="https://notes.eddyerburgh.me/assets/img/data-structures-and-algorithms/data-structures/graphs/non-simple-graph.svg" alt="selfloop_muledge" /></p>
+
+<p>https://usaco.guide/CPH.pdf#page=119</p>
+
+<pre>
+- A <b>path</b> leads from node a to node b through edges of the graph. The <b>length</b>
+of a path is the number of edges in it.
+- A path is a <b>cycle</b> if the first and last node is the same.
+- A path is <b>simple</b> if each node appears at most once in the path.
+- Two nodes are <b>neighbors or adjacent</b> if there is an edge between them.
+- The <b>degree</b> of a node is the number of its neighbors
+
+- The sum of degrees in a graph is always 2m, where m is the number of edges (<b>the sum of degrees is always even</b>).
+- A graph is <b>regular</b> if the degree of every node is a constant d.
+
+- A graph is <b>complete</b> if the degree of every node is n − 1 
+        - N[x] = G - x node visit from every node (N[x]=G implies that x and all other vertices in G are part of N[x], which is true in a complete graph.)
+        - every pair of distinct vertices is connected by a unique edge
+
+- In a directed graph, the <b>indegree</b> of a node is the number of edges that end
+at the node, and the <b>outdegree</b> of a node is the number of edges that start at
+the node.
+
+- In a <b>coloring</b> of a graph, each node is assigned a color so that no adjacent nodes
+have the same color.
+- A graph is <b>bipartite</b> if it is possible to color it using two colors 
+        (It turns out that a graph is bipartite exactly when it does not contain a cycle with an odd number of edges.)
+</pre>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*GOkjjtsaGPBdJeSXNXplYw.png" alt="Graph4" height="200" /></p>
+
+<p>#</p>
+
+<h6 id="types-of-graph">Types of Graph</h6>
+
+<pre>
+two types of graphs are pretty common in graph theory problems: directed graphs, and undirected graphs.
+
+- Directed graph -&gt; Edges have a direction, meaning that edges with arrows connect one vertex to another.
+        (A graph is directed if the edges can be traversed in one direction only (uni-directional))
+- Undirected graph -&gt; Edges do not have a direction, meaning that each edge can be traversed in both directions (<b>Bi-directional</b>).
+</pre>
+
+<p><img src="https://study.com/cimages/multimages/16/3161f86d-d02f-4bc4-ab9d-9e654800ad60_graphs.png" alt="directed_undirected" />
+<img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*ThD5bfLUyEx49s5S9qKKow.jpeg" alt="Graph3" height="450" />
+<img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*qxvZX-YRBsRrmM5ePvNAQA.jpeg" alt="Graph3" height="200" /></p>
+
+<pre>
+- Cyclic + Acyclic
+        - A graph is cyclic if the graph comprises a path that starts from a vertex and ends at the same vertex. That path is called a cycle. 
+        - An acyclic graph is a graph that has no cycle. 
+</pre>
+
+<p><img src="https://www.codingeek.com/wp-content/uploads/2016/11/cyclic.png" alt="cyclic_asyclic" width="480" /></p>
+
+<pre>
+- Connected + Disconnected
+         - A graph is connected if there is a path between any two nodes.
+         - The connected parts of a graph are called its components.
+         (A connected component is a set of nodes within which anynode can reach any other node.)
+</pre>
+
+<p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaSbdo-VmfmU1ceqh_vtH7gQW1LMTXAA3x3w&amp;s" alt="connected_dis" height="150" />
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20200421194558/Count-of-Connected-Components.png" alt="connected_dis1" height="200" /></p>
+
+<pre>
+- Unweighted vs Weighted
+        (In a weighted graph, each edge is assigned a weight or cost. The weights are often interpreted as edge lengths)
+        - The length of a path in a weighted graph is the sum of the edge weights on the path. 
+        - The smallest length path is the shortest path.
+</pre>
+<p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgN_Kceq5Z2ucUp_3q7BotS215JUGduRqGsw&amp;s" alt="weighted" height="250" /></p>
+
+<p>#</p>
+
+<h6 id="properties-of-graph">Properties of Graph</h6>
+
+<pre>
+Longest Path Tricks
+
+- An undirected graph where <b>each node</b> has at degree at least 2 will contain a cycle
+- A directed graph where each node has at least 1 in-degree and at least 1 out-degree will contain a cycle
+
+- The sum of all degree is even. The number of vertices with odd degree is even
+</pre>
+
+<p>#</p>
+
+<h6 id="representation-of-graph">Representation of Graph</h6>
+
+<p>https://www.geeksforgeeks.org/graph-and-its-representations/<br />
+https://usaco.guide/CPH.pdf#page=113<br />
+https://www.hackerearth.com/practice/algorithms/graphs/graph-representation/tutorial/</p>
+
+<p>(Adjacency List, Adjacency Matrix and Edge List)</p>
+
+<p>#</p>
+
+<ul>
+  <li>
+    <p>Adjacency Matrix</p>
+
+    <p>(Primary use of the adjacency matrix is the Floyd-Warshall algorithm)</p>
+  </li>
+</ul>
+
+<pre>
+-&gt; Adding O(1), Checking O(1), Listing all edges O(N*N)
+-&gt; Memory using O(N*N) (maybe encounted memory limit exceded) (V*V binary matrix)
+
+An adjacency matrix is a two-dimensional array that indicates which edges
+the graph contains. We can efficiently check from an adjacency matrix if there is
+an edge between two nodes. The matrix can be stored as an array
+
+- A binary matrix is a matrix in which the cells can have only one of two possible values - either a 0 or 1.
+- The adjacency matrix can also be modified for the weighted graph in which instead of storing 0 or 1 in A<sub>ij</sub>, the weight or cost of the edge will be stored.
+
+- if the graph were undirected, each edge (i,j) will have two corresponding entries in the matrix, both cell (i,j) and cell (j,i). In the case of an undirected graph, the adjacency matrix is <b>symmetric</b>.
+
+- Adjacency matrix provides <b>constant time access (O(1))</b> to determine if there is an edge between two nodes. Space complexity of the adjacency matrix is O(V<sup>2</sup>).
+
+- best use when the graph is dense.
+</pre>
+
+<p>https://www.geeksforgeeks.org/adjacency-matrix/</p>
+
+<p><img src="https://www.cs.mtsu.edu/~xyang/3080/images/adjMatrixWeightedGraph.jpeg" alt="adjacency_matrix" /></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//for directed graph</span>
+<span class="kt">bool</span> <span class="n">A</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span><span class="c1">//adj[][]</span>
+
+<span class="kt">void</span> <span class="nf">initialize</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="cm">/*
+where each value adj[a][b] indicates whether the graph contains an edge from
+node a to node b. If the edge is included in the graph, then adj[a][b] = 1, and
+otherwise adj[a][b] = 0.
+*/</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span><span class="p">;</span>
+    <span class="n">initialize</span><span class="p">();</span>       <span class="c1">//Since there is no edge initially</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">nodes</span><span class="p">;</span>       <span class="c1">//Number of nodes</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">edges</span><span class="p">;</span>       <span class="c1">//Number of edges</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">edges</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>     <span class="c1">//Mark the edges from vertex x to vertex y</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"There is an edge between 3 and 4"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"There is no edge between 2 and 3"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cm">/*Input file
+4 // nodes
+5 //edges
+1 2 //showing edge from node 1 to node 2
+2 4 //showing edge from node 2 to node 4
+3 1 //showing edge from node 3 to node 1
+3 4 //showing edge from node 3 to node 4
+4 2 //showing edge from node 4 to node 2 */</span>
+</code></pre></div></div>
+
+<p>for unwighted graph instead of weight write 1 and 0 (also it’s a symetric matrix(for undirected))</p>
+
+<pre>
+The drawback of the adjacency matrix representation is that the matrix
+contains n<sup>2</sup> elements, and usually most of them are zero. For this reason, the
+representation cannot be used if the graph is large.
+</pre>
+
+<p>https://csacademy.com/lesson/graph_representation</p>
+
+<p>Advantages</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Edge lookup, i.e. checking if a particular edge exists, is done easily.
+- Adding new edges, or deleting existing ones, is also straightforward.
+- If the graph is dense, i.e. the number of edges is large. This is usually the preferred method of representing the graph.
+- Certain algorithms are easier to implement using an adjacency matrix.
+</code></pre></div></div>
+
+<p>Disadvantages</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- The memory allocated is always an N∗N matrix, even in the case of sparse graphs, i.e. the number of edges is small.
+- For a given node finding all its neighbours, i.e. other nodes that share an edge with it, requires checking an entire row of elements in the matrix.
+</code></pre></div></div>
+
+<p>#</p>
+
+<ul>
+  <li>
+    <p>Adjacency List with Vector (most used)</p>
+
+    <p>(BFS, DFS, Dijkstra’s, or other single source graph traversal algorithms)</p>
+  </li>
+</ul>
+
+<pre>
+-&gt; Adding O(1), Checking O(N), Listing O(M) ...M = no. of edges
+-&gt; Memory using O(M)  //O(V+E)
+
+In the adjacency list representation, each node x in the graph is assigned an
+adjacency list that consists of nodes to which there is an edge from x. Adjacency
+lists are the most popular way to represent graphs, and most algorithms can be
+efficiently implemented using them.
+
+- For each node i, we store an array of its neighbours.
+
+- For a weighted graph, the weight or cost of the edge is stored along with the vertex in the list using pairs. 
+- In an undirected graph, if vertex j is in list Ai then vertex i will be in list Aj.
+
+- A <b>sparse matrix</b> is a matrix in which most of the elements are zero, whereas a <b>dense matrix</b> is a matrix in which most of the elements are non-zero.
+</pre>
+
+<p><img src="https://i.ibb.co.com/3y65szH/Screenshot-from-2024-12-06-00-05-10.png" alt="graph" /></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//If the graph is undirected, it can be stored in a similar way, but each edge is added in both directions.</span>
+
+<span class="c1">//For a weighted graph,</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">adj</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="n">adj</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">push_back</span><span class="p">({</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">});</span>
+<span class="n">adj</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">push_back</span><span class="p">({</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">});</span>
+<span class="n">adj</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">push_back</span><span class="p">({</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">});</span>
+<span class="n">adj</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">push_back</span><span class="p">({</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">});</span>
+<span class="n">adj</span><span class="p">[</span><span class="mi">4</span><span class="p">].</span><span class="n">push_back</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">});</span>
+
+<span class="c1">//The benefit of using adjacency lists</span>
+<span class="c1">//following loop goes through all nodes to which we can move from node s:</span>
+<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">u</span> <span class="o">:</span> <span class="n">adj</span><span class="p">[</span><span class="n">s</span><span class="p">])</span> <span class="p">{</span>
+        <span class="c1">// process node u</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//for directed graph</span>
+<span class="n">vector</span> <span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">adj</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">nodes</span><span class="p">;</span>       <span class="c1">//Number of nodes</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">edges</span><span class="p">;</span>       <span class="c1">//Number of edges</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">edges</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">adj</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>        <span class="c1">//Insert y in adjacency list of x</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">nodes</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Adjacency list of node "</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">": "</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">adj</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">adj</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">adj</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">adj</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" --&gt; "</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://www.tutorialride.com/images/data-structures/adjacency-list.jpeg" alt="adjacency list" /></p>
+
+<p>Advantages</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- For a graph with N nodes and M edges, the memory used depends on M. This makes the adjacency lists ideal for storing sparse graphs. Let's assume we have a directed graph with 5 000 nodes and (only) 10 000 edges. In the case of the adjacency matrix, we would have allocated 25 000 000 elements, whereas in the case of adjacency lists we only need 10 000.
+- For a given node finding all its neighbours requires checking only the node's list which contains a numbers of elements equal to the number of neighbours (one per neighbour).
+- Adding an edge can be done easily, by appending the neighbour(s) in the corresponding list(s).
+</code></pre></div></div>
+
+<p>Disadvantages</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Edge lookup is slow, in the worst case being necessary to traverse all the elements of a node's list.
+- Erasing an edge is just as slow as the lookup.
+- If the graph is dense, the adjacency lists are probably not as good as an adjacency matrix.
+- Implementing them is slightly more difficult than an adjacency matrix. Even so, we still recommend them in most of the cases.
+</code></pre></div></div>
+
+<p>#</p>
+
+<ul>
+  <li>Adjacency List with Set (Hash Table)</li>
+</ul>
+<pre>
+When to Use set in Adjacency List?
+        - You need sorted neighbors.
+        - Duplicate edges must be prevented without extra checks.
+        - Graphs have moderate sizes since set is slightly slower and memory-intensive.
+
+For other cases, consider using vector<int> for adjacency lists for faster operations and reduced memory usage.
+
+- Compared to a simple vector<int>, a set uses more memory due to the underlying balanced tree structure.
+&lt;/pre&gt;
+
+```cpp
+vector&lt;set<int>&gt; /*or*/ set<int>adj[N]
+```
+
+```cpp
+//for undirected graph
+const int N = 1e5 + 5; // Maximum number of vertices
+set<int> adj[N];       // Adjacency list using set
+
+void addEdge(int u, int v) {
+    adj[u].insert(v); // Add v to the adjacency list of u
+    adj[v].insert(u); // Add u to the adjacency list of v (since it's undirected)
+}
+
+void printGraph(int nodes) {
+    for (int i = 0; i &lt; nodes; i++) {
+        cout &lt;&lt; i &lt;&lt; ": ";
+        for (int neighbor : adj[i]) {
+            cout &lt;&lt; neighbor &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+}
+
+int main() {
+    int nodes = 5; // Number of vertices
+    addEdge(0, 1);
+    addEdge(0, 2);
+    addEdge(1, 3);
+    addEdge(3, 4);
+
+    cout &lt;&lt; "Adjacency List:" &lt;&lt; endl;
+    printGraph(nodes);
+
+    return 0;
+}
+```
+
+#
+
+- Edge List Representation
+
+  (We use this in weighted undirected graphs when we want to sort the edges by weight (ex. DSU) )
+
+<pre>
+An edge list contains all edges of a graph in some order. This is a convenient
+way to represent a graph if the algorithm processes all edges of the graph and it
+is not needed to find edges that start at a given node.
+</pre>
+
+```cpp
+vector&lt;pair&lt;int,int&gt;&gt; edges;
+//where each pair (a, b) denotes that there is an edge from node a to node b.
+edges.push_back({1,2});
+edges.push_back({2,3});
+edges.push_back({2,4});
+edges.push_back({3,4});
+edges.push_back({4,1});
+
+//If the graph is weighted,
+vector&lt;tuple&lt;int,int,int&gt;&gt; edges;//(a,b,w)
+edges.push_back({1,2,5});
+edges.push_back({2,3,7});
+edges.push_back({2,4,6});
+edges.push_back({3,4,5});
+edges.push_back({4,1,2});
+```
+
+```cpp
+//edge list representation
+struct Edge {
+    int a, b, w;
+    Edge(int start, int end, int weight):
+        a(start), b(end), w(weight)
+    {
+    }
+    bool operator&lt;(const Edge &amp; e)
+    const { // sort order is ascending, by weight
+        // to sort in descending order, just negate the value of the compare function., !
+        return w &lt; e.w;
+    }
+};
+
+int n, m; // number of nodes and edges
+vector<Edge> edges;
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 0; i &lt; m; i++) { // for each of the m edges
+        int a, b, w;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; w;
+        // a--; b--; // subtract 1 to maintain zero-indexing of vertices
+        edges.push_back(Edge(a, b, w)); // add the edge to the list
+    }
+    sort(edges.begin(), edges.end());
+
+    for(auto x:edges){
+        auto [a,b,w] = x;
+        cout&lt;&lt;a&lt;&lt;" "&lt;&lt;b&lt;&lt;" "&lt;&lt;w&lt;&lt;endl;
+    }
+    return 0;
+}
+```
+
+<pre>
+Advantages of Edge List
+- Simple to Implement: Easy to create and manipulate.
+- Efficient for Sparse Graphs: Works well when the number of edges is much smaller than n<sup>2</sup>.
+- Kruskal's Algorithm: Directly supports edge-based algorithms like MST using Kruskal.
+
+Disadvantages of Edge List
+- Inefficient for Adjacency Queries: Checking if two vertices are connected is O(E) since all edges must be traversed.
+- Memory Usage: For dense graphs, adjacency matrices or lists are more efficient in terms of storage and access time.
+</pre>
+
+#
+
+###### Complexity in Graphs
+
+<pre>
+- Adding O(logN), Checking O(logN), Listing O(N)
+-&gt; Memory using O(M)
+</pre>
+
+https://www.hello-algo.com/en/chapter_graph/graph_operations/#922-implementation-based-on-adjacency-list
+
+(n = no. of vertices/nodes, m = no. of edges)
+![comparison](https://i.ibb.co.com/cgG3s7s/Screenshot-from-2024-11-28-03-58-13.png)
+
+#
+
+example:
+
+- [Aizu-ALDS1_11_A_Graph](./Aizu_ALDS1_11_A_Graph.cpp)
+
+    <pre>
+  There are two standard ways to represent a graph G=(V,E), where V is a set of vertices and E is a set of edges; Adjacency list representation and Adjacency matrix representation. 
+  
+  Write a program which reads a directed graph G represented by the adjacency list, and prints its adjacency-matrix representation.
+  
+  (Convert Adjacency List to Adjacency Matrix)
+    </pre>
+
+- [292B_Network Topology](./292B_Network%20Topology.cpp)
+
+    <pre>
+  A bus is a connected graph that is the only path, that is, the graph where all nodes are connected with two other ones except for some two nodes that are the beginning and the end of the path. A ring is a connected graph, where all nodes are connected with two other ones. A star is a connected graph, where a single central node is singled out and connected with all other nodes.
+    </pre>
+
+- [leetcode_1791. Find Center of Star Graph](./leetcode1791_Find%20Center%20of%20Star%20Graph.cpp)
+
+    <pre>
+  There is an undirected star graph consisting of n nodes labeled from 1 to n. A star graph is a graph where there is one center node and exactly n - 1 edges that connect the center node with every other node.
+  
+  You are given a 2D integer array edges where each edges[i] = [ui, vi] indicates that there is an edge between the nodes ui and vi. Return the center of the given star graph.
+    </pre>
+
+- [leetcode1557_Minimum Number of Vertices to Reach All Nodes.cpp](./leetcode1791_Find%20Center%20of%20Star%20Graph.cpp)
+
+    <pre>
+  Given a directed acyclic graph, with n vertices numbered from 0 to n-1, and an array edges where edges[i] = [fromi, toi] represents a directed edge from node fromi to node toi.
+  
+  Find the smallest set of vertices from which all nodes in the graph are reachable. It's guaranteed that a unique solution exists.
+  
+  Notice that you can return the vertices in any order.
+    </pre>
+
+- [330B_Road Construction](./330B_Road%20Construction.cpp)
+
+    <pre>
+  A country has n cities. Initially, there is no road in the country. One day, the king decides to construct some roads connecting pairs of cities. Roads can be traversed either way. He wants those roads to be constructed in such a way that it is possible to go from each city to any other city by traversing at most two roads. You are also given m pairs of cities — roads cannot be constructed between these pairs of cities.
+  
+  Your task is to construct the minimum number of roads that still satisfy the above conditions. The constraints will guarantee that this is always possible.
+  
+  -&gt; like star topology
+    </pre>
+
+#
+</Edge></int></int></int></int></int></pre>

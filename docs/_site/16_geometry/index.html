@@ -1,0 +1,69 @@
+<p>Online Graph Generator -&gt; https://www.desmos.com/calculator</p>
+
+<h3 id="points">Points</h3>
+
+<p>example:</p>
+
+<ul>
+  <li>
+    <p>https://www.codechef.com/CFUS2020/problems/CFS2005</p>
+
+    <pre>
+You are given a grid with dimension n x m and two points with coordinates X(x1,y1) and Y(x2,y2) . Your task is to find the number of ways in which one can go from point A(0,0)to point B(n,m) using the shortest possible path such that the shortest path neither passes through X nor through Y.
+  
+n!/(r1!*r2!)
+  
+S(A ∪ B ∪ C) = S(A) + S(B) + S(C) − S(A ∩ B) − S(A ∩ C) − S(B ∩ C) + S(A ∩ B ∩ C)
+-&gt; ans = S(A ∩ B ∩ C)
+</pre>
+  </li>
+  <li>
+    <p><a href="codechef_LTIME24_NWAYS.cpp">codechef_LTIME24_NWAYS</a></p>
+
+    <pre>
+Devu has two sets of points. Set A contains points having X co-ordinate 0 and Y co-ordinates varying from 1 to N(both inclusive). Set B contains points having X co-ordinate K and Y co-ordinates varying from 1 to N(both inclusive). Both sets contains N number of integral points. He wants to calculate the sum of number of ways to going to the each point of set B from the each point of set A . 
+  
+bruteforce-&gt;ans = ans + fact[y2 + x2 - y1 - x1] * ifact[x2 - x1] * ifact[y2 - y1];
+  
+</pre>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="lines">Lines</h3>
+
+<hr />
+
+<h3 id="circles">Circles</h3>
+
+<ul>
+  <li>https://codeforces.com/contest/2074/problem/D</li>
+</ul>
+
+<h3 id="triangles">Triangles</h3>
+
+<h4 id="non-degenerate-triangle">Non-Degenerate Triangle</h4>
+
+<p>https://codeforces.com/problemset/problem/2053/A</p>
+
+<p>https://codeforces.com/problemset/problem/2009/D</p>
+
+<h4 id="area">Area</h4>
+
+<p>https://www.youtube.com/watch?v=y9zRZYnSf2Y&amp;list=PLpRww_DKmkSYiodL6xsSQyzjhJ8VPtq1K&amp;index=15
+https://codeforces.com/problemset/problem/1620/B</p>
+
+<hr />
+
+<h3 id="trapezoids">Trapezoids</h3>
+
+<h4 id="isosceles-trapezoids">Isosceles Trapezoids</h4>
+
+<p>https://codeforces.com/contest/2061/problem/B</p>
+
+<p>https://www.youtube.com/watch?v=AlyWS8bG3kE</p>
+
+<hr />
+
+<h3 id="quadrilaterals">Quadrilaterals</h3>

@@ -1,0 +1,111 @@
+<ul>
+  <li>(num&gt;0) positive number</li>
+  <li>(num&gt;=0) non-negative number</li>
+</ul>
+
+<p>https://aryansh-s.github.io/assets/pdf/The_Art_of_Modular_Arithmetic.pdf
+<img src="https://i.ibb.co.com/3ND4tTj/IMG-0043.jpg" alt="notation" /></p>
+
+<h4 id="floor-ceil-and-round">floor, ceil and round</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>floor-&gt; floor((double)a/b) ~ a/b... ex. floor(7.3)=7
+ceil-&gt; ceil((double)a/b) ~ (a+b-1)/b... ex. ceil(7.3)=8 [(a-1)/b +1]
+round-&gt; round(double(a)/b)... ex. round(7.3)=7, round(7.5)=8
+</code></pre></div></div>
+
+<ul>
+  <li>if num is divisible by 2, then ceil(num)==floor(num), because it has not any fraction.</li>
+</ul>
+
+<h4 id="series">Series</h4>
+
+<p>https://www.cuemath.com/summation-formulas/
+<img src="https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/correction-1718966351.jpg" alt="formula" /></p>
+
+<ul>
+  <li>arithmetic progression - difference beteen adjacent two numbers are same.</li>
+</ul>
+
+<p>formula can generate by: n*(first+last)/2;</p>
+
+<ul>
+  <li>geometric progression - ratio between two consecutive numbers is constant.</li>
+</ul>
+
+<p>r &gt; 1 =&gt; s = a<em>(r<sup>n</sup>-1)/(r-1) <br />
+r = 1 =&gt; s = na #ar<sup>n-1</sup> formula <br />
+0 &lt; r &lt; 1 =&gt; s = a</em>(1-r<sup>n</sup>)/(1-r) <br /></p>
+
+<p><code>Notes : check overflow(if then apply as long long(1LL)), oterwise give wrong answer.
+</code></p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1023/1*gQ6RMxhKkPauq92rqFv9-Q.jpeg" alt="useful math functions" /></p>
+
+<h4 id="harmonic-series">Harmonic Series</h4>
+
+<p>https://scipp.ucsc.edu/~haber/archives/physics116A10/harmapa.pdf
+https://www.math.drexel.edu/~tolya/123_harmonic.pdf</p>
+
+<p><img src="https://steemitimages.com/640x0/http://i.imgur.com/vifeHmZ.png" alt="harmonic series" style="height: 60px;" /></p>
+
+<p>sum &lt;= floor(log2(n)) + 1</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mf">1e6</span><span class="p">;</span>
+<span class="n">ll</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//O(N*N) not //O(NlogN) //because of j+=i</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span> <span class="o">+=</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//look like -&gt; n*harmonic</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">j</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">//also same for this</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// j = n/i</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">j</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>https://codeforces.com/blog/entry/118001</p>
+
+<h4 id="some-formulas">Some formulas</h4>
+
+<p><img src="https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/perimeter-formulas-1622782913.png" alt="Perimeter Formulas" height="839" /></p>
+
+<ul>
+  <li><a href="https://www.cuemath.com/geometry/triangles/">Triangles</a></li>
+  <li>
+    <p><a href="https://www.khanacademy.org/math/geometry-home/triangle-properties/medians-centroids/v/triangle-medians-and-centroids">Median &amp; Centroid</a></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sum of natural numbers = (n * (n + 1)) / 2;
+sum of square of natural numbers = (n * (n + 1) * ((2 * n) + 1)) / 6;
+sum of cubes of natural numbers = ((n * n) * (n + 1) * (n + 1)) / 4;
+nth term of an arithmetic sequence = a + ((n - 1) * d);
+sum of arithmetic series (number of terms * average of first and last item) = (n * ((2 * a) + ((n - 1) * d))) / 2;
+nth term of geometric sequence = a * pow(r, n - 1);[a = first_term, r = common ration];
+sum of geometric sequence = (a * (pow(r, n) - 1)) / (r - 1);[r != 1];
+sum of an infinite geometric sequence = a / (1 - r);[r &lt; 1];
+
+area:
+
+semi perimeter (triangle)s = 1/2 * (a + b + c);
+area(triangle) = (1/2 * base * height) = (1/2*a*b*sin(C)) = sqrt(s * (s - a) * (s - b) * (s - c));
+area(right triangle) = (1/2 * a * b);
+area(equilateral triangle) = (a^2 * sqrt(3)) / 4; [a = side_length]
+area(equilateral triangle) = (h^2 * sqrt(3)) / 3; [h = altitude, height]
+area(rectangle) = base  * height;
+area(square) = base^2 = (1/2 * diagonal^2);
+area(parallelogram) = (base * height) = a*b*sin(C);
+area(rhombus) = (1/2 * d1 * d2); [d1 = diagonal1, d2 = diagonal2]
+area(trapezoid) = (1/2 * h * (b1 + b2)); [b1 and b2 are two parallel side, h = distance between d1 and d2]
+area(regular polygon) = (1/2 * a * p) [a (apothem)= the distance from the center to the midpoint of one of its side, p = perimeter]
+area(circle) = (pi * r^2) = (pi * d^2) / 4; [d = diameter = 2 * r];
+area(sector of circle) = ((n/360) * pi * r^2);[n = measure of the central angle]
+
+circumference / perimeter
+circumference(circle) = (2 * pi * r);
+length of an arc of a circle = ((n/360) * 2 * pi * r);
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />

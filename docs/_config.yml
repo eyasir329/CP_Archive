@@ -1,0 +1,6 @@
+title: "CP Archive"
+theme: just-the-docs
+baseurl: "" # Do not include /docs
+exclude:
+  - .github
+  - convert.sh

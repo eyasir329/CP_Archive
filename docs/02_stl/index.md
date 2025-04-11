@@ -3,7 +3,6 @@ title: "02 stl"
 nav_order: 1
 ---
 
-
 ### Basics
 
 - pointers
@@ -151,7 +150,7 @@ int main(){
     pair<int,int>points[10]//array of points
     pair<pair<int, int>, int>p;
     p = make_pair(make_pair(1, 2), 3);
-    //p = {{4, 5}, 6};
+    //p = {4, 5}, 6};
     cout << p.first.first << " " << p.first.second << " " << p.second << endl;
 ```
 

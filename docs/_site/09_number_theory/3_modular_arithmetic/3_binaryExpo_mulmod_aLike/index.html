@@ -1,0 +1,378 @@
+<pre>
+Many of the important problems modular arithmetic solves involve finding the remainders of notoriously large exponents that cannot be computed by hand. In many cases, you’ll find that it is enough to find the first few exponents of the base to see how the modular residues cycle. You can then induct the cycle to pin down the desired residue.
+
+ex. What is the units digit of 2<sup>2021</sup>?
+-&gt; Our residues cycle as 2, 4, 8, 6(2<sup>4</sup> mod 10), 2, 4, 8, 6, . . . . Because each cycle has length 4 (four residues are contained inside the cycle) 2021 mod 4 = 1 (first resides, which is 2)
+
+- The units digit of a number is the last digit in its decimal representation.
+</pre>
+
+<ul>
+  <li><u>Given two integer x and n, find x^n modulo m</u></li>
+</ul>
+
+<h6 id="naive--on">Naive -&gt;O(N)</h6>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//we can just multiply x, n times</span>
+<span class="kt">int</span> <span class="nf">power</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mod</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="mi">1LL</span> <span class="o">*</span> <span class="n">ans</span> <span class="o">*</span> <span class="n">x</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h6 id="circular--omodperiod-length">Circular -&gt;O(mod+period length)</h6>
+
+<pre>
+- work only mod&lt;=1e7
+- If we print out the value of x^0 ... x^n under modulo m, we will see that they are repeating after some point. So we can just find the period of the sequence and then we find the answer. Period is always &lt;=m
+</pre>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">power</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mod</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">mod</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span><span class="c1">//upto 1e7</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="n">vis</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="c1">//x^0</span>
+    <span class="n">vis</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">st</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="mi">1LL</span> <span class="o">*</span> <span class="n">cur</span> <span class="o">*</span> <span class="n">x</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">vis</span><span class="p">[</span><span class="n">cur</span><span class="p">])</span> <span class="p">{</span>
+            <span class="n">st</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">cur</span><span class="p">)</span> <span class="o">-</span> <span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">vis</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="n">a</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">period</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="n">st</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">st</span><span class="p">)</span><span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+    <span class="n">n</span> <span class="o">-=</span> <span class="n">st</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">st</span> <span class="o">+</span> <span class="n">n</span> <span class="o">%</span> <span class="n">period</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>example:</p>
+
+<ul>
+  <li>
+    <p><a href="https://artofproblemsolving.com/wiki/index.php/2018_AMC_10A_Problems/Problem_19">2018 AMC 10A Problems/Problem 19</a></p>
+
+    <pre>
+A number m is randomly selected from the set {11, 13, 15, 17, 19}, and a number n is randomly selected from {1999, 2000, 2001, . . . , 2018}. What is the probability that m<sup>n</sup> has a units digit of 1?
+  
+-&gt; Given:
+- m ∈ {11, 13, 15, 17, 19}
+- n ∈ {1999, 2000, ..., 2018}
+  
+Step 1: Analyze the units digits of m:
+- 11: Units digit = 1 (always 1 for m^n).
+- 13: Units digits cycle as 3, 9, 7, 1 (cycle length = 4).
+- 15: Units digit = 5 (never 1 for m^n).
+- 17: Units digits cycle as 7, 9, 3, 1 (cycle length = 4).
+- 19: Units digits cycle as 9, 1 (cycle length = 2).
+  
+Step 2: Determine probabilities for each m:
+- m = 11: Always 1 → Probability = 1.
+- m = 13: n mod 4 = 0. 5 values in n, Probability = 5/20 = 1/4.
+- m = 15: Never 1 → Probability = 0.
+- m = 17: n mod 4 = 0. 5 values in n, Probability = 5/20 = 1/4.
+- m = 19: n mod 2 = 0 (even n). 10 values in n, Probability = 10/20 = 1/2.
+  
+Step 3: Calculate overall probability:
+Each m is equally likely (1/5):
+- Total probability = (1/5)(1 + 1/4 + 0 + 1/4 + 1/2)
+                    = (1/5)(4/4 + 1/4 + 0/4 + 1/4 + 2/4)
+                    = (1/5)(8/4) = 2/5.
+  
+Final Answer:
+The probability that m^n has a units digit of 1 is 2/5.
+-----
+- <b>When you multiply two numbers, the units digit of the result is determined only by the units digits of the numbers being multiplied.</b>
+- Each time we multiply, only the units digit of the intermediate result matters. The higher digits do not affect the units digit.
+  
+- By focusing on the repeating patterns in the units digits of powers (like cycles of 3,9,7,1 for 13), we can predict the units digit of m<sup>n</sup> without performing full multiplication.
+</pre>
+  </li>
+</ul>
+
+<p>#</p>
+
+<h3 id="binary-exponentiation">Binary Exponentiation</h3>
+
+<p>https://cp-algorithms.com/algebra/binary-exp.html</p>
+
+<pre>
+Binary exponentiation (also known as exponentiation by squaring) is a trick which allows to calculate a<sup>n</sup> using only O(logn) multiplications (instead of O(n) multiplications required by the naive approach).
+
+-&gt; Although the complexity of both approaches is identical, iterative approach is faster than recursive 
+</pre>
+
+<h6 id="recursive--ologn">Recursive -&gt;O(logn)</h6>
+
+<pre>
+- We can use divide and conquer to solve this problem.
+     n = 0 -&gt; x^n = 1
+     n is even -&gt; x^n/2*x^n/2 -&gt; (x<sup>2</sup>)<sup>n/2</sup>
+     n is odd -&gt; x^floor(n/2)*x^floor(n/2)*x -&gt; x*(x<sup>2</sup>)<sup>n-1/2</sup> 
+</pre>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">power</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mod</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span><span class="c1">//base case</span>
+    <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">mod</span><span class="p">);</span><span class="c1">//to compute (x^(n/2)) % mod</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1LL</span> <span class="o">*</span> <span class="n">cur</span> <span class="o">*</span> <span class="n">cur</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1LL</span> <span class="o">*</span> <span class="n">cur</span> <span class="o">*</span> <span class="n">cur</span> <span class="o">%</span> <span class="n">mod</span> <span class="o">*</span> <span class="n">x</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h6 id="iterative-v1--ologn">Iterative v1 -&gt;O(logn)</h6>
+
+<pre>
+- any integer n can be written as sum of power of two
+-&gt; x<sup>13</sup> = x<sup>2<sup>3</sup>+2<sup>2</sup>+2<sup>0</sup></sup> = x<sup>2<sup>3</sup></sup>*x<sup>2<sup>2</sup></sup>*x<sup>2<sup>0</sup></sup> 
+</pre>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">power</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mod</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">%</span> <span class="n">mod</span><span class="p">,</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">(</span><span class="mi">1LL</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1LL</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="mi">1LL</span> <span class="o">*</span> <span class="n">ans</span> <span class="o">*</span> <span class="n">cur</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="mi">1LL</span> <span class="o">*</span> <span class="n">cur</span> <span class="o">*</span> <span class="n">cur</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h6 id="iterative-v2--ologn">Iterative v2 -&gt;O(logn)***</h6>
+
+<pre>
+- same as v1 but in different way. Basically we can get the binary representation of n from LSB to MSB by dividing n by 2 each time. If the current bit is 1, then we multiply the answer by x<sup>2<sup>i</sup></sup>
+</pre>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">power</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mod</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span><span class="c1">//mod can be 1</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="mi">1LL</span> <span class="o">*</span> <span class="n">ans</span> <span class="o">*</span> <span class="n">x</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">1LL</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+        <span class="n">n</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>example:</p>
+
+<ul>
+  <li>
+    <p><a href="./4_binary_exponentiation/cses1095_Exponentiation.cpp">CSES-1095_Exponentiation</a></p>
+
+    <pre>
+Your task is to efficiently calculate values a^b modulo 10^9+7.
+Note that in this task we assume that 0^0=1.
+</pre>
+  </li>
+  <li>
+    <p><a href="./4_binary_exponentiation/UVA1230_MODEX.cpp">UVA-1230_MODEX</a></p>
+
+    <pre>
+Given integers x, y and n, compute x^y mod n. In this question, you are tasked to program an efficient way to execute this calculation.
+</pre>
+  </li>
+  <li><a href="./4_binary_exponentiation/UVA374_Big%20Mod.cpp">UVA-374_Big Mod</a>
+    <pre>
+Calculate R := B^P mod M
+for large values of B, P , and M using an efficient algorithm.
+  
+The input will contain several test cases, but not given the value of t, M is an integer in the range 1 to 46340 inclusive (so it also support circular way to finding exponentiation O(mod+period length), but not support naive method O(n) because P-&gt; 0 to 2147483647 inclusive)
+</pre>
+  </li>
+  <li>
+    <p><a href="https://vjudge.net/problem/CodeForces-913A">913A_Modular Exponentiation</a></p>
+
+    <pre>
+  The following problem is well-known: given integers n and m, calculate 2^n mod m
+    
+  You are asked to solve the "reverse" problem. Given integers n and m, calculate m mod 2^n (1&lt;=n,m&lt;=1e8)
+    
+  -&gt; python can support large nunber, or java BigInteger
+  -&gt; n &gt;= 31 ? m : m % (1 &lt;&lt; n))
+  </pre>
+  </li>
+  <li>https://www.spoj.com/problems/LASTDIG/</li>
+  <li>
+    <p><a href="./4_binary_exponentiation/UVA11029_Leading%20and%20Trailing.cpp">UVA_11029 Leading and Trailing</a></p>
+
+    <pre>
+C function pow(125456, 455) can be represented in double data
+type format, but you won’t get all the digits of the result. However we can get at least some satisfaction, if we could know few of the leading and trailing digits. This is the requirement of this problem.
+  
+For each line of input there will be one line of output. It will be of the format LLL . . . T T T , where LLL represents the first three digits of nk and T T T represents the last three digits of nk. You are assured that nk will contain at least 6 digits.
+  
+n and k. n will fit in 32 bit integer and k will be less than 10000001
+</pre>
+
+    <pre>
+# for finding first three digit
+Logarithmic Identity:
+  
+Formula Used: 
+log10(n^k) = k × log10(n)
+  
+The idea here is to use the logarithmic identity to transform the problem of finding the first few digits of n^k into a problem of dealing with logarithms.
+In this case:
+- log10(base) computes the logarithm of base (which is n in the function).
+- Multiplying this by exp (which is k in the function) gives the logarithm of n^k, i.e., logValue = exp * log10(base).
+  
+Extracting the Fractional Part:
+  
+fractionalPart = logValue - floor(logValue);
+  
+Logarithms produce a number in the form of an integer part and a fractional part. For example, if log10(1000) = 3.0, the integer part is 3 and the fractional part is 0.
+To get the fractional part (the part after the decimal point), the floor(logValue) function is used, which removes the integer portion.
+For instance, if logValue = 5.2356, then fractionalPart = 0.2356.
+  
+Calculating the First Three Digits:
+  
+pow(10, fractionalPart) gives us the number 10^fractionalPart, which is a number between 1 and 10. This is a key step for extracting the significant digits.
+For example, if fractionalPart = 0.2356, then pow(10, fractionalPart) will give something like 1.78 (the first part of the number, representing the significant digits).
+Multiplying this result by 100 scales it up to get the first three digits. For example, if pow(10, fractionalPart) = 1.78, then 1.78 * 100 = 178.
+The result is then cast to long long to obtain the integer value of the first three digits.
+  
+Returning the Result:
+  
+The function returns the first three digits as a long long integer.
+</pre>
+
+    <p><b>Precision Handling</b> (more precision)</p>
+
+    <p><b>Logarithmic Method (calculateFirstThreeDigits):</b></p>
+
+    <ul>
+      <li>Relies heavily on <i>double</i> precision to handle the fractional part and <i>pow</i> function.</li>
+      <li>Floating-point operations, especially with large numbers, can lead to small inaccuracies due to precision limits.</li>
+      <li>Example issue:
+If log<sub>10</sub>(n<sup>k</sup>) = 12.999999, <i>floor(logValue)</i> might misinterpret the result, leading to incorrect digits.</li>
+    </ul>
+
+    <p><b>Combined Logarithmic with Modular Arithmetic:</b></p>
+
+    <ul>
+      <li>Adjusts fractional part alignment more explicitly:
+<code>
+lg -= floor(lg) - 2;
+</code>
+This ensures a more stable computation for the leading digits by shifting the fractional part to focus on significant digits.</li>
+      <li>Adds a small epsilon (<i>1e-9</i>) during extraction to stabilize floating-point operations.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="mulmod-and-binary-exponentiation-like-problems">Mulmod and Binary Exponentiation like Problems</h3>
+
+<p>https://cs.stackexchange.com/questions/77016/modular-multiplication</p>
+
+<ul>
+  <li>Why use mulmod ?</li>
+</ul>
+<pre>
+- When multiplying two large numbers where (𝑎⋅𝑏) exceeds the range of long long.
+- To ensure correctness in modular arithmetic computations in languages or systems with limited integer sizes.
+</pre>
+
+<ul>
+  <li><u>Given three integers x,y and m, find x\*y modulo m. (1&lt;=x,y&lt;=1e18, mod&lt;=1e18+7)</u></li>
+</ul>
+<pre>
+a * b % mod is overflowing because of a,b,mod are very large.
+x * y = x+x+...x (upto y times)
+</pre>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">long</span> <span class="kt">long</span> <span class="nf">mulmod</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">x</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">y</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">mod</span><span class="p">)</span> <span class="p">{</span><span class="c1">//O(logy)</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span><span class="c1">//do addition, instead of multiplication</span>
+        <span class="p">}</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+        <span class="n">y</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<pre>
+- we can also use 128 bit integer for this purpose
+</pre>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">long</span> <span class="kt">long</span> <span class="nf">mulmod</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">x</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">y</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">mod</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span><span class="p">)((</span><span class="n">__int128</span><span class="p">)</span><span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="o">%</span> <span class="n">mod</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<pre>
+x mod 2<sup>k</sup> = x&amp;(2<sup>k</sup>-1) -&gt; equal to the last k bits of x 
+</pre>
+
+<ul>
+  <li><u>Given two integers x,n, find x<sup>n</sup> modulo 2<sup>64</sup></u></li>
+</ul>
+<pre>
+unsigned integers are represented modulo 2^k, where k is the number of bits of the data type. unsigned int are represented modulo 2^32
+</pre>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//benefit of data type ranges</span>
+<span class="cp">#define ull unsigned long long
+</span>
+<span class="n">ull</span> <span class="nf">power</span><span class="p">(</span><span class="n">ull</span> <span class="n">x</span><span class="p">,</span> <span class="n">ull</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ull</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ans</span> <span class="o">*=</span> <span class="n">x</span><span class="p">;</span><span class="c1">//ull always do mod by 2^64</span>
+        <span class="p">}</span>
+        <span class="n">x</span> <span class="o">*=</span> <span class="n">x</span><span class="p">;</span>
+        <span class="n">n</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>example:</p>
+
+<ul>
+  <li>
+    <p><a href="./1_basic_modular_operation/codechef_JAN221B_RIFFLES_Chef%20and%20Riffles.cpp">codechef_Chef and Riffles</a></p>
+
+    <pre>
+Let f be a permutation of length N, where N is even. The riffle of f is defined to be the permutation g=(f(1),f(3),…,f(N−1),f(2),f(4),…,f(N))
+  
+You are given two integers N and K. Output the resultant permutation when you riffle the identity permutation of length N, K times.
+1≤T≤100, 1≤N≤3⋅1e5, 1≤K≤1e9, N is even
+The sum of N across test cases does not exceed 3⋅1e5
+</pre>
+  </li>
+  <li>
+    <p><a href="./4_mulmod_and_binExpLike/spoj_ZSUM_Just%20Add%20It.cpp">spoj_ZSUM - Just Add It</a></p>
+
+    <pre>
+For two given integers n and k find (Zn + Z(n-1) - 2Z(n-2)) mod 10000007, where Zn = Sn + Pn and Sn = 1^k + 2^k + 3^k + … + n^k and Pn = 1^1 + 2^2 + 3^3 + … + n^n. (1 &lt; n &lt; 200000000, 0 &lt; k &lt; 1000000 )
+</pre>
+  </li>
+  <li>
+    <p><a href="./4_mulmod_and_binExpLike/spoj_LOCKER_Magic%20of%20the%20locker.cpp">spoj_LOCKER - Magic of the locker</a></p>
+
+    <pre>
+you are given a number n , and break it into parts such that product of all parts is maximum.
+</pre>
+  </li>
+</ul>
+
+<hr />
