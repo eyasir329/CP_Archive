@@ -1,24 +1,19 @@
 #!/bin/bash
 
-# Create docs structure
-mkdir -p docs/assets/{images,css}
+# Create index.md from every README.md inside docs/
+find docs -type f -name "README.md" | while read file; do
+  dir_path="$(dirname "$file")"
+  folder_name="$(basename "$dir_path" | tr '_' ' ')"
+  index_path="$dir_path/index.md"
 
-# Process all folders
-find src -type d -not -path '*/\.*' | while read dir; do
-  target_dir="docs/${dir#src/}"
-  mkdir -p "$target_dir"
-  
-  # Convert README.md to index.md
-  if [ -f "$dir/README.md" ]; then
-    echo "---" > "$target_dir/index.md"
-    echo "title: $(basename "$dir" | tr '_' ' ')" >> "$target_dir/index.md"
-    echo "---" >> "$target_dir/index.md"
-    tail -n +2 "$dir/README.md" >> "$target_dir/index.md"
-  fi
-  
-  # Copy .cpp files
-  find "$dir" -maxdepth 1 -name '*.cpp' -exec cp {} "$target_dir/" \;
+  {
+    echo "---"
+    echo "title: \"$folder_name\""
+    echo "nav_order: 1"
+    echo "---"
+    echo ""
+    tail -n +2 "$file"
+  } > "$index_path"
+
+  echo "✅ Converted: $index_path"
 done
-
-# Required for GitHub Pages
-touch docs/.nojekyll

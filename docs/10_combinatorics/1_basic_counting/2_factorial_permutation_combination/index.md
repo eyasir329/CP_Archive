@@ -1,3 +1,122 @@
+---
+title: "2 factorial permutation combination"
+nav_order: 1
+---
+
+### <u>Factorial</u>
+
+```text
+n! is the number of ways to arrange n distinct objects in a line.
+```
+
+![fact](https://i.ibb.co.com/K6QRB35/IMG-0232.jpg)  
+![fact2](https://i.ibb.co.com/Jk35g1g/IMG-0233.jpg)
+
+<pre>
+- The difference between combinations and permutations is whether or not the order you are choosing the objects matters.
+</pre>
+
+#### Finding Power of Factorial Divisor
+
+You are given two numbers \(n\) and \(k\). Find the largest power of \(k^x\) such that \(n!\) is divisible by \(k^x\).
+
+**Factorial Divisors:** [cp-algorithms](https://cp-algorithms.com/algebra/factorial-divisors.html), [AoPS](https://artofproblemsolving.com/wiki/index.php/Factorial)
+
+```cpp
+// Prime k — uses Legendre’s formula
+int fact_pow (int n, int k) {
+    int res = 0;
+    while (n) {
+        n /= k;
+        res += n;
+    }
+    return res;
+}
+```
+
+**Example Problems**:
+- [2007 iTest Problem 6](https://artofproblemsolving.com/wiki/index.php/2007_iTest_Problems/Problem_6)
+- [2003 AIME I Problem 1](https://artofproblemsolving.com/wiki/index.php/2003_AIME_I_Problems/Problem_1)
+- [2006 AIME II Problem 3](https://artofproblemsolving.com/wiki/index.php/2006_AIME_II_Problems/Problem_3)
+
+> Let \(P\) be the product of the first 100 positive odd integers. Find the largest integer \(k\) such that \(P\) is divisible by \(3^k\).
+
+- [1987 IMO Problem 1](https://artofproblemsolving.com/wiki/index.php/1987_IMO_Problems/Problem_1)
+
+- Factorial Under Modulo [Gym Problem Link](https://vjudge.net/problem/Gym-248968S)
+
+> Given a large number n, determine efficiently the factorial of n. Since the answer might be very large, you should output the answer modulo 998244353.
+
+---
+
+### <u> Permutations</u>
+
+(arrange)
+
+<pre>
+- <b>order matter</b>
+- nPr is the number of ways to choose r objects from n distinct objects and arrange them in line.
+- one elements appear exactly one time in each permutation
+- nPr = n!/(n-r)!
+- It's a arrangement of elements in specific order
+- Total number of permutation of sequence with distinct elements of lengths n is n!
+
+- all combinatorics problem -> combinatorial explosion (easily grow)
+</pre>
+
+![perm1](https://i.ibb.co.com/MsQSS3f/IMG-0234.jpg)
+
+![perm2](https://i.ibb.co.com/d20XP5f/IMG-0235.jpg)
+
+![perm3](https://i.ibb.co.com/njVNnGK/IMG-0237.jpg)
+
+![perm4](https://i.ibb.co.com/kcMdRjn/IMG-0236.jpg)
+
+![perm5](https://i.ibb.co.com/ggwvmYV/IMG-0238.jpg)
+
+<pre>
+- 4 letters word with unique letters -> C(26,4)
+
+</pre>
+
+<pre>
+- next_permutation -> gives immediate next permutation(lexicographical order)
+- prev_permutation -> gives immediate previous permutation(lexicographical order)
+
+# also return boolean(have or not)
+</pre>
+
+- <u>Generate all possible permutations</u>
+
+```cpp
+int main() {
+    int a[] = {1, 2, 3};
+    // if we need all permutation, then we have to sort it
+    sort(a, a + n);
+    do {
+        for (int i = 0; i < a.size(); i++) {
+            cout << a[i] << " ";
+        }
+        cout << endl;
+    } while (next_permutation(a, a + n));
+    return 0;
+}
+```
+
+example:
+
+- [300C_Beautiful_Numbers](./300C_Beautiful_Numbers.cpp)
+
+    <pre>Vitaly is a very weird man. He's got two favorite digits a and b. Vitaly calls a positive integer good, if the decimal representation of this integer only contains digits a and b. Vitaly calls a good number excellent, if the sum of its digits is a good number.
+  
+    Now Vitaly is wondering, how many excellent numbers of length exactly n are there. As this number can be rather large, he asks you to count the remainder after dividing it by 1000000007 (1^9 + 7).
+  
+    sum_of_digits = i * a + (n - i) * b;</pre>
+
+- https://www.codechef.com/problems/NWAYS
+
+---
+
 ### <u> Combinations</u>
 
 <pre>
@@ -13,10 +132,21 @@ In general, for N there will be N-1 dashes, and out of those we want to choose K
 </pre>
 
 ![comp1](https://i.ibb.co.com/LQt1X96/IMG-0239.jpg)
+
+
 ![comp2](https://i.ibb.co.com/CJDPQ0h/IMG-0240.jpg)
+
+
 ![comp3](https://i.ibb.co.com/QrbWYQx/IMG-0241.jpg)
+
+
 ![comp4](https://i.ibb.co.com/3Tgc1ZS/IMG-0242.jpg)
+
+
 ![comp5](https://i.ibb.co.com/yNfDYRL/IMG-0243.jpg)
+
+
+
 
 ### <u>More Combinations and Combinatorial Proof</u>
 
@@ -26,18 +156,6 @@ In general, for N there will be N-1 dashes, and out of those we want to choose K
 
 ![p2](https://i.ibb.co.com/n7Jy3Jh/IMG-0246.jpg)
 ![p4](https://i.ibb.co.com/WzGpWP1/IMG-0247.jpg)
-
----
-
-### <u>Combinations with Repetition</u>
-
-![cr1](https://i.ibb.co.com/8zP86Tk/IMG-0264.jpg)
-![cr2](https://i.ibb.co.com/9ZWL600/IMG-0265.jpg)
-![cr3](https://i.ibb.co.com/TTBszc5/IMG-0266.jpg)
-![cr4](https://i.ibb.co.com/KbFhDsL/IMG-0267.jpg)
-![cr5](https://i.ibb.co.com/2F0dvWT/IMG-0268.jpg)
-![cr6](https://i.ibb.co.com/SJY2cgJ/IMG-0269.jpg)
-![cr7](https://i.ibb.co.com/b6gtzJg/IMG-0270.jpg)
 
 example:
 
@@ -57,38 +175,9 @@ example:
 
 ---
 
-### <u>Distributing Objects into Boxes</u>
-
-https://usaco.guide/CPH.pdf#page=219
-
-<pre>
-- Scenario 1: Each box can contain at most one ball. For example, when n = 5 and k = 2, there are 10 solutions-> the answer is directly the binomial coefficient C(n,k).
-
-- Scenario 2: A box can contain multiple balls. For example, when n = 5 and k = 2, there are 15 solutions -> the number of solutions is C(n+k−1,k)
-
-- Scenario 3: Each box may contain at most one ball, and in addition, no two
-adjacent boxes may both contain a ball. For example, when n = 5 and k = 2, there
-are 6 solutions -> There are n − 2k + 1 such boxes and k + 1 positions for them. Thus, using the formula of scenario 2, the number of solutions is C(n−k+1,n−2k+1).
-</pre>
-
-![db1](https://i.ibb.co.com/9b1Kwd8/IMG-0276.jpg)
-![db2](https://i.ibb.co.com/nD3m73n/IMG-0277.jpg)
-
-The multinomial coefficient => C(n,(k1, k2, . . . , km))= n!/(k1!k2! · · · km!) ,
-equals the number of ways we can divide n elements into subsets of sizes k1, k2, . . . , km, where k1 + k2 + · · · + km = n. Multinomial coefficients can be seen as a generalization of binomial cofficients; if m = 2, the above formula corresponds
-to the binomial coefficient formula
-
-![db3](https://i.ibb.co.com/k6xYjkQ/IMG-0278.jpg)
-![db4](https://i.ibb.co.com/BBrPcLN/IMG-0279.jpg)
-![db5](https://i.ibb.co.com/M14Zp0t/IMG-0280.jpg)
-![db6](https://i.ibb.co.com/BNBd8Mm/IMG-0282.jpg)
-
----
-
-#### Permutations and Combinations Summary
+#### Summary
 
 ![key_dif](https://gre.myprepclub.com/forum/download/file.php?mode=view&id=14915&sid=8edb21de77d3cc7076c632167e1125f1)
-<img src="https://gre.myprepclub.com/forum/download/file.php?mode=view&id=15320&sid=12a76328403e68df68076d41c5bf8c9d" alt="pc" width="650">
 
 <code> Whenever you do a counting problem, the 1st thing you should decide is whether the problem is a Fundamental Counting Principle problem, a permutation problem, or a combination problem.</code>
 
@@ -102,9 +191,13 @@ to the binomial coefficient formula
 
 [Some Problems (Basic)](https://flexbooks.ck12.org/cbook/ck-12-college-precalculus/section/14.2/primary/lesson/counting-with-permutations-and-combinations-c-precalc/)
 
+---
+
+### Code
+
 ```cpp
 //O(2^n)
-/** @return nCk mod p using naive recursion */
+/* nCk mod p using naive recursion */
 int binomial(int n, int k, int p) {
     if (k == 0 || k == n) { return 1; }
     return (binomial(n - 1, k - 1, p) + binomial(n - 1, k, p)) % p;
@@ -198,17 +291,7 @@ void prec() {
 example:
 
 - https://cses.fi/problemset/task/1079
-- https://cses.fi/problemset/task/1715
-- [cses1715_Creating Strings II](./cses1715_Creating%20Strings2.cpp)
 
-    <pre>Given a string, your task is to calculate the number of different strings that can be created using its characters.
-  The only input line has a string of length n. Each character is between a–z.</pre>
-
-- [Factorial Under Modulo](https://vjudge.net/problem/Gym-248968S)
-
-  <pre>
-   Given a large number nn, determine efficiently the factorial of n. Since the answer might be very large, you should output the answer modulo 998,244,353998,244,353.
-  </pre>
 
 - [lightoj1067_Combinations](./1_basic_counting/2_combination/loghtoj1067_Combinations.cpp)
 
@@ -216,16 +299,8 @@ example:
   Given n distinct objects, you want to take k of them. How many ways can you do it?
   </pre>
 
-- [cese1715_Creating Strings II](./1_basic_counting/2_combination/cses1715_Creating%20Strings2.cpp)
-  <pre>
-  Given a string, your task is to calculate the number of different strings that can be created using its characters.
-  
-  Print the <b>number of different strings</b> modulo 1e9+7
-  
-  -> n!/(a!b!c!...)
-  </pre>
 
-- [LeetCode1922. Count Good Numbers](./1_permutations_combinations_and_basic_counting/LeetCode1922_Count%20Good%20Numbers.cpp)
+- [LeetCode1922. Count Good Numbers](./LeetCode1922_Count%20Good%20Numbers.cpp)
 
     <pre>
     A digit string is good if the digits (0-indexed) at even indices are even and the digits at odd indices are prime (2, 3, 5, or 7).
@@ -235,7 +310,7 @@ example:
     A digit string is a string consisting of digits 0 through 9 that may contain leading zeros.
     </pre>
 
-- [1178C_Tiles](./1_permutations_combinations_and_basic_counting/1178C_Tiles.cpp)
+- [1178C_Tiles](./1178C_Tiles.cpp)
     <pre>
     The dimension of this tile is perfect for this kitchen, as he will need exactly w×h tiles without any scraps. That is, the width of the kitchen is w tiles, and the height is h tiles. he still needs to decide on how exactly he will tile the floor. 
   

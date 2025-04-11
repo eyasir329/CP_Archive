@@ -1,3 +1,14 @@
+---
+title: "Home"
+nav_order: 1
+---
+
+# 📚 CP Archive
+
+Welcome! Explore categorized Competitive Programming content.
+
+Start browsing the folders in the sidebar.
+
 <pre>
 CP_Archive/
 ├── .github/
