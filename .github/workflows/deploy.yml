@@ -2,13 +2,13 @@ name: Deploy
 
 on: [push]
 
+defaults:
+  run:
+    working-directory: docs
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: docs
 
     steps:
       - uses: actions/checkout@v4
@@ -19,12 +19,14 @@ jobs:
           ruby-version: "3.2"
           bundler-cache: true
 
-      - name: Prepare directories
-        run: mkdir -p _includes
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Make scripts executable
+        run: chmod +x *.sh
 
       - name: Generate content
         run: |
-          chmod +x *.sh
           ./generate_readmes.sh
           ./update_stats.sh
 
