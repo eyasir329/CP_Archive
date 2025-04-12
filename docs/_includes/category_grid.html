@@ -1,0 +1,10 @@
+<div class="category-grid">
+  {% for i in (0..18) %} {% assign num = i | prepend: '00' | slice: -2, 2 %} {%
+  assign dir = num | append: '_*' %} {% assign category = site.categories |
+  where: "slug", num | first %} {% if category %}
+  <div class="category-card">
+    <h3><a href="{{ category.url }}">{{ category.title }}</a></h3>
+    <p>{{ category.content | markdownify }}</p>
+  </div>
+  {% endif %} {% endfor %}
+</div>

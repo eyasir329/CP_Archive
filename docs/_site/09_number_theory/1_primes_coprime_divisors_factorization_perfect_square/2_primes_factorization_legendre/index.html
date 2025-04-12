@@ -1,0 +1,491 @@
+<pre>
+- prime has exactly two divisors (1 &amp; that number)
+- other number can be represented by multiple of different prime numbers
+- if p divide a*b then -&gt; p (divide a) or (divide b) or (both)
+- 1 neither prime nor composite
+- after 2 all prime is odd
+- primes<sup>2</sup> has exactly three divisors (4 -&gt; 1,2,4)
+</pre>
+
+<ul>
+  <li><u>Prime-Counting Function π(N) / Prime number theorem</u></li>
+</ul>
+<pre>
+The prime-counting function π(N) gives the exact number of primes less than or equal to N.
+
+For:
+N = 2^64 = 18,446,744,073,709,551,616
+
+A rough estimate of π(2^64) using the logarithmic integral approximation is:
+
+π(2^64) ≈ 2^64 / ln(2^64)
+= 2^64 / (64 . ln(2))
+≈ 4.2 × 10^17
+
+However, modern number theory research and computational results provide a more precise estimate:
+
+π(2^64) ≈ 416,971,064,282,000
+
+That’s approximately 417 trillion prime numbers less than or equal to 2^64.
+
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>not exact ~ approx
+</code></pre></div></div>
+
+<pre><code class="language-math">\pi(n) \sim \frac{n}{\ln n}
+</code></pre>
+
+<hr />
+
+<ul>
+  <li><u>Trial Division (Naive)</u> -&gt; best for single number</li>
+</ul>
+<pre>
+- Complexity -&gt; O(sqrt(n), Space: O(1)
+- Suitable for n &lt;= 1e6
+- for 1 test case it can go upto 1e14 (1e7 instruction need)
+
+n = a.b =&gt; a &lt; sqrt(n)
+for whose prime number square (25-&gt;5.5) it fails because it runs upto 1,2,3,4 not 5 that's why we need a &lt;= sqrt(n)
+
+</pre>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//check n is prime or not -&gt; O(sqrt(n)</span>
+<span class="kt">bool</span> <span class="nf">is_prime</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">){</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="mi">1LL</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+      <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// more optimized</span>
+
+<span class="c1">// O(√n / 3) Time Complexity: Much faster than a naive O(√n) approach.</span>
+<span class="c1">// Use this function when you need a fast, deterministic primality test for integers.</span>
+
+<span class="kt">bool</span> <span class="nf">isPrime</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1">// 1 and below are not prime</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">||</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1">// 2 and 3 are prime</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1">// Eliminate multiples of 2 and 3</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="c1">// Check divisibility for numbers of form 6k ± 1 up to √n</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">6</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Function to return the smallest</span>
+<span class="c1">// prime number greater than N</span>
+<span class="kt">int</span> <span class="nf">nextPrime</span><span class="p">(</span><span class="kt">int</span> <span class="n">N</span><span class="p">){</span>
+  <span class="c1">// Base case</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">N</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">prime</span> <span class="o">=</span> <span class="n">N</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">found</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="c1">// Loop continuously until isPrime returns</span>
+  <span class="c1">// true for a number greater than n</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">found</span><span class="p">){</span>
+    <span class="n">prime</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">isPrime</span><span class="p">(</span><span class="n">prime</span><span class="p">))</span> <span class="n">found</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">prime</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>example:</p>
+
+<ul>
+  <li>Prove that, for all primes p, the smallest positive integer whose factorial is divisible by p is p itself.</li>
+</ul>
+
+<pre>It is trivial by inspection that p satisfies this condition. Let the smallest positive such integer be k. For the sake of contradiction, assume that k &lt; p and p|k!. Then, k! is the product of all positive integers less than p and p is present in the prime factorization of k!. Some of the positive integers in this product are themselves primes less than p, while others are less than p and have unique prime factorizations involving only primes less than p by the fundamental theorem of arithmetic. Thus, p cannot be present in prime factorization of k!, establishing contradiction. This means that k = p. 
+</pre>
+
+<ul>
+  <li><a href="./1562B_Scenes_From_a_Memory.cpp">1562B - Scenes From a Memory</a></li>
+</ul>
+<pre>
+find the smallest non-prime number that can be formed by digits from a given string (as a subsequence)
+</pre>
+
+<ul>
+  <li>https://codeforces.com/contest/2093/problem/C</li>
+</ul>
+
+<hr />
+
+<ul>
+  <li><u>Sieve of Eratosthenes (Precompute Primes)</u></li>
+</ul>
+
+<pre>
+- Generate all primes up to N using a boolean sieve.
+- Time: O(NloglogN) Space: O(N)
+- Best for precomputing primes up to 1e7(memory limits apply).
+</pre>
+
+<p><img src="https://texample.net/files/eratosthenes-sieve.png" alt="seive" /></p>
+
+<ul>
+  <li>
+    <p>https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)</p>
+  </li>
+  <li>
+    <p><u>General Seive</u></p>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*loop goes upto : n/2+n/3+n/5+n/7+...
+-&gt; n(1/2+1/3+1/5+...)
+-&gt; harmonic series -&gt; 0(nloglogn)*/</span>
+
+<span class="c1">//basic seive (no optimization)</span>
+<span class="c1">//work upto 5e7</span>
+<span class="kt">bool</span> <span class="n">mark</span><span class="p">[</span><span class="mi">50000000</span> <span class="o">+</span> <span class="mi">5</span><span class="p">];</span>
+<span class="kt">void</span> <span class="nf">seive</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">mark</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mark</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span> <span class="n">m</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">m</span> <span class="o">+=</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span><span class="c1">//only go when i is prime</span>
+            <span class="n">mark</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><u>Optimized Seive 1</u></li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//complexity same as general seive</span>
+<span class="kt">void</span> <span class="nf">seive</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">mark</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">mark</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">+=</span><span class="mi">2</span><span class="p">){</span><span class="c1">//even handle fast</span>
+      <span class="n">mark</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mark</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span> <span class="n">m</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">m</span> <span class="o">+=</span> <span class="n">i</span><span class="o">+</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span><span class="c1">//only go when i is prime</span>
+            <span class="n">mark</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><u>Optimized Seive 2 (Time Efficient)</u></li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//more prefer than previous version</span>
+<span class="kt">bool</span> <span class="n">mark</span><span class="p">[</span><span class="mi">50000000</span> <span class="o">+</span> <span class="mi">5</span><span class="p">];</span>
+<span class="kt">void</span> <span class="nf">seive</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">mark</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">mark</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//even handle fast</span>
+        <span class="n">mark</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">1LL</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">mark</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span> <span class="n">m</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">m</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">mark</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><u>Optimized Seive 3 (Time and Memory Efficient)</u></li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//using array instead of vector</span>
+
+<span class="k">const</span> <span class="kt">int</span> <span class="n">MAX</span> <span class="o">=</span> <span class="mf">1e8</span><span class="p">;</span> <span class="c1">// Main sieve limit</span>
+<span class="n">bitset</span><span class="o">&lt;</span><span class="n">MAX</span> <span class="o">+</span> <span class="mi">1</span><span class="o">&gt;</span> <span class="n">is_prime</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">primes</span><span class="p">[</span><span class="mi">50000000</span> <span class="o">+</span> <span class="mi">5</span><span class="p">];</span> <span class="c1">// Stores primes up to MAX</span>
+<span class="kt">int</span> <span class="n">primecnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="c1">// Optimized sieve that populates both is_prime and primes[]</span>
+<span class="kt">void</span> <span class="nf">optimized_sieve</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">is_prime</span><span class="p">.</span><span class="n">set</span><span class="p">();</span>
+    <span class="n">is_prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">is_prime</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="c1">// Handle evens</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">is_prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">primes</span><span class="p">[</span><span class="n">primecnt</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="c1">// Sieve odd numbers</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int64_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">is_prime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+            <span class="n">primes</span><span class="p">[</span><span class="n">primecnt</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int64_t</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
+                <span class="n">is_prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>example:</p>
+
+<ul>
+  <li><a href="spoj_TDKPRIME_Finding_the_Kth_Prime.cpp">spoj_TDKPRIME - Finding the Kth Prime</a></li>
+</ul>
+
+<pre>
+An integer stating the number of queries Q (equal to 50000), and Q lines follow, each containing one integer K between 1 and 5000000 inclusive.
+
+Q lines with the answer of each query: the Kth prime number.
+
+n = 86028122 ~ 1e8 for 5e6
+</pre>
+
+<ul>
+  <li><a href="uva_543Goldbachs_Conjecture.cpp">uva_543 - Goldbach’s Conjecture</a></li>
+</ul>
+
+<pre>
+Euler re-expressed the conjecture as:
+
+Every even number greater than or equal to 4 can be expressed as the sum of two prime numbers.
+
+Each test case consists of one even integer n with 6 ≤ n &lt; 1000000.
+</pre>
+
+<ul>
+  <li>https://lightoj.com/problem/lucky-number</li>
+</ul>
+
+<pre>
+seive + segment tree
+</pre>
+
+<hr />
+
+<h3 id="factorization">Factorization</h3>
+
+<pre>
+- 1 number does not have more than log(N) prime
+</pre>
+
+<ul>
+  <li><u>General Factorization</u></li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//complexity -&gt; O(sqrt(n))</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span><span class="n">factorize</span><span class="p">(</span><span class="n">ll</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span><span class="n">ret</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="c1">//can go upto prime list</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">n</span> <span class="o">/=</span> <span class="n">i</span><span class="p">;</span>
+                <span class="n">ret</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">){</span><span class="c1">//&gt;1</span>
+      <span class="n">ret</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><u>Factorization from primes</u></li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">ll</span> <span class="o">=</span> <span class="kt">long</span> <span class="kt">long</span><span class="p">;</span>
+<span class="k">const</span> <span class="n">ll</span> <span class="n">MAX_SIEVE</span> <span class="o">=</span> <span class="mf">1e7</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">spf</span><span class="p">(</span><span class="n">MAX_SIEVE</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">primes</span><span class="p">;</span>
+
+<span class="c1">// Precompute smallest prime factors and primes list</span>
+<span class="kt">void</span> <span class="nf">precompute_primes</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">spf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">spf</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">MAX_SIEVE</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">spf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// i is prime</span>
+            <span class="n">spf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="n">primes</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">MAX_SIEVE</span><span class="p">;</span> <span class="n">j</span> <span class="o">+=</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">spf</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">spf</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Optimized factorization using precomputed primes</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">factorize_with_primes</span><span class="p">(</span><span class="n">ll</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">factors</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">factors</span><span class="p">;</span>
+
+    <span class="c1">// Check against precomputed primes</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">p</span> <span class="o">:</span> <span class="n">primes</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">factors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+            <span class="n">n</span> <span class="o">/=</span> <span class="n">p</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">factors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">factors</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><u>Factorization From Seive</u></li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">mark</span><span class="p">[</span><span class="mi">50000000</span> <span class="o">+</span> <span class="mi">5</span><span class="p">];</span>
+<span class="kt">void</span> <span class="nf">seive</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">mark</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">mark</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mark</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span> <span class="n">m</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">m</span> <span class="o">+=</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">mark</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">//vector return makes vector copy to another</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">factorize</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span><span class="c1">//O(logn)</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">ret</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">mark</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span><span class="c1">//no wasted</span>
+        <span class="n">ret</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">mark</span><span class="p">[</span><span class="n">n</span><span class="p">]);</span>
+        <span class="n">n</span> <span class="o">/=</span> <span class="n">mark</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">ret</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>example:</p>
+
+<ul>
+  <li><a href="./2.divisors/576A_Vasya%20and%20Petya's%20Game.cpp">576A_Vasya and Petya’s Game</a></li>
+</ul>
+
+<pre>
+# thought of number x between 1 and n, another tries to guess the number
+# another can ask, is the unknown number divisible by number y?
+# find the minimum number of questions he should ask to make a guaranteed guess number.
+
+n factorize = (2,2,2,3,5...y)
+if(n is divisible y) y*y until find n.. then next y
+
+</pre>
+
+<ul>
+  <li><a href="230B_T-primes.cpp">230B_T-primes</a></li>
+</ul>
+<pre>
+A number is called a T-prime if it has exactly three distinct positive divisors. Given n numbers, determine if each is a T-prime.
+</pre>
+
+<ul>
+  <li><a href="spoj_FACT0.cpp">spoj_FACT0 - Integer Factorization (15 digits)</a></li>
+</ul>
+
+<pre>
+Given some integers, you need to factor them into product of prime numbers. 
+</pre>
+
+<ul>
+  <li><a href="1366D_Two_Divisors.cpp">1366D. Two Divisors</a></li>
+</ul>
+
+<pre>
+You are given n integers a1,a2,…,an
+For each ai, find its two divisors d1&gt;1 and d2&gt;1 such that gcd(d1+d2,ai)=1 (where gcd(a,b) is the greatest common divisor of a and b) or say that there is no such pair.
+
+2 &lt;= ai &lt;= 1e7
+
+not possible when n = p^x 
+d1 = p
+d2 = q.r...
+</pre>
+
+<hr />
+
+<h3 id="legendres-formula">Legendre’s Formula</h3>
+
+<ul>
+  <li>https://artofproblemsolving.com/wiki/index.php/Legendre’s_Formula</li>
+</ul>
+
+<p>Legendre’s formula gives the exponent of a prime number ( p ) in the factorization of ( n! ). It is expressed as:</p>
+
+<pre><code class="language-math">e_p(n!) = \sum_{i=1}^{\infty} \left\lfloor \dfrac{n}{p^i} \right\rfloor = \frac{n - S_p(n)}{p - 1} = \left\lfloor \frac{n}{p} \right\rfloor + \left\lfloor \frac{n}{p^2} \right\rfloor + \left\lfloor \frac{n}{p^3} \right\rfloor + \cdots
+</code></pre>
+
+<p>Where:</p>
+
+<ul>
+  <li>e_p(n!) is the exponent of prime p in n!</li>
+  <li>S_p(n) is the sum of digits of n in base p</li>
+  <li>floor(x) denotes the floor function ⎣x⎦ (greatest integer less than or equal to x)</li>
+</ul>
+
+<p>This formula is especially useful in number theory and combinatorics for evaluating factorial prime powers efficiently.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">legendre</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">exponent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">n</span> <span class="o">/=</span> <span class="n">p</span><span class="p">;</span>
+        <span class="n">exponent</span> <span class="o">+=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">exponent</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//Count trailing zeros in n! (exponent of 5 in n!)</span>
+<span class="kt">int</span> <span class="nf">countTrailingZeros</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">legendre</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>example:</p>
+
+<ul>
+  <li>To determine how many times the prime number <strong>2</strong> appears in the factorization of <strong>10!</strong> (10 factorial), we can use <strong>Legendre’s Formula</strong>.</li>
+</ul>
+
+<p><strong>Calculation for ( p = 2 ) in ( 10! )</strong></p>
+
+<pre><code class="language-math">e_2(10!) = \left\lfloor \frac{10}{2} \right\rfloor + \left\lfloor \frac{10}{4} \right\rfloor + \left\lfloor \frac{10}{8} \right\rfloor + \left\lfloor \frac{10}{16} \right\rfloor + \cdots
+\\
+= 5 + 2 + 1 + 0 + \cdots= 8
+</code></pre>
+
+<ul>
+  <li><a href="lightoj_Trailing_Zeroes2.cpp">lightoj_ Trailing Zeroes (II)</a></li>
+</ul>
+
+<pre>
+Find the number of trailing zeroes for the following function:
+
+(nCr)×p<sup>q</sup>
+
+where n, r, p, q are given as Input.
+Input starts with an integer T (≤ 10000), denoting the number of test cases.
+Each case contains four integers: n, r, p, q (1 ≤ n, r, p, q ≤ 1e6, r ≤ n).
+
+=&gt;
+2^x, 5^y -&gt; min(x,y)
+
+n! -&gt; cnt 2,5
+r! -&gt; cnt 2,5
+(n-r)! -&gt; cnt 2,5
+
+total = (n! -&gt; cnt 2,5)-((r! -&gt; cnt 2,5) + ((n-r)! -&gt; cnt 2,5))
+</pre>
+
+<hr />

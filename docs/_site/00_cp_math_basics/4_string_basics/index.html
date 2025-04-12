@@ -1,0 +1,44 @@
+<pre>
+s = s + 'a' -&gt; O(N) -&gt; access whole string
+s += 'a' -&gt; O(1) -&gt; not accesssing whole string
+</pre>
+
+<h3 id="stringstream">stringstream</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- input from string
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">"12  13    24"</span><span class="p">;</span>
+<span class="n">stringstream</span> <span class="nf">ss</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span> <span class="n">ss</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span> <span class="o">&gt;&gt;</span> <span class="n">c</span><span class="p">;</span>
+<span class="c1">//alternate</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">ss</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//separate words from string</span>
+<span class="n">getline</span><span class="p">(</span><span class="n">cin</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+<span class="n">stringstream</span> <span class="nf">ss</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">ss</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code>string(int, char)</code> n=3, c=’a’ =&gt; “aaa”</p>
+
+<p><code>char c = num + '0'</code>
+<code>int num = 'c' - '0'</code></p>
+
+<p>https://www.geeksforgeeks.org/cpp-string-functions/</p>
+
+<h4 id="binary-string">Binary String</h4>
+
+<ul>
+  <li><a href="">2029B_Replacement</a></li>
+  <li><a href="">1971D_Binary Cut</a></li>
+  <li><a href="">1913B_Swap and Delete</a></li>
+  <li><a href="">1837C_Best Binary String</a></li>
+  <li><a href="">2030C_A TRUE Battle</a></li>
+</ul>
+
+<hr />

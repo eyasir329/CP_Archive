@@ -13,3 +13,7 @@ defaults:
       type: "categories"
     values:
       layout: "category"
+
+include:
+  - _includes
+  - _layouts
