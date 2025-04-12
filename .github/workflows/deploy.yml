@@ -1,8 +1,15 @@
 name: Deploy
+
 on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: docs
+
     steps:
       - uses: actions/checkout@v4
 
@@ -13,23 +20,19 @@ jobs:
           bundler-cache: true
 
       - name: Prepare directories
-        run: |
-          cd docs
-          mkdir -p _includes  # Create required directory
+        run: mkdir -p _includes
 
       - name: Generate content
         run: |
-          cd docs
           chmod +x *.sh
           ./generate_readmes.sh
           ./update_stats.sh
 
       - name: Build site
-        run: |
-          cd docs
-          bundle exec jekyll build
+        run: bundle exec jekyll build
 
-      - uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/_site
+          publish_dir: docs/_site
