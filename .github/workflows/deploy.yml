@@ -5,15 +5,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.2"
-      - run: |
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
           cd docs
+          gem install bundler -v 2.6.7
+          bundle config set path 'vendor/bundle'
           bundle install
+
+      - name: Generate content
+        run: |
+          cd docs
+          chmod +x *.sh  # Fix permissions
           ./generate_readmes.sh
           ./update_stats.sh
+
+      - name: Build site
+        run: |
+          cd docs
           bundle exec jekyll build
+
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
