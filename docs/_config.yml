@@ -1,6 +1,15 @@
-title: "CP Archive"
-theme: just-the-docs
-baseurl: "" # Do not include /docs
-exclude:
-  - .github
-  - convert.sh
+title: "Competitive Programming Archive"
+baseurl: "" # Critical for /docs setup
+theme: minima
+
+collections:
+  categories:
+    output: true
+    permalink: /:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "categories"
+    values:
+      layout: "category"

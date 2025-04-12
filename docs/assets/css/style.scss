@@ -1,0 +1,32 @@
+// Core Layout
+$spacing: 1.5rem;
+
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing;
+}
+
+// Category Navigation
+.category-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: $spacing/2;
+  margin-bottom: $spacing;
+}
+
+// Solutions Grid
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $spacing;
+}
+
+// Code Display
+.highlight {
+  pre {
+    padding: $spacing;
+    background: #f8f9fa;
+    border-radius: 4px;
+  }
+}

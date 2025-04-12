@@ -1,3 +1,0 @@
-## Stars and Bars
-
----
