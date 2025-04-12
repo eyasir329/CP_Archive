@@ -1,7 +1,0 @@
-<nav class="category-nav">
-  {% for i in (0..18) %} {% assign num = i | prepend: '00' | slice: -2, 2 %}
-  <a href="{{ num | prepend: '/' | relative_url }}">
-    {{ num }}: {{ site.categories[num].title }}
-  </a>
-  {% endfor %}
-</nav>

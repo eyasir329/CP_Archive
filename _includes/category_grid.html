@@ -1,7 +1,0 @@
-<div class="categories">
-  {% for i in (0..18) %} {% assign num = i | prepend: '00' | slice: -2, 2 %}
-  <a href="/{{ num }}_*" class="category-card">
-    <h3>📁 {{ num | replace: '_', ' ' }}</h3>
-  </a>
-  {% endfor %}
-</div>
