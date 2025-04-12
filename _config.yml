@@ -1,0 +1,9 @@
+title: "CP Archive"
+baseurl: "" # Leave empty for root domain
+theme: minima # Default Jekyll theme
+
+# Enable category collections
+collections:
+  categories:
+    output: true
+    permalink: /:path/
