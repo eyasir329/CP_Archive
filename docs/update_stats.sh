@@ -1,6 +1,14 @@
 #!/bin/bash
-echo "## 📊 Problem Statistics" > docs/_includes/stats.md
-for dir in docs/{00..18}_*; do
-  count=$(find "$dir" -name "*.cpp" | wc -l)
-  echo "- **$(basename "$dir")**: $count solutions" >> docs/_includes/stats.md
+set -e
+
+mkdir -p _includes
+
+echo "## 📊 Problem Statistics" > _includes/stats.md
+
+for i in {00..18}; do
+  dir=$(ls -d ${i}_*/ 2>/dev/null || true)
+  if [ -n "$dir" ]; then
+    count=$(find "$dir" -name "*.cpp" | wc -l)
+    echo "- **${dir%/}**: $count solutions" >> _includes/stats.md
+  fi
 done

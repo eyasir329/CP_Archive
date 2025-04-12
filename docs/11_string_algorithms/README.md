@@ -1,2 +1,7 @@
-2036B Anya and 1100
-https://codeforces.com/problemset/problem/2039/B
+---
+layout: category
+title: 11 string algorithms/
+---
+
+### Solutions
+- [max_common_substr](max_common_substr)

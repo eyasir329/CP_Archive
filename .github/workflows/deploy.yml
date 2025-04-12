@@ -12,17 +12,15 @@ jobs:
           ruby-version: "3.2"
           bundler-cache: true
 
-      - name: Install dependencies
+      - name: Prepare directories
         run: |
           cd docs
-          gem install bundler -v 2.6.7
-          bundle config set path 'vendor/bundle'
-          bundle install
+          mkdir -p _includes  # Create required directory
 
       - name: Generate content
         run: |
           cd docs
-          chmod +x *.sh  # Fix permissions
+          chmod +x *.sh
           ./generate_readmes.sh
           ./update_stats.sh
 

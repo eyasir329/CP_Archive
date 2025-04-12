@@ -1,6 +1,6 @@
 ---
 layout: category
-title: 13 dp/
+title: 12 math advanced/
 ---
 
 ### Solutions
