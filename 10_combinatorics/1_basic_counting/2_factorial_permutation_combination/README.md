@@ -1,4 +1,3 @@
-
 ### <u>Factorial</u>
 
 ```text
@@ -31,6 +30,7 @@ int fact_pow (int n, int k) {
 ```
 
 **Example Problems**:
+
 - [2007 iTest Problem 6](https://artofproblemsolving.com/wiki/index.php/2007_iTest_Problems/Problem_6)
 - [2003 AIME I Problem 1](https://artofproblemsolving.com/wiki/index.php/2003_AIME_I_Problems/Problem_1)
 - [2006 AIME II Problem 3](https://artofproblemsolving.com/wiki/index.php/2006_AIME_II_Problems/Problem_3)
@@ -71,7 +71,7 @@ int fact_pow (int n, int k) {
 ![perm5](https://i.ibb.co.com/ggwvmYV/IMG-0238.jpg)
 
 <pre>
-- 4 letters word with unique letters -> C(26,4)
+- 4 letters word with unique letters -> P(26,4) = C(26,4)*4! = 26*25*24*23
 
 </pre>
 
@@ -129,20 +129,13 @@ In general, for N there will be N-1 dashes, and out of those we want to choose K
 
 ![comp1](https://i.ibb.co.com/LQt1X96/IMG-0239.jpg)
 
-
 ![comp2](https://i.ibb.co.com/CJDPQ0h/IMG-0240.jpg)
-
 
 ![comp3](https://i.ibb.co.com/QrbWYQx/IMG-0241.jpg)
 
-
 ![comp4](https://i.ibb.co.com/3Tgc1ZS/IMG-0242.jpg)
 
-
 ![comp5](https://i.ibb.co.com/yNfDYRL/IMG-0243.jpg)
-
-
-
 
 ### <u>More Combinations and Combinatorial Proof</u>
 
@@ -152,22 +145,6 @@ In general, for N there will be N-1 dashes, and out of those we want to choose K
 
 ![p2](https://i.ibb.co.com/n7Jy3Jh/IMG-0246.jpg)
 ![p4](https://i.ibb.co.com/WzGpWP1/IMG-0247.jpg)
-
-example:
-
-- [cses1716_Distributing Apples](./cses1716_Distributing%20Apples.cpp)
-
-    <pre>There are n children and m apples that will be distributed to them. Your task is to count the number of ways this can be done.</pre>
-
-- [spoj_ADATEAMS](./spoj_ADATEAMS%20_Ada_and_Teams.cpp)
-
-    <pre>There are N schools from which exactly A will participate. Moreover there are B students in each school and exactly D of them will participate in the Olympiad.
-  
-    Step 1: Choose A schools from N.
-        Number of ways = C(N, A)
-    Step 2: For each of those A schools, choose D students from B.
-        Number of ways per school = C(B, D)
-    For A schools, it becomes (C(B, D))^A</pre>
 
 ---
 
@@ -187,18 +164,119 @@ example:
 
 [Some Problems (Basic)](https://flexbooks.ck12.org/cbook/ck-12-college-precalculus/section/14.2/primary/lesson/counting-with-permutations-and-combinations-c-precalc/)
 
+<pre>
+- Two team A(10), B(6), how much way they form a line such that no 2 member from B can't place beside? => 10! * C(11,6) * 6!
+- Number of substring -> choose first and last letter of a substring C(N,2) + N (Single letter))
+</pre>
+
 ---
 
 ### Code
-
+- <u>nCr using Naive Recursive method</u>
 ```cpp
-//O(2^n)
-/* nCk mod p using naive recursion */
+//nCr using naive recursion -> O(2^n)
 int binomial(int n, int k, int p) {
     if (k == 0 || k == n) { return 1; }
     return (binomial(n - 1, k - 1, p) + binomial(n - 1, k, p)) % p;
 }
 ```
+
+- <u>Using Multiplicative Formula (Best for Single Queries)</u>
+
+<pre>
+- Computes the result in O(r) time
+- More efficient than factorial-based approaches for single queries
+- Handles cases where r > n-r by computing nC(n-r) instead
+</pre>
+
+```math
+\binom{n}{r} = \frac{n \cdot (n-1) \cdot (n-2) \cdots (n - r + 1)}{r \cdot (r-1) \cdot (r-2) \cdots 1}
+```
+
+This is equivalent to:
+
+```math
+\binom{n}{r} = \frac{n!}{r!(n-r)!}
+```
+
+```cpp
+//method 1
+ll nCr(int n, int r) {
+  if (r > n) return 0;
+  if (r == 0 || r == n) return 1;
+
+  // To minimize calculations, we compute nCr = nC(n-r)
+  r = min(r, n - r);
+
+  ll result = 1;
+  for (int i = 1; i <= r; i++) {
+    result *= (n - r + i);
+    result /= i;
+  }
+  return result;
+}
+
+//method2
+ll nCr(int n, int r) {
+  if (r > n) return 0;
+  if (r == 0 || r == n) return 1;
+  ll ans = 1;
+  for (size_t i = 1; i <= min(r, n - r); i++) {
+    ans = (ans * (n - i + 1)) / i;
+  }
+  return ans;
+}
+```
+
+- <u>Dynamic Programming (Better for Multiple Queries)</u>
+
+<pre>
+- Uses Pascal's Triangle approach
+- Time complexity: O(n*r)
+- Space complexity: O(n*r)
+- Better when you need to compute many nCr values (memoization)
+</pre>
+
+```cpp
+long long nCr(int n, int r) {
+    if (r > n) return 0;
+    
+    vector<vector<long long>> dp(n+1, vector<long long>(r+1, 0));
+    
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j <= min(i, r); j++) {
+            if (j == 0 || j == i)
+                dp[i][j] = 1;
+            else
+                dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
+        }
+    }   
+    return dp[n][r];
+}
+```
+
+```cpp
+//space optimized dp
+long long nCr(int n, int r) {
+    if (r > n) return 0;
+    
+    vector<long long> dp(r+1, 0);
+    dp[0] = 1;
+    
+    for (int i = 1; i <= n; i++) {
+        for (int j = min(i, r); j > 0; j--) {
+            dp[j] = dp[j] + dp[j-1];
+        }
+    }
+    
+    return dp[r];
+}
+```
+<pre>
+- For single queries: Use Method 1 (fastest)
+- For multiple queries: Use Method 3 (most memory efficient)
+- For very large n and r: Consider using modulo arithmetic with precomputed factorials
+</pre>
 
 - <u>Given q queries. In each query, you are given two integers n and r, you will have to find nPr and nCr modulo 1e9+7 (1<=n,q<=1e6, 0<=r<=n)</u>
 
@@ -275,26 +353,46 @@ int32_t main() {//O(N + q)
 void prec() {
     // Factorials and inverses
     f[0] = 1;
-    for (int i = 1; i < N; i++) f[i] = 1LL * i * f[i - 1] % mod;
+    for (int i = 1; i < N; i++) {
+        f[i] = 1LL * i * f[i - 1] % mod;
+    }
     //The code computes inverses for all numbers from 1 to N-1 using this recursive formula:
     inv[1] = 1;
-    for (int i = 2; i < N; i++) inv[i] = 1LL * (mod - mod / i) * inv[mod % i] % mod;
+    for (int i = 2; i < N; i++) {
+        inv[i] = 1LL * (mod - mod / i) * inv[mod % i] % mod;
+    }
     finv[0] = 1;
-    for (int i = 1; i < N; i++) finv[i] = 1LL * inv[i] * finv[i - 1] % mod;
+    for (int i = 1; i < N; i++) {
+        finv[i] = 1LL * inv[i] * finv[i - 1] % mod;
+    }
 }
 ```
 
 example:
 
-- https://cses.fi/problemset/task/1079
+- [leetcode_Unique Paths](leetcode_unique_paths.cpp)
 
+<pre>
+There is a robot on an m x n grid. The robot is initially located at the top-left corner (i.e., grid[0][0]). The robot tries to move to the bottom-right corner (i.e., grid[m - 1][n - 1]). The robot can only move either down or right at any point in time.
+
+Given the two integers m and n, return the number of possible unique paths that the robot can take to reach the bottom-right corner.
+
+1 <= m, n <= 100
+</pre>
+
+- [hackerearth_K-Special Cells](./hackerearth_K-Special%20Cells.cpp)
+
+<pre>
+we need to find the total strength collected across all possible paths from the top-left corner (1,1) to the bottom-right corner (H,W) of an H×W grid, moving only right or down, while passing through K special cells that each contribute their strength when visited.
+</pre>
+
+- https://cses.fi/problemset/task/1079
 
 - [lightoj1067_Combinations](./1_basic_counting/2_combination/loghtoj1067_Combinations.cpp)
 
   <pre>
   Given n distinct objects, you want to take k of them. How many ways can you do it?
   </pre>
-
 
 - [LeetCode1922. Count Good Numbers](./LeetCode1922_Count%20Good%20Numbers.cpp)
 
@@ -318,5 +416,19 @@ example:
   
     -> 1 box can be 4 way to order
     </pre>
+
+- [cses1716_Distributing Apples](./cses1716_Distributing%20Apples.cpp)
+
+    <pre>There are n children and m apples that will be distributed to them. Your task is to count the number of ways this can be done.</pre>
+
+- [spoj_ADATEAMS](./spoj_ADATEAMS%20_Ada_and_Teams.cpp)
+
+    <pre>There are N schools from which exactly A will participate. Moreover there are B students in each school and exactly D of them will participate in the Olympiad.
+  
+    Step 1: Choose A schools from N.
+        Number of ways = C(N, A)
+    Step 2: For each of those A schools, choose D students from B.
+        Number of ways per school = C(B, D)
+    For A schools, it becomes (C(B, D))^A</pre>
 
 ---

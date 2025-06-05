@@ -5,6 +5,8 @@
 
   firstly - breakdown the problem
   then - how much (choice/option/select) for each part
+
+- Debug in combinatorics -> debug for small case
 </pre>
 
 ### Two Rule of Basic Counting

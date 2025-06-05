@@ -7,12 +7,10 @@ using namespace std;
 // naive O(2^N)
 // Pick and Don’t Pick Concept
 // Find all subsequences
-void printSubsequence(string input, string output)
-{
+void printSubsequence(string input, string output) {
   // Base Case
   // if the input is empty print the output string
-  if (input.empty())
-  {
+  if (input.empty()) {
     cout << output << endl;
     return;
   }
@@ -29,8 +27,7 @@ void printSubsequence(string input, string output)
 }
 
 // Driver code
-int main()
-{
+int main() {
   // output is set to null before passing in as a
   // parameter
   string output = "";

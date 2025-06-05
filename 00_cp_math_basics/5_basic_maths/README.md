@@ -12,9 +12,11 @@ https://aryansh-s.github.io/assets/pdf/The_Art_of_Modular_Arithmetic.pdf
     ceil-> ceil((double)a/b) ~ (a+b-1)/b... ex. ceil(7.3)=8 [(a-1)/b +1]
     round-> round(double(a)/b)... ex. round(7.3)=7, round(7.5)=8
 
+    ceil(n/x) = (n+x-1)/x;
+
 - if num is divisible by 2, then ceil(num)==floor(num), because it has not any fraction.
 
-#### Series
+#### Series and Progression
 
 https://www.cuemath.com/summation-formulas/
 ![formula](https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/correction-1718966351.jpg)
@@ -59,6 +61,16 @@ for (int i = 1; i <= n; i++) {
 }
 ```
 
+example:
+
+- [kuet_iupc_K-Beast](https://drive.google.com/file/d/1grOQsUBx4PWC9-tIAFXF62PmEvckOji0/view)
+
+<pre>
+A terrifying beast is attacking the land. To defeat it, the king has deployed N shooters, each firing bullets at their own steady pace. The ith shooter fires a bullet every ith minute.
+
+The beast requires exactly K bullets to be destroyed. If multiple shooters fire at the same minute, all bullets count toward the total. Your task is to determine the exact minute when the beast is destroyed.
+</pre>
+
 https://codeforces.com/blog/entry/118001
 
 #### Some formulas
@@ -98,3 +110,23 @@ https://codeforces.com/blog/entry/118001
       length of an arc of a circle = ((n/360) * 2 * pi * r);
 
 ---
+
+example:
+
+- https://bapsoj.org/contests/icpc-preliminary-dhaka-site-2024/problems/F
+- https://codeforces.com/contest/1463/problem/A
+- https://codeforces.com/problemset/problem/1478/B
+
+<pre>
+a<sub>i</sub> can be equal to a sum of several (one or more) lucky numbers.
+
+For any number a, if you can find a number c (where c = a - k*d for some k) such that c is non-negative and contains the digit d, then a can be written as c + k*d (where k*d is part of the sum and c contains the digit d). Thus, the solution checks all possible c values by repeatedly subtracting d from a until c becomes non-positive, and for each c, it checks if any of its digits is d.
+
+If a is large enough (specifically, a >= 10*d), then it's always possible to express a as the sum of numbers where at least one contains the digit d. This is because for a >= 10*d, we can always find a number between a - 10*d and a that contains the digit d in its tens or units place.
+</pre>
+
+### SQRT
+
+- https://codeforces.com/problemset/problem/1426/C
+
+### Miscllaneous

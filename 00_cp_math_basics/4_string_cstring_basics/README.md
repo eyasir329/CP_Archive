@@ -1,8 +1,4 @@
----
-title: "4 string basics"
-nav_order: 1
----
-
+### String
 
 <pre>
 s = s + 'a' -> O(N) -> access whole string
@@ -46,3 +42,10 @@ https://www.geeksforgeeks.org/cpp-string-functions/
 - [2030C_A TRUE Battle]()
 
 ---
+
+### Implementation
+
+- https://codeforces.com/problemset/problem/1609/B
+- https://codeforces.com/problemset/problem/2039/B
+- https://codeforces.com/problemset/problem/1536/B
+- https://codeforces.com/contest/1594/problem/C

@@ -1,8 +1,55 @@
----
-title: "1 datatype conditions"
-nav_order: 1
+### Fast Input & Output
+
+https://usaco.guide/general/fast-io?lang=cpp
+
+- input/output is slow operation
+
+<code>ios::sync_with_stdio(false)</code>
+
+This disables the synchronization between the C and C++ standard streams. By default, all standard streams are synchronized, which in practice allows you to mix C- and C++-style I/O and get sensible and expected results. If you disable the synchronization, then C++ streams are allowed to have their own independent buffers, which makes mixing C- and C++-style I/O an adventure.
+
+<code>cin.tie(nullptr)</code>
+
+This unties cin from cout. Tied streams ensure that one stream is flushed automatically before each I/O operation on the other stream.
+
+By default cin is tied to cout to ensure a sensible user interaction.
+
+- we have to use '\n' instead of endl;
+
+      endl -> '\n'+flush(buffer clear)
+
 ---
 
+#### Input with spaces
+
+- cin.getline(s,n);
+- using getline() instead of get()
+
+```cpp
+char c[100];
+int n; cin >> n;
+//cin.get(); //without these we find n-1 getline()..
+//because n '\n'..counted as first line. upto '\n' it count a line
+//char ch = getchar();//alternative
+cin.ignore();
+while (n--) {
+    cin.getline(c, 100);
+}
+```
+
+### End Of File (EOF)
+
+Input untill end of file
+
+```cpp
+while(cin>>x){
+    ans+=x;
+}
+```
+
+---
+
+### Data Types, Conditions
 
 https://usaco.guide/general/data-types?lang=cpp
 ![data_type](https://i.ibb.co.com/mCSZKPF/Screenshot-from-2024-10-02-23-41-19.png)

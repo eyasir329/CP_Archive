@@ -27,46 +27,46 @@ $$
   \begin{array}{|c|l|}
   \hline
   \textbf{Property} & \textbf{Description} \\
-  \hline
-  \text{Linear Combination} & \gcd(a, b) = d = ap + bq \\
-  \hline
-  \text{Divisor of GCD} & \text{Every common divisor of } a \text{ and } b \text{ divides } \gcd(a, b) \\
-  \hline
-  \text{GCD of Zero} & \gcd(a, 0) = |a| \text{ for } a \ne 0 \\
-  \hline
-  \text{Division Lemma} & a \mid bc \text{ and } \gcd(a, b) = d \Rightarrow \frac{a}{d} \mid c \\
-  \hline
-  \text{Scaling Rule} & \gcd(ma, mb) = m \cdot \gcd(a, b) \\
-  \hline
-  \text{Coprime Reduction} & \text{If } \gcd(a, b) = g, \text{ then } \frac{a}{g} \perp \frac{b}{g} \\
-  \hline
-  \text{Additive Property} & \gcd(a, b) = \gcd(a + mb, b) \\
-  \hline
-  \text{Euclidean Algorithm} & \gcd(a, b) = \gcd(b, a \bmod b) \\
-  \hline
-  \text{Factor Reduction} & \gcd\left(\frac{a}{m}, \frac{b}{m}\right) = \frac{\gcd(a, b)}{m} \text{ if } m \mid a, m \mid b \\
-  \hline
-  \text{Multiplicative GCD} & a_1 \perp a_2 \Rightarrow \gcd(a_1 a_2, b) = \gcd(a_1, b)\gcd(a_2, b) \\
-  \hline
-  \text{GCD 1 Case} & \gcd(a, bc) = 1 \Leftrightarrow \gcd(a, b) = \gcd(a, c) = 1 \\
-  \hline
-  \text{Commutativity} & \gcd(a, b) = \gcd(b, a) \\
-  \hline
-  \text{Associativity} & \gcd(a, \gcd(b, c)) = \gcd(\gcd(a, b), c) \\
-  \hline
-  \text{GCD \& LCM} & \gcd(a, b) \cdot \text{lcm}(a, b) = |ab| \\
-  \hline
-  \text{Distributive 1} & \gcd(a, \text{lcm}(b, c)) = \text{lcm}(\gcd(a, b), \gcd(a, c)) \\
-  \hline
-  \text{Distributive 2} & \text{lcm}(a, \gcd(b, c)) = \gcd(\text{lcm}(a, b), \text{lcm}(a, c)) \\
-  \hline
-  \text{Prime Factor Form} & \gcd(a, b) = \prod p_i^{\min(e_i, f_i)} \text{ for } a = \prod p_i^{e_i}, b = \prod p_i^{f_i} \\
-  \hline
-  \text{Lattice Points} & \gcd(a, b) = \text{number of lattice points on the segment from } (0,0) \text{ to } (a,b) \\
-  \hline
-  \text{Power Mod Formula} & \gcd(n^a - 1, n^b - 1) = n^{\gcd(a, b)} - 1 \\
-  \hline
-  \text{Totient Identity} & \gcd(a, b) = \sum_{k \mid a,\,k \mid b} \varphi(k) \\
+  \hline\\
+  \text{Linear Combination} & \gcd(a, b) = d = ap + bq \\\\
+  \hline\\
+  \text{Divisor of GCD} & \text{Every common divisor of } a \text{ and } b \text{ divides } \gcd(a, b) \\\\
+  \hline\\
+  \text{GCD of Zero} & \gcd(a, 0) = |a| \text{ for } a \ne 0 \\\\
+  \hline\\
+  \text{Division Lemma} & a \mid bc \text{ and } \gcd(a, b) = d \Rightarrow \frac{a}{d} \mid c \\\\
+  \hline\\
+  \text{Scaling Rule} & \gcd(ma, mb) = m \cdot \gcd(a, b) \\\\
+  \hline\\
+  \text{Coprime Reduction} & \text{If } \gcd(a, b) = g, \text{ then } \frac{a}{g} \perp \frac{b}{g} \\\\
+  \hline\\
+  \text{Additive Property} & \gcd(a, b) = \gcd(a + mb, b) \\\\
+  \hline\\
+  \text{Euclidean Algorithm} & \gcd(a, b) = \gcd(b, a \bmod b) \\\\
+  \hline\\
+  \text{Factor Reduction} & \gcd\left(\frac{a}{m}, \frac{b}{m}\right) = \frac{\gcd(a, b)}{m} \text{ if } m \mid a, m \mid b \\\\
+  \hline\\
+  \text{Multiplicative GCD} & a_1 \perp a_2 \Rightarrow \gcd(a_1 a_2, b) = \gcd(a_1, b)\gcd(a_2, b) \\\\
+  \hline\\
+  \text{GCD 1 Case} & \gcd(a, bc) = 1 \Leftrightarrow \gcd(a, b) = \gcd(a, c) = 1 \\\\
+  \hline\\
+  \text{Commutativity} & \gcd(a, b) = \gcd(b, a) \\\\
+  \hline\\
+  \text{Associativity} & \gcd(a, \gcd(b, c)) = \gcd(\gcd(a, b), c) \\\\
+  \hline\\
+  \text{GCD \& LCM} & \gcd(a, b) \cdot \text{lcm}(a, b) = |ab| \\\\
+  \hline\\
+  \text{Distributive 1} & \gcd(a, \text{lcm}(b, c)) = \text{lcm}(\gcd(a, b), \gcd(a, c)) \\\\
+  \hline\\
+  \text{Distributive 2} & \text{lcm}(a, \gcd(b, c)) = \gcd(\text{lcm}(a, b), \text{lcm}(a, c)) \\\\
+  \hline\\
+  \text{Prime Factor Form} & \gcd(a, b) = \prod p_i^{\min(e_i, f_i)} \text{ for } a = \prod p_i^{e_i}, b = \prod p_i^{f_i} \\\\
+  \hline\\
+  \text{Lattice Points} & \gcd(a, b) = \text{number of lattice points on the segment from } (0,0) \text{ to } (a,b) \\\\
+  \hline\\
+  \text{Power Mod Formula} & \gcd(n^a - 1, n^b - 1) = n^{\gcd(a, b)} - 1 \\\\
+  \hline\\
+  \text{Totient Identity} & \gcd(a, b) = \sum_{k \mid a,\,k \mid b} \varphi(k) \\\\
   \hline
   \end{array}
 $$
@@ -75,7 +75,7 @@ $$
 
 ---
 
-#### Basic Examples:
+#### Examples:
 
 - What is the largest positive integer that divides 40 and 78(gcd(a,b))?
 - What about the smallest positive integer divisible by 40 and 78(lcm(a,b))?
@@ -100,9 +100,14 @@ Find any such 2 positive integers a and b such that
 gcd(a,b) + lcm(a,b) = x, 2 <= x <= 1e9 (1,x-1)
 </pre>
 
+- https://codeforces.com/problemset/problem/1370/B
+- https://codeforces.com/problemset/problem/1497/C1
+
 ---
 
 #### Advanced Examples
+
+- https://toph.co/arena?practice=682312ad79c777c71ed66cbf#!/p/681cf32075e9694df049b36d
 
 - https://codeforces.com/problemset/problem/1866/B
 

@@ -1,6 +1,5 @@
----
-layout: category
-title: 09 number theory
----
+https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-1/tutorial/
 
-{% include problem_list.html category="09_number_theory" %}
+
+the theory of numbers - andrew adler
+

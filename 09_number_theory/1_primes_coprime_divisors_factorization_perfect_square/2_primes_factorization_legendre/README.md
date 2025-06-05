@@ -220,8 +220,19 @@ void optimized_sieve(int n) {
 
 example:
 
-- [spoj_TDKPRIME - Finding the Kth Prime](spoj_TDKPRIME_Finding_the_Kth_Prime.cpp)
+- Task 1: https://codeforces.com/problemset/problem/154/B
+- Task 2: https://codeforces.com/problemset/problem/284/A
+- Task 3: https://codeforces.com/problemset/problem/343/A
+- Task 4: https://codeforces.com/problemset/problem/375/A
+- Task 5: https://codeforces.com/problemset/problem/495/B
+- Task 6: https://codeforces.com/problemset/problem/576/A
+- Task 7: https://codeforces.com/problemset/problem/735/D
+- Task 8: https://codeforces.com/problemset/problem/1349/A
+- Task 9: https://codeforces.com/problemset/problem/1458/A
+- https://www.spoj.com/problems/VECTAR8/
+- https://www.spoj.com/problems/HS08PAUL/
 
+- [spoj_TDKPRIME - Finding the Kth Prime](spoj_TDKPRIME_Finding_the_Kth_Prime.cpp)
 <pre>
 An integer stating the number of queries Q (equal to 50000), and Q lines follow, each containing one integer K between 1 and 5000000 inclusive.
 

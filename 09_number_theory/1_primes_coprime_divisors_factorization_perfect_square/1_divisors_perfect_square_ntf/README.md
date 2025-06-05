@@ -120,6 +120,8 @@ example:
   The second case is clearly impossible due to the strict x ∈ Z≥5 requirement from earlier, so the only valid integer x is 5 .
   </pre>
 
+- https://codeforces.com/problemset/problem/1463/A
+
 ---
 
 ### Number Theoretic Function
