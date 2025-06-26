@@ -1,142 +1,271 @@
-### Basic Maths
+## Table of Contents
 
-- (num>0) positive number
-- (num>=0) non-negative number
+* [Introduction](#introduction)
+* [Floor, Ceil, and Round](#floor-ceil-and-round)
+* [Series and Progression](#series-and-progression)
+* [Harmonic Series](#harmonic-series)
+* [Important Formulas](#important-formulas)
+* [Area Formulas](#area-formulas)
+* [Example Problems](#example-problems)
+* [Square Root Problems](#square-root-problems)
+* [Miscellaneous](#miscellaneous)
 
-https://aryansh-s.github.io/assets/pdf/The_Art_of_Modular_Arithmetic.pdf
-![notation](https://i.ibb.co.com/3ND4tTj/IMG-0043.jpg)
+---
 
-#### floor, ceil and round
+## Introduction
 
-    floor-> floor((double)a/b) ~ a/b... ex. floor(7.3)=7
-    ceil-> ceil((double)a/b) ~ (a+b-1)/b... ex. ceil(7.3)=8 [(a-1)/b +1]
-    round-> round(double(a)/b)... ex. round(7.3)=7, round(7.5)=8
+* **$\text{num} > 0$** means a positive number
+* **$\text{num} \geq 0$** means a non-negative number
 
-    ceil(n/x) = (n+x-1)/x;
+Reference:
+[The Art of Modular Arithmetic (PDF)](https://aryansh-s.github.io/assets/pdf/The_Art_of_Modular_Arithmetic.pdf)
 
-- if num is divisible by 2, then ceil(num)==floor(num), because it has not any fraction.
+![Notation](https://i.ibb.co/3ND4tTj/IMG-0043.jpg)
 
-#### Series and Progression
+---
 
-https://www.cuemath.com/summation-formulas/
-![formula](https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/correction-1718966351.jpg)
+## Floor, Ceil, and Round 
+>inside double only
 
-- arithmetic progression - difference beteen adjacent two numbers are same.
+$$
+\begin{aligned}
+&\text{floor} \to \left\lfloor \frac{a}{b} \right\rfloor \approx \frac{a}{b}, \quad \text{e.g. } \lfloor 7.3 \rfloor = 7 \\
+&\text{ceil} \to \left\lceil \frac{a}{b} \right\rceil \approx \frac{a + b - 1}{b}, \quad \text{e.g. } \lceil 7.3 \rceil = 8 \\
+&\text{round} \to \text{round}\left(\frac{a}{b}\right), \quad \text{e.g. } \text{round}(7.3) = 7, \quad \text{round}(7.5) = 8
+\end{aligned}
+$$
 
-formula can generate by: n\*(first+last)/2;
+Also:
 
-- geometric progression - ratio between two consecutive numbers is constant.
+$$
+\text{ceil}\left(\frac{n}{x}\right) = \frac{n + x - 1}{x}
+$$
 
-r > 1 => s = a*(r<sup>n</sup>-1)/(r-1) <br>
-r = 1 => s = na #ar<sup>n-1</sup> formula <br>
-0 < r < 1 => s = a*(1-r<sup>n</sup>)/(1-r) <br>
+* If $\text{num}$ is divisible by 2, then $\text{ceil}(\text{num}) = \text{floor}(\text{num})$, since no fractional part exists.
 
-<code>Notes : check overflow(if then apply as long long(1LL)), oterwise give wrong answer.
-</code>
+---
 
-![useful math functions](https://miro.medium.com/v2/resize:fit:1023/1*gQ6RMxhKkPauq92rqFv9-Q.jpeg)
+## Series and Progression
 
-example:
+Summation formulas reference:
+[Cuemath Summation Formulas](https://www.cuemath.com/summation-formulas/)
 
-- https://codeforces.com/contest/2117/problem/D
+![Formulas](https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/correction-1718966351.jpg)
 
-#### Harmonic Series
 
-https://scipp.ucsc.edu/~haber/archives/physics116A10/harmapa.pdf
-https://www.math.drexel.edu/~tolya/123_harmonic.pdf
+### 📐 Progressions
 
-<img src="https://steemitimages.com/640x0/http://i.imgur.com/vifeHmZ.png" alt="harmonic series" style="height: 60px;">
+#### **Arithmetic Progression (AP)**
 
-sum <= floor(log2(n)) + 1
+A sequence with a **constant difference** between consecutive terms.
+
+* **nth term:**
+
+  $$
+  a_n = a + (n-1)d
+  $$
+
+* **Sum of first *n* terms:**
+
+  $$
+  S_n = \frac{n}{2}(2a + (n-1)d) = n \times \frac{a_1 + a_n}{2}
+  $$
+
+#### **Geometric Progression (GP)**
+
+A sequence with a **constant ratio** between consecutive terms.
+
+* **nth term:**
+
+  $$
+  a_n = a \times r^{n-1}
+  $$
+
+* **Sum of first *n* terms:**
+
+  $$
+  S_n =
+  \begin{cases}
+  a \times \frac{r^n - 1}{r - 1}, & r \ne 1 \\
+  n \times a, & r = 1
+  \end{cases}
+  $$
+
+* **Sum of infinite terms (for** $|r| < 1$ **):**
+
+  $$
+  S_\infty = \frac{a}{1 - r}
+  $$
+
+> 🔺 **Note:** Watch for overflow in large values — use `long long` or `1LL *` as needed.
+
+---
+
+### ➕ Summation Formulas
+
+* **Sum of first *n* natural numbers:**
+
+  $$
+  \sum_{k=1}^n k = \frac{n(n+1)}{2}
+  $$
+
+* **Sum of squares of first *n* natural numbers:**
+
+  $$
+  \sum_{k=1}^n k^2 = \frac{n(n+1)(2n+1)}{6}
+  $$
+
+* **Sum of cubes of first *n* natural numbers:**
+
+  $$
+  \sum_{k=1}^n k^3 = \left( \frac{n(n+1)}{2} \right)^2
+  $$
+
+---
+
+![Useful Math Functions](https://miro.medium.com/v2/resize\:fit:1023/1*gQ6RMxhKkPauq92rqFv9-Q.jpeg)
+
+Example problem: [Codeforces 2117D](https://codeforces.com/contest/2117/problem/D)
+
+---
+
+## Harmonic Series
+
+References:
+
+* [Physics116A Harmonic Series PDF](https://scipp.ucsc.edu/~haber/archives/physics116A10/harmapa.pdf)
+* [Math Drexel Harmonic Series PDF](https://www.math.drexel.edu/~tolya/123_harmonic.pdf)
+
+<img src="https://steemitimages.com/640x0/http://i.imgur.com/vifeHmZ.png" alt="Harmonic Series" style="height:60px;">
+
+Inequality:
+
+$$
+\sum_{k=1}^n \frac{1}{k} \leq \lfloor \log_2(n) \rfloor + 1
+$$
+
+Example code snippet (Complexity \~ $O(n \log n)$):
 
 ```cpp
 int n = 1e6;
-ll sum = 0; //O(N*N) not //O(NlogN) //because of j+=i
+ll sum = 0;
 for (int i = 1; i <= n; i++) {
-  for (int j = i; j <= n; j += i) { //look like -> n*harmonic
-    sum += j;
-  }
-}
-//also same for this
-for (int i = 1; i <= n; i++) {
-  for (int j = 1; i * j <= n; j++) { // j = n/i
+  for (int j = i; j <= n; j += i) {
     sum += j;
   }
 }
 ```
 
-example:
+Equivalent alternative:
 
-- [kuet_iupc_K-Beast](https://drive.google.com/file/d/1grOQsUBx4PWC9-tIAFXF62PmEvckOji0/view)
+```cpp
+for (int i = 1; i <= n; i++) {
+  for (int j = 1; i * j <= n; j++) {
+    sum += j;
+  }
+}
+```
 
-<pre>
-A terrifying beast is attacking the land. To defeat it, the king has deployed N shooters, each firing bullets at their own steady pace. The ith shooter fires a bullet every ith minute.
+Example: [kuet\_iupc\_K-Beast (Google Drive)](https://drive.google.com/file/d/1grOQsUBx4PWC9-tIAFXF62PmEvckOji0/view)
 
-The beast requires exactly K bullets to be destroyed. If multiple shooters fire at the same minute, all bullets count toward the total. Your task is to determine the exact minute when the beast is destroyed.
-</pre>
+> A beast attacks the land. $N$ shooters fire bullets every $i$ th minute (shooter $i$).
+> Beast requires $K$ bullets to die. Multiple bullets in the same minute all count.
+> Find the exact minute beast is destroyed.
 
-https://codeforces.com/blog/entry/118001
-
-#### Some formulas
-
-<img src="https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/perimeter-formulas-1622782913.png" alt="Perimeter Formulas" height="839">
-
-- [Triangles](https://www.cuemath.com/geometry/triangles/)
-- [Median & Centroid](https://www.khanacademy.org/math/geometry-home/triangle-properties/medians-centroids/v/triangle-medians-and-centroids)
-
-      sum of natural numbers = (n * (n + 1)) / 2;
-      sum of square of natural numbers = (n * (n + 1) * ((2 * n) + 1)) / 6;
-      sum of cubes of natural numbers = ((n * n) * (n + 1) * (n + 1)) / 4;
-      nth term of an arithmetic sequence = a + ((n - 1) * d);
-      sum of arithmetic series (number of terms * average of first and last item) = (n * ((2 * a) + ((n - 1) * d))) / 2;
-      nth term of geometric sequence = a * pow(r, n - 1);[a = first_term, r = common ration];
-      sum of geometric sequence = (a * (pow(r, n) - 1)) / (r - 1);[r != 1];
-      sum of an infinite geometric sequence = a / (1 - r);[r < 1];
-
-      area:
-
-      semi perimeter (triangle)s = 1/2 * (a + b + c);
-      area(triangle) = (1/2 * base * height) = (1/2*a*b*sin(C)) = sqrt(s * (s - a) * (s - b) * (s - c));
-      area(right triangle) = (1/2 * a * b);
-      area(equilateral triangle) = (a^2 * sqrt(3)) / 4; [a = side_length]
-      area(equilateral triangle) = (h^2 * sqrt(3)) / 3; [h = altitude, height]
-      area(rectangle) = base  * height;
-      area(square) = base^2 = (1/2 * diagonal^2);
-      area(parallelogram) = (base * height) = a*b*sin(C);
-      area(rhombus) = (1/2 * d1 * d2); [d1 = diagonal1, d2 = diagonal2]
-      area(trapezoid) = (1/2 * h * (b1 + b2)); [b1 and b2 are two parallel side, h = distance between d1 and d2]
-      area(regular polygon) = (1/2 * a * p) [a (apothem)= the distance from the center to the midpoint of one of its side, p = perimeter]
-      area(circle) = (pi * r^2) = (pi * d^2) / 4; [d = diameter = 2 * r];
-      area(sector of circle) = ((n/360) * pi * r^2);[n = measure of the central angle]
-
-      circumference / perimeter
-      circumference(circle) = (2 * pi * r);
-      length of an arc of a circle = ((n/360) * 2 * pi * r);
+[CF Blog Reference](https://codeforces.com/blog/entry/118001)
 
 ---
 
-example:
+## Important Formulas
 
-- https://bapsoj.org/contests/icpc-preliminary-dhaka-site-2024/problems/F
-- https://codeforces.com/contest/1463/problem/A
-- https://codeforces.com/problemset/problem/1478/B
-- https://codeforces.com/problemset/problem/1455/B
+![Perimeter Formulas](https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/perimeter-formulas-1622782913.png)
 
-<pre>
-a<sub>i</sub> can be equal to a sum of several (one or more) lucky numbers.
+* [Triangles - Cuemath](https://www.cuemath.com/geometry/triangles/)
+* [Median & Centroid - Khan Academy](https://www.khanacademy.org/math/geometry-home/triangle-properties/medians-centroids/v/triangle-medians-and-centroids)
 
-For any number a, if you can find a number c (where c = a - k*d for some k) such that c is non-negative and contains the digit d, then a can be written as c + k*d (where k*d is part of the sum and c contains the digit d). Thus, the solution checks all possible c values by repeatedly subtracting d from a until c becomes non-positive, and for each c, it checks if any of its digits is d.
+---
 
-If a is large enough (specifically, a >= 10*d), then it's always possible to express a as the sum of numbers where at least one contains the digit d. This is because for a >= 10*d, we can always find a number between a - 10*d and a that contains the digit d in its tens or units place.
-</pre>
+### Area Formulas
 
-### SQRT
+* Semi-perimeter of a triangle:
+  $s = \frac{a + b + c}{2}$
 
-- https://codeforces.com/problemset/problem/1426/C
+* Area of triangle (various formulas):
 
-### Miscllaneous
+  $$
+  \frac{1}{2} \times \text{base} \times \text{height} = \frac{1}{2}ab \sin C = \sqrt{s(s - a)(s - b)(s - c)}
+  $$
 
-<i> Precision</i>
+* Area of right triangle:
+  $\frac{1}{2}ab$
 
-- https://codeforces.com/problemset/problem/1598/C
-- https://atcoder.jp/contests/abc136/tasks/abc136_b
+* Area of equilateral triangle (side length $a$):
+  $\frac{a^2 \sqrt{3}}{4}$
+
+* Area of equilateral triangle (using altitude $h$):
+  $\frac{h^2 \sqrt{3}}{3}$
+
+* Area of rectangle:
+  $\text{base} \times \text{height}$
+
+* Area of square:
+  $\text{base}^2 = \frac{1}{2} \times \text{diagonal}^2$
+
+* Area of parallelogram:
+  $\text{base} \times \text{height} = ab \sin C$
+
+* Area of rhombus:
+  $\frac{1}{2} d_1 d_2$
+
+* Area of trapezoid:
+  $\frac{1}{2} h (b_1 + b_2)$
+
+* Area of regular polygon (with apothem $a$ and perimeter $p$):
+  $\frac{1}{2} a p$
+
+* Area of circle (radius $r$, diameter $d = 2r$):
+  $\pi r^2 = \frac{\pi d^2}{4}$
+
+* Area of sector of a circle (central angle $n$ degrees):
+  $\frac{n}{360} \pi r^2$
+
+* Circumference of a circle:
+  $2 \pi r$
+
+* Length of an arc (angle $n$):
+  $\frac{n}{360} \times 2 \pi r$
+
+---
+
+## Example Problems
+
+* [BAPSOJ ICPC Preliminary Dhaka Site 2024 - Problem F](https://bapsoj.org/contests/icpc-preliminary-dhaka-site-2024/problems/F)
+* [Codeforces 1463A](https://codeforces.com/contest/1463/problem/A)
+* [Codeforces 1478B](https://codeforces.com/problemset/problem/1478/B)
+
+* [Codeforces 1455B](https://codeforces.com/problemset/problem/1455/B)
+> $$
+> \begin{aligned}
+> a_i &\text{ can be expressed as a sum of several lucky numbers.} \\
+> \text{If there exists } c &= a - k \times d, \quad c \geq 0, \text{ and } c \text{ contains the digit } d, \\
+> \text{then } a &= c + k \times d. \\
+> \text{We check all possible } c &\text{ by subtracting } d \text{ repeatedly from } a \text{ until } c \leq 0. \\
+> \text{If } a &\geq 10 \times d, \text{ it is always possible to write } a \text{ in this way}.
+> \end{aligned}
+> $$
+---
+
+## Square Root Problems
+
+* [Codeforces 1426C](https://codeforces.com/problemset/problem/1426/C)
+
+---
+
+## Miscellaneous
+
+### Precision
+
+* [Codeforces 1598C](https://codeforces.com/problemset/problem/1598/C)
+* [AtCoder ABC136 B](https://atcoder.jp/contests/abc136/tasks/abc136_b)
+
+---
