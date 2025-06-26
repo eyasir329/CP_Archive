@@ -9,7 +9,7 @@
 </pre>
 
 example:
-
+- https://lightoj.com/problem/rooks
 - [cses1072_Two Knights]()
 
   <pre>

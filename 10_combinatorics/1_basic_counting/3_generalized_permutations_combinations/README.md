@@ -194,6 +194,8 @@ Deal 5 cards each to 4 players from 52-card deck:
 
 ![db2](https://i.ibb.co.com/nD3m73n/IMG-0277.jpg)
 
+
+
 #### Case 2: Indistinguishable Objects → Distinguishable Boxes
 
 **Formula**: Same as combinations with repetition

@@ -172,7 +172,9 @@ In general, for N there will be N-1 dashes, and out of those we want to choose K
 ---
 
 ### Code
+
 - <u>nCr using Naive Recursive method</u>
+
 ```cpp
 //nCr using naive recursion -> O(2^n)
 int binomial(int n, int k, int p) {
@@ -240,9 +242,9 @@ ll nCr(int n, int r) {
 ```cpp
 long long nCr(int n, int r) {
     if (r > n) return 0;
-    
+
     vector<vector<long long>> dp(n+1, vector<long long>(r+1, 0));
-    
+
     for (int i = 0; i <= n; i++) {
         for (int j = 0; j <= min(i, r); j++) {
             if (j == 0 || j == i)
@@ -250,7 +252,7 @@ long long nCr(int n, int r) {
             else
                 dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
         }
-    }   
+    }
     return dp[n][r];
 }
 ```
@@ -259,19 +261,20 @@ long long nCr(int n, int r) {
 //space optimized dp
 long long nCr(int n, int r) {
     if (r > n) return 0;
-    
+
     vector<long long> dp(r+1, 0);
     dp[0] = 1;
-    
+
     for (int i = 1; i <= n; i++) {
         for (int j = min(i, r); j > 0; j--) {
             dp[j] = dp[j] + dp[j-1];
         }
     }
-    
+
     return dp[r];
 }
 ```
+
 <pre>
 - For single queries: Use Method 1 (fastest)
 - For multiple queries: Use Method 3 (most memory efficient)
@@ -430,5 +433,7 @@ we need to find the total strength collected across all possible paths from the 
     Step 2: For each of those A schools, choose D students from B.
         Number of ways per school = C(B, D)
     For A schools, it becomes (C(B, D))^A</pre>
+
+- https://codeforces.com/problemset/problem/288/B
 
 ---

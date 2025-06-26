@@ -36,6 +36,10 @@ r = 1 => s = na #ar<sup>n-1</sup> formula <br>
 
 ![useful math functions](https://miro.medium.com/v2/resize:fit:1023/1*gQ6RMxhKkPauq92rqFv9-Q.jpeg)
 
+example:
+
+- https://codeforces.com/contest/2117/problem/D
+
 #### Harmonic Series
 
 https://scipp.ucsc.edu/~haber/archives/physics116A10/harmapa.pdf
@@ -116,6 +120,7 @@ example:
 - https://bapsoj.org/contests/icpc-preliminary-dhaka-site-2024/problems/F
 - https://codeforces.com/contest/1463/problem/A
 - https://codeforces.com/problemset/problem/1478/B
+- https://codeforces.com/problemset/problem/1455/B
 
 <pre>
 a<sub>i</sub> can be equal to a sum of several (one or more) lucky numbers.
@@ -130,3 +135,8 @@ If a is large enough (specifically, a >= 10*d), then it's always possible to exp
 - https://codeforces.com/problemset/problem/1426/C
 
 ### Miscllaneous
+
+<i> Precision</i>
+
+- https://codeforces.com/problemset/problem/1598/C
+- https://atcoder.jp/contests/abc136/tasks/abc136_b

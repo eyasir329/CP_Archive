@@ -101,6 +101,7 @@ example:
   </pre>
 
 - https://codeforces.com/contest/2078/problem/C
+- https://codeforces.com/problemset/problem/1592/B
 
 ---
 

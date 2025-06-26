@@ -102,6 +102,7 @@ with a value range of −2<sup>127</sup> . . . 2<sup>127</sup> − 1 or about �
 is not available in all contest systems
 
 - unsigned long long (range 0 -> 2^64-1 (1.8\*10<sup><b>19</b></sup>)), occupies 8 bytes of memory.
+- integer range upto 2e9
 
 ```cpp
 //read, write function of 128 bit integer
@@ -200,7 +201,7 @@ example:
 - it's always better to use integer data type, use same type everywhere.
 - we have to be careful to use (NEVER EVER DO, UNTILL HAVE TO DO)
 - [Cautions for use inbuild functions](https://codeforces.com/blog/entry/107717)
-
+- Floating point is inaccurate. 
 ```cpp
 log2()->__lg()->give us floor (max set number),
 int ans = 0;

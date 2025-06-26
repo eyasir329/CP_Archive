@@ -1,117 +1,180 @@
-- [Operator Precedence](https://en.cppreference.com/w/cpp/language/operator_precedence)
+# 📚 Table of Contents
 
-  ![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDm_FtxeGKfyUhd-byPJ8Y34EKecgA7GwKXuF_IxJPrE4TKqzOsdZKybAkHC42NM7rs74hUzIklDTlhFCzq1RdLJm4sonfEEuA6fFSbP9SDXUfCicb2HO2kFimKV58CGr9Rx3RYsXR04Ie/s1600/untitled_thumb.png)
+* 🔢 [Operator Precedence](#-operator-precedence)
+* 📈 [Exponential and Logarithmic Functions](#-exponential-and-logarithmic-functions)
+* ⏱️ [Time and Space Complexity](#️-time-and-space-complexity)
+* 🧮 [Algorithm Complexity Table](#-algorithm-complexity-table)
+* 🔍 [Common Complexities & Constraints](#-common-complexities--constraints)
+* 🧼 [Memory Initialization](#memory-initialization)
 
 ---
 
-### Exponential and Logarithmic Functions
+## 🔢 Operator Precedence
 
-- a<sup>k</sup> = x -> log<sub>a</sub>(x) = k;
+* [Operator Precedence](https://en.cppreference.com/w/cpp/language/operator_precedence)
 
-|  x  |  2<sup>x</sup>  | log<sub>2</sub>(Y)</br> (Where Y=2<sup>x</sup>) |
-| :-: | :-------------: | :---------------------------------------------: |
-| 20  | 10<sup>6</sup>  |                      19.9                       |
-| 30  | 10<sup>9</sup>  |                      29.9                       |
-| 60  | 10<sup>18</sup> |                      59.8                       |
+  ![Operator Table](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDm_FtxeGKfyUhd-byPJ8Y34EKecgA7GwKXuF_IxJPrE4TKqzOsdZKybAkHC42NM7rs74hUzIklDTlhFCzq1RdLJm4sonfEEuA6fFSbP9SDXUfCicb2HO2kFimKV58CGr9Rx3RYsXR04Ie/s1600/untitled_thumb.png)
 
-- some number, everytime divide it by 2(k) until became 1, how much operation need? (floor(log<sub>k</sub>N))
+---
 
-[2020A_Find Minimum Operations](./5_basic_maths/divisors_modulo/2020A_Find%20Minimum%20Operations.cpp)
+## 📈 Exponential and Logarithmic Functions
 
-https://www.cuemath.com/log-formulas/
+* $a^k = x \Rightarrow \log_a(x) = k$
 
-![log properties](https://mathgotserved.com/x/cdn/?https://storage.googleapis.com/wzukusers/user-19977666/images/5866e108c1fb01HOWam7/Logarithm-properties-ultimate-cheat-sheet-formula-product-quotient-power-root-inverse-identity-zero-change-equality-reciprocal_d600.PNG)
+|  x  |   $2^x$   | $\log_2(Y)$<br/>(where $Y = 2^x$) |
+| :-: | :-------: | :-------------------------------: |
+|  20 |   $10^6$  |                19.9               |
+|  30 |   $10^9$  |                29.9               |
+|  60 | $10^{18}$ |                59.8               |
 
-- log<sub>3</sub>100 = log2(100)/log2(3)
-- number of digit in other number system :- floor(log<sub>k</sub>N))+1 (k base)
-- how much digit in n! (n<=1e5)
+---
+
+### 🔁 Repeated Division Idea
+
+* Some number, every time divide it by 2 (or $k$) until it becomes 1
+  → **How many operations?** → $\lfloor \log_k(N) \rfloor$
+
+[2020A\_Find Minimum Operations](./5_basic_maths/divisors_modulo/2020A_Find%20Minimum%20Operations.cpp)
+
+* [Log formulas – Cuemath](https://www.cuemath.com/log-formulas/)
+
+![Log Properties](https://storage.googleapis.com/wzukusers/user-19977666/images/5866e108c1fb01HOWam7/Logarithm-properties-ultimate-cheat-sheet-formula-product-quotient-power-root-inverse-identity-zero-change-equality-reciprocal_d600.PNG)
+
+---
+
+### 🧠 Other Logarithmic Notes
+
+* $\log_3(100) = \frac{\log_2(100)}{\log_2(3)}$
+* **Number of digits in base $k$**:
+
+  $$
+  \lfloor \log_k(N) \rfloor + 1
+  $$
+
+---
+
+### 📊 Digits in Factorial $n!$ (for $n \leq 10^5$)
+
+* Using log product property:
 
 ```cpp
-//using log product property
 double sum = 0;
-for (int i = 1; i <= n; i++ > {
-sum += log10(i);
-})
+for (int i = 1; i <= n; i++) {
+    sum += log10(i);
+}
 cout << floor(sum) + 1 << endl;
 ```
 
-#
+---
 
-### Time and Space Complexity
+## ⏱️ Time and Space Complexity
 
-https://usaco.guide/bronze/time-comp?lang=cpp
+* [USACO Time Complexity Guide](https://usaco.guide/bronze/time-comp?lang=cpp)
 
-- Big O notation, which expresses
-  worst-case time complexity as a function of
-  $n$
-  as
-  $n$
-  gets arbitrarily large.
+* Big O notation expresses **worst-case** time complexity as a function of $n$ as $n$ grows large.
 
-![Time Complexity](https://miro.medium.com/v2/resize:fit:1400/1*xq73u1N7ZsTE2MJ9jsj0CA.png)
-
-- 1s <--> 10<sup>8</sup> Operations
-
-        - bool of array -> n*1byte (1MB -> byte/1e6)(8 time slower than bool of vector)
-        - bool of vector/bitset -> n*1bit
-        - int of vector -> n*4byte (1byte->8bit)
-        - 256MB memory limit, maxsize of my array?
-                4x/1e6 = 256
-                -> x = 6.4e7// bitset can be 1e9+
-
-### Algorithm Complexity Table
-
-https://usaco.guide/PAPS.pdf#page=99
-
-![maxn](https://i.ibb.co.com/gJcN1Q4/Screenshot-from-2024-10-11-00-22-26.png)
-
-https://usaco.guide/bronze/time-comp?lang=cpp
-
-### Common Complexities and Constraints
-
-- Mathematical formulas that just calculate an answer: **O(1)**
-- Binary search: **O(log⁡n)**
-- Sorted set/map or priority queue: **O(log⁡n)** per operation
-
-- Prime factorization of an integer, or checking primality or compositeness of an integer naively: **O(n)**
-- Reading in n items of input: **O(n)**
-- Iterating through an array or a list of nn elements: **O(n)**
-- Sorting: usually O(nlog⁡n) for default sorting algorithms (mergesort, Collections.sort, Arrays.sort)
-- Java Quicksort Arrays.sort function on primitives: **O(n<sup>2</sup>)**
-
-- Iterating through all subsets of size k of the input elements: **O(n<sup>k</sup>)**. For example, iterating through all triplets is **O(n<sup>3</sup>)**
-- Iterating through all subsets: **O(2<sup>n</sup>)**~(1<<n)
-- Iterating through all permutations: **O(n!)**
+![Time Complexity Chart](https://miro.medium.com/v2/resize\:fit:1400/1*xq73u1N7ZsTE2MJ9jsj0CA.png)
 
 ---
 
-#### Memory Initialization
+### ⚙️ Memory Considerations
 
-<code>memset</code>
+* 1s ⟷ $10^8$ operations
 
-```cpp
-//work byte by byte
+#### Array Sizes & Memory Use
 
-char s[10];
-memset(s, 'a', 5); //first five replace by 'a'//char need 1 byte
-s[5] = '\0';
-cout << s << endl;
+* `bool` array → $n \times 1$ byte
+  *(1MB = bytes / 1e6)*
+  *(8x slower than vector<bool>)*
 
-//int 4 byte, ll 8 byte
-//initialize by (0/-1) in (int/long long) //accidentaly currect
-int a[10];
-memset(a, 0, 10 * 4); //a[0]=4byte
-->in long long memset(a, 0, 10 * 8); //a[0]=8byte
-memset(a, 0, a.sizeof(a)); //also work in multi-dimension
+* `vector<bool>` / `bitset` → $n \times 1$ **bit**
+
+* `vector<int>` → $n \times 4$ bytes
+  *(1 byte = 8 bits)*
+
+#### 256MB Limit (int array example)
+
+```
+4x / 1e6 = 256
+→ x = 6.4e7
 ```
 
-<code>fill</code>
+> **bitset** can go up to \~1e9+
 
-      //work for every number
-      fill(a,a+n,x)
+---
 
-- memset is faster than fill, but both O(n)
-- by default global variables is initialize by zero but local variables not
-- declare large array globally//because it store in data segment, that are bigger in stack memory segment
+### ⚠️ Big-O Tips
 
-#
+* In Big-O notation, **ignore constant factors**
+
+---
+
+## 🧮 Algorithm Complexity Table
+
+* [Full Table (PAPS.pdf → Page 99)](https://usaco.guide/PAPS.pdf#page=99)
+
+![Algorithm Table](https://i.ibb.co.com/gJcN1Q4/Screenshot-from-2024-10-11-00-22-26.png)
+
+* Also covered in:
+  [https://usaco.guide/bronze/time-comp?lang=cpp](https://usaco.guide/bronze/time-comp?lang=cpp)
+
+---
+
+## 🔍 Common Complexities & Constraints
+
+* **O(1)** – Mathematical formula
+
+* **O(log n)** – Binary search, map/set access
+
+* **O(n)** – Reading input, simple loops
+
+* **O(n log n)** – Sorting (e.g., mergesort)
+
+* **O(n²)** – Java `Arrays.sort()` worst case (quicksort)
+
+* **O(n^k)** – All size-k subsets (e.g. triplets → O(n³))
+
+* **O(2^n)** – All subsets → `(1 << n)`
+
+* **O(n!)** – All permutations
+
+---
+
+## 🧼 Memory Initialization
+
+### 🧵 `memset` – Byte-Level Initialization
+
+```cpp
+// works byte by byte
+char s[10];
+memset(s, 'a', 5); // first five replaced by 'a'
+s[5] = '\0';
+cout << s << endl;
+```
+
+```cpp
+// int = 4 bytes, long long = 8 bytes
+// accidental correctness for (0/-1)
+int a[10];
+memset(a, 0, 10 * 4); // a[0] = 4 bytes
+// for long long:
+memset(a, 0, 10 * 8); // a[0] = 8 bytes
+
+// also works for multi-dimensional:
+memset(a, 0, sizeof(a));
+```
+
+---
+
+### 🧩 `fill` – Value-Wise Initialization
+
+```cpp
+// works for every number type
+fill(a, a + n, x);
+```
+
+* `memset` is faster than `fill`, but both are **O(n)**
+* By default, **global variables are zero-initialized**, but **local variables are not**
+* Declare **large arrays globally** (stored in **data segment**, which is larger than **stack**)
+
+---
