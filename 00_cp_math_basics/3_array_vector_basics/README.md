@@ -46,6 +46,40 @@ int main() {
     return 0;
 }
 ```
+### Vector
+
+```cpp
+//some functions in vector
+v.clear()->O(N)
+v.assign(10,1) //upto 10th element assign by 1
+v.sort(v.begin()+1,v.end()-1)//{8, 1, 2, 3, 1}//right exclusive
+v.insert(v.begin()+i,x);//immediade pos go to next
+v.erase(v.begin()+i);//next go this pos
+// range always right exclusive
+reverse(range) or sort(v.rbegin(),v.rend());
+
+swap(u,v) or u.swap(v)//swap two vectors element
+auto it = find(v.begin(),v.end(),x);//first occurance
+if(it==v.end())//not occur x
+index = it - v.begin();
+auto it = find(v.rbegin(),v.rend(),x);//last occurance
+if(it==v.rend())//not occur x
+
+count(v.begin(),v.end(),x);
+accumulate(v.begin(),v.end(),0LL);//0LL initial sum
+*min_element(v.begin(),v.end());
+*max_element(v.begin(),v.end());
+
+partial_sum(v.begin(),v.end(),pre.begin());
+
+```
+
+<code>right exclusive -> (v.begin(),v.end())</code>
+<br>
+
+- std::vector< ValueType >
+
+## ![vector_cheetsheet](https://hackingcpp.com/cpp/std/vector_crop.png)
 
 ```cpp
 //std::vector

@@ -1,5 +1,41 @@
 ### String
 
+```cpp
+ // index 2 to upto 2 char
+ string sub = s.substr(2,2);//char of index 2-3 [cautions its not range like]
+
+ int pos = s.find("kk");//first occurance -> O(N*N)
+ int pos = s.rfind('1');//last occurance -> O(N)
+ if(pos==string::npos)//not found (-1)
+ else //found at pos (starting index)
+ s.replace(11,5,"abcde");
+ s.append("abc");
+ s.compare("abc");
+ std::getline(std::cin, str);//line input
+
+ s+='a';//O(1)
+ s = s+'a';//O(N)
+ //works in both index based and iterator based
+ s.insert();
+ s.erase();
+
+ string s = string(c_string);
+ char c_string[] = s.c_str();
+```
+
+- std::string Interface & Utilities Overview
+
+## ![string cheatsheet](https://hackingcpp.com/cpp/std/string_crop.png)
+
+### Multidimentional Arrays and Strings
+
+example:
+
+- 2033B_Sakurako and Water
+  https://www.spoj.com/problems/MAX_NUM/en/
+
+---
+
 <pre>
 s = s + 'a' -> O(N) -> access whole string
 s += 'a' -> O(1) -> not accesssing whole string

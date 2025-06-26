@@ -1,120 +1,148 @@
-### Fast Input & Output
+# Table of Contents
 
-https://usaco.guide/general/fast-io?lang=cpp
+* [Fast Input & Output](#fast-input--output)
 
-- input/output is slow operation
+  * [Input with spaces](#input-with-spaces)
+  * [End Of File (EOF)](#end-of-file-eof)
+* [Data Types and Conditions](#data-types-and-conditions)
+* [Large Numbers](#large-numbers)
 
-<code>ios::sync_with_stdio(false)</code>
+  * [Read/Write \_\_int128 Example](#readwrite-__int128-example)
+  * [Arbitrary Precision Notes](#arbitrary-precision-notes)
+  * [Python and Java Modulo Power Examples](#python-and-java-modulo-power-examples)
+* [Some Builtin Functions](#some-builtin-functions)
+* [Other Tips](#other-tips)
 
-This disables the synchronization between the C and C++ standard streams. By default, all standard streams are synchronized, which in practice allows you to mix C- and C++-style I/O and get sensible and expected results. If you disable the synchronization, then C++ streams are allowed to have their own independent buffers, which makes mixing C- and C++-style I/O an adventure.
-
-<code>cin.tie(nullptr)</code>
-
-This unties cin from cout. Tied streams ensure that one stream is flushed automatically before each I/O operation on the other stream.
-
-By default cin is tied to cout to ensure a sensible user interaction.
-
-- we have to use '\n' instead of endl;
-
-      endl -> '\n'+flush(buffer clear)
+  * [Floating Point Caveats](#floating-point-caveats)
+  * [Program Duration Measurement](#program-duration-measurement)
+  * [Random Number Generator (C++11+)](#random-number-generator-c11)
+  * [Debugging](#debugging)
+  * [Multiplying Different Data Types](#multiplying-different-data-types)
+  * [Common Mistakes and Tips](#common-mistakes-and-tips)
 
 ---
 
-#### Input with spaces
+# Fast Input & Output
 
-- cin.getline(s,n);
-- using getline() instead of get()
+[USACO Guide: Fast I/O](https://usaco.guide/general/fast-io?lang=cpp)
+
+* Input/output operations are slow by default.
+
+```cpp
+ios::sync_with_stdio(false);
+```
+
+* Disables synchronization between C and C++ standard streams.
+* Allows independent buffering of C++ streams.
+* Mixing C-style and C++-style I/O after this may cause unexpected behavior.
+
+```cpp
+cin.tie(nullptr);
+```
+
+* Unties `cin` from `cout`.
+
+* By default, `cin` is tied to `cout` to flush `cout` before `cin` operations for sensible user interaction.
+
+* Prefer `'\n'` over `endl` for faster output since `endl` flushes the buffer.
+
+---
+
+## Input with spaces
+
+* Use `cin.getline(s, n);` or `getline()` instead of `get()` to read input lines including spaces.
 
 ```cpp
 char c[100];
 int n; cin >> n;
-//cin.get(); //without these we find n-1 getline()..
-//because n '\n'..counted as first line. upto '\n' it count a line
-//char ch = getchar();//alternative
+// cin.get(); // avoid off-by-one line reading due to leftover newline
 cin.ignore();
 while (n--) {
     cin.getline(c, 100);
 }
 ```
 
-### End Of File (EOF)
+---
 
-Input untill end of file
+## End Of File (EOF)
+
+Input until EOF example:
 
 ```cpp
-while(cin>>x){
-    ans+=x;
+while (cin >> x) {
+    ans += x;
 }
 ```
 
 ---
 
-### Data Types, Conditions
+# Data Types and Conditions
 
-https://usaco.guide/general/data-types?lang=cpp
+[USACO Guide: Data Types](https://usaco.guide/general/data-types?lang=cpp)
+
 ![data_type](https://i.ibb.co.com/mCSZKPF/Screenshot-from-2024-10-02-23-41-19.png)
 
-```
-* floating point numbers are not exact.
-* so it's generally a bad idea to compare two floating-point numbers for exact equality (==).
-* Hence, we should always expect that floating point numbers are slightly o↵.
-```
+* Floating-point numbers are not exact.
+* Avoid direct equality comparison (`==`) for floating points.
+* Use an epsilon check:
 
 ```cpp
-    if (abs(a-b) < 1e-9) {
-        // a and b are equal
-    }
+if (abs(a - b) < 1e-9) {
+    // a and b are effectively equal
+}
 ```
 
-- The usual floating point types in competitive programming are the 64-bit double
-  and, as an extension in the g++ compiler, the 80-bit long double. In most cases,
-  double is enough, but long double is **more accurate**.
+* Typical floating point types:
 
-- Some numbers cannot
-  be represented accurately as floating point numbers, and there will be rounding
-  errors.
+  * `double` (64-bit) — usually sufficient
+  * `long double` (80-bit, GCC extension) — more precise but slower
 
-* Note that while floating point numbers are inaccurate, integers up to a certain
-  limit can still be represented accurately. For example, using double, it is possible to accurately represent all integers whose absolute value is at most 2<sup>53</sup>.
+* Some numbers can’t be represented exactly, leading to rounding errors.
 
-Booleans require 1 byte (8 bits) of storage, not 1 bit, wasting the other 7 bits of storage. To use less memory, one can use bitsets (std::bitset in C++ / BitSet in Java).
+* Integers up to $2^{53}$ can be exactly represented in double precision.
 
-https://usaco.guide/CPH.pdf#page=16
+* Booleans use 1 byte (8 bits), wasting 7 bits; to save space use `std::bitset`.
+
+---
+
+### Example: Beware subtle integer overflow
 
 ```cpp
 long long x = 123456789123456789LL;
 
-//subtle error:
 int a = 123456789;
-long long b = a*a;
-cout << b << "\n"; // -1757895751
-//solve it using
-(long long)a*a
+long long b = a * a;  // WRONG: overflow in a * a before promotion
+cout << b << "\n";    // prints incorrect value
+
+// Correct way:
+long long b_correct = (long long)a * a;
 ```
 
 ---
 
-### Large Numbers
+# Large Numbers
 
-Usually contest problems are set so that the type long long is enough. Still,
-it is good to know that the g++ compiler also provides a 128-bit type \_\_int128_t
-with a value range of −2<sup>127</sup> . . . 2<sup>127</sup> − 1 or about −10<sup>38</sup> . . . 10<sup>38</sup>. However, this type
-is not available in all contest systems
+* `long long` usually suffices in contests.
 
-- unsigned long long (range 0 -> 2^64-1 (1.8\*10<sup><b>19</b></sup>)), occupies 8 bytes of memory.
-- integer range upto 2e9
+* GCC supports `__int128_t` (128-bit integer), range approx $-10^{38}$ to $10^{38}$, but not always available.
+
+* `unsigned long long` ranges from 0 to $2^{64} - 1 \approx 1.8 \times 10^{19}$.
+
+* Integer typical range: up to about 2e9 (signed 32-bit int).
+
+---
+
+## Read/Write \_\_int128 Example
 
 ```cpp
-//read, write function of 128 bit integer
 #include <bits/stdc++.h>
 using namespace std;
 
 __int128 read() {
     string s; cin >> s;
     __int128 ans = 0;
-    for (int i = 0; i < s.size(); i++) {
-        ans = ans * 10 + (s[i] - '0');
-    }
+    for (char ch : s)
+        ans = ans * 10 + (ch - '0');
     return ans;
 }
 
@@ -129,7 +157,7 @@ string to_string(__int128 x) {
 }
 
 void write(__int128 x) {
-    cout << to_string(x) << endl;
+    cout << to_string(x) << "\n";
 }
 
 int32_t main() {
@@ -139,30 +167,30 @@ int32_t main() {
 }
 ```
 
-```
-In Python:
-- Arbitrary-Precision: int type can grow as large as memory allows.
-- Memory constraints: Size is limited by available system memory.
+---
 
-In Java:
-- Arbitrary Precision: BigInteger handles integers limited by available memory.
-- Memory Limitation: Size is constrained by system memory, more memory needed for larger numbers.
-- Efficiency: Operations on large BigIntegers take more time and memory.
-- Practical Example: BigInteger with 100,000 digits works if system memory allows.
-```
+## Arbitrary Precision Notes
 
-- https://vjudge.net/problem/CodeForces-913A
+* **Python:**
+  `int` is arbitrary precision, limited by available memory.
+
+* **Java:**
+  `BigInteger` allows arbitrary precision integers, limited by memory. Larger numbers need more memory and CPU time.
+
+---
+
+## Python and Java Modulo Power Examples
 
 ```py
-#using python
+# Python
 n = int(input())
 m = int(input())
 twon = 1 << n
-print(m % twon)`
+print(m % twon)
 ```
 
 ```java
-//using java
+// Java
 import java.math.BigInteger;
 import java.util.Scanner;
 
@@ -171,97 +199,116 @@ public class ModuloPower {
         Scanner scanner = new Scanner(System.in);
         long n = scanner.nextLong();
         BigInteger m = scanner.nextBigInteger();
-        BigInteger twon = BigInteger.valueOf(2).pow((int) n);
+        BigInteger twon = BigInteger.valueOf(2).pow((int)n);
         System.out.println(m.mod(twon));
         scanner.close();
     }
 }
 ```
 
-example:
-
-- [lightoj_equal ju ncpc 23](./1_datatype_conditions/lightoj_equal.cpp)
+* Example problem: [lightoj\_equal ju ncpc 23](./1_datatype_conditions/lightoj_equal.cpp)
 
 ---
 
-#### Some builtin function
+# Some Builtin Functions
 
-- round, llround
-- log -> natural log, log2, log10
-- sqrt, cbrt -> cube root
-- stoi, stoll, to_string
-- is_sorted, rand -> random number (srand(time(0)) seed the random number generator-change everytime)
-- isalpa, isdigit, islower, isupper, tolower, toupper
+* `round`, `llround`
+* `log` (natural), `log2`, `log10`
+* `sqrt`, `cbrt` (cube root)
+* `stoi`, `stoll`, `to_string`
+* `is_sorted`, `rand` (use `srand(time(0))` for seed)
+* `isalpha`, `isdigit`, `islower`, `isupper`, `tolower`, `toupper`
 
 ---
 
-#### Other's Things\*
+# Other Tips
 
-- better to use double instead of float to have more accuracy (not precious 100%)
-- it's always better to use integer data type, use same type everywhere.
-- we have to be careful to use (NEVER EVER DO, UNTILL HAVE TO DO)
-- [Cautions for use inbuild functions](https://codeforces.com/blog/entry/107717)
-- Floating point is inaccurate. 
+* Use `double` instead of `float` for better accuracy (not 100% exact).
+* Prefer using integer data types consistently.
+* Be careful when mixing data types.
+
+---
+
+## Floating Point Caveats
+
 ```cpp
-log2()->__lg()->give us floor (max set number),
+// log2() or __lg() gives floor(log2(n))
 int ans = 0;
-while (n > 1) { //0(logn) but accurate
-      ans++;
-      n /= 2;
+while (n > 1) {  // O(log n)
+    ans++;
+    n /= 2;
 }
-pow()->round(pow()),
-    int ans = 1;
-for (int i = 0; i < b; i++) { //log(b) but accurate
-      ans *= a;
+
+int ans = 1;
+for (int i = 0; i < b; i++) {  // O(b)
+    ans *= a;
 }
-sqrt()->//similar to cubic root
-long long ans = sqrt(n);//sqrtl()
-while (ans * ans <= n)++ans;
-while (ans * ans > n)--ans;
+
+long long ans = sqrt(n);
+while (ans * ans <= n) ++ans;
+while (ans * ans > n) --ans;
 cout << ans << endl;
 ```
 
-because that are return double values.
+* These return doubles and may have rounding errors.
 
-[Dhaka ICPC 24 Preli Three Quick Brown Foxes Jump Over a Lazy Chicken]()
+---
 
-- long double is more precise that double//but not use float
-
-- compare two double
-
-```cpp
-  if(a-b<1e-9){
-    //they are equal
-  }
-```
-
-- cout<<setprecision(10)<<num; //from starting//rounding last digit
-- cout<<fixed<<setprecision(10)<<num; //from after dot
-
-- program duration
+* `long double` is more precise than `double` (avoid using `float`).
+* Comparing two doubles:
 
 ```cpp
-    clock_t start,end;
-    start = clock();//store clock tick (between 1e6)
-        ....
-    end = clock();
-    cerr<<1.0*(end-start)/CLOCKS_PER_SEC<<" sec"<<endl;
+if (abs(a - b) < 1e-9) {
+    // considered equal
+}
 ```
+
+* Control decimal precision:
+
+```cpp
+cout << setprecision(10) << num;           // set precision globally
+cout << fixed << setprecision(10) << num;  // fixed decimal places after dot
+```
+
+---
+
+# Program Duration Measurement
+
+```cpp
+clock_t start, end;
+start = clock();
+// ... code to measure ...
+end = clock();
+cerr << 1.0 * (end - start) / CLOCKS_PER_SEC << " sec\n";
+```
+
+---
+
+# Random Number Generator (C++11+)
 
 ```cpp
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 ```
 
-- assert(condition) -> if true noting happened otherwise give runtime error. -- using for debugging purpose.
+---
 
-- Multiplying two different Data Types
+# Debugging
 
-      -> smaller type gets promoted to the larger type
+* Use `assert(condition)` — if false, triggers runtime error (useful for debugging).
 
-- common mistakes
+---
 
-  https://codeforces.com/blog/entry/111217
+# Multiplying Different Data Types
 
-- be careful in v.size()-1 -> because of unsigned int doesn't have negative number
+* Smaller type is promoted to the larger type during multiplication.
 
-- be careful in multiple test case (all variable need to be reinitialization)
+---
+
+# Common Mistakes and Tips
+
+* Beware of unsigned types, e.g., `v.size() - 1` can cause underflow because `size()` returns unsigned.
+* Reinitialize variables for multiple test cases.
+
+Reference: [https://codeforces.com/blog/entry/111217](https://codeforces.com/blog/entry/111217)
+
+---

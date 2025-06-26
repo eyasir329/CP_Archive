@@ -2,10 +2,10 @@
 
 * 🔢 [Operator Precedence](#-operator-precedence)
 * 📈 [Exponential and Logarithmic Functions](#-exponential-and-logarithmic-functions)
-* ⏱️ [Time and Space Complexity](#️-time-and-space-complexity)
+* ⏱️ [Time and Space Complexity](#-time-and-space-complexity)
 * 🧮 [Algorithm Complexity Table](#-algorithm-complexity-table)
 * 🔍 [Common Complexities & Constraints](#-common-complexities--constraints)
-* 🧼 [Memory Initialization](#memory-initialization)
+* 🧼 [Memory Initialization](#-memory-initialization)
 
 ---
 
