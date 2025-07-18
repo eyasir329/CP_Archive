@@ -46,6 +46,12 @@ int main() {
     return 0;
 }
 ```
+
+### STL Array
+
+- c_type array(not stl array) pass by referrence by default.
+- pass by value need more time than pass by reference
+
 ### Vector
 
 ```cpp
@@ -96,6 +102,62 @@ int main() {
 }
 ```
 
+- 1D to 2D
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    vector<int> oneD = {1, 2, 3, 4, 5, 6};
+    int rows = 2, cols = 3; // 2 rows × 3 columns = 6 elements
+
+    vector<vector<int>> twoD(rows, vector<int>(cols));
+
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            twoD[i][j] = oneD[i * cols + j];
+
+    // Print 2D vector
+    for (const auto &row : twoD) {
+        for (int val : row) cout << val << " ";
+        cout << '\n';
+    }
+
+    return 0;
+}
+```
+- 2D to 1D
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    vector<vector<int>> twoD = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+    int rows = twoD.size();
+    int cols = twoD[0].size();
+    vector<int> oneD(rows * cols);
+
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            oneD[i * cols + j] = twoD[i][j];
+
+    for (int val : oneD)
+        cout << val << " ";
+    cout << '\n';
+
+    return 0;
+}
+
+```
+
+### 2D Vector or Array
+
+- https://codeforces.com/contest/1517/problem/B
+
 ---
 
 ### Something on Pair-Wise
@@ -136,6 +198,8 @@ example:
 
 - https://codeforces.com/contest/2078/problem/C
 - https://codeforces.com/problemset/problem/1592/B
+- https://codeforces.com/problemset/problem/1399/C
+- https://codeforces.com/problemset/problem/1420/B
 
 ---
 
@@ -195,7 +259,25 @@ _example:_
 ---
 
 ### Subsequence
+https://www.geeksforgeeks.org/dsa/print-subsequences-string/
+```cpp
+void printPowerSet(string &s) {
+    int n = pow(2, s.size());
+    
+    for (int counter = 0; counter < n; counter++) {
+        for (int j = 0; j < s.size(); j++) {
+          
+            // Check if jth bit in the counter is set
+            if (counter & (1 << j))
+                cout << s[j];
+        }
+        cout << endl;
+    }
+}
+```
 
+- https://codeforces.com/problemset/problem/1560/D
+(optimise subsequence)
 ---
 
 ### Subset
@@ -203,3 +285,5 @@ _example:_
 - total number of subset -> 2<sup>n</sup>-1
 
 ---
+
+- https://codeforces.com/contest/2123/problem/D

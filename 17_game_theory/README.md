@@ -9,6 +9,7 @@
 </pre>
 
 example:
+
 - https://lightoj.com/problem/rooks
 - [cses1072_Two Knights]()
 
@@ -49,3 +50,121 @@ example:
 ### Nim
 
 - https://codeforces.com/problemset/problem/1382/B
+
+---
+### Others
+
+- https://codeforces.com/problemset/problem/1627/B
+
+### 🧩 Problem Statement
+
+You're given an `n × m` classroom grid. Two students, **Tina** and **Rahul**, make moves in the following order:
+
+1. **Tina** uses exactly `k` buckets of pink paint to paint `k` different seats.
+2. **Rahul** chooses an **unpainted** seat to sit in.
+3. **Tina** then chooses a **different** seat (can be painted) to sit in.
+
+* Rahul wants to sit **as close as possible** to Tina.
+* Tina wants to sit **as far as possible** from Rahul.
+
+Your task is to compute, for all `k = 0` to `n·m−1`, the **minimum possible distance** Rahul can get to Tina if both play **optimally**.
+
+---
+
+To solve **this kind of problem** — where two players act **strategically** in a grid or space with competing goals — you need to master a **topic cluster** involving:
+
+---
+
+## 🎯 Core Topics to Learn
+
+| Topic                                   | Why It's Relevant                                                             |
+| --------------------------------------- | ----------------------------------------------------------------------------- |
+| **Game Theory (2-player optimal play)** | Models interactions where players make sequential, opposing decisions.        |
+| **Greedy Algorithms**                   | Helps simulate "optimal" choices when players act selfishly.                  |
+| **Distance Geometry**                   | Often used when positions and distances matter (like Manhattan or Euclidean). |
+| **Sorting and Preprocessing**           | Allows you to precompute optimal cell choices efficiently.                    |
+| **Minimax Strategy**                    | Classic in 2-player games: One minimizes a value, the other maximizes it.     |
+| **Simulation on Grids**                 | Fundamental to handle seating plans, movement, coloring, etc.                 |
+
+---
+
+## 🧠 How to Approach These Problems
+
+### 1. **Understand Player Goals**
+
+Ask:
+
+* Who plays first?
+* What does each player want to **optimize** (maximize/minimize)?
+* Are there any **restrictions** (e.g., painted cells)?
+
+### 2. **Model the Grid**
+
+* Is it a 1D line, 2D grid, or graph?
+* Use coordinates `(i, j)` for grid cells.
+* Use a suitable distance function (Manhattan, Euclidean, etc).
+
+### 3. **Extract the Core Metric**
+
+In this problem:
+
+* The key metric is: **distance between Rahul and Tina**
+* Precompute how far each seat is from "important places" (e.g., corners)
+
+### 4. **Preprocess or Sort Efficiently**
+
+When choices depend on "best or worst seats":
+
+* Precompute metrics (distances, values, scores)
+* Sort them to simulate removing best seats
+
+### 5. **Simulate Optimal Strategy**
+
+Use sorted data to model:
+
+* What happens if player A blocks top-k best options?
+* What’s the best counterplay by player B?
+
+This is **min-max**:
+
+* Rahul: *minimize* distance
+* Tina: *maximize* distance
+* So simulate like: `min ( max(...possible responses...) )`
+
+---
+
+## 🧩 Other Examples of This Pattern
+
+* **[Codeforces 1285D - Dr. Evil Underscores](https://codeforces.com/problemset/problem/1285/D)**
+  ⇒ Minimize XOR when opponent picks worst-case value.
+
+* **[Leetcode 286 - Walls and Gates](https://leetcode.com/problems/walls-and-gates/)**
+  ⇒ BFS distance from multiple sources in a grid.
+
+* **Chess-like games (e.g., knights, kings)**
+  ⇒ Move strategically to maximize or minimize opponent’s options.
+
+---
+
+## 📚 What to Study (with Topics & Practice)
+
+| Topic                              | Resources                                                                       |
+| ---------------------------------- | ------------------------------------------------------------------------------- |
+| 🔁 **Minimax / Game Theory**       | [CP Algorithms – Game Theory](https://cp-algorithms.com/game_theory/basic.html) |
+| 🧮 **Manhattan Distance**          | Any geometry textbook or Khan Academy                                           |
+| 📐 **Grid Problems & BFS**         | [Leetcode Grid Tag](https://leetcode.com/tag/grid/)                             |
+| 🔀 **Greedy + Sorting**            | [A2OJ Greedy Sheet](https://a2oj.com/ladder?ID=15)                              |
+| 📊 **2D Preprocessing Techniques** | Prefix sums, distance maps, center-extreme cell computations                    |
+
+---
+
+## 🔑 Takeaway
+
+To solve **strategic 2-player grid problems**, combine:
+
+* **Game theory logic** (who moves when, optimal choice)
+* **Grid modeling** (how to represent space and measure distance)
+* **Sorting / Greedy** (to simulate blocking, removing options)
+* **Min-Max or Max-Min** thinking (one player blocks the other’s best moves)
+
+---

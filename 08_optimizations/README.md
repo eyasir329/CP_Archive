@@ -72,6 +72,8 @@ int32_t main() {
 
 ### Two Pointer
 
+- * https://codeforces.com/problemset/problem/1487/B
+
     1. Adhoc Two Pointer
     2. Good Segment Category*
 
@@ -373,6 +375,8 @@ for(int i=1;i<=n;i++){
 - Maximum of all subarray of length k
 
 - Number of unique elements in all subarrays of length k
+
+>example
 
 ---
 

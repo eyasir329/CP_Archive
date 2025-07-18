@@ -1,5 +1,6 @@
 # Table of Contents
 
+* [Numerical System](#numerical-system)
 * [Fast Input & Output](#fast-input--output)
 
   * [Input with spaces](#input-with-spaces)
@@ -21,6 +22,114 @@
   * [Common Mistakes and Tips](#common-mistakes-and-tips)
 
 ---
+
+# Numerical System
+
+<details>
+  <summary><strong>📘 1. Types of Number Systems</strong></summary>
+
+| Name            | Base | Digits Used       | Example        |
+| --------------- | ---- | ----------------- | -------------- |
+| **Binary**      | 2    | 0, 1              | `1011₂ = 11₁₀` |
+| **Octal**       | 8    | 0 to 7            | `17₈ = 15₁₀`   |
+| **Decimal**     | 10   | 0 to 9            | `42₁₀`         |
+| **Hexadecimal** | 16   | 0 to 9 and A to F | `2A₁₆ = 42₁₀`  |
+
+</details>
+
+<details>
+  <summary><strong>🔄 2. Conversions Between Number Systems</strong></summary>
+
+#### 🟩 A. **Decimal → Other Systems**
+
+* **To Binary**: Divide the number by 2 repeatedly, noting the remainders (bottom to top).
+* **To Octal**: Divide by 8.
+* **To Hexadecimal**: Divide by 16.
+
+##### Example: Decimal 42 to Binary
+
+```
+42 ÷ 2 = 21, remainder 0  
+21 ÷ 2 = 10, remainder 1  
+10 ÷ 2 = 5,  remainder 0  
+5 ÷ 2 = 2,   remainder 1  
+2 ÷ 2 = 1,   remainder 0  
+1 ÷ 2 = 0,   remainder 1
+
+→ 101010₂
+```
+
+---
+
+#### 🟦 B. **Binary → Decimal**
+
+Multiply each bit by 2 raised to its position (from right to left).
+
+##### Example: `1011₂`
+
+```
+= 1×2³ + 0×2² + 1×2¹ + 1×2⁰
+= 8 + 0 + 2 + 1 = 11
+```
+
+---
+
+#### 🟨 C. **Binary ↔ Octal / Hexadecimal**
+
+* Group binary digits in **3** (for octal) or **4** (for hexadecimal) from **right to left**.
+
+##### Example: Binary `11010110` → Hex
+
+```
+Group into 4s: 1101 0110
+→ 1101 = D, 0110 = 6
+→ D6₁₆
+```
+
+##### Example: Binary `101110` → Octal
+
+```
+Group into 3s: 101 110
+→ 101 = 5, 110 = 6
+→ 56₈
+```
+
+</details>
+
+<details>
+  <summary><strong>🔢 3. Number System Conversion Table (0–15)</strong></summary>
+
+| Decimal | Binary | Octal | Hexadecimal |
+| ------: | :----- | :---- | :---------- |
+|       0 | 0000   | 0     | 0           |
+|       1 | 0001   | 1     | 1           |
+|       2 | 0010   | 2     | 2           |
+|       3 | 0011   | 3     | 3           |
+|       4 | 0100   | 4     | 4           |
+|       5 | 0101   | 5     | 5           |
+|       6 | 0110   | 6     | 6           |
+|       7 | 0111   | 7     | 7           |
+|       8 | 1000   | 10    | 8           |
+|       9 | 1001   | 11    | 9           |
+|      10 | 1010   | 12    | A           |
+|      11 | 1011   | 13    | B           |
+|      12 | 1100   | 14    | C           |
+|      13 | 1101   | 15    | D           |
+|      14 | 1110   | 16    | E           |
+|      15 | 1111   | 17    | F           |
+
+</details>
+<details>
+  <summary><strong>🛠️ 4. Conversion Tip</strong></summary>
+
+When converting between:
+
+* **Binary ↔ Octal/Hex**: Group digits.
+* **Decimal ↔ Any**: Use repeated division or powers of the base.
+</details>
+
+---
+
 
 # Fast Input & Output
 
@@ -73,7 +182,6 @@ while (cin >> x) {
     ans += x;
 }
 ```
-
 ---
 
 # Data Types and Conditions
@@ -269,7 +377,8 @@ if (abs(a - b) < 1e-9) {
 cout << setprecision(10) << num;           // set precision globally
 cout << fixed << setprecision(10) << num;  // fixed decimal places after dot
 ```
-
+- https://codeforces.com/problemset/problem/200/B
+- https://atcoder.jp/contests/abc193/tasks/abc193_a?lang=en
 ---
 
 # Program Duration Measurement

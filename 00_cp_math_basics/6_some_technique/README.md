@@ -17,6 +17,7 @@ example:
 - https://codeforces.com/contest/2071/problem/B
 
 - [1828B_Permutation_Swap](1828B_Permutation_Swap.cpp)
+- https://codeforces.com/problemset/problem/1608/B
 
 ---
 
@@ -126,25 +127,5 @@ example:
 ### Mex
 
 - https://codeforces.com/contest/1496/problem/B
-
----
-
-### Some Necessary Technique
-
-#
-
-- Sort the Distance from Origin
-
-- Sort 5D Points
-- String Sort
-- Balanced Bracket
-- Sliding Window Technique
-- Kth Smallest in Each Prefix
-- Unique Elements
-- Remove B from A
-- Word Frequency
-- Occurrences
-- Update and Remove Query
-- Number of Pair of Strings such that d(a,b)<=k in Binary String
 
 ---

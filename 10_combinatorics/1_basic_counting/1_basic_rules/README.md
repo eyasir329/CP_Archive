@@ -191,3 +191,5 @@ Consider choice A with 3 options (A1,A2,A3), and choice B with 2 options (B1,B2)
 ![cp](https://i.ibb.co.com/hf4GG3w/Screenshot-from-2025-01-08-19-08-27.png)
 
 ---
+
+- https://vjudge.net/problem/atcoder-abc214_b

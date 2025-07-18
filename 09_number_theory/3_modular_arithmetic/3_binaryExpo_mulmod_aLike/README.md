@@ -24,6 +24,7 @@ int power(int x, int n, int mod) {
 }
 ```
 
+
 ###### Circular ->O(mod+period length)
 
 <pre>
@@ -167,7 +168,7 @@ int power(int x, long long n, int mod) {
     return ans;
 }
 ```
-
+- https://vjudge.net/problem/codeforces-630a
 example:
 
 - [CSES-1095_Exponentiation](./4_binary_exponentiation/cses1095_Exponentiation.cpp)

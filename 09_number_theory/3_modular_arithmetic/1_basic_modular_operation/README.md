@@ -315,3 +315,5 @@ example:
     a-b = 16 (except a=1,(b==0)1:0)
     num of divisors of a-b(16) that are more than b
   </pre>
+
+- https://codeforces.com/problemset/problem/1617/C

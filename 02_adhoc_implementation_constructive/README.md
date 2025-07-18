@@ -42,7 +42,7 @@ These problems focus on **correctly implementing a sequence of steps or rules**,
 - max/min in vector
   *max_element(), *min_element()
 ```
-
+- https://codeforces.com/contest/1485/problem/B
 ---
 
 ### Constructive Problems

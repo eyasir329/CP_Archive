@@ -68,6 +68,11 @@ while (ss >> n) {
 <code>int num = 'c' - '0'</code>
 
 https://www.geeksforgeeks.org/cpp-string-functions/
+>examples
+- https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1886
+
+### SubString
+- https://codeforces.com/problemset/problem/1437/B
 
 #### Binary String
 
@@ -85,3 +90,4 @@ https://www.geeksforgeeks.org/cpp-string-functions/
 - https://codeforces.com/problemset/problem/2039/B
 - https://codeforces.com/problemset/problem/1536/B
 - https://codeforces.com/contest/1594/problem/C
+- https://codeforces.com/problemset/problem/1354/B
