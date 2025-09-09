@@ -16,6 +16,7 @@
 
 - **$\text{num} > 0$** means a positive number
 - **$\text{num} \geq 0$** means a non-negative number
+- x<sup>0</sup> = 0, even if x == 0
 
 Reference:
 [The Art of Modular Arithmetic (PDF)](https://aryansh-s.github.io/assets/pdf/The_Art_of_Modular_Arithmetic.pdf)
@@ -168,6 +169,9 @@ A sequence with a **constant ratio** between consecutive terms.
   \sum_{k=1}^n k^3 = \left( \frac{n(n+1)}{2} \right)^2
   $$
 
+- sum of first n odd positive number -> n^2
+- sum of first n even positive number -> n(n+1)
+
 ---
 
 Example problem: [Codeforces 2117D](https://codeforces.com/contest/2117/problem/D)
@@ -176,7 +180,9 @@ Example problem: [Codeforces 2117D](https://codeforces.com/contest/2117/problem/
 - https://codeforces.com/problemset/problem/598/A
 
 ### Ranges
+
 - https://codeforces.com/problemset/problem/1409/C
+
 ---
 
 ## Harmonic Series
@@ -186,12 +192,87 @@ References:
 - [Physics116A Harmonic Series PDF](https://scipp.ucsc.edu/~haber/archives/physics116A10/harmapa.pdf)
 - [Math Drexel Harmonic Series PDF](https://www.math.drexel.edu/~tolya/123_harmonic.pdf)
 
-<img src="https://steemitimages.com/640x0/http://i.imgur.com/vifeHmZ.png" alt="Harmonic Series" style="height:60px;">
+# Upper Bound for the Harmonic Series
 
-Inequality:
+The **harmonic series** is defined as:
 
 $$
-\sum_{k=1}^n \frac{1}{k} \leq \lfloor \log_2(n) \rfloor + 1
+H_n = \sum_{k=1}^n \frac{1}{k}.
+$$
+
+Although the harmonic series diverges as 𝑛 → ∞, we can establish a simple **upper bound** using a grouping argument:
+
+---
+
+## Result
+
+$$
+\sum_{k=1}^n \frac{1}{k} \;\leq\; \lfloor \log_2(n) \rfloor + 1
+$$
+
+---
+
+## Proof (Sketch)
+
+1. **Group terms by powers of two**
+
+   For \(n = 2^m\):
+
+   $$
+   H_n = 1 +
+   \left(\frac{1}{2} + \frac{1}{3}\right) +
+   \left(\frac{1}{4} + \frac{1}{5} + \frac{1}{6} + \frac{1}{7}\right) +
+   \cdots +
+   \left(\frac{1}{2^{m-1}} + \cdots + \frac{1}{2^m - 1}\right).
+   $$
+
+2. **Bound each group**
+
+   - Each group has \(2^{k-1}\) terms.
+   - Each term is at most \(\tfrac{1}{2^{k-1}}\).
+   - So the sum of the \(k\)-th group is:
+
+   $$
+   2^{k-1} \cdot \frac{1}{2^{k-1}} = 1.
+   $$
+
+3. **Count the groups**
+
+   - There are \(m\) groups, so:
+
+   $$
+   H_n \leq m.
+   $$
+
+   - Since \(n = 2^m\), we have:
+
+   $$
+   m = \log_2(n).
+   $$
+
+   - For general \(n\):
+
+   $$
+   \sum_{k=1}^n \frac{1}{k} \;\leq\; \lfloor \log_2(n) \rfloor + 1.
+   $$
+
+---
+
+## Key Takeaway
+
+- The harmonic series **diverges slowly**.
+- Its growth is approximately logarithmic:
+
+$$
+H_n \approx \ln n + \gamma,
+$$
+
+where \(\gamma \approx 0.577\) is the **Euler–Mascheroni constant**.
+
+- A simple but useful bound is:
+
+$$
+H_n \leq \log_2(n) + 1.
 $$
 
 Example code snippet (Complexity \~ $O(n \log n)$):
@@ -318,7 +399,6 @@ Example: [kuet_iupc_K-Beast (Google Drive)](https://drive.google.com/file/d/1grO
 
 ---
 
-
 ## Miscellaneous
 
 > Problem with Precisions
@@ -326,7 +406,8 @@ Example: [kuet_iupc_K-Beast (Google Drive)](https://drive.google.com/file/d/1grO
 - [Codeforces 1598C](https://codeforces.com/problemset/problem/1598/C)
 - [AtCoder ABC136 B](https://atcoder.jp/contests/abc136/tasks/abc136_b)
 
+### Sum of a Two Numbers
 
-
+- https://codeforces.com/contest/2132/problem/B
 
 ---

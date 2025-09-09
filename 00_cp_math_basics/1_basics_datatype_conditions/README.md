@@ -397,6 +397,10 @@ cerr << 1.0 * (end - start) / CLOCKS_PER_SEC << " sec\n";
 
 ```cpp
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
+
+//2nd method
+srand(time(0));//seed the random number generator
+int random_num = rand();
 ```
 
 ---

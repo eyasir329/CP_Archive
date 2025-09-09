@@ -66,3 +66,5 @@ https://codeforces.com/contest/2020/problem/C
         }
 
 ---
+
+- https://codeforces.com/contest/1498/problem/B

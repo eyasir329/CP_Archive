@@ -7,6 +7,7 @@ Greedy problems involve making the best local choice at each step in the hope of
 - https://codeforces.com/problemset/problem/1534/B
 - https://codeforces.com/problemset/problem/1471/B
 - https://codeforces.com/problemset/problem/1553/C
+- https://codeforces.com/contest/1498/problem/B
 
 - https://codeforces.com/problemset/problem/1385/C
 

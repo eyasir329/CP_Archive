@@ -177,10 +177,38 @@ In general, for N there will be N-1 dashes, and out of those we want to choose K
 
 ```cpp
 //nCr using naive recursion -> O(2^n)
-int binomial(int n, int k, int p) {
-    if (k == 0 || k == n) { return 1; }
-    return (binomial(n - 1, k - 1, p) + binomial(n - 1, k, p)) % p;
+int comb(int n, int r) {
+    if (r > n or r < 0) {
+        return 0;
+    }
+    if (r == 0 or r == n) {
+        return 1;
+    }
+    return comb(n - 1, r - 1) + comb(n - 1, r);
 }
+
+//method 2
+ll dp[31][31];
+
+ll comb(int n, int r) {
+    if (r > n || r < 0) return 0;
+    if (r == 0 || r == n) return 1;
+    if (dp[n][r] != -1) return dp[n][r];
+    return dp[n][r] = comb(n - 1, r - 1) + comb(n - 1, r);
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    memset(dp, -1, sizeof(dp));  // Initialize memoization table
+    int n, r;
+    cin >> n >> r;
+    cout << comb(n, r) << '\n';
+
+    return 0;
+}
+
 ```
 
 - <u>Using Multiplicative Formula (Best for Single Queries)</u>
@@ -437,3 +465,5 @@ we need to find the total strength collected across all possible paths from the 
 - https://codeforces.com/problemset/problem/288/B
 
 ---
+
+https://www.mathsisfun.com/combinatorics/combinations-permutations.html

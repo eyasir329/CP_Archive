@@ -22,6 +22,7 @@ example:
 ---
 
 ### Palindrome
+
 <pre>
 A string is a palindrome if it is the same from the left to the right and from the right to the left. For example, the strings 'kek', 'abacaba', 'r' and 'papicipap' are palindromes, while the strings 'abb' and 'iq' are not.
 </pre>
@@ -29,7 +30,7 @@ A string is a palindrome if it is the same from the left to the right and from t
 ```cpp
 //By Comparing with Reversed String
 void isPalindrome(string str) {
-  
+
   	// Stores the reverse of the string s
     string rev = str;
 
@@ -40,7 +41,7 @@ void isPalindrome(string str) {
     if (str == rev)
         cout << "\"" << str
       	<< "\" is palindrome." << endl;
-      
+
 	// If rev is NOT equal to str
     else
         cout << "\"" << str
@@ -49,17 +50,18 @@ void isPalindrome(string str) {
 /*Time Complexity: O(n), where n is the length of string.
 Auxiliary Space: O(n)*/
 ```
+
 ```cpp
 //Using Two Pointer Method
 void isPalindrome (string str) {
-  
+
   	// Specify the starting and ending indexes
     int left = 0, right = str.size() - 1;
-  
+
   	// Flag to terminate the loop if mismatch
   	// characters found
   	bool flag = true;
-  	
+
   	// Till the left is less than right
     while (left < right) {
 
@@ -72,11 +74,11 @@ void isPalindrome (string str) {
         left++;
         right--;
     }
-  	
+
   	if (flag)
         cout << "\"" << str
       	<< "\" is palindrome." << endl;
-      	
+
     else
         cout << "\"" << str
       	<< "\" is NOT palindrome." << endl;
@@ -84,6 +86,7 @@ void isPalindrome (string str) {
 /*Time Complexity: O(n), where n is the length of string.
 Auxiliary Space: O(1)*/
 ```
+
 ```cpp
 //using recursion
 bool palinHelper(const string& str, int left,
@@ -117,7 +120,8 @@ void isPalindrome(string str) {
 }
 ```
 
-example:
+- https://codeforces.com/problemset/problem/1466/C
+  example:
 
 - https://codeforces.com/problemset/problem/1610/B
 - https://codeforces.com/problemset/problem/1582/C

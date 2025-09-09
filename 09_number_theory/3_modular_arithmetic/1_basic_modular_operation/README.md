@@ -6,6 +6,8 @@ https://aryansh-s.github.io/assets/pdf/The_Art_of_Modular_Arithmetic.pdf (upto L
 
 ### Basics
 
+- Modular arithmetic is a system of arithmetic for integers, where numbers "wrap around" when reaching a certain value called the modulus.
+
 <pre>
 you may have noticed that some tasks, typically combinatorial and probability tasks, have this funny habit of asking you to calculate a huge number, then tell you that "because this number can be huge, please output it modulo <b>1e9+7 or 998244353</b>".
 
@@ -162,6 +164,10 @@ if mod = prime then either (a = 0, b!=0) or (b = 0, a!=0)
 
 -> the result is always reduced to its remainder when divided by n. This is what "modulo arithmetic" means
 -> The results "wrap around" n, forming a cycle. Operations like addition, multiplication, and subtraction respect this cyclical nature.
+
+-> a mod m = b mod m => (a-b) mod m = 0
+-> divisions work differently in modular arithmetic.
+-> bitwise operation do not work with modular arithmetic.
 </pre>
 
 <img src="https://prod-qna-question-images.s3.amazonaws.com/qna-images/answer/6195f099-697f-489e-94ae-c77f1a063c08/8512de78-d4fd-43ef-9f61-33fcd14fa8c9/2dm5l1.jpg" alt="modular_arithmetic" style="height:300px;">

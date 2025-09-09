@@ -7,10 +7,7 @@ A comprehensive guide to bitwise operations, their techniques, C++ built-ins, an
 ## 📚 Table of Contents
 - [Basic Boolean Operations](#🧩-basic-boolean-operations)
 - [Basic Technique](#🔧-basic-technique)
-- [Check a Bit ON or OFF](#📍-check-a-bit-on-or-off)
-- [Index of All ON Bits / Count of ON Bits](#📌-index-of-all-on-bits--count-of-on-bits)
-- [Set / Clear / Toggle Bits](#💡-set--clear--toggle-bits)
-- [Check if Number is Power of 2](#🧮-check-if-number-is-power-of-2)
+- [Basic Bitwise Operation](#📍-basic-bitwise-operation)
 - [Built-in Functions in C++](#⚙️-built-in-functions-in-c)
 - [The Bit Law](#🧪-the-bit-law)
 - [Bitwise OR](#🧪-bitwise-or)
@@ -110,7 +107,7 @@ Used for simplifying and implementing logic circuits using only NAND/NOR gates.
 ---
 ### 🔧 Basic Technique
 
-🔗 [Codeforces Blog: Bit Tricks](https://codeforces.com/blog/entry/73490)
+🔗 [Codeforces Blog: Bit Tricks by Errichto](https://codeforces.com/blog/entry/73490)
 
 - Bitwise operations must be thought of **bit by bit** – decimal intuition often misleads.
 - Always use **parentheses** for clarity with bitwise expressions.
@@ -139,7 +136,7 @@ LEFT SHIFT                         RIGHT SHIFT
 ```
 * x & 1 = last bit = 1 if odd, 0 if even
 
-* x & 1 = x         |  x & 0 = 0
+* x & 1 = x  |  x & 0 = 0
 
 * For any integer n:
 
@@ -156,55 +153,142 @@ LEFT SHIFT                         RIGHT SHIFT
 
 ---
 
-## 📍 Check a Bit ON or OFF
+## 📍 Basic Bitwise Operation
 
+
+### <u> Check if a bit is set</u>
 ```cpp
-// Check last bit
-(x & 1)
+bool isBitSet(int num, int bitPos) {
+    return (num & (1 << bitPos)) != 0;
+}
 
-// Check ith bit
-((x >> i) & 1)
-````
-
----
-
-## 📌 Index of All ON Bits / Count of ON Bits
-
-```cpp
-int cnt = 0;
-for (int i = 0; i < 32; i++) {
-  if ((x >> i) & 1) {
-    cout << i << " ";
-    cnt++;
-  }
+bool isBitSet(int num, int bitPos) {
+    return (num >> bitPos) & 1;
 }
 ```
 
----
-
-## 💡 Set / Clear / Toggle Bits
-
+### <u> Count set bits (population count)</u>
 ```cpp
-// Set kth bit ON
-x |= (1 << k);
-
-// Set kth bit OFF
-x &= ~(1 << k);
-
-// Toggle kth bit
-x ^= (1 << k);
-```
-
----
-
-## 🧮 Check if Number is Power of 2
-
-```cpp
-if (__builtin_popcount(x) == 1) {
-  // x is a power of 2
+int countSetBits(int num) {
+    int count = 0;
+    while (num) {
+        count += num & 1;
+        num >>= 1;
+    }
+    return count;
 }
 ```
 
+### <u> Check if number is even/odd</u>
+```cpp
+bool isEven(int num) { return (num & 1) == 0; }
+bool isOdd(int num) { return (num & 1) != 0; }
+```
+
+## Bit Modification
+
+### <u> Set a bit</u>
+```cpp
+int setBit(int num, int bitPos) {
+    return num | (1 << bitPos);
+}
+```
+
+### <u> Clear a bit</u>
+```cpp
+int clearBit(int num, int bitPos) {
+    return num & ~(1 << bitPos);
+}
+```
+
+### <u> Toggle a bit</u>
+```cpp
+int toggleBit(int num, int bitPos) {
+    return num ^ (1 << bitPos);
+}
+```
+
+## Mathematical Operations
+
+### <u> Multiply/Divide by 2</u>
+```cpp
+int multiplyByTwo(int num) { return num << 1; }
+int divideByTwo(int num) { return num >> 1; }  // For positive numbers
+```
+
+### <u> Power of 2</u>
+```cpp
+int powerOfTwo(int exponent) { return 1 << exponent; }
+```
+
+### <u> Check if power of 2</u>
+```cpp
+bool isPowerOfTwo(int num) {
+    return num > 0 && (num & (num - 1)) == 0;
+}
+```
+
+## Utility Functions
+
+### <u> Print all set bits</u>
+```cpp
+void printSetBits(int num) {
+    cout << "Set bits: ";
+    for (int i = 0; i < sizeof(int)*8; i++) {
+        if (num & (1 << i)) cout << i << " ";
+    }
+    cout << endl;
+}
+```
+
+### <u> Print all unset bits</u>
+```cpp
+void printUnsetBits(int num) {
+    cout << "Unset bits: ";
+    for (int i = 0; i < sizeof(int)*8; i++) {
+        if (!(num & (1 << i))) cout << i << " ";
+    }
+    cout << endl;
+}
+```
+
+## Notes
+- All operations assume 32-bit integers by default
+- For unsigned operations, use `unsigned int`
+- Many compilers provide built-ins like `__builtin_popcount()` for faster bit counting
+- Right shift behavior differs for signed vs unsigned numbers
+
+## Right Shift Behavior: Signed vs Unsigned
+
+### Key Difference
+- **Unsigned numbers**: Right shift performs _logical shift_ (fills with 0s)
+- **Signed numbers**: Right shift performs _arithmetic shift_ (fills with sign bit)
+
+### Examples
+
+### 1. Unsigned Right Shift (Logical Shift)
+```cpp
+unsigned int u = 0b10001100; // 140
+u = u >> 2;
+// Result: 0b00100011 (35)
+// Fills left bits with 0s
+```
+
+### 2. Positive Signed Right Shift (Same as unsigned)
+```cpp
+int s = 0b00001100; // 12
+s = s >> 2;
+// Result: 0b00000011 (3)
+// Fills left bits with 0s (same as unsigned)
+```
+
+### 3. Negative Signed Right Shift (Arithmetic Shift)
+```cpp
+int s = 0b10001100; // -116 (assuming 8-bit 2's complement)
+s = s >> 2;
+// Result: 0b11100011 (-29)
+// Fills left bits with 1s (preserves sign)
+```
 ---
 
 ## ⚙️ Built-in Functions in C++

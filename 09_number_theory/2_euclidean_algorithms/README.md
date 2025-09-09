@@ -3,6 +3,7 @@
 - <u>GCD</u>
 
 ```cpp
+//O(log(min(a,b)))
 int gcd(int a, int b) {
     return b == 0 ? a : gcd(b, a % b);
 }
@@ -70,7 +71,9 @@ $$
   \hline
   \end{array}
 $$
+
 > gcd(a,a) = a; Where a can be prime number
+
 - https://aryansh-s.github.io/assets/pdf/The_Art_of_Modular_Arithmetic.pdf p29_sol
 
 ---
@@ -105,6 +108,8 @@ gcd(a,b) + lcm(a,b) = x, 2 <= x <= 1e9 (1,x-1)
 - https://codeforces.com/contest/1521/problem/B
 
 - https://codeforces.com/contest/2126/problem/E (gcd of prefix and suffix used lcm)
+
+- https://codeforces.com/problemset/problem/1372/B
 
 ---
 

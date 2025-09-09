@@ -1,7 +1,3 @@
-## Technique
-
----
-
 ## Contribution Technique
 
 ### Basic Contribution Technique

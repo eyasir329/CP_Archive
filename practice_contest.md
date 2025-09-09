@@ -196,7 +196,7 @@
 - [CSEDU 1211 Loop](https://vjudge.net/contest/313011)
 - [CSEDU 1201 Arrays Basic](https://vjudge.net/contest/320955)
 - [CSE1211 - BigInteger](https://vjudge.net/contest/431830)
-
+- [CSEDU 1211 String & Charater Array](https://vjudge.net/contest/323638)
 - [DS Practice-2](https://vjudge.net/contest/535305)
 - [SUSTCSE CSEDU Long Contest-1 (NT Implementation)](https://vjudge.net/contest/193855)
 - [Math Contest for CSEDU 21](https://vjudge.net/contest/110342)
