@@ -4,6 +4,16 @@ https://cp-algorithms.com/algebra/module-inverse.html<br>
 https://forthright48.com/modular-multiplicative-inverse/
 
 <pre>
+(A/B) % MOD = (A%(MOD*B))/B -> B not coprime with mod
+(A/B) % MOD = ((A % MOD)*(B^(phi(MOD)-1)%MOD))%MOD -> B and MOD are coprime
+(A/B) % MOD = ((A % MOD)*(B^(MOD-2)%MOD))%MOD -> b and mod are coprime and mod is a prime number
+A^(N) % MOD = A^(N%phi(MOD))%MOD -> a and mod are coprime
+(A*B) % MOD = b*(A%MOD) -> where a*b is very big
+
+https://www.hackerearth.com/practice/notes/powerful-tricks-with-calculation-modulo/
+</pre>
+
+<pre>
 First we have to determine whether Modular Inverse even exists for given A and M before we jump to finding the solution.
 - <b>Modular Inverse of A with respect to M, that is, X=A<sup>−1</sup>(mod M) exists, if and only if A and M are coprime.</b>
 

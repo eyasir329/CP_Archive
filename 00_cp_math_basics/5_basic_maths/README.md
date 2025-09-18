@@ -172,6 +172,7 @@ A sequence with a **constant ratio** between consecutive terms.
 - sum of first n odd positive number -> n^2
 - sum of first n even positive number -> n(n+1)
 
+- https://vjudge.net/problem/codeforces-318a
 ---
 
 Example problem: [Codeforces 2117D](https://codeforces.com/contest/2117/problem/D)

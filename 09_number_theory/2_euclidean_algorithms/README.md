@@ -11,9 +11,14 @@ int gcd(int a, int b) {
 
 - <u>LCM</u>
 
-<pre>
+```cpp
 lcm(a,b) = (a*b)/gcd(a,b)
-</pre>
+
+//to avoid overflow
+int lcm ( int a, int b ) {
+    return ( a / gcd ( a, b ) ) * b;
+```
+
 <pre>
 LCM and GCD Relationships:
 
@@ -21,6 +26,22 @@ LCM and GCD Relationships:
 
 - For any prime k, the exponent in GCD(p, q) is the minimum of the exponents of k in p and q.
 </pre>
+
+GCD(a,b)=GCD(b,r)=GCD(b,a%b), where a=k×b+r
+
+Every common divisor of a and b is a divisor of gcd(a,b)
+The gcd is a commutative function: gcd(a,b)=gcd(b,a)
+The gcd is an associative function: gcd(a,gcd(b,c))=gcd(gcd(a,b),c).
+The gcd of three numbers can be computed as gcd(a,b,c)=gcd(gcd(a,b),c), or in some different way by applying commutativity and associativity. This can be extended to any number of numbers.
+gcd(a,b)=gcd(a−b,b)
+
+https://en.wikipedia.org/wiki/Greatest_common_divisor
+
+GCD will always be positive, if any of a or b is negative then our algorithm can return negative number
+so, in those case we need to absolute those value.
+
+Next, notice that GCD(0,0)=0. It should be infinity. Also, if you try to work with the return value of GCD(0,0),
+then you might get RTE due to division by zero.
 
 - https://codeforces.com/blog/entry/95694
 

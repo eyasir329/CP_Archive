@@ -3,14 +3,14 @@
 Recursion is a technique where a problem is broken down into smaller subproblems of the same type.
 Each recursive call solves a smaller subproblem until it reaches a **base case**, which is solvable without further recursion.
 
-* **Base case**: acts as the termination condition for recursion.
-* Without a valid base case, recursion may lead to infinite loops and **stack overflow**.
+- **Base case**: acts as the termination condition for recursion.
+- Without a valid base case, recursion may lead to infinite loops and **stack overflow**.
 
 ---
 
 ## 🌀 Examples of Recursion
 
-### 1. Sum of first `n` numbers – *O(N)*
+### 1. Sum of first `n` numbers – _O(N)_
 
 <details>
 <summary>Code (C++)</summary>
@@ -142,6 +142,10 @@ int main() {
 
 </details>
 
+- https://codeforces.com/group/MWSDmqGsZm/contest/223339/problem/W
+
+- https://codeforces.com/group/MWSDmqGsZm/contest/223339/problem/N
+- https://codeforces.com/group/MWSDmqGsZm/contest/223339/problem/X
 <details>
 <summary>Bitmask Approach (Compact)</summary>
 
@@ -196,29 +200,29 @@ int main() {
 
 ## 🔗 Useful Visualizers
 
-* [Recursion Tree Visualizer](https://recursion.vercel.app/), [Visualizer-2](https://pythontutor.com/render.html#mode=edit)
-* [Recursion Stack Visualizer](https://www.cs.usfca.edu/~galles/visualization/RecFact.html)
+- [Recursion Tree Visualizer](https://recursion.vercel.app/), [Visualizer-2](https://pythontutor.com/render.html#mode=edit)
+- [Recursion Stack Visualizer](https://www.cs.usfca.edu/~galles/visualization/RecFact.html)
 
 ---
 
 ## 📊 Time and Space Complexity in Recursion
 
-* **Time Complexity** = (time per node) × (number of nodes in recursion tree)
-* **Space Complexity** = (maximum depth of recursion) × (space per call)
+- **Time Complexity** = (time per node) × (number of nodes in recursion tree)
+- **Space Complexity** = (maximum depth of recursion) × (space per call)
 
-  | Problem     | Time Complexity | Space Complexity |
-  | ----------- | --------------- | ---------------- |
-  | Fibonacci (naive)   | **O(2^n)**      | **O(n)**         |
-  | Factorial   | **O(n)**        | **O(n)**         |
-  | Sum (1..n)  | **O(n)**        | **O(n)**         |
-  | Subsets (n) | **O(2^n)**      | **O(n)**         |
+  | Problem           | Time Complexity | Space Complexity |
+  | ----------------- | --------------- | ---------------- |
+  | Fibonacci (naive) | **O(2^n)**      | **O(n)**         |
+  | Factorial         | **O(n)**        | **O(n)**         |
+  | Sum (1..n)        | **O(n)**        | **O(n)**         |
+  | Subsets (n)       | **O(2^n)**      | **O(n)**         |
 
 ---
 
 ## ⚠️ Pitfalls
 
-* **Stack Overflow**: occurs when recursion depth exceeds call stack capacity → Runtime Error/Segmentation Fault.
-* **Infinite Recursion**: happens when recursion forms a **cycle** and has no valid base case.
+- **Stack Overflow**: occurs when recursion depth exceeds call stack capacity → Runtime Error/Segmentation Fault.
+- **Infinite Recursion**: happens when recursion forms a **cycle** and has no valid base case.
 
 Example:
 
@@ -226,9 +230,9 @@ Example:
 f(n) = f(n-1) + f(n+1)
 ```
 
-* To compute `f(n)`, you need `f(n-1)` and `f(n+1)`.
-* But `f(n+1)` calls `f(n+2)`, and `f(n-1)` will eventually call `f(n)` again.
-* 🚨 This recursion never terminates.
+- To compute `f(n)`, you need `f(n-1)` and `f(n+1)`.
+- But `f(n+1)` calls `f(n+2)`, and `f(n-1)` will eventually call `f(n)` again.
+- 🚨 This recursion never terminates.
 
 ✅ Always ensure:
 
