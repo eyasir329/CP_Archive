@@ -17,3 +17,5 @@ Greedy problems involve making the best local choice at each step in the hope of
 > https://www.geeksforgeeks.org/dsa/greedy-algorithms/
 
 > https://codeforces.com/blog/entry/79019?f0a28=1
+
+classic greedy bag carrying problem - https://codeforces.com/problemset/problem/1591/C

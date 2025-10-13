@@ -52,6 +52,7 @@ example:
 - https://codeforces.com/problemset/problem/1382/B
 
 ---
+
 ### Others
 
 - https://codeforces.com/problemset/problem/1627/B
@@ -64,8 +65,8 @@ You're given an `n × m` classroom grid. Two students, **Tina** and **Rahul**, m
 2. **Rahul** chooses an **unpainted** seat to sit in.
 3. **Tina** then chooses a **different** seat (can be painted) to sit in.
 
-* Rahul wants to sit **as close as possible** to Tina.
-* Tina wants to sit **as far as possible** from Rahul.
+- Rahul wants to sit **as close as possible** to Tina.
+- Tina wants to sit **as far as possible** from Rahul.
 
 Your task is to compute, for all `k = 0` to `n·m−1`, the **minimum possible distance** Rahul can get to Tina if both play **optimally**.
 
@@ -94,54 +95,54 @@ To solve **this kind of problem** — where two players act **strategically** in
 
 Ask:
 
-* Who plays first?
-* What does each player want to **optimize** (maximize/minimize)?
-* Are there any **restrictions** (e.g., painted cells)?
+- Who plays first?
+- What does each player want to **optimize** (maximize/minimize)?
+- Are there any **restrictions** (e.g., painted cells)?
 
 ### 2. **Model the Grid**
 
-* Is it a 1D line, 2D grid, or graph?
-* Use coordinates `(i, j)` for grid cells.
-* Use a suitable distance function (Manhattan, Euclidean, etc).
+- Is it a 1D line, 2D grid, or graph?
+- Use coordinates `(i, j)` for grid cells.
+- Use a suitable distance function (Manhattan, Euclidean, etc).
 
 ### 3. **Extract the Core Metric**
 
 In this problem:
 
-* The key metric is: **distance between Rahul and Tina**
-* Precompute how far each seat is from "important places" (e.g., corners)
+- The key metric is: **distance between Rahul and Tina**
+- Precompute how far each seat is from "important places" (e.g., corners)
 
 ### 4. **Preprocess or Sort Efficiently**
 
 When choices depend on "best or worst seats":
 
-* Precompute metrics (distances, values, scores)
-* Sort them to simulate removing best seats
+- Precompute metrics (distances, values, scores)
+- Sort them to simulate removing best seats
 
 ### 5. **Simulate Optimal Strategy**
 
 Use sorted data to model:
 
-* What happens if player A blocks top-k best options?
-* What’s the best counterplay by player B?
+- What happens if player A blocks top-k best options?
+- What’s the best counterplay by player B?
 
 This is **min-max**:
 
-* Rahul: *minimize* distance
-* Tina: *maximize* distance
-* So simulate like: `min ( max(...possible responses...) )`
+- Rahul: _minimize_ distance
+- Tina: _maximize_ distance
+- So simulate like: `min ( max(...possible responses...) )`
 
 ---
 
 ## 🧩 Other Examples of This Pattern
 
-* **[Codeforces 1285D - Dr. Evil Underscores](https://codeforces.com/problemset/problem/1285/D)**
+- **[Codeforces 1285D - Dr. Evil Underscores](https://codeforces.com/problemset/problem/1285/D)**
   ⇒ Minimize XOR when opponent picks worst-case value.
 
-* **[Leetcode 286 - Walls and Gates](https://leetcode.com/problems/walls-and-gates/)**
+- **[Leetcode 286 - Walls and Gates](https://leetcode.com/problems/walls-and-gates/)**
   ⇒ BFS distance from multiple sources in a grid.
 
-* **Chess-like games (e.g., knights, kings)**
+- **Chess-like games (e.g., knights, kings)**
   ⇒ Move strategically to maximize or minimize opponent’s options.
 
 ---
@@ -162,9 +163,13 @@ This is **min-max**:
 
 To solve **strategic 2-player grid problems**, combine:
 
-* **Game theory logic** (who moves when, optimal choice)
-* **Grid modeling** (how to represent space and measure distance)
-* **Sorting / Greedy** (to simulate blocking, removing options)
-* **Min-Max or Max-Min** thinking (one player blocks the other’s best moves)
+- **Game theory logic** (who moves when, optimal choice)
+- **Grid modeling** (how to represent space and measure distance)
+- **Sorting / Greedy** (to simulate blocking, removing options)
+- **Min-Max or Max-Min** thinking (one player blocks the other’s best moves)
 
 ---
+
+## Sudoku
+
+- https://codeforces.com/problemset/problem/1335/D

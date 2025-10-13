@@ -42,7 +42,10 @@ These problems focus on **correctly implementing a sequence of steps or rules**,
 - max/min in vector
   *max_element(), *min_element()
 ```
+
 - https://codeforces.com/contest/1485/problem/B
+- https://codeforces.com/contest/1556/problem/B
+
 ---
 
 ### Constructive Problems
@@ -82,4 +85,11 @@ example:
 <pre>
 firstly, maximize their number of wins and, secondly, minimize the number of wins of their opponent.
 </pre>
+
 ---
+
+## Bruteforces
+
+> sometimes problems look like bruteforces can't happened -> but it happened...
+
+- https://codeforces.com/contest/1604/problem/C

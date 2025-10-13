@@ -60,6 +60,9 @@ int fact_pow (int n, int k) {
 - all combinatorics problem -> combinatorial explosion (easily grow)
 </pre>
 
+> nPr works perfectly when all items are distinct.\
+if k items are same then k! times overcount -> (n!/k!)
+
 ![perm1](https://i.ibb.co.com/MsQSS3f/IMG-0234.jpg)
 
 ![perm2](https://i.ibb.co.com/d20XP5f/IMG-0235.jpg)

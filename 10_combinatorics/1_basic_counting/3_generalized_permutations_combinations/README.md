@@ -103,6 +103,8 @@ example:
 
 ### <u>Permutations with Indistinguishable Objects</u>
 
+> MISSISSIPPI formula
+
 **Scenario**: Arrangements with duplicate items.
 
 **Formula**:
@@ -194,8 +196,6 @@ Deal 5 cards each to 4 players from 52-card deck:
 
 ![db2](https://i.ibb.co.com/nD3m73n/IMG-0277.jpg)
 
-
-
 #### Case 2: Indistinguishable Objects → Distinguishable Boxes
 
 **Formula**: Same as combinations with repetition
@@ -254,6 +254,130 @@ $$
 \hline
 \end{array}
 $$
+
+---
+
+# Combinatorial Problems
+
+> first convert to small problems then organize all of that problems.
+
+## **1️⃣ Grid Path Counting (Lattice Paths Problem)**
+
+### Problem
+
+You have an $n \times m$ grid. Starting at the **top-left corner**, you want to reach the **bottom-right corner**.
+Allowed moves:
+
+* **Right (R)** → move one step right.
+* **Down (D)** → move one step down.
+
+![pr](pr1.png)
+
+### Key Idea
+
+* To get from **top-left** to **bottom-right**, you must:
+
+  * Move **right** exactly $(m-1)$ times.
+  * Move **down** exactly $(n-1)$ times.
+* Total moves = $(n-1) + (m-1) = n + m - 2$.
+
+So the problem becomes:
+👉 Arrange a sequence of moves containing $(m-1)$ **R’s** and $(n-1)$ **D’s**.
+
+### Formula
+
+This is a **permutation with repetitions**:
+
+$$
+\text{Ways} = \binom{(n-1) + (m-1)}{n-1} = \frac{(n+m-2)!}{(n-1)!(m-1)!}
+$$
+
+* $(n+m-2)!$ → total arrangements.
+* Divide by duplicates of **R’s** and **D’s**.
+
+### Example: $3 \times 4$ grid
+
+* $n=3$, $m=4$.
+* Total moves = $(3-1)+(4-1)=5$.
+* Choose where the 2 downs go (the rest will be rights):
+
+$$
+\binom{5}{2} = \frac{5!}{2!3!} = 10
+$$
+
+✅ So there are **10 unique paths**.
+
+---
+
+## **2️⃣ Placing 5 Non-Attacking Pieces on a Chessboard**
+
+### Problem
+
+On an $8 \times 8$ chessboard, place **5 rooks** (or similar pieces) so that:
+
+* No two pieces are in the same row.
+* No two pieces are in the same column.
+
+![pr2](pr2.png)
+![pr3](pr3.png)
+
+### Step 1: Choose columns
+
+* You have 8 columns, but you need only 5.
+* Number of ways =
+
+$$
+\binom{8}{5}
+$$
+
+### Step 2: Assign rows
+
+* Once columns are chosen, each piece must go into a different row.
+* You have 8 rows, and you must select and order 5 rows.
+* This is a permutation:
+
+$$
+P(8,5) = \frac{8!}{(8-5)!} = \frac{8!}{3!}
+$$
+
+### Step 3: Multiply choices
+
+$$
+\text{Ways} = \binom{8}{5} \times P(8,5)
+$$
+
+### Compute Value
+
+* $\binom{8}{5} = 56$
+* $P(8,5) = \frac{8!}{3!} = \frac{40320}{6} = 6720$
+
+$$
+\text{Ways} = 56 \times 6720 = 376,320
+$$
+
+✅ So there are **376,320 ways** to place 5 non-attacking rooks on an $8 \times 8$ board.
+
+---
+
+# **Summary**
+
+* **Grid Path Problem:**
+
+  $$
+  \text{Ways} = \frac{(n+m-2)!}{(n-1)!(m-1)!}
+  $$
+
+  Example: $3 \times 4 \Rightarrow 10$.
+
+* **Chessboard Rooks Problem:**
+
+  $$
+  \text{Ways} = \binom{8}{5} \times P(8,5) = 376,320
+  $$
+
+---
+
+
 
 ##### References
 

@@ -91,6 +91,8 @@ D. How many student IDs are possible with an even number of "A"s?
 - Sometimes when dealing with enumeration problems, it is easier to answer the opposite problem. That is, we can find all outcomes for which our condition isn't true, then subtract that total from our sample space, or total number of outcomes.
 
 - IDs with Repetition = Sample space - no repeats => (26^3*10^2) - (26*25*24*10\*9)
+
+- 5 length words all are not same -> (26^5) - 26(total - all same)
 </pre>
 
 example:
@@ -144,6 +146,13 @@ B. A software company receives 200 applications from collage graduations for a j
 -> 200 - 23 = 107 + 116 - A ∩ B
 </pre>
 
+> Break into small tasks
+>
+> - Sum
+> - Product
+
+> Count more (superset) then subtract the extras.
+
 ---
 
 #### <u>The Division Rule</u>
@@ -165,7 +174,7 @@ The arrangement (ABCD) is same as (BCDA,CDAB,DABC) because each person has the s
 </pre>
 
 ---
-
+>Common counting > Permutation & Combination
 ## Basic Counting Problems
 
 https://flexbooks.ck12.org/cbook/ck-12-college-precalculus/section/14.2/primary/lesson/counting-with-permutations-and-combinations-c-precalc/

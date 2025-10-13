@@ -181,6 +181,8 @@ example:
   
     no. of connected component - 1</pre>
 
+- https://codeforces.com/problemset/problem/1534/C (SCC + Combinatorics)
+
 #### Cycles Detecting
 
 ```cpp
@@ -249,6 +251,8 @@ int main() {
 }
 //using bfs
 ```
+
+---
 
 #### Path Construction
 

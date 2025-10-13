@@ -21,6 +21,8 @@ if(x<sub>i</sub>>=0) then change to prervious form > x<sub>i</sub>+1>=0+1
 => C(26,4)
 </pre>
 
+![pr](pr.png)
+
 https://forthright48.com/stars-and-bars-theorem/
 
 ### **Stars and Bars Theorem**
@@ -528,14 +530,15 @@ You’re not distributing `0`s arbitrarily — rather, you are **counting the nu
 
 Key point:
 
-* Suppose the positions of `1`s are:
+- Suppose the positions of `1`s are:
   $p_1, p_2, \dots, p_k$
-* The number of `0`s between `p_i` and `p_{i+1}` is:
+- The number of `0`s between `p_i` and `p_{i+1}` is:
 
   $$
   z_i = p_{i+1} - p_i - 1
   $$
-* Now, **in how many ways can you form a segment that includes `1`, all zeros to the left or right of it, and ends just before the next `1`**?
+
+- Now, **in how many ways can you form a segment that includes `1`, all zeros to the left or right of it, and ends just before the next `1`**?
 
 Answer:
 For each pair of 1s, say at position `p` and `q`, you can place the break anywhere between them. That gives you exactly:
@@ -552,9 +555,9 @@ $$
 
 This is **not traditional stars and bars**, but closely resembles it:
 
-* The **bars** are fixed between the 1s.
-* The **stars** (zeros) are being placed into the gaps.
-* And you're **multiplying choices** for placing the break around these stars.
+- The **bars** are fixed between the 1s.
+- The **stars** (zeros) are being placed into the gaps.
+- And you're **multiplying choices** for placing the break around these stars.
 
 ---
 
@@ -564,8 +567,7 @@ While the problem isn't a **direct stars and bars** (because we’re not selecti
 
 So, in summary:
 
-> Each segment must contain **exactly one `1`**, and the **zeros between 1s** can be associated either with the left `1` or the right `1` — that’s why you get `(gap + 1)` choices → this is *multiplicative*, much like stars and bars in combinatorics.
-
+> Each segment must contain **exactly one `1`**, and the **zeros between 1s** can be associated either with the left `1` or the right `1` — that’s why you get `(gap + 1)` choices → this is _multiplicative_, much like stars and bars in combinatorics.
 
 ## 🧠 Full Reasoning and Derivations
 
@@ -1199,3 +1201,35 @@ The sum is over all possible valid numbers of empty rooms, constrained by `k` (y
 You are using **inclusion-exclusion + constrained composition** to count how many **ways `k` people can move** so that **final room counts are valid**.
 
 ---
+
+### Recap of stars and bars
+
+![pr2](pr2.png)
+![pr3](pr3.png)
+
+> upto now only given lower limits
+
+## Advanced (Stars & Bars) using PIE
+
+https://cp-algorithms.com/combinatorics/inclusion-exclusion.html#number-of-upper-bound-integer-sums
+
+![pr4](pr4.png)
+
+> satisfy three conditions means (total - at least 1 condition not satisfy)
+
+n+k-1
+![pr5](pr5.png)
+
+> make simpler solution for all of those equations
+
+![pr6](pr6.png)
+
+another examples
+
+![pr7](pr7.png)
+
+conditions which are not satisfy
+
+![pr8](pr8.png)
+
+![pr9](pr9.png)

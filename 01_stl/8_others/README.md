@@ -36,6 +36,8 @@ example:
 
 - https://codeforces.com/problemset/problem/1623/B
 
+- https://codeforces.com/problemset/problem/1328/B
+
 ### Some Necessary Technique
 
 #
