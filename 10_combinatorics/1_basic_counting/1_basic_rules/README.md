@@ -174,7 +174,9 @@ The arrangement (ABCD) is same as (BCDA,CDAB,DABC) because each person has the s
 </pre>
 
 ---
->Common counting > Permutation & Combination
+
+> Common counting > Permutation & Combination
+
 ## Basic Counting Problems
 
 https://flexbooks.ck12.org/cbook/ck-12-college-precalculus/section/14.2/primary/lesson/counting-with-permutations-and-combinations-c-precalc/
@@ -202,3 +204,5 @@ Consider choice A with 3 options (A1,A2,A3), and choice B with 2 options (B1,B2)
 ---
 
 - https://vjudge.net/problem/atcoder-abc214_b
+
+- https://codeforces.com/contest/1594/problem/E1

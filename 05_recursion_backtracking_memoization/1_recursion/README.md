@@ -240,3 +240,5 @@ f(n) = f(n-1) + f(n+1)
 2. **Progress towards base case** in every recursive call.
 
 ---
+- https://codeforces.com/group/MWSDmqGsZm/contest/223339/problem/X
+- https://vjudge.net/problem/HackerRank-matrix-land

@@ -5,3 +5,6 @@
     Used is array based problem, basically is subarray
 
 #### _Current Window must get enough info to get the ans for that window_
+
+
+- https://codeforces.com/contest/2148/problem/E

@@ -61,7 +61,7 @@ int fact_pow (int n, int k) {
 </pre>
 
 > nPr works perfectly when all items are distinct.\
-if k items are same then k! times overcount -> (n!/k!)
+> if k items are same then k! times overcount -> (n!/k!)
 
 ![perm1](https://i.ibb.co.com/MsQSS3f/IMG-0234.jpg)
 
@@ -470,3 +470,6 @@ we need to find the total strength collected across all possible paths from the 
 ---
 
 https://www.mathsisfun.com/combinatorics/combinations-permutations.html
+
+- round table
+- https://codeforces.com/problemset/problem/1433/E
