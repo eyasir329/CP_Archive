@@ -2,6 +2,95 @@
 
 https://youkn0wwho.academy/topic-list/?category=basics&subCategory=very_basic_graphs
 
+- graph theory -> roze n(discreate mathematics)
+
+-> connection/relation <- graph theory
+
+![gp](gp1.png)
+- adjacent/neighbour (direct connection from one node n)
+
+- problems in graph theory can be...
+
+![gp](gp2.png)
+> v can be edge or node disjoint
+- vi -> do u,v have two different edge-disjoint path?
+- vii -> does a graph have a cycle
+- viii -> u_v shortest path 
+
+#
+
+- first graph theory problem
+
+![kb](https://i.ytimg.com/vi/WTuTWZW-UuE/maxresdefault.jpg)
+
+- sum of all degree is always even...
+- and it's equal to 2*e
+- handshaking lemma. 
+
+![gp](gp3.png)
+
+- path, cycle
+
+![gp](gp4.png)
+
+- cycle is a path where start and end in a same node
+- A-C-D-B-A
+#
+- edge disjoint path (no edge repeated) -> node can be repeated
+- edge disjoint cycle (no edge repeated)
+- node disjoint path/cycle (no node, edge repeated)
+- node disjoint and edge disjoint is not a same thing
+- in cycle one is repeated
+
+#
+
+- complex graph problems (in here our techniques can be change)
+> simple graph don't have self loop, parallel edge
+
+![gp](gp5.png)
+
+#
+upto now all is undirected/unweighted
+
+- other property
+
+![gp](gp6.png)
+
+- common weight -> time or distance
+
+![gp](gp7.png)
+
+- different category of graphs 
+
+![gp](gp8.png)
+> all node is connected to each other <br>
+> nC2 = n(n-1)/2 -> O(n^2) <br>
+> E = O(V^2)  <- for large graph
+
+![gp](gp9.png)
+![gp](gp10.png)
+
+![gp](gp11.png)
+![gp](gp12.png)
+
+- graph representations
+
+- edge list
+
+![gp](gp13.png)
+
+> iii -> who are neighbours of u -> O(E)
+
+![gp](gp14.png)
+![gp](gp15.png)
+
+> for dense graph adjacency matrix is good<br>
+> for sparse graph adjacency matrix is not good
+
+- adjacency list
+
+![gp](gp16.png)
+
 #
 
 https://medium.com/basecs/a-gentle-introduction-to-graph-theory-77969829ead8
