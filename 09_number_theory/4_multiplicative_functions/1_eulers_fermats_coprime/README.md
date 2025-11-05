@@ -396,3 +396,139 @@ F(6) &= 1 \cdot \varphi(6) + 2 \cdot \varphi(3) + 3 \cdot \varphi(2) + 6 \cdot \
 ```
 
 ---
+
+- Uva 11582 Colossal Fibonacci Numbers!
+
+## 🧩 Problem summary
+
+You are asked to compute:
+
+[
+F(a^b) \bmod n
+]
+
+where:
+
+* ( F(k) ) is the ( k^{th} ) Fibonacci number,
+* ( 0 \le a, b \le 10^{18} ),
+* ( 1 \le n \le 1000 ).
+
+The result must be computed efficiently — directly calculating ( a^b ) or ( F(a^b) ) is impossible due to huge sizes.
+
+---
+
+## 🎯 Concepts you must learn (in order)
+
+### 1. **Modular Arithmetic Fundamentals**
+
+You must understand:
+
+* ( (x + y) \bmod n = ((x \bmod n) + (y \bmod n)) \bmod n )
+* ( (x \times y) \bmod n = ((x \bmod n) \times (y \bmod n)) \bmod n )
+* Modular exponentiation using **binary exponentiation (fast power)**:
+  [
+  a^b \bmod m
+  ]
+
+🔹 Learn:
+
+* **Fast modular exponentiation** (a.k.a. binary exponentiation or exponentiation by squaring)
+* Why we can reduce ( a^b \bmod m ) without computing ( a^b ) directly
+
+---
+
+### 2. **Pisano Period (Fibonacci modulo periodicity)**
+
+When you take Fibonacci numbers modulo ( n ), the sequence repeats with a certain period, called the **Pisano period** ( \pi(n) ).
+
+That is:
+[
+F(k + \pi(n)) \equiv F(k) \pmod{n}
+]
+
+So instead of computing ( F(a^b) \bmod n ), you can reduce the exponent:
+
+[
+F(a^b) \bmod n = F(a^b \bmod \pi(n)) \bmod n
+]
+
+🔹 Learn:
+
+* Definition and derivation of **Pisano Period**
+* How to **compute Pisano period for a given ( n )** efficiently
+
+---
+
+### 3. **Matrix Exponentiation for Fibonacci**
+
+You can compute Fibonacci numbers fast (in ( O(\log k) )) using matrix exponentiation:
+
+[
+\begin{bmatrix} F_{n+1} \ F_n \end{bmatrix}
+===========================================
+
+\begin{bmatrix} 1 & 1 \ 1 & 0 \end{bmatrix}^n
+\begin{bmatrix} 1 \ 0 \end{bmatrix}
+]
+
+But here, ( n ) (the modulus) is small (≤ 1000), and the period is at most around 1500 × n, so precomputing up to the Pisano period is usually enough.
+
+🔹 Learn:
+
+* How to compute Fibonacci with **matrix exponentiation**
+* When to prefer precomputation (for small modulus) vs. matrix exponentiation
+
+---
+
+### 4. **Modular Reduction of Exponent (Using Pisano period)**
+
+After computing ( \pi(n) ):
+
+1. Compute ( e = a^b \bmod \pi(n) ) using modular exponentiation.
+2. Compute ( F(e) \bmod n ) using precomputed Fibonacci modulo ( n ).
+
+This gives the final answer efficiently.
+
+---
+
+## ⚙️ Algorithm Summary
+
+1. Precompute all Pisano periods up to ( n = 1000 ).
+2. For each query ( (a, b, n) ):
+
+   * If ( n = 1 ), answer is 0.
+   * Let ( p = \pi(n) ).
+   * Compute ( e = a^b \bmod p ) using modular exponentiation.
+   * Return ( F(e) \bmod n ) using precomputed Fibonacci mod table.
+
+---
+
+## ⏱️ Complexity
+
+* Pisano period computation for all ( n ≤ 1000 ): manageable (preprocessing).
+* Each query:
+
+  * ( O(\log b) ) for modular exponentiation.
+  * ( O(1) ) for lookup.
+
+---
+
+## 📚 Learning Path Summary
+
+| Step | Concept               | Recommended Practice                            |
+| ---- | --------------------- | ----------------------------------------------- |
+| 1    | Modular arithmetic    | Learn modulo properties, modular exponentiation |
+| 2    | Pisano period         | Understand repetition of Fibonacci mod n        |
+| 3    | Matrix exponentiation | Implement Fibonacci in O(log n)                 |
+| 4    | Combining reductions  | Apply Pisano + modular exponentiation           |
+| 5    | Optimization          | Precompute Pisano periods up to 1000            |
+
+---
+
+## 🔗 Optional Learning Resources
+
+* **CP-Algorithms:** [https://cp-algorithms.com/algebra/fibonacci_nth.html](https://cp-algorithms.com/algebra/fibonacci_nth.html)
+* **Pisano Period explanation:** [https://mathworld.wolfram.com/PisanoPeriod.html](https://mathworld.wolfram.com/PisanoPeriod.html)
+* **UVA 11582 editorial:** available on UVa forums or competitive programming blogs.
+
+---

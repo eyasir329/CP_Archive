@@ -168,6 +168,19 @@ int power(int x, long long n, int mod) {
     return ans;
 }
 ```
+```cpp
+int bigmod(unsigned long long a, unsigned long long b, int n) {
+    a = a % n;//because a<2^64
+    int ret = 1;
+    while (b > 0) {
+        if (b & 1) ret = (ret * a) % n;
+        a = (a * a) % n;
+        b /= 2;
+    }
+    return ret;
+}
+```
+
 - https://vjudge.net/problem/codeforces-630a
 example:
 
