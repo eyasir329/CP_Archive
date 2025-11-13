@@ -6,6 +6,23 @@ Each recursive call solves a smaller subproblem until it reaches a **base case**
 - **Base case**: acts as the termination condition for recursion.
 - Without a valid base case, recursion may lead to infinite loops and **stack overflow**.
 
+![rec](./rec1.png)
+
+- loop working linearly, where loop is work - we can't use recursion there 
+- we can make relation using recursion, it can go multiple direction from one place
+- in recurion, we can jump one state to another
+
+![rec](./rec2.png)
+
+- CSES Weird Algorithm
+
+![rec](./rec3.png)
+
+- General Recursion Structure
+
+![rec](./rec4.png)
+
+- CSES tower of hanoi
 ---
 
 ## 🌀 Examples of Recursion

@@ -1,6 +1,8 @@
-## Sorting
+## Sorting & Searching Basics
 
 https://visualgo.net/en/sorting
+
+![st](./st.png)
 
 ### Bubble Sort ->O(n\*n)
 
@@ -73,6 +75,19 @@ int cnt[MAX+1];
   }
 }
 ```
+
+## Searching
+
+![sr](./st2.png)
+
+## Mixed up with sorting
+
+![sr](./st3.png)
+
+- graphical view observation
+
+![sr](./st4.png)
+
 
 example:
 
