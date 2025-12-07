@@ -54,3 +54,5 @@ hint: same as prefix sum
 - https://codeforces.com/problemset/problem/2039/C1
 * [Codeforces Blog – Maximum XOR Subarray](https://codeforces.com/blog/entry/123404)
 ---
+
+- https://codeforces.com/contest/2175/problem/B

@@ -101,6 +101,19 @@ $$
 
 #### Examples:
 
+- cf992B
+> no. of pairs such that, (l,r,x,y<=1e9)
+
+![gd](gd1.png)
+![gd](gd2.png)
+![gd](gd3.png)
+![gd](gd4.png)
+![gd](gd5.png)
+![gd](gd6.png)
+![gd](g.png)
+
+> no. of pairs... whose product is equal to y/x
+
 - What is the largest positive integer that divides 40 and 78(gcd(a,b))?
 - What about the smallest positive integer divisible by 40 and 78(lcm(a,b))?
 

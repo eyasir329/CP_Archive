@@ -173,6 +173,7 @@ A sequence with a **constant ratio** between consecutive terms.
 - sum of first n even positive number -> n(n+1)
 
 - https://vjudge.net/problem/codeforces-318a
+
 ---
 
 Example problem: [Codeforces 2117D](https://codeforces.com/contest/2117/problem/D)
@@ -412,3 +413,12 @@ Example: [kuet_iupc_K-Beast (Google Drive)](https://drive.google.com/file/d/1grO
 - https://codeforces.com/contest/2132/problem/B
 
 ---
+
+
+## Harder
+
+### Formula Generation
+- https://codeforces.com/problemset/problem/1373/C
+
+- https://codeforces.com/problemset/problem/1459/B
+- https://codeforces.com/contest/2158/problem/B

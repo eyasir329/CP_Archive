@@ -134,6 +134,14 @@ int inverse(int a, int m) {
 }
 ```
 
+![md](md3.png)
+
+> inv(b) = b^(m-2) mod m (if m is prime)
+
+![md](md4.png)
+
+> if (b and m are coprime) -> euler totient, extended euclid
+
 <pre>
 # Equation solve
 -> 3x + 5 = 7 (mod 10) => 3x = 7-5 = 2
@@ -152,6 +160,9 @@ if mod = prime then either (a = 0, b!=0) or (b = 0, a!=0)
 - Even or odd parity is given by the modular residue (mod 2).
 - The units digit of a number is its modular residue (mod 10).
 </pre>
+
+![md](md1.png)
+![md](md2.png)
 
 ### Properties
 
