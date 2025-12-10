@@ -380,3 +380,127 @@ resources:
 
 - https://victorlecomte.com/cp-geo.pdf
 - https://www.youtube.com/watch?v=G9QTjWtK_TQ
+- https://codeforces.com/blog/entry/48868
+
+![gm](gm31.png)
+![gm](gm32.png)
+
+---
+- Geometry Algorithms
+
+![gm](gm33.png)
+
+- convex all deg <180
+
+- point inside/outside polygon or not
+
+![gm](gm34.png)
+![gm](gm35.png)
+
+> area +ve
+
+- point is on the polygon
+
+![gm](gm36.png)
+![gm](gm37.png)
+
+
+- concave -> O(n)
+
+![gm](gm38.png)
+![gm](gm39.png)
+![gm](gm40.png)
+
+
+- consider too many corner case
+
+![gm](gm41.png)
+
+- consider a specific convension
+
+![gm](gm42.png)
+![gm](gm43.png)
+
+
+- more than 12 cases
+
+![gm](gm44.png)
+
+- convex hull -> bigger polygon 
+
+![gm](gm45.png)
+![gm](gm46.png)
+
+> sort(lexo) is important
+
+![gm](gm47.png)
+
+- upper hull -> clockwise
+
+![gm](gm48.png)
+![gm](gm49.png)
+![gm](gm50.png)
+![gm](gm51.png)
+![gm](gm52.png)
+![gm](gm53.png)
+
+- lower hull
+
+![gm](gm54.png)
+![gm](gm55.png)
+![gm](gm56.png)
+![gm](gm57.png)
+![gm](gm58.png)
+
+- can be multiple pop at a time
+
+![gm](gm59.png)
+![gm](gm60.png)
+![gm](gm61.png)
+![gm](gm62.png)
+![gm](gm63.png)
+
+- different case
+
+![gm](gm64.png)
+
+- 80% case don't need redundant case
+
+![gm](gm65.png)
+
+- application of a convex hull
+
+- 3 point choose such that their area is maximize
+- farthest/(closest - not use convex hull) 2 point
+
+![gm](gm66.png)
+
+- farthest - not include inside point
+
+![gm](gm67.png)
+> other, candidate
+
+![gm](gm68.png)
+- rotating callipers modification
+
+- two pointer(hard)
+
+- binary search
+
+![gm](gm69.png)
+![gm](gm70.png)
+![gm](gm71.png)
+![gm](gm72.png)
+![gm](gm73.png)
+![gm](gm74.png)
+![gm](gm75.png)
+![gm](gm76.png)
+![gm](gm78.png)
+
+> ... maintain two point by point
+
+
+- min dis two point -> not convex hull -> divide & conquer or sweep line style to solve
+
+> cses book -> handbook ante laaksum
+> errecto - closest point

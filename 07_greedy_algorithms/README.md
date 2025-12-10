@@ -33,3 +33,6 @@
 > https://codeforces.com/blog/entry/79019?f0a28=1
 
 classic greedy bag carrying problem - https://codeforces.com/problemset/problem/1591/C
+
+greedy with median tendency
+- https://codeforces.com/problemset/problem/1520/E
