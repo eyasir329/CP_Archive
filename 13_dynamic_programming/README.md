@@ -1,5 +1,52 @@
+- dp -> a paradim -> way of thinking 
 
+![dp](dp1.png)
+![dp](dp2.png)
+![dp](dp3.png)
+![dp](dp4.png)
 
+- 0/1 knapsack
+https://atcoder.jp/contests/dp/tasks/dp_d
+
+![dp](dp5.png)
+![dp](dp6.png)
+![dp](dp7.png)
+![dp](dp8.png)
+
+> fractional knapsack -> greedy
+- when greedy not work -> dp 
+
+- state of knapsack
+
+https://atcoder.jp/contests/dp/tasks/dp_e
+
+![dp](dp9.png)
+![dp](dp10.png)
+![dp](dp11.png)
+
+- state swap dp
+
+> first work set defination then transition
+
+- LIS -> iterative dp + segment tree ->1e9-> coodrinate compression/implicit segment tree
+
+![dp](dp12.png)
+![dp](dp13.png)
+![dp](dp14.png)
+
+-> coodrinate compression(no. value = array size -> then map) -> problem property not change
+
+-> for optimise recursive dp -> iterative dp
+
+![dp](dp15.png)
+![dp](dp16.png)
+
+- LR dp -> longest palindromic subsequence
+
+![dp](dp17.png)
+![dp](dp18.png)
+
+- LCS
 
 Why dp?
 
