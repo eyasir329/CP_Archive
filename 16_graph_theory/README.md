@@ -1,4 +1,62 @@
 
+![gp](gp1.png)
+![gp](gp2.png)
+
+- bipartide graph -> no odd length cycle
+
+![gp](gp3.png)
+![gp](gp4.png)
+![gp](gp5.png)
+![gp](gp6.png)
+
+- dfs -> can check cycle or not
+
+![gp](gp7.png)
+![gp](gp8.png)
+![gp](gp9.png)
+![gp](gp10.png)
+
+
+- bfs -> can find shortest path (single sources)(unweighted graph)
+
+![gp](gp11.png)
+![gp](gp12.png)
+![gp](gp13.png)
+![gp](gp14.png)
+
+- for weighted graph -> dijkstra -> use priority queue (all other same)
+
+![gp](gp15.png)
+![gp](gp16.png)
+
+ex.
+
+- snake scales
+
+![gp](gp17.png)
+![gp](gp18.png)
+
+> binary search, ground distance <=h,  multisources bfs... if all reacheable through that h(mid)
+
+![gp](gp19.png)
+![gp](gp20.png)
+
+https://www.youtube.com/watch?v=yK7iTQVyiFQ
+
+- state dijkstra (edge count even or not)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Application of Graph
 
