@@ -2,7 +2,7 @@
 
 ![gd](gd1.png)
 
->Greedy problems involve making the best local choice at each step in the hope of achieving a globally optimal solution. These problems require the greedy-choice property to ensure the local optimum leads to the global optimum.
+> Greedy problems involve making the best local choice at each step in the hope of achieving a globally optimal solution. These problems require the greedy-choice property to ensure the local optimum leads to the global optimum.
 
 - sometimes local optimal not lead to global optimal - which is not greedy
 
@@ -35,7 +35,13 @@
 classic greedy bag carrying problem - https://codeforces.com/problemset/problem/1591/C
 
 greedy with median tendency
+
 - https://codeforces.com/problemset/problem/1520/E
 
 greedy ds
+
 - https://codeforces.com/problemset/problem/1506/D
+
+mod + greedy
+
+- https://codeforces.com/problemset/problem/1551/B2
